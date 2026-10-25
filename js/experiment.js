@@ -169,7 +169,8 @@ async function searchCrossref(query){
       const parts=(it['published-print']?.['date-parts']||it['published-online']?.['date-parts']||[])[0]||[];
       const year=parts[0]||'';
       const doi=it.DOI||'';
-      const href=doi?'https://doi.org/'+encodeURIComponent(doi):it.URL||'#';
+      const candidate=String(it.URL||'');
+      const href=doi?'https://doi.org/'+encodeURIComponent(doi):(/^https:\/\//i.test(candidate)?candidate:'#');
       const cited=Number(it['is-referenced-by-count']||0);
       return '<article class="evidence-item">'+
         '<h3>'+(idx+1)+'. '+escapeEvidence(title)+' <span class="score">cited '+cited+'</span></h3>'+

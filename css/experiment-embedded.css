@@ -71,3 +71,8 @@ html[data-theme=dark] #experimentView .ok{background:#1b3c2d;color:#b8f3cf}
 html[data-theme=dark] #experimentView .exp-qc-item{background:#1e3427;border-color:#3e5a4a}
 @media(max-width:800px){#experimentView{padding:10px 8px 48px}#experimentView .card{padding:14px}#experimentView .grid,#experimentView .score{grid-template-columns:repeat(2,minmax(0,1fr))}#experimentView .exp-actions button{flex:1 1 130px}}
 @media(max-width:520px){#experimentView .grid{grid-template-columns:1fr}#experimentView .score{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+body[data-vecrop-view="experiment"] .learning-only{display:none!important}
+body[data-vecrop-view="learn"] header.learning-only{top:58px}
+#experimentView .exp-wrap section[data-step]{scroll-margin-top:90px}
+@media(max-width:820px){body[data-vecrop-view="learn"] header.learning-only{top:0}}

@@ -179,6 +179,15 @@ Dữ liệu thiếu **không được tự động bịa hoặc suy ra**. Worksp
 - Xuất báo cáo QC để rà soát độc lập. **Đủ cấu trúc** không có nghĩa dữ liệu hoặc mô hình đã được kiểm định khoa học.
 - Kết quả tìm DOI chỉ ghi vào provenance khi người dùng chủ động chọn; **không** được tự thêm vào cột số đo hiện trường.
 
+### Kiểm tra JSON bằng Python
+
+```bash
+python python/experiment_validator.py example-experiment.json
+python -m unittest discover -s tests -v
+```
+
+Lệnh kiểm tra trả mã thoát khác 0 nếu JSON không hợp lệ. Kết quả này chỉ là **kiểm toán chất lượng dữ liệu đầu vào**, không phải kết luận thí nghiệm đã được kiểm định khoa học.
+
 ### Trợ lý tìm bằng chứng
 
 Khi thiếu dữ liệu, trang Thực nghiệm có thể tạo truy vấn từ:

@@ -46,6 +46,7 @@
     if(location.hash){
       const id=decodeURIComponent(location.hash.slice(1));
       const el=document.getElementById(id);
+      if(window.VECropExperimentGoTo)window.VECropExperimentGoTo(id);
       if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
     }
   }else{
