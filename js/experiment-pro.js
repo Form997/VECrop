@@ -290,6 +290,25 @@ selectFile('importCsvBtn','importCsvFile',async text=>{
  showValidation(validate(formObject()));
  setSaveStatus('Đã nhập '+mapped.length+' dòng CSV');
 });
+// Export drafts even if incomplete: a backup is not a scientific approval.
+get('exportJsonBtn').onclick=()=>{
+ const d=formObject(),v=validate(d);
+ showValidation(v);
+ d.input_qc_status=v.readiness;
+ d.input_qc_error_count=v.errors.length;
+ d.data_status=v.errors.length?'DRAFT_NEEDS_CORRECTION':'DRAFT_STRUCTURALLY_CHECKED';
+ download((v.errors.length?'DRAFT-':'')+(d.experiment_id||'vecrop-experiment')+'.json',
+  JSON.stringify(d,null,2),'application/json');
+ setSaveStatus('Đã xuất bản sao JSON (không đồng nghĩa đã kiểm định)');
+};
+const templ=document.createElement('button');
+templ.type='button';templ.className='exp-secondary';templ.textContent='Mẫu CSV';
+templ.addEventListener('click',()=>{
+ download('vecrop-observations-template.csv',
+  '\uFEFFdatetime,treatment,replicate,variable,value,unit,method,qc\n','text/csv;charset=utf-8');
+});
+get('importCsvBtn')?.after(templ);
+
 get('exportQcBtn')?.addEventListener('click',()=>{
  const d=formObject(),v=validate(d);showValidation(v);
  const report={

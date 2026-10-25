@@ -174,7 +174,7 @@ Dữ liệu thiếu **không được tự động bịa hoặc suy ra**. Worksp
 ### Workspace thực nghiệm nâng cao
 
 - Điều hướng theo 11 bước, không tải phần thực nghiệm cho đến khi được mở.
-- Hỗ trợ nhập/xuất JSON và CSV, kế thừa bản nháp trước đây.
+- Hỗ trợ nhập/xuất JSON và CSV, có tệp mẫu CSV, kế thừa bản nháp trước đây. Cho phép xuất bản nháp JSON ngay cả khi còn lỗi để tránh mất dữ liệu (file được đánh dấu DRAFT).
 - Kiểm toán QC theo dòng: dữ liệu thiếu, sai đơn vị, giá trị không hợp lệ, trùng quan trắc, thời gian trái với vụ thí nghiệm, điều kiện biên và phương pháp đo.
 - Xuất báo cáo QC để rà soát độc lập. **Đủ cấu trúc** không có nghĩa dữ liệu hoặc mô hình đã được kiểm định khoa học.
 - Kết quả tìm DOI chỉ ghi vào provenance khi người dùng chủ động chọn; **không** được tự thêm vào cột số đo hiện trường.
