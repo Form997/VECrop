@@ -42,7 +42,7 @@
   nav.forEach(a=>a.classList.toggle('active',isExperiment ? a.href.includes('view=experiment') && !a.hash : a.href.includes('view=learn') && !a.hash));
   if(isExperiment){
     document.title='VECrop — Phòng thực nghiệm';
-    try{await loadExperiment();}catch(_){}
+    try{await loadExperiment(); if(window.VECropExperimentApplyPrefill)window.VECropExperimentApplyPrefill();}catch(_){}
     if(location.hash){
       const id=decodeURIComponent(location.hash.slice(1));
       const el=document.getElementById(id);

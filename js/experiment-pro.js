@@ -330,21 +330,28 @@ get('exportQcBtn')?.addEventListener('click',()=>{
 });
 get('validateBtn')?.addEventListener('click',()=>openStep(11));
 
-// Handoff from crop assistant: identity metadata only; never assume cultivar or measurements.
-try{
- const incoming=sessionStorage.getItem('vecrop-exp-prefill');
- if(incoming){
-  const item=JSON.parse(incoming);
-  if(item&&typeof item==='object'){
-   for(const k of ['crop_name','species','photosynthesis']){
-    const field=expForm.elements[k];
-    if(field&&!String(field.value||'').trim()&&item[k])field.value=String(item[k]);
-   }
-   saveDraft();setSaveStatus('Đã lấy thông tin nhận dạng cây từ Trợ lý · chưa có số đo');
-  }
+// Crop assistant handoff never overwrites existing observations or identity silently.
+window.VECropExperimentApplyPrefill=function(){
+ try{
+  const incoming=sessionStorage.getItem('vecrop-exp-prefill');
+  if(!incoming)return;
   sessionStorage.removeItem('vecrop-exp-prefill');
- }
-}catch(err){console.warn('Không thể chuyển nhận dạng cây:',err)}
+  const item=JSON.parse(incoming);
+  if(!item||typeof item!=='object')return;
+  const cropField=expForm.elements.crop_name;
+  if(cropField?.value&&item.crop_name&&cropField.value.trim()!==String(item.crop_name).trim()){
+   setSaveStatus('Đang có dữ liệu của cây khác. Tạo bộ mới trước khi đổi cây.');
+   alert('Bản nháp hiện tại đã ghi cây '+cropField.value+'. Để tránh trộn dữ liệu khác cây, hãy xuất JSON sao lưu rồi tạo bộ thí nghiệm mới.');
+   return;
+  }
+  for(const k of ['crop_name','species','photosynthesis']){
+   const field=expForm.elements[k];
+   if(field&&!String(field.value||'').trim()&&item[k])field.value=String(item[k]);
+  }
+  saveDraft();setSaveStatus('Đã chuyển thông tin nhận dạng cây · số đo vẫn để trống');
+ }catch(err){console.warn('Không thể chuyển nhận dạng cây:',err)}
+};
+window.VECropExperimentApplyPrefill();
 stats();openStep(location.hash==='#evidenceSearch'?10:location.hash==='#validationPanel'?11:1);
 setSaveStatus('Tự động lưu cục bộ · Nên xuất JSON định kỳ');
 })();
