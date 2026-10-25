@@ -1,6 +1,6 @@
 # VECrop — Giáo trình tổng hợp
 
-> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.17**.
+> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.18**.
 
 ---
 
@@ -12899,13 +12899,803 @@ và mọi thành phần phải liên kết ngược với:
 
 ---
 
+
+## 4.18. Tích hợp toàn cây – bảo toàn khối lượng – coupling đa module – đóng vòng mô hình VECrop
+
+### 4.18.1. Mục tiêu tích hợp
+4.18 ghép toàn bộ các module từ vùng rễ tới năng suất thành một hệ duy nhất:
+
+<div class="flow-chain">
+<strong>Root zone</strong> → <strong>Root uptake</strong> → <strong>Xylem</strong> → <strong>Leaf hydraulics</strong> → <strong>Photosynthesis</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>Biomass</strong> → <strong>Yield</strong>
+</div>
+
+### 4.18.2. State vector toàn cây
+$
+\mathbf X=
+[\mathbf X_{soil},
+\mathbf X_{root},
+\mathbf X_{xylem},
+\mathbf X_{leaf},
+\mathbf X_{phloem},
+\mathbf X_{met},
+\mathbf X_{dev},
+\mathbf X_{biomass},
+\mathbf X_{yield}]^T
+$
+
+### 4.18.3. Input vector
+$
+\mathbf U=
+[Weather,Irrigation,Fertilizer,CO_2,Density,Management]^T
+$
+
+### 4.18.4. Phương trình động tổng quát
+$
+\frac{d\mathbf X}{dt}
+=
+\mathbf F(\mathbf X,\mathbf U,\boldsymbol\theta,t)
+$
+
+### 4.18.5. Observation model
+$
+\mathbf Y_{obs}
+=
+\mathbf H(\mathbf X)+\boldsymbol\epsilon
+$
+
+### 4.18.6. Các module lõi
+VECrop whole-plant gồm:
+1. soil/root-zone;
+2. root hydraulics;
+3. nutrient uptake;
+4. xylem;
+5. stomata;
+6. photosynthesis;
+7. phloem;
+8. source–sink;
+9. respiration/energy;
+10. development;
+11. senescence;
+12. biomass allocation;
+13. yield formation.
+
+### 4.18.7. Coupling có hướng
+Ví dụ:
+$
+Soil\ water\rightarrow Root\ uptake\rightarrow\Psi_L\rightarrow g_s\rightarrow A_n
+$
+
+và:
+$
+A_n\rightarrow Sucrose\rightarrow Phloem\rightarrow Sink\rightarrow Biomass
+$
+
+### 4.18.8. Feedback loop
+Ví dụ:
+$
+LAI\rightarrow A_{can}\rightarrow Carbon\rightarrow Leaf\ growth\rightarrow LAI
+$
+
+### 4.18.9. Root–shoot feedback
+$
+Root\ growth
+\rightarrow
+Water/Nutrient\ uptake
+\rightarrow
+Shoot\ growth
+\rightarrow
+Carbon\ supply
+\rightarrow
+Root\ growth
+$
+
+### 4.18.10. Source–sink feedback
+$
+Sink\ demand
+\rightarrow
+Phloem\ export
+\rightarrow
+Leaf\ sugar
+\rightarrow
+Photosynthetic\ regulation
+$
+
+### 4.18.11. Water balance vùng rễ
+$
+P+I-ET-R-D-\Delta S_w=\varepsilon_w
+$
+
+### 4.18.12. Plant water balance
+$
+U_w-E-\frac{dS_{plant}}{dt}
+=
+\varepsilon_{plant,w}
+$
+
+### 4.18.13. Water balance error
+$
+BE_w=
+\frac{|\varepsilon_w|}
+{\max(P+I,\varepsilon)}
+$
+
+### 4.18.14. Carbon balance
+$
+A_C-R_C-L_C-\frac{dM_C}{dt}
+=
+\varepsilon_C
+$
+
+### 4.18.15. Carbon closure
+$
+BE_C=
+\frac{|\varepsilon_C|}
+{\max(A_C,\varepsilon)}
+$
+
+### 4.18.16. Nitrogen balance
+$
+N_{input}+N_{fix}-N_{loss}-N_{harvest}-\Delta N_{system}
+=
+\varepsilon_N
+$
+
+### 4.18.17. Phosphorus balance
+$
+P_{input}-P_{loss}-P_{harvest}-\Delta P_{system}
+=
+\varepsilon_P
+$
+
+### 4.18.18. Potassium balance
+$
+K_{input}-K_{loss}-K_{harvest}-\Delta K_{system}
+=
+\varepsilon_K
+$
+
+### 4.18.19. Internal transfer phải triệt tiêu
+Với flux:
+$
+F_{i\rightarrow j}
+$
+
+thì trong total-system balance:
+$
+-F_{i\rightarrow j}+F_{i\rightarrow j}=0
+$
+
+Remobilization không tạo vật chất mới.
+
+### 4.18.20. Unit registry
+Mỗi biến phải có đơn vị chuẩn, ví dụ:
+- \(\Psi\): MPa;
+- \(C_i\): mol m\(^{-3}\);
+- \(J_i\): mol m\(^{-2}\) s\(^{-1}\);
+- biomass: kg DM m\(^{-2}\);
+- yield: t ha\(^{-1}\).
+
+### 4.18.21. Unit conversion
+Ví dụ:
+$
+1\ t\ ha^{-1}=0.1\ kg\ m^{-2}
+$
+
+### 4.18.22. Dry/fresh mass
+Không trộn:
+$
+Fresh\ mass\neq Dry\ mass
+$
+nếu chưa dùng dry-matter fraction.
+
+### 4.18.23. Timescale hierarchy
+- signaling: giây–phút;
+- stomata/hydraulics: phút–giờ;
+- photosynthesis: phút–giờ;
+- growth: giờ–ngày;
+- phenology: ngày–tuần.
+
+### 4.18.24. Multi-rate integration
+$
+\Delta t_{signal}
+<
+\Delta t_{hyd}
+<
+\Delta t_{growth}
+$
+
+### 4.18.25. Daily carbon integration
+$
+A_{day}
+=
+\int_{sunrise}^{sunset}
+A_{can}(t)\,dt
+$
+
+### 4.18.26. Solver order
+Một thứ tự thực thi hợp lý:
+1. weather/root-zone;
+2. soil water;
+3. root uptake;
+4. hydraulics;
+5. stomata;
+6. photosynthesis;
+7. carbon pools;
+8. phloem/source–sink;
+9. nutrient demand/uptake;
+10. respiration;
+11. development;
+12. senescence;
+13. biomass;
+14. yield;
+15. balance audit.
+
+### 4.18.27. Order dependence
+Nếu coupling mạnh, sequential update có thể sai. Khi đó dùng:
+- iteration;
+- implicit coupling;
+- operator splitting.
+
+### 4.18.28. Fixed-point iteration
+$
+X^{k+1}=F(X^k)
+$
+
+Dừng khi:
+$
+\|X^{k+1}-X^k\|<\epsilon
+$
+
+### 4.18.29. Relaxation
+$
+X^{k+1}
+=
+(1-\lambda)X^k+\lambda F(X^k)
+$
+
+với:
+$
+0<\lambda\le1
+$
+
+### 4.18.30. Positivity
+Bắt buộc:
+$
+M_i\ge0,\quad B_o\ge0,\quad C_i\ge0,\quad LAI\ge0
+$
+
+### 4.18.31. Flux limiter
+$
+F_{out}^{eff}
+=
+\min
+\left(
+F_{out},
+\frac{M_i}{\Delta t}
+\right)
+$
+
+để không rút vượt pool.
+
+### 4.18.32. Event handling
+Cần xử lý rõ:
+- emergence;
+- flowering;
+- irrigation;
+- fertilizer;
+- flooding;
+- drainage;
+- harvest.
+
+### 4.18.33. Module interface
+Mỗi module phải khai báo:
+- input;
+- output;
+- unit;
+- timestep;
+- state ownership;
+- parameter source.
+
+### 4.18.34. Single source of truth
+Một state chỉ có một owner.
+
+Ví dụ:
+$
+LAI
+$
+chỉ được growth/canopy state quản lý, không có hai giá trị song song.
+
+### 4.18.35. Algebraic loop
+Ví dụ:
+$
+g_s\rightarrow E\rightarrow\Psi_L\rightarrow g_s
+$
+
+phải giải bằng iteration hoặc dynamic coupling.
+
+### 4.18.36. Carbon–stomatal loop
+$
+A_n\rightarrow g_s
+$
+và:
+$
+g_s\rightarrow C_i\rightarrow A_n
+$
+
+### 4.18.37. Nutrient–growth loop
+$
+Growth
+\rightarrow
+N\ demand
+\rightarrow
+N\ uptake
+\rightarrow
+N\ status
+\rightarrow
+Growth
+$
+
+### 4.18.38. Double-counting audit
+Ví dụ drought đã tác động qua:
+$
+\Psi\rightarrow g_s\rightarrow A_n
+$
+
+thì không nhân thêm:
+$
+Y\times F_{drought}
+$
+nếu cùng cơ chế đã được tính.
+
+### 4.18.39. Diagnostic layer
+HSY, \(H_{env}\), \(H_E\) nên là diagnostic outputs.
+
+Không cho diagnostic score tự sửa state cơ chế nếu chưa có controller được định nghĩa rõ.
+
+### 4.18.40. Parameter classes
+Phân biệt:
+- physical constants;
+- literature parameters;
+- cultivar parameters;
+- soil/site parameters;
+- calibrated parameters;
+- proposed placeholders.
+
+### 4.18.41. Physical constants
+Ví dụ:
+- \(R\);
+- \(F\);
+- \(g\).
+
+### 4.18.42. Biological parameters
+Không gọi:
+- \(V_{cmax}\);
+- \(P_{50}\);
+- \(K_m\);
+- phyllochron
+là universal constants.
+
+### 4.18.43. Initial conditions
+$
+\mathbf X(t_0)=\mathbf X_0
+$
+
+phải gồm ít nhất:
+- soil water;
+- nutrient pools;
+- biomass;
+- phenology;
+- reserve pools.
+
+### 4.18.44. Boundary conditions
+Bao gồm:
+- atmosphere;
+- lower soil boundary;
+- irrigation;
+- nutrient input.
+
+### 4.18.45. Spatial scale
+Phải xác định rõ:
+- per plant;
+- per m²;
+- field;
+- soil layer;
+- canopy layer.
+
+### 4.18.46. Per-plant vs per-area
+$
+B_{area}=D\,B_{plant}
+$
+
+### 4.18.47. Layer aggregation
+Soil:
+$
+U_w=\sum_{k=1}^{n}U_{w,k}
+$
+
+Canopy:
+$
+A_{can}=\sum_lA_l
+$
+
+### 4.18.48. Numerical residuals
+Mỗi timestep nên lưu:
+- water residual;
+- C residual;
+- N residual;
+- P residual;
+- K residual.
+
+### 4.18.49. Cumulative residual
+$
+R_{cum}=\sum_t\varepsilon(t)
+$
+
+### 4.18.50. Conservation unit tests
+Cần test:
+- zero input/zero output → pool không đổi;
+- internal transfer → total pool không đổi;
+- harvest export → pool giảm đúng lượng.
+
+### 4.18.51. Limiting-case tests
+Ít nhất:
+- zero light;
+- zero water;
+- zero N;
+- saturated soil;
+- high salinity;
+- no sink;
+- no root.
+
+### 4.18.52. Zero-light test
+Nếu:
+$
+I=0
+$
+thì net photosynthetic C gain không được dương sau respiration.
+
+### 4.18.53. Zero-root test
+Nếu:
+$
+A_{root}=0
+$
+thì root uptake phải gần 0.
+
+### 4.18.54. No-sink test
+Nếu sink demand = 0:
+- sink allocation = 0;
+- sugar/source feedback có thể tăng.
+
+### 4.18.55. Carbon sanity check
+Không cho:
+$
+Growth+Respiration
+>
+Assimilation+Reserve\ mobilization
+$
+
+nếu không có nguồn C khác.
+
+### 4.18.56. Yield sanity check
+Không cho:
+$
+Y_{dry}>B_{total,dry}
+$
+
+### 4.18.57. Mechanistic–reduced–diagnostic hierarchy
+Ba cấp:
+1. mechanistic;
+2. reduced;
+3. diagnostic.
+
+Không trộn chúng vô thức.
+
+### 4.18.58. Crop configuration
+Core chung, config riêng cho:
+- rice;
+- maize;
+- lettuce.
+
+### 4.18.59. Rice coupling
+$
+Flooding/AWD
+\rightarrow
+Eh/O_2
+\rightarrow
+Root
+\rightarrow
+N
+\rightarrow
+Tillering
+\rightarrow
+Panicle
+\rightarrow
+Grain
+$
+
+### 4.18.60. Maize coupling
+$
+Soil\ water
+\rightarrow
+Root
+\rightarrow
+Hydraulics
+\rightarrow
+C4\ photosynthesis
+\rightarrow
+ASI/Kernel\ set
+\rightarrow
+Yield
+$
+
+### 4.18.61. Lettuce coupling
+$
+Rootzone\ EC/pH/T/O_2
+\rightarrow
+Root
+\rightarrow
+Water/Ca
+\rightarrow
+Leaf\ expansion
+\rightarrow
+Tipburn/Marketability
+\rightarrow
+Fresh\ yield
+$
+
+### 4.18.62. Balance table
+Mỗi run nên báo:
+
+| Balance | Input | Output | Storage change | Residual |
+|---|---:|---:|---:|---:|
+| Water |  |  |  |  |
+| Carbon |  |  |  |  |
+| Nitrogen |  |  |  |  |
+| Phosphorus |  |  |  |  |
+| Potassium |  |  |  |  |
+
+### 4.18.63. Model-close condition
+Simulation chỉ được xem là “đóng” khi:
+$
+|BE_w|,\ |BE_C|,\ |BE_N|,\ |BE_P|,\ |BE_K|
+$
+đều trong tolerance đã định nghĩa.
+
+### 4.18.64. Conservation-first principle
+Trong VECrop:
+$
+Conservation > Fit\ đẹp
+$
+
+Một model fit yield tốt nhưng vi phạm mass balance không đạt chuẩn cơ chế.
+
+### 4.18.65. Error flags
+Nên có:
+- NEGATIVE_POOL;
+- MASS_BALANCE_FAIL;
+- UNIT_MISMATCH;
+- PARAM_OUT_OF_RANGE;
+- SOLVER_NONCONVERGENCE;
+- EXTRAPOLATION.
+
+### 4.18.66. Reproducibility
+Mỗi run cần lưu:
+- model version;
+- crop config;
+- parameter set;
+- input hashes;
+- solver settings;
+- commit hash.
+
+### 4.18.67. Calibration hooks
+Model phải expose:
+- predicted variables;
+- residuals;
+- parameter bounds.
+
+### 4.18.68. Validation hooks
+Calibration dataset và validation dataset phải tách.
+
+### 4.18.69. Data assimilation
+Một Kalman-type update:
+$
+X_t^{post}
+=
+X_t^{prior}
++
+K_t
+(
+Y_t-HX_t^{prior}
+)
+$
+
+### 4.18.70. Proxy caution
+Ví dụ:
+$
+SPAD\neq Leaf\ N
+$
+dù có correlation.
+
+### 4.18.71. Structural uncertainty
+Sai số có thể đến từ:
+- equation form;
+- missing process;
+- wrong coupling;
+- parameter uncertainty.
+
+### 4.18.72. Model discrepancy
+$
+Y_{obs}
+=
+Y_{model}
++
+\delta_{model}
++
+\epsilon
+$
+
+### 4.18.73. Ablation test
+Bỏ module \(k\):
+$
+\Delta E_k
+=
+E_{without\ k}
+-
+E_{full}
+$
+
+### 4.18.74. Equifinality
+Có thể:
+$
+F(\theta^{(1)})
+\approx
+F(\theta^{(2)})
+$
+dù internal states khác nhau.
+
+### 4.18.75. Multi-variable calibration
+Nên fit đồng thời:
+- soil water;
+- LAI;
+- biomass;
+- nutrients;
+- yield.
+
+### 4.18.76. Stress-combination validation
+Cần kiểm:
+- drought + heat;
+- salinity + heat;
+- low N + drought;
+- hypoxia + reoxygenation.
+
+### 4.18.77. Non-additive stress
+Không mặc định:
+$
+Effect_{A+B}
+=
+Effect_A+Effect_B
+$
+
+### 4.18.78. Recovery và hysteresis
+$
+Response_{stress}
+\neq
+Response_{recovery}
+$
+tại cùng environmental state.
+
+### 4.18.79. Domain of validity
+Mỗi config cần ghi:
+- climate range;
+- soil range;
+- cultivar scope;
+- stage range;
+- management range.
+
+### 4.18.80. Explainability
+Mỗi dự báo nên truy ngược được:
+- state;
+- flux;
+- module;
+- parameter;
+- source dữ liệu.
+
+### 4.18.81. Failure transparency
+Nếu thiếu dữ liệu:
+- báo uncertainty;
+- flag extrapolation;
+- không tự gán parameter giả.
+
+### 4.18.82. Minimum mechanistic configuration
+Tối thiểu:
+- soil water;
+- root uptake;
+- photosynthesis;
+- respiration;
+- phenology;
+- biomass;
+- yield.
+
+### 4.18.83. Advanced configuration
+Có thể thêm:
+- ion-specific transport;
+- xylem vulnerability;
+- phloem pressure;
+- ROS;
+- molecular signaling;
+- SnRK1/TOR;
+- detailed senescence.
+
+### 4.18.84. Lightweight execution
+VECrop nên cho phép core nhẹ:
+- ODE nhỏ;
+- vectorized calculation;
+- CPU-only;
+- module bật/tắt theo dữ liệu.
+
+### 4.18.85. Final whole-plant formulation
+$
+\boxed{
+\frac{d\mathbf X}{dt}
+=
+\mathbf F(
+\mathbf X,
+\mathbf U,
+\boldsymbol\theta
+)
+}
+$
+
+subject to:
+$
+\boxed{Mass\ conservation}
+$
+$
+\boxed{Dimensional\ consistency}
+$
+$
+\boxed{Biological\ bounds}
+$
+$
+\boxed{Validated\ coupling}
+$
+
+### 4.18.86. Kết luận 4.18
+4.18 biến VECrop từ một tập phương trình thành **một hệ mô hình whole-plant tích hợp**.
+
+Chuỗi cuối phải giữ:
+$
+Environment
+\rightarrow
+Fluxes
+\rightarrow
+States
+\rightarrow
+Growth
+\rightarrow
+Yield
+$
+
+và mọi feedback phải được giải có kiểm soát.
+
+Một run chỉ được tin cậy khi:
+1. unit nhất quán;
+2. mass balance đóng;
+3. state không vi phạm giới hạn;
+4. không double count stress;
+5. parameter có provenance;
+6. calibration/validation tách biệt;
+7. output truy ngược được về cơ chế.
+
+---
+
 # Chuỗi tích hợp cuối Chương 4
 
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
 
-**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.17.**
+**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.18.**
 
 ---
 
@@ -12937,10 +13727,12 @@ và mọi thành phần phải liên kết ngược với:
 24. Reviews on root–shoot allocation, functional equilibrium and dynamic dry-matter partitioning.
 25. Reviews and crop-model literature on yield components, sink establishment, grain filling and harvest index.
 26. Literature on yield potential, yield gaps, reproductive stress windows and marketable yield formation in rice, maize and leafy vegetables.
+27. Reviews on whole-plant systems modeling, structural–functional integration and conservation-based crop simulation.
+28. Reviews on coupled water–carbon–nitrogen modeling and integrated crop systems.
 
 > **Quy tắc VECrop:** mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.
 
 
 ---
 
-> **Điểm dừng hiện tại:** 4.17. Chưa có nội dung sau 4.17.
+> **Điểm dừng hiện tại:** 4.18. Chưa có nội dung sau 4.18.
