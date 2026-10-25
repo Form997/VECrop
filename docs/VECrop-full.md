@@ -1,6 +1,6 @@
 # VECrop — Giáo trình tổng hợp
 
-> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.13**.
+> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.14**.
 
 ---
 
@@ -7652,13 +7652,1153 @@ Trong VECrop, T6P–SnRK1–TOR nên được dùng như **regulatory layer**, c
 
 ---
 
+
+## 4.14. Meristem – phân chia tế bào – giãn tế bào – phát triển cơ quan và phenology
+
+### 4.14.1. Vai trò của meristem
+
+Sinh trưởng vô hạn của cây phụ thuộc các vùng meristem duy trì quần thể tế bào phân chia.
+
+Hai hệ chính:
+- shoot apical meristem (SAM);
+- root apical meristem (RAM).
+
+Meristem cung cấp tế bào mới cho:
+- lá;
+- thân;
+- rễ;
+- mô dẫn;
+- cơ quan sinh sản.
+
+### 4.14.2. Organogenesis là quá trình hậu phôi chủ đạo
+
+Ở cây, phần lớn cơ quan mới được hình thành sau nảy mầm.
+
+Do đó:
+
+$
+Organ\ growth
+=
+Cell\ production
++
+Cell\ expansion
++
+Differentiation
+$
+
+Không nên mô tả tăng trưởng cơ quan chỉ bằng biomass accumulation.
+
+### 4.14.3. Phân rã tăng trưởng cơ quan
+
+Một decomposition:
+
+$
+B_o
+=
+N_{cell,o}
+m_{cell,o}
+$
+
+Suy ra:
+
+$
+\frac{dB_o}{dt}
+=
+N_{cell,o}
+\frac{dm_{cell,o}}{dt}
++
+m_{cell,o}
+\frac{dN_{cell,o}}{dt}
+$
+
+Trong đó:
+- \(N_{cell,o}\): số tế bào;
+- \(m_{cell,o}\): khối lượng trung bình mỗi tế bào.
+
+Đây là decomposition khái niệm, không phải mô hình duy nhất.
+
+### 4.14.4. Cell proliferation rate
+
+Một dạng:
+
+$
+\frac{dN_{cell}}{dt}
+=
+r_{div}
+N_{cycling}
+$
+
+trong đó:
+- \(r_{div}\): division rate;
+- \(N_{cycling}\): số tế bào đang trong cell cycle.
+
+### 4.14.5. Cell-cycle duration
+
+Nếu chu kỳ tế bào trung bình là:
+
+$
+T_c
+$
+
+thì một approximation:
+
+$
+r_{div}
+\approx
+\frac{\ln 2}{T_c}
+$
+
+chỉ hợp lý khi population tăng gần exponential.
+
+### 4.14.6. Cell-cycle phases
+
+Cell cycle gồm:
+- G1;
+- S;
+- G2;
+- M.
+
+Một state vector:
+
+$
+\mathbf N_{cycle}
+=
+[N_{G1},N_S,N_{G2},N_M]^T
+$
+
+Ở mô hình sâu có thể dùng transition rates giữa các pha.
+
+### 4.14.7. Cyclin–CDK control
+
+Cell cycle được điều hòa bởi:
+- cyclins;
+- CDKs;
+- inhibitors;
+- checkpoint signals.
+
+VECrop không cần mô hình chi tiết protein nếu dữ liệu không đủ; có thể dùng:
+
+$
+r_{div}^{eff}
+=
+r_{div}^{ref}
+F_{C}
+F_{N}
+F_{TOR}
+F_{Hormone}
+F_T
+$
+
+đây là reduced formulation.
+
+### 4.14.8. TOR và meristem activation
+
+Từ 4.13:
+
+$
+Carbon/Nutrient/Energy
+\rightarrow
+TOR
+\rightarrow
+Meristem\ activation
+$
+
+TOR có thể điều phối:
+- cell-cycle entry;
+- ribosome biogenesis;
+- protein synthesis;
+- meristem activity.
+
+### 4.14.9. SnRK1 và cell proliferation
+
+Khi năng lượng thiếu:
+
+$
+SnRK1\uparrow
+\rightarrow
+Anabolism\downarrow
+\rightarrow
+Cell\ proliferation\downarrow
+$
+
+Đây là directional biological relation; quantitative strength cần calibration.
+
+### 4.14.10. Cell expansion
+
+Từ Lockhart-type framework:
+
+$
+\frac{dV}{dt}
+=
+\phi
+(P-Y)
+$
+
+khi:
+
+$
+P>Y
+$
+
+Cell expansion phụ thuộc:
+- turgor;
+- wall extensibility;
+- osmotic status;
+- hormone;
+- temperature.
+
+### 4.14.11. Relative expansion rate
+
+$
+RER
+=
+\frac1V
+\frac{dV}{dt}
+$
+
+Một reduced formulation:
+
+$
+RER
+=
+RER_{max}
+F_{\Psi}
+F_{wall}
+F_{auxin}
+F_{TOR}
+$
+
+### 4.14.12. Turgor–growth coupling
+
+$
+\Psi_w
+=
+\Psi_p+\Psi_s
+$
+
+Ở cấp tế bào, giảm water potential ngoài có thể làm:
+
+$
+P\downarrow
+\rightarrow
+Cell\ expansion\downarrow
+$
+
+trước khi photosynthesis giảm mạnh.
+
+### 4.14.13. Wall loosening
+
+Cell expansion liên quan đến:
+- expansin;
+- XTH;
+- pectin remodeling;
+- proton-mediated wall acidification.
+
+Một conceptual chain:
+
+$
+H^+\ export
+\rightarrow
+Wall\ acidification
+\rightarrow
+Wall\ loosening
+\rightarrow
+Expansion
+$
+
+Không nên biến acid growth thành cơ chế duy nhất cho mọi mô.
+
+### 4.14.14. Auxin và expansion
+
+Auxin có thể tăng cell expansion trong một số mô qua:
+- proton pump activation;
+- wall loosening;
+- gene regulation.
+
+Một reduced response:
+
+$
+F_{IAA}
+=
+f(IAA,organ,stage)
+$
+
+Không dùng cùng hàm cho root và shoot.
+
+### 4.14.15. Cytokinin và meristem
+
+Cytokinin liên quan:
+- cell division;
+- SAM maintenance;
+- shoot growth;
+- nutrient signaling.
+
+Một organ-specific regulator:
+
+$
+F_{CK,o}
+=
+f(CK_o,stage)
+$
+
+### 4.14.16. GA và elongation
+
+GA thường liên quan:
+- stem elongation;
+- seed germination;
+- floral development.
+
+Một reduced elongation factor:
+
+$
+F_{GA}
+=
+\frac{GA}
+{K_{GA}+GA}
+$
+
+chỉ dùng khi có calibration.
+
+### 4.14.17. BR và growth
+
+Brassinosteroid ảnh hưởng:
+- cell expansion;
+- vascular differentiation;
+- growth signaling.
+
+BR response cần được tích hợp với auxin/TOR, tránh cộng tuyến tính thô.
+
+### 4.14.18. Differentiation
+
+Tế bào rời meristem phải chuyển từ:
+- proliferation;
+- expansion;
+- differentiation.
+
+Một conceptual transition:
+
+$
+Meristematic
+\rightarrow
+Expansion
+\rightarrow
+Differentiated
+$
+
+### 4.14.19. Root developmental zones
+
+RAM có thể tách:
+- stem-cell niche;
+- meristematic zone;
+- transition zone;
+- elongation zone;
+- differentiation zone.
+
+Điều này giúp nối cell cycle với root architecture.
+
+### 4.14.20. Root elongation rate
+
+Một balance:
+
+$
+\frac{dL_r}{dt}
+=
+v_{cell\ production}
++
+v_{elongation}
+$
+
+Trong reduced form:
+
+$
+RGR_{root}
+=
+RGR_{root,max}
+F_TF_{\Psi}F_NF_{O_2}F_{TOR}
+$
+
+### 4.14.21. Shoot apical meristem
+
+SAM tạo:
+- leaf primordia;
+- axillary meristem;
+- reproductive structures.
+
+Meristem state cần liên kết với phenology.
+
+### 4.14.22. Leaf initiation rate
+
+Một phyllochron-type framework:
+
+$
+N_{leaf}(t)
+=
+N_0
++
+\frac{TT(t)}
+{Phyllochron}
+$
+
+chỉ dùng trong miền phát triển phù hợp.
+
+Phyllochron phụ thuộc genotype và temperature regime.
+
+### 4.14.23. Thermal time
+
+Một dạng đơn giản:
+
+$
+TT
+=
+\sum_d
+\max
+(
+0,
+T_{mean,d}-T_b
+)
+$
+
+Trong đó \(T_b\) là base temperature.
+
+Không dùng một \(T_b\) chung cho mọi crop/giai đoạn.
+
+### 4.14.24. Cardinal temperatures
+
+Một process có thể có:
+- \(T_b\): base;
+- \(T_{opt}\): optimum;
+- \(T_{max}\): maximum.
+
+Một triangular response:
+
+$
+f_T(T)
+=
+\begin{cases}
+0,&T\le T_b\\
+\frac{T-T_b}{T_{opt}-T_b},&T_b<T<T_{opt}\\
+\frac{T_{max}-T}{T_{max}-T_{opt}},&T_{opt}\le T<T_{max}\\
+0,&T\ge T_{max}
+\end{cases}
+$
+
+Đây là reduced phenology function.
+
+### 4.14.25. Nonlinear thermal time
+
+Khi temperature response phi tuyến mạnh:
+
+$
+TT_{eff}
+=
+\sum_t
+f_T(T_t)\Delta t
+$
+
+có ý nghĩa hơn linear degree-day.
+
+### 4.14.26. Photoperiod
+
+Một developmental modifier:
+
+$
+F_P
+=
+f(Daylength,genotype,stage)
+$
+
+Không giả định mọi cultivar cùng photoperiod sensitivity.
+
+### 4.14.27. Photoperiod classes
+
+Cây có thể:
+- short-day;
+- long-day;
+- day-neutral;
+- quantitative/qualitative response.
+
+Lúa thường có genotype-specific short-day sensitivity; nhiều giống hiện đại giảm sensitivity.
+
+### 4.14.28. Vernalization
+
+Vernalization là đáp ứng phát triển với prolonged low temperature ở các loài/giống cần cold exposure.
+
+Một reduced state:
+
+$
+V(t)
+=
+\min
+\left(
+1,
+V(t-\Delta t)
++
+r_V(T)\Delta t
+\right)
+$
+
+Chỉ áp dụng với crop có vernalization requirement.
+
+### 4.14.29. Không ép vernalization cho lúa/ngô/xà lách
+
+VECrop không được mặc định cả ba crop đều có vernalization requirement.
+
+Module chỉ bật khi:
+- species;
+- cultivar;
+- production context
+có bằng chứng phù hợp.
+
+### 4.14.30. Development rate
+
+Một reduced formulation:
+
+$
+D_{dev}
+=
+D_{max}
+F_T
+F_P
+F_V
+F_G
+$
+
+Trong đó:
+- \(F_T\): temperature;
+- \(F_P\): photoperiod;
+- \(F_V\): vernalization;
+- \(F_G\): genotype.
+
+### 4.14.31. Developmental stage state
+
+Một state:
+
+$
+0\le DVS\le2
+$
+
+ví dụ:
+- \(DVS=0\): emergence;
+- \(DVS=1\): flowering;
+- \(DVS=2\): maturity.
+
+Đây chỉ là convention mô hình; mapping phải crop-specific.
+
+### 4.14.32. Stage transition
+
+Một threshold:
+
+$
+DVS(t+\Delta t)
+=
+DVS(t)
++
+r_{dev}\Delta t
+$
+
+Khi vượt threshold thì chuyển stage.
+
+### 4.14.33. Developmental timing không chỉ là “đồng hồ nhiệt”
+
+Plant developmental timing còn phụ thuộc:
+- growth status;
+- circadian system;
+- light;
+- carbon;
+- hormones;
+- stress.
+
+Do đó thermal time chỉ là reduced layer.
+
+### 4.14.34. Circadian coupling
+
+Một signal:
+
+$
+C_{circ}(t)
+=
+A\sin
+\left(
+\frac{2\pi t}{24}
++\phi
+\right)
+$
+
+chỉ là mathematical proxy.
+
+Circadian regulation có thể ảnh hưởng:
+- starch turnover;
+- flowering;
+- hormone timing;
+- growth rhythms.
+
+### 4.14.35. Thermomorphogenesis
+
+Nhiệt độ ấm nhưng chưa gây heat stress có thể thay đổi:
+- elongation;
+- leaf angle;
+- architecture;
+- flowering timing.
+
+Không đồng nhất thermomorphogenesis với heat damage.
+
+### 4.14.36. Development vs growth
+
+Phân biệt:
+
+$
+Development
+\neq
+Growth
+$
+
+Growth: tăng kích thước/biomass.
+
+Development: chuyển trạng thái/identity.
+
+Một cây có thể phát triển nhanh về stage nhưng biomass thấp.
+
+### 4.14.37. Organ initiation
+
+Một organ number model:
+
+$
+\frac{dN_o}{dt}
+=
+r_{init,o}
+$
+
+với:
+
+$
+r_{init,o}
+=
+f(T,photoperiod,meristem,genotype)
+$
+
+### 4.14.38. Leaf area expansion
+
+$
+\frac{dA_L}{dt}
+=
+N_L
+\frac{dA_{cell}}{dt}
++
+A_{cell}
+\frac{dN_{cell}}{dt}
+$
+
+Tương tự decomposition biomass.
+
+### 4.14.39. Specific leaf area
+
+$
+SLA
+=
+\frac{Leaf\ area}
+{Leaf\ dry\ mass}
+$
+
+SLA có thể thay đổi theo:
+- light;
+- N;
+- temperature;
+- age.
+
+Không giữ cố định cả vụ nếu cần mechanistic accuracy.
+
+### 4.14.40. LAI formation
+
+$
+LAI
+=
+\frac{Leaf\ area}{Ground\ area}
+$
+
+Dynamics:
+
+$
+\frac{dLAI}{dt}
+=
+LAI_{growth}
+-
+LAI_{senescence}
+$
+
+### 4.14.41. Root–shoot coordination
+
+Một allocation balance:
+
+$
+C_{growth}
+=
+C_{root}
++
+C_{shoot}
++
+C_{reproductive}
+$
+
+Meristem demand cạnh tranh carbon theo source–sink status.
+
+### 4.14.42. Meristem demand
+
+Một sink demand:
+
+$
+Demand_{meristem}
+=
+M_{meristem}
+q_{meristem}
+F_{TOR}
+F_{stage}
+$
+
+Đây là VECrop proposed formulation.
+
+### 4.14.43. Cell-number limitation
+
+Nếu carbon đủ nhưng division thấp:
+
+$
+Growth
+\approx
+Cell\ number\ limited
+$
+
+Nếu division đủ nhưng water/turgor thấp:
+
+$
+Growth
+\approx
+Cell\ expansion\ limited
+$
+
+### 4.14.44. Multiplicative limitation caution
+
+Không mặc định:
+
+$
+Growth
+=
+F_{division}
+F_{expansion}
+F_{differentiation}
+$
+
+vì các process có coupling và compensation.
+
+### 4.14.45. Stress effect on meristem
+
+Stress có thể:
+- arrest cell cycle;
+- reduce meristem size;
+- shift differentiation;
+- alter hormone gradients.
+
+Một reduced modifier:
+
+$
+r_{div}^{stress}
+=
+r_{div}^{ref}
+F_{stress}
+$
+
+### 4.14.46. Drought
+
+Drought thường làm giảm:
+- turgor;
+- cell expansion;
+- meristem activity;
+- leaf appearance rate.
+
+Expansion có thể phản ứng trước photosynthesis.
+
+### 4.14.47. Hypoxia
+
+Hypoxia:
+
+$
+ATP\downarrow
+\rightarrow
+Cell\ cycle/expansion\downarrow
+$
+
+nhưng rice roots có adaptation đặc thù.
+
+### 4.14.48. Salinity
+
+Salinity ảnh hưởng:
+- osmotic expansion;
+- ion homeostasis;
+- ROS;
+- hormone signaling;
+- meristem activity.
+
+Không chỉ giảm một “salinity growth factor”.
+
+### 4.14.49. Nutrient deficiency
+
+N/P/K deficiency có thể thay đổi:
+- meristem activity;
+- organ initiation;
+- leaf expansion;
+- root/shoot allocation.
+
+Response phụ thuộc nutrient.
+
+### 4.14.50. Phenology × source–sink
+
+Developmental stage quyết định:
+- active sinks;
+- sink strength;
+- nutrient demand;
+- allocation priorities.
+
+Do đó:
+
+$
+SS_o
+=
+SS_o(stage)
+$
+
+### 4.14.51. Phenology × respiration
+
+Maintenance/growth respiration thay đổi theo:
+- organ age;
+- active tissue fraction;
+- stage.
+
+Không dùng một hệ số duy nhất cho cả vòng đời.
+
+### 4.14.52. Phenology × nutrient demand
+
+$
+q_{i,o}^{*}
+=
+q_{i,o}^{*}(stage)
+$
+
+Nutrient target concentration thay đổi theo stage và organ.
+
+### 4.14.53. Lúa: phenology
+
+Các stage chính có thể gồm:
+- emergence;
+- tillering;
+- panicle initiation;
+- booting;
+- heading/flowering;
+- grain filling;
+- maturity.
+
+VECrop cần map stage theo cultivar.
+
+### 4.14.54. Lúa: tiller dynamics
+
+Một reduced tiller balance:
+
+$
+\frac{dN_{tiller}}{dt}
+=
+Initiation
+-
+Mortality
+$
+
+Initiation phụ thuộc:
+- carbon;
+- N;
+- light;
+- cytokinin/strigolactone;
+- density.
+
+### 4.14.55. Ngô: phenology
+
+Các stage cần phân biệt:
+- emergence;
+- vegetative leaf stages;
+- tasseling;
+- silking;
+- grain filling;
+- maturity.
+
+Thermal time thường hữu ích nhưng cultivar-specific.
+
+### 4.14.56. Ngô: anthesis–silking synchrony
+
+Một diagnostic:
+
+$
+ASI
+=
+t_{silking}
+-
+t_{anthesis}
+$
+
+ASI tăng trong stress có thể phản ánh reproductive stress.
+
+### 4.14.57. Xà lách: phenology
+
+Các trạng thái chính:
+- emergence;
+- rosette expansion;
+- marketable vegetative stage;
+- bolting;
+- flowering.
+
+Với production lettuce, bolting thường là transition không mong muốn.
+
+### 4.14.58. Xà lách: bolting
+
+Bolting phụ thuộc:
+- genotype;
+- temperature;
+- photoperiod;
+- developmental state.
+
+Không dùng một threshold nhiệt duy nhất cho mọi cultivar.
+
+### 4.14.59. Organ-specific growth
+
+Một general form:
+
+$
+\frac{dB_o}{dt}
+=
+G_o^{pot}
+F_{source}
+F_{water}
+F_{nut}
+F_{dev}
+$
+
+Đây là reduced form và phải tránh double counting.
+
+### 4.14.60. Mechanistic alternative
+
+Ở mức cơ chế hơn:
+
+$
+\frac{dB_o}{dt}
+=
+Carbon\ allocation_o
+-
+Respiration_o
+-
+Turnover_o
+$
+
+và meristem/cell-expansion module quyết định capacity.
+
+### 4.14.61. Developmental capacity
+
+Một proposed capacity:
+
+$
+G_o^{cap}
+=
+f(
+Meristem_o,
+CellCycle_o,
+Expansion_o,
+TOR_o,
+Hormone_o,
+Stage
+)
+$
+
+### 4.14.62. Growth rate thực
+
+$
+G_o
+=
+\min
+(
+G_o^{source},
+G_o^{cap}
+)
+$
+
+Đây là conceptual supply–capacity coupling.
+
+### 4.14.63. Sink capacity
+
+Từ 4.5:
+
+$
+SS_o
+=
+M_oq_o
+$
+
+4.14 giúp giải thích \(M_o\) qua:
+- cell number;
+- organ number;
+- meristem size.
+
+### 4.14.64. Coupling với 4.13
+
+Chuỗi:
+
+$
+Sugar/T6P/TOR
+\rightarrow
+CellCycle
+\rightarrow
+Meristem
+\rightarrow
+Organ\ growth
+$
+
+### 4.14.65. Coupling với 4.12
+
+Hormone–Ca–ROS–MAPK có thể điều chỉnh:
+- cell-cycle entry;
+- wall expansion;
+- differentiation;
+- developmental transitions.
+
+### 4.14.66. Coupling với 4.6
+
+Leaf development quyết định:
+
+$
+LAI
+$
+
+và từ đó ảnh hưởng:
+
+$
+A_{can}
+$
+
+### 4.14.67. Coupling với 4.7
+
+Phenology quyết định:
+
+$
+Req_{i,o}
+$
+
+và remobilization timing.
+
+### 4.14.68. Parameter provenance
+
+Cần provenance cho:
+- \(T_b\);
+- \(T_{opt}\);
+- \(T_{max}\);
+- phyllochron;
+- photoperiod sensitivity;
+- cell-cycle duration;
+- meristem size;
+- organ initiation rate;
+- SLA.
+
+### 4.14.69. Experimental observables
+
+Có thể đo:
+- meristem cell number;
+- EdU/BrdU-type proliferation labeling;
+- root meristem length;
+- cell length profile;
+- leaf appearance;
+- organ number;
+- LAI;
+- thermal time;
+- flowering/heading date.
+
+### 4.14.70. Calibration hierarchy
+
+Nên hiệu chỉnh:
+1. temperature response;
+2. leaf/root initiation;
+3. cell division/expansion;
+4. organ growth;
+5. developmental transition;
+6. whole-plant phenology.
+
+### 4.14.71. Validation
+
+Validation cần kiểm:
+- stage dates;
+- leaf number;
+- root elongation;
+- LAI;
+- organ biomass;
+- flowering/heading;
+- maturity.
+
+### 4.14.72. Không dùng yield để fit phenology duy nhất
+
+Final yield không đủ để nhận dạng:
+- \(T_b\);
+- photoperiod sensitivity;
+- phyllochron;
+- cell-cycle rate.
+
+Cần time-series developmental data.
+
+### 4.14.73. Không double counting
+
+Nếu phenology đã điều chỉnh:
+- sink strength;
+- nutrient demand;
+- photosynthetic area;
+
+thì không nhân thêm một “stage factor” chung vào yield.
+
+### 4.14.74. Vai trò của 4.14
+
+4.14 chuyển regulatory state thành cấu trúc phát triển:
+
+<div class="flow-chain">
+<strong>Carbon–TOR/Hormone</strong> → <strong>Meristem</strong> → <strong>Cell division</strong> → <strong>Cell expansion</strong> → <strong>Organ initiation</strong> → <strong>Phenology</strong> → <strong>Canopy/Root/Sink capacity</strong>
+</div>
+
+### 4.14.75. Kết luận 4.14
+
+Phát triển cây cần tách hai trục:
+
+$
+Growth
+\neq
+Development
+$
+
+và mô hình VECrop nên biểu diễn:
+
+$
+Environment
+\rightarrow
+Developmental\ timing
+\rightarrow
+Organ\ capacity
+$
+
+song song với:
+
+$
+Carbon/Nutrient/Water
+\rightarrow
+Growth\ realization
+$
+
+Như vậy phenology xác định **khi nào và cơ quan nào có khả năng tăng trưởng**, còn source–sink, hydraulics và metabolism xác định **mức tăng trưởng thực sự đạt được**.
+
+---
+
 # Chuỗi tích hợp cuối Chương 4
 
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
 
-**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.13.**
+**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.14.**
 
 ---
 
@@ -7681,10 +8821,13 @@ Trong VECrop, T6P–SnRK1–TOR nên được dùng như **regulatory layer**, c
 15. Xu J., Zhang S. Reviews on MAPK cascades in plants.
 16. Fichtner F., Lunn J.E. Reviews on trehalose-6-phosphate and sucrose signaling.
 17. Reviews on HXK, SnRK1 and TOR signaling in plant growth and stress responses.
+18. Coen E., Prusinkiewicz P. Reviews on developmental timing in plants.
+19. Desvoyes B. et al. Reviews on cell proliferation kinetics in the root apical meristem.
+20. Reviews on flowering-time regulation, photoperiod and vernalization in crops.
 
 > **Quy tắc VECrop:** mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.
 
 
 ---
 
-> **Điểm dừng hiện tại:** 4.13. Chưa có nội dung sau 4.13.
+> **Điểm dừng hiện tại:** 4.14. Chưa có nội dung sau 4.14.
