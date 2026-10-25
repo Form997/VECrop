@@ -1,6 +1,6 @@
 # VECrop
 
-**VECrop** là khung mô hình sinh lý–toán học cây trồng theo hướng cơ chế, tích hợp môi trường vùng rễ, thủy lực cây, hấp thu và vận chuyển dinh dưỡng, quang hợp, source–sink, cân bằng C–N–P–K, năng lượng, redox và tín hiệu hormone.
+**VECrop** là khung mô hình sinh lý–toán học cây trồng theo hướng cơ chế, tích hợp môi trường vùng rễ, thủy lực cây, hấp thu và vận chuyển dinh dưỡng, quang hợp, source–sink, cân bằng Carbon và Nitơ và Phospho và Kali, Năng lượng, redox và tín hiệu hormone.
 
 > Trạng thái khoa học: **mô hình/khung lý thuyết đề xuất**, chưa được xem là định luật hay lý thuyết đã được xác nhận. Mọi tham số thực nghiệm phải gắn nguồn và điều kiện đo; không dùng một giá trị phổ quát cho mọi loài/giống/môi trường.
 
