@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-windows:
@@ -64,3 +64,13 @@ jobs:
           path: dist/VECrop-Desktop.exe
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish Windows release for in-app update checks
+        if: github.ref == 'refs/heads/main'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = "desktop-r$env:GITHUB_RUN_NUMBER"
+          $notes = "VECrop Desktop Windows x64. Source commit: $env:GITHUB_SHA. Includes bundled curriculum and experiment UI. Public scientific-content files can also be synchronized from within the app; Internet DOI tools require connectivity. Back up observations with Export JSON before major upgrades."
+          gh release create $tag "dist/VECrop-Desktop.exe" --repo "$env:GITHUB_REPOSITORY" --target "$env:GITHUB_SHA" --title "VECrop Desktop #$env:GITHUB_RUN_NUMBER" --notes $notes --latest
