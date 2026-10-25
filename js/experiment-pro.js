@@ -330,6 +330,21 @@ get('exportQcBtn')?.addEventListener('click',()=>{
 });
 get('validateBtn')?.addEventListener('click',()=>openStep(11));
 
+// Handoff from crop assistant: identity metadata only; never assume cultivar or measurements.
+try{
+ const incoming=sessionStorage.getItem('vecrop-exp-prefill');
+ if(incoming){
+  const item=JSON.parse(incoming);
+  if(item&&typeof item==='object'){
+   for(const k of ['crop_name','species','photosynthesis']){
+    const field=expForm.elements[k];
+    if(field&&!String(field.value||'').trim()&&item[k])field.value=String(item[k]);
+   }
+   saveDraft();setSaveStatus('Đã lấy thông tin nhận dạng cây từ Trợ lý · chưa có số đo');
+  }
+  sessionStorage.removeItem('vecrop-exp-prefill');
+ }
+}catch(err){console.warn('Không thể chuyển nhận dạng cây:',err)}
 stats();openStep(location.hash==='#evidenceSearch'?10:location.hash==='#validationPanel'?11:1);
 setSaveStatus('Tự động lưu cục bộ · Nên xuất JSON định kỳ');
 })();

@@ -394,6 +394,7 @@
       <textarea id="objective" placeholder="Ví dụ: tăng năng suất, giảm bệnh, tối ưu dinh dưỡng..." id="objective"></textarea>
 
       <button id="recommendBtn" style="width: 100%; margin-top: 12px;">Gợi ý phương án</button>
+      <button id="experimentFromCrop" style="width:100%;margin-top:8px;background:#136e88">🧪 Chuyển cây sang thực nghiệm</button>
 
       <div id="recommendation" class="card">
         <div class="muted">Chưa có gợi ý. Hãy chọn loại cây và mục tiêu.</div>
@@ -707,6 +708,21 @@
       }
     });
     document.getElementById('recommendBtn').addEventListener('click', recommend);
+    document.getElementById('experimentFromCrop').addEventListener('click',()=>{
+      const crop=KNOWLEDGE?.crops?.[cropSelect.value];
+      if(crop){
+        sessionStorage.setItem('vecrop-exp-prefill',JSON.stringify({
+          crop_name:crop.name_vi||crop.name||'',
+          species:crop.species||'',
+          photosynthesis:crop.photosynthesis||''
+        }));
+      }
+      const next=new URL(location.href);
+      next.searchParams.set('view','experiment');
+      next.hash='';
+      history.pushState(null,'',next);
+      if(window.VECropActivateView)window.VECropActivateView();
+    });
     document.getElementById('retryMath').addEventListener('click', async () => {
       statusBox.textContent = 'Đang dựng lại công thức...';
       const ok = await typesetMath();
