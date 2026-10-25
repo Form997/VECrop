@@ -1,4 +1,4 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VECrop — Chương 1 đến 4.12</title>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VECrop — Chương 1 đến 4.13</title>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],processEscapes:true},svg:{fontCache:'global'}};</script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <style>
@@ -15,7 +15,7 @@ code{background:#eef1f4;padding:.15em .35em;border-radius:5px}blockquote{border-
 table{border-collapse:collapse;width:100%;display:block;overflow:auto;margin:1em 0}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{background:#f7f9fb}hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
 @media(max-width:900px){.layout{display:block;padding:10px}aside{display:none}main{padding:20px 14px}.top{flex-wrap:wrap}#search{flex-basis:100%}}
 </style></head><body>
-<header><div class="top"><div class="brand"><span>VE</span>Crop — Chương 1 đến 4.12</div><input id="search" placeholder="Tìm trong giáo trình…"></div></header>
+<header><div class="top"><div class="brand"><span>VE</span>Crop — Chương 1 đến 4.13</div><input id="search" placeholder="Tìm trong giáo trình…"></div></header>
 <div class="layout"><aside><strong>Mục lục</strong><nav id="toc"></nav></aside><main><article id="content"><h1>Chương 1. Cơ sở sinh lý – vật lý – toán học của hấp thu dinh dưỡng trong VECrop</h1>
 <blockquote><strong>Trạng thái học thuật:</strong> Chương này tổng hợp kiến thức nền đã được thiết lập trong sinh lý thực vật, dinh dưỡng cây trồng, vật lý đất–nước và nhiệt động học. Các cấu trúc mang tên <strong>VECrop</strong> hoặc <strong>HSY</strong> được ghi rõ là *mô hình/khung đề xuất* và không được xem là định luật sinh học cho đến khi được hiệu chỉnh và kiểm định.</blockquote>
 <hr>
@@ -4445,11 +4445,295 @@ y_{o'}\]</div>
 <li>water stress.</li>
 </ul>
 <hr>
+<h2>4.13. Cảm nhận carbon – đường – T6P – SnRK1 – TOR và điều hòa tăng trưởng</h2>
+<h3>4.13.1. Vai trò của sugar sensing</h3>
+<p>Đường trong cây không chỉ là substrate trao đổi chất mà còn là tín hiệu trạng thái carbon.</p>
+<p>Các tín hiệu chính cần phân biệt:</p>
+<ul>
+<li>glucose;</li>
+<li>sucrose;</li>
+<li>glucose-6-phosphate;</li>
+<li>trehalose-6-phosphate (T6P);</li>
+<li>trạng thái ATP/AMP;</li>
+<li>carbon skeleton cho đồng hóa N.</li>
+</ul>
+<p>Không được đồng nhất:</p>
+<p>\( Sugar\ concentration = Carbon\ flux \)</p>
+<p>vì concentration là state, còn flux là tốc độ vận chuyển/chuyển hóa.</p>
+<h3>4.13.2. Hexokinase như cảm biến glucose</h3>
+<p>Hexokinase (HXK) vừa xúc tác:</p>
+<p>\( Glucose + ATP \rightarrow Glucose\text{-}6\text{-}phosphate + ADP \)</p>
+<p>vừa tham gia sugar signaling.</p>
+<p>Một reduced signal:</p>
+<p>\( S_{HXK} = \frac{Glu} {K_{HXK}+Glu} \)</p>
+<p>chỉ là biểu diễn VECrop đề xuất khi không mô hình pathway HXK chi tiết.</p>
+<h3>4.13.3. Sucrose status</h3>
+<p>Sucrose là:</p>
+<ul>
+<li>dạng vận chuyển carbon chính trong phloem ở nhiều loài;</li>
+<li>substrate cho sink;</li>
+<li>tín hiệu trạng thái source–sink.</li>
+</ul>
+<p>Một biến trạng thái:</p>
+<p>\( C_{Suc,o} \)</p>
+<p>nên được giữ theo cơ quan khi dữ liệu cho phép.</p>
+<h3>4.13.4. Trehalose-6-phosphate</h3>
+<p>T6P là một tín hiệu quan trọng liên hệ sucrose availability với tăng trưởng và phát triển.</p>
+<p>Một reduced coupling:</p>
+<p>\( S_{T6P} = \frac{T6P} {K_{T6P}+T6P} \)</p>
+<p>Không dùng T6P như đại diện trực tiếp cho lượng carbon dự trữ.</p>
+<h3>4.13.5. T6P–sucrose relationship</h3>
+<p>Ở mức khái niệm:</p>
+<p>\( Sucrose\uparrow \Rightarrow T6P\uparrow \)</p>
+<p>trong nhiều mô và điều kiện, nhưng slope và dynamics phụ thuộc:</p>
+<ul>
+<li>tissue;</li>
+<li>species;</li>
+<li>developmental stage;</li>
+<li>light;</li>
+<li>nutrient status.</li>
+</ul>
+<p>Do đó không hard-code quan hệ tuyến tính phổ quát.</p>
+<h3>4.13.6. SnRK1</h3>
+<p>SnRK1 là kinase cảm nhận trạng thái năng lượng/carbon.</p>
+<p>Khi thiếu năng lượng:</p>
+<p>\( Energy\ deficit \rightarrow SnRK1\uparrow \)</p>
+<p>SnRK1 có xu hướng:</p>
+<ul>
+<li>ức chế anabolism;</li>
+<li>thúc đẩy catabolism;</li>
+<li>tăng khả năng sống sót khi thiếu carbon;</li>
+<li>điều chỉnh gene expression liên quan stress và metabolism.</li>
+</ul>
+<h3>4.13.7. TOR</h3>
+<p>TOR là kinase tích hợp:</p>
+<ul>
+<li>carbon;</li>
+<li>nutrient;</li>
+<li>energy;</li>
+<li>growth signals.</li>
+</ul>
+<p>Khi điều kiện thuận lợi:</p>
+<p>\( Carbon/Nutrient/Energy\uparrow \rightarrow TOR\uparrow \)</p>
+<p>TOR thường liên quan:</p>
+<ul>
+<li>translation;</li>
+<li>ribosome biogenesis;</li>
+<li>cell growth;</li>
+<li>cell proliferation;</li>
+<li>anabolic metabolism.</li>
+</ul>
+<h3>4.13.8. Trục SnRK1–TOR</h3>
+<p>Một conceptual antagonism:</p>
+<p>\( SnRK1 \dashv Growth/Anabolism \)</p>
+<p>\( TOR \rightarrow Growth/Anabolism \)</p>
+<p>Nhưng không nên xem SnRK1 và TOR là hai biến luôn đối xứng hoàn toàn.</p>
+<h3>4.13.9. T6P–SnRK1</h3>
+<p>Một conceptual link:</p>
+<p>\( T6P\uparrow \Rightarrow SnRK1\ activity\downarrow \)</p>
+<p>trong nhiều bối cảnh mô thực vật.</p>
+<p>Không mặc định cùng độ nhạy ở mọi tissue/crop.</p>
+<h3>4.13.10. Carbon status index</h3>
+<p>Một reduced carbon status:</p>
+<p>\( S_C = \frac{C_{sugar}} {K_C+C_{sugar}} \)</p>
+<p>Nếu tách nhiều pool:</p>
+<p>\( \mathbf C_{sugar} = [Sucrose,Glucose,Fructose,Starch,T6P]^T \)</p>
+<h3>4.13.11. Energy status</h3>
+<p>Một reduced energy state:</p>
+<p>\( S_E = \frac{ATP} {K_E+ATP} \)</p>
+<p>Ở mức cơ chế sâu hơn có thể dùng:</p>
+<ul>
+<li>ATP/ADP;</li>
+<li>adenylate energy charge;</li>
+<li>NADH/NAD+;</li>
+<li>NADPH/NADP+.</li>
+</ul>
+<h3>4.13.12. TOR reduced formulation</h3>
+<p>Một VECrop proposal:</p>
+<p>\( A_{TOR} = \sigma ( \beta_0 + \beta_CS_C + \beta_NS_N + \beta_ES_E - \beta_SS_{stress} ) \)</p>
+<p>Các coefficient phải được calibration.</p>
+<h3>4.13.13. SnRK1 reduced formulation</h3>
+<p>Một VECrop proposal:</p>
+<p>\( A_{SnRK1} = \sigma ( \gamma_0 - \gamma_CS_C - \gamma_ES_E + \gamma_SS_{stress} ) \)</p>
+<p>Không xem phương trình này là pathway sinh học chính xác.</p>
+<h3>4.13.14. Sugar–hormone crosstalk</h3>
+<p>Sugar signaling tương tác với:</p>
+<ul>
+<li>ABA;</li>
+<li>auxin;</li>
+<li>cytokinin;</li>
+<li>GA;</li>
+<li>ethylene.</li>
+</ul>
+<p>Một regulator:</p>
+<p>\( y_o = f( Sugar, Hormone, Ca, ROS, MAPK, stage ) \)</p>
+<h3>4.13.15. Carbon–nitrogen coupling</h3>
+<p>Tăng trưởng cần đồng thời:</p>
+<ul>
+<li>carbon skeleton;</li>
+<li>nitrogen;</li>
+<li>energy.</li>
+</ul>
+<p>Một stoichiometric constraint:</p>
+<p>\( Growth_o \le \min ( C_{avail,o}/q_{C,o}, N_{avail,o}/q_{N,o} ) \)</p>
+<p>Đây là reduced Liebig-style formulation.</p>
+<h3>4.13.16. N assimilation và carbon skeleton</h3>
+<p>Nitrate/ammonium assimilation cần carbon skeleton và reducing power.</p>
+<p>Một conceptual link:</p>
+<p>\( N\ assimilation \rightarrow C\ skeleton\ demand + ATP/NAD(P)H\ demand \)</p>
+<p>Do đó N uptake cao không bảo đảm growth nếu carbon/energy giới hạn.</p>
+<h3>4.13.17. Source–sink feedback</h3>
+<p>Khi sink demand thấp:</p>
+<p>\( Sucrose_{leaf}\uparrow \rightarrow feedback\ regulation \rightarrow photosynthetic\ capacity\ change \)</p>
+<p>Khi sink demand cao:</p>
+<p>\( Export\uparrow \rightarrow source\ utilization\uparrow \)</p>
+<p>Mức độ phụ thuộc crop/stage.</p>
+<h3>4.13.18. Sink strength coupling</h3>
+<p>Từ 4.5:</p>
+<p>\( SS_o=M_oq_o \)</p>
+<p>Bổ sung carbon-energy regulation:</p>
+<p>\( SS_o^{eff} = SS_o F_{sugar,o} F_{energy,o} F_{stage,o} \)</p>
+<p>Các factor này chỉ dùng nếu chưa được giải trực tiếp trong \(q_o\).</p>
+<h3>4.13.19. Growth capacity</h3>
+<p>Một reduced capacity:</p>
+<p>\( G_o^{cap} = G_{o,max} A_{TOR} (1-A_{SnRK1}^{eff}) \)</p>
+<p>Đây là VECrop proposal, cần validation.</p>
+<h3>4.13.20. Starch dynamics</h3>
+<p>Một balance:</p>
+<p>\( \frac{dC_{starch}}{dt} = P_{starch} - D_{starch} \)</p>
+<p>Ban ngày:</p>
+<p>\( P_{starch}&gt;0 \)</p>
+<p>thường tăng.</p>
+<p>Ban đêm:</p>
+<p>\( D_{starch}&gt;0 \)</p>
+<p>cung carbon cho respiration và growth.</p>
+<h3>4.13.21. Night carbon starvation</h3>
+<p>Nếu starch reserve không đủ:</p>
+<p>\( C_{starch}\downarrow \rightarrow Sugar\downarrow \rightarrow SnRK1\uparrow \)</p>
+<p>có thể làm:</p>
+<ul>
+<li>growth giảm;</li>
+<li>catabolism tăng;</li>
+<li>gene stress response thay đổi.</li>
+</ul>
+<h3>4.13.22. Diurnal carbon balance</h3>
+<p>Một day-night balance:</p>
+<p>\( C_{net,day} = A_{day} - R_{day} - Export_{day} - Storage_{day} \)</p>
+<p>\( C_{net,night} = Mobilization_{starch} - R_{night} - Growth_{night} \)</p>
+<h3>4.13.23. Carbon starvation diagnostic</h3>
+<p>Một reduced index:</p>
+<p>\( H_C = \min \left( 1, \frac{C_{available}} {C_{demand}+\varepsilon} \right) \)</p>
+<p>Không dùng nếu carbon balance đã được mô hình hóa đầy đủ.</p>
+<h3>4.13.24. Growth–survival tradeoff</h3>
+<p>Under stress:</p>
+<p>\( Growth\downarrow \)</p>
+<p>có thể đồng thời:</p>
+<p>\( Survival\ capacity\uparrow \)</p>
+<p>Do đó HSY không được định nghĩa đơn giản là “growth càng cao càng khỏe”.</p>
+<h3>4.13.25. Cấu trúc state-space</h3>
+<p>Có thể mở rộng state vector:</p>
+<p>\( \mathbf x_C = [ Sucrose, Glucose, Starch, T6P, SnRK1, TOR, ATP ]^T \)</p>
+<p>Dynamics:</p>
+<p>\( \frac{d\mathbf x_C}{dt} = \mathbf f_C( \mathbf x_C, A_{can}, F_C, N, Hormone, Stress, stage ) \)</p>
+<h3>4.13.26. Coupling với Chương 4.5</h3>
+<p>Phloem đưa sucrose tới sink:</p>
+<p>\( F_C=C_{Suc}Q_{ph} \)</p>
+<p>4.13 chuyển flux này thành trạng thái carbon–energy điều khiển growth capacity.</p>
+<h3>4.13.27. Coupling với 4.8</h3>
+<p>Từ ATP balance:</p>
+<p>\( ATP_{sup} \leftrightarrow S_E \)</p>
+<p>Không được vừa dùng \(H_E\) vừa dùng lại cùng ATP limitation trong \(A_{TOR}\) nếu dẫn đến double counting.</p>
+<h3>4.13.28. Coupling với 4.12</h3>
+<p>Một regulatory function mở rộng:</p>
+<p>\( y_o = f( Hormone, Ca, ROS, MAPK, Sugar, SnRK1, TOR, stage ) \)</p>
+<h3>4.13.29. Lúa</h3>
+<p>Ở lúa, carbon signaling cần gắn với:</p>
+<ul>
+<li>tillering;</li>
+<li>panicle development;</li>
+<li>grain filling;</li>
+<li>source–sink balance;</li>
+<li>nighttime starch turnover.</li>
+</ul>
+<h3>4.13.30. Ngô</h3>
+<p>Ở ngô:</p>
+<ul>
+<li>C4 assimilation cao;</li>
+<li>reproductive sink mạnh;</li>
+<li>kernel set và grain filling nhạy với carbon supply;</li>
+<li>drought có thể làm thay đổi source–sink và SnRK1/TOR signaling.</li>
+</ul>
+<h3>4.13.31. Xà lách</h3>
+<p>Ở xà lách:</p>
+<ul>
+<li>marketable organ là leaf;</li>
+<li>sink là vegetative tissue;</li>
+<li>sugar status ảnh hưởng leaf expansion;</li>
+<li>carbon excess/deficit tương tác mạnh với light và root-zone temperature.</li>
+</ul>
+<h3>4.13.32. Parameter provenance</h3>
+<p>Các tham số cần provenance:</p>
+<ul>
+<li>\(K_C\);</li>
+<li>\(K_E\);</li>
+<li>\(\beta_i\);</li>
+<li>\(\gamma_i\);</li>
+<li>\(K_{T6P}\);</li>
+<li>starch turnover rates.</li>
+</ul>
+<p>Không dùng một bộ chung cho mọi crop.</p>
+<h3>4.13.33. Experimental observables</h3>
+<p>Có thể đo:</p>
+<ul>
+<li>sucrose;</li>
+<li>glucose;</li>
+<li>starch;</li>
+<li>T6P;</li>
+<li>ATP/ADP;</li>
+<li>SnRK1 activity;</li>
+<li>TOR activity/phosphorylation proxies;</li>
+<li>growth rate;</li>
+<li>sink biomass.</li>
+</ul>
+<h3>4.13.34. Calibration hierarchy</h3>
+<p>Ưu tiên:</p>
+<ol>
+<li>sugar pools;</li>
+<li>starch turnover;</li>
+<li>T6P;</li>
+<li>SnRK1/TOR proxies;</li>
+<li>organ growth;</li>
+<li>whole-plant biomass.</li>
+</ol>
+<p>Không fit toàn bộ chỉ bằng final yield.</p>
+<h3>4.13.35. Validation</h3>
+<p>Một model 4.13 tốt phải tái hiện:</p>
+<ul>
+<li>day/night sugar dynamics;</li>
+<li>starvation response;</li>
+<li>source–sink perturbation;</li>
+<li>stress-induced growth slowdown;</li>
+<li>recovery sau stress.</li>
+</ul>
+<h3>4.13.36. Không double counting</h3>
+<p>Nếu sink strength đã dùng \(F_{sugar}\) và \(F_{energy}\), không nhân lại \(H_C\) vào growth.</p>
+<p>Nếu TOR đã phụ thuộc ATP, không nhân thêm \(H_E\) lần nữa nếu cùng mechanism.</p>
+<h3>4.13.37. Vai trò của 4.13 trong VECrop</h3>
+<p>4.13 tạo cầu nối:</p>
+<div class="flow-chain">
+<strong>Quang hợp</strong> → <strong>Sucrose/Starch</strong> → <strong>T6P/HXK</strong> → <strong>SnRK1/TOR</strong> → <strong>Gene/Enzyme</strong> → <strong>Sink strength & Growth capacity</strong>
+</div>
+<h3>4.13.38. Kết luận 4.13</h3>
+<p>Sugar sensing không thay thế carbon balance.</p>
+<p>Đúng hơn:</p>
+<p>\( Carbon\ balance \rightarrow Sugar\ status \rightarrow T6P/SnRK1/TOR \rightarrow Regulation \rightarrow Growth\ capacity \)</p>
+<p>Trong VECrop, T6P–SnRK1–TOR nên được dùng như <strong>regulatory layer</strong>, còn carbon flux và biomass vẫn phải tuân theo conservation.</p>
+<hr>
 <h1>Chuỗi tích hợp cuối Chương 4</h1>
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
-<p><strong>Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.12.</strong></p>
+<p><strong>Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.13.</strong></p>
 <hr>
 <h1>Tài liệu nền tảng</h1>
 <ol>
@@ -4468,6 +4752,8 @@ y_{o'}\]</div>
 <li>Cutler S.R. et al. Reviews on ABA signaling.</li>
 <li>Boudsocq M., Sheen J. Reviews on calcium-dependent signaling.</li>
 <li>Xu J., Zhang S. Reviews on MAPK cascades in plants.</li>
+<li>Fichtner F., Lunn J.E. Reviews on trehalose-6-phosphate and sucrose signaling.</li>
+<li>Reviews on HXK, SnRK1 and TOR signaling in plant growth and stress responses.</li>
 </ol>
 <blockquote><strong>Quy tắc VECrop:</strong> mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.</blockquote>
 </article></main></div>
