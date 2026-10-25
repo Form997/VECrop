@@ -233,11 +233,11 @@ function selectFile(buttonId,fileId,handler){
   finally{e.target.value=''}
  });
 }
-function replaceDataset(d){
+function replaceDataset(d,source='file'){
  if(!d||typeof d!=='object'||Array.isArray(d))throw new Error('Cấu trúc JSON không hợp lệ');
  if(!Array.isArray(d.observations))throw new Error('JSON phải có mảng observations.');
  if(d.observations.length>10000)throw new Error('Quá 10.000 dòng, cần chia lô.');
- if(!confirm('Nhập bộ JSON sẽ thay thế toàn bộ bản nháp hiện tại. Tiếp tục?'))return;
+ if(!confirm('Mở bộ dữ liệu này sẽ thay thế bản nháp hiện tại. Hãy xuất JSON sao lưu nếu cần. Tiếp tục?'))return false;
  expForm.reset();body.replaceChildren();
  for(const [key,value] of Object.entries(d)){
   if(key==='observations'||typeof value==='object')continue;
@@ -247,8 +247,11 @@ function replaceDataset(d){
  if(!d.observations.length)addObservation();
  saveDraft();openStep(1);stats();
  showValidation(validate(formObject()));
- setSaveStatus('Đã nhập JSON và lưu bản nháp');
+ setSaveStatus(source==='vault'?'Đã mở bản lưu từ DATA · mọi sửa đổi phải lưu lại':'Đã nhập JSON và lưu bản nháp');
+ document.dispatchEvent(new CustomEvent('vecrop:dataset-replaced',{detail:{source,experiment_id:d.experiment_id||''}}));
+ return true;
 }
+window.VECropExperimentReplaceDataset=replaceDataset;
 selectFile('importJsonBtn','importJsonFile',text=>replaceDataset(JSON.parse(text)));
 
 function parseCSV(text){
