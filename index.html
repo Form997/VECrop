@@ -300,6 +300,7 @@
           <option value="3">Chương 3</option>
           <option value="4">Chương 4</option>
         </select>
+        <button id="retryMath" type="button" title="Dựng lại công thức">∑ Công thức</button>
         <div class="lang-box">
           <select id="uiLanguage" aria-label="Ngôn ngữ giao diện">
             <option value="vi">🇻🇳 Tiếng Việt</option>
@@ -499,9 +500,31 @@
     }
 
     async function typesetMath() {
-      if (window.MathJax && MathJax.typesetPromise) {
-        if (MathJax.typesetClear) MathJax.typesetClear([content]);
+      const waitForMathJax = async (timeoutMs = 10000) => {
+        const start = Date.now();
+        while (Date.now() - start < timeoutMs) {
+          if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+            try { await MathJax.startup.promise; } catch (_) {}
+          }
+          if (window.MathJax && typeof MathJax.typesetPromise === 'function') return true;
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        return false;
+      };
+
+      const ready = await waitForMathJax();
+      if (!ready) {
+        console.warn('MathJax chưa sẵn sàng sau thời gian chờ.');
+        return false;
+      }
+
+      try {
+        if (typeof MathJax.typesetClear === 'function') MathJax.typesetClear([content]);
         await MathJax.typesetPromise([content]);
+        return true;
+      } catch (err) {
+        console.error('Lỗi MathJax typeset:', err);
+        return false;
       }
     }
 
@@ -526,8 +549,10 @@
         const html = marked.parse(md);
         content.innerHTML = restoreMath(html, blocks);
         buildToc();
-        await typesetMath();
-        statusBox.textContent = `Đã tải Chương ${id} • công thức MathJax đã dựng • chỉ chương đang hoạt động được nạp`;
+        const mathOk = await typesetMath();
+        statusBox.textContent = mathOk
+          ? `Đã tải Chương ${id} • công thức đã dựng • chỉ chương đang hoạt động được nạp`
+          : `Đã tải Chương ${id} • cảnh báo: MathJax chưa dựng xong công thức`;
         updateChapterState(id);
       } catch (err) {
         content.innerHTML = '<p>Không thể tải nội dung. Vui lòng kiểm tra lại dữ liệu.</p>';
@@ -668,6 +693,11 @@
       }
     });
     document.getElementById('recommendBtn').addEventListener('click', recommend);
+    document.getElementById('retryMath').addEventListener('click', async () => {
+      statusBox.textContent = 'Đang dựng lại công thức...';
+      const ok = await typesetMath();
+      statusBox.textContent = ok ? 'Đã dựng lại công thức.' : 'MathJax chưa sẵn sàng.';
+    });
     const uiLanguage=document.getElementById('uiLanguage');
     const savedLang=localStorage.getItem('vecrop-ui-lang')||'vi';
     if([...uiLanguage.options].some(o=>o.value===savedLang)) uiLanguage.value=savedLang;
