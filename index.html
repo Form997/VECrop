@@ -7,7 +7,14 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     window.MathJax={
-      tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:true},
+      tex:{
+        inlineMath:[["$","$"],["\\(","\\)"]],
+        displayMath:[["$","$"],["\\[","\\]"]],
+        processEscapes:true
+      },
+      options:{
+        skipHtmlTags:["script","noscript","style","textarea","pre","code"]
+      },
       svg:{fontCache:"global"},
       startup:{typeset:false}
     };
@@ -424,6 +431,8 @@
       }
     }
 
+    marked.setOptions({gfm:true,breaks:false,mangle:false,headerIds:false});
+
     const FILES = {
       1: 'docs/01-chapter-1.md',
       2: 'docs/02-chapter-2.md',
@@ -475,28 +484,11 @@
     }
 
     function protectMath(md) {
-      const blocks = [];
-      md = md.replace(/\$\$([\s\S]*?)\$\$/g, (_, x) => {
-        const i = blocks.length;
-        blocks.push({type:'display', tex:x.trim()});
-        return '@@MATHBLOCK' + i + '@@';
-      });
-      md = md.replace(/\$([^$\n]+)\$/g, (_, x) => {
-        const i = blocks.length;
-        blocks.push({type:'inline', tex:x.trim()});
-        return '@@MATHBLOCK' + i + '@@';
-      });
-      return { md, blocks };
+      return { md, blocks: [] };
     }
 
-    function restoreMath(html, blocks) {
-      return html.replace(/@@MATHBLOCK(\d+)@@/g, (_, i) => {
-        const b = blocks[Number(i)];
-        if (!b) return '';
-        return b.type === 'display'
-          ? '<div class="math-block notranslate">\\[' + b.tex + '\\]</div>'
-          : '<span class="math-inline notranslate">\\(' + b.tex + '\\)</span>';
-      });
+    function restoreMath(html) {
+      return html;
     }
 
     async function typesetMath() {
@@ -545,9 +537,9 @@
         const id = chapterSelect.value;
         const raw = await getDoc(id);
         const text = raw;
-        const { md, blocks } = protectMath(text);
-        const html = marked.parse(md);
-        content.innerHTML = restoreMath(html, blocks);
+        const html = marked.parse(text);
+        content.innerHTML = html;
+        content.querySelectorAll('pre, code').forEach(el => el.classList.add('notranslate'));
         buildToc();
         const mathOk = await typesetMath();
         statusBox.textContent = mathOk
