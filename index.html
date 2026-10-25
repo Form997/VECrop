@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VECrop Intelligence</title>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    window.MathJax={
+      tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:true},
+      svg:{fontCache:"global"},
+      startup:{typeset:false}
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <style>
     :root {
       --bg: #eef4f1;
@@ -246,6 +254,8 @@
     }
     .card strong { display: block; margin-bottom: 6px; }
     .muted { color: var(--muted); }
+    .math-block { overflow-x:auto; overflow-y:hidden; padding:.25em 0; }
+    mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; }
     .lang-box { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
     .lang-box select { min-width:135px; }
     #google_translate_element { min-width:150px; }
@@ -467,19 +477,32 @@
       const blocks = [];
       md = md.replace(/\$\$([\s\S]*?)\$\$/g, (_, x) => {
         const i = blocks.length;
-        blocks.push('\\[' + x.trim() + '\\]');
-        return `@@MATHBLOCK${i}@@`;
+        blocks.push({type:'display', tex:x.trim()});
+        return '@@MATHBLOCK' + i + '@@';
       });
       md = md.replace(/\$([^$\n]+)\$/g, (_, x) => {
         const i = blocks.length;
-        blocks.push('\\(' + x.trim() + '\\)');
-        return `@@MATHBLOCK${i}@@`;
+        blocks.push({type:'inline', tex:x.trim()});
+        return '@@MATHBLOCK' + i + '@@';
       });
       return { md, blocks };
     }
 
     function restoreMath(html, blocks) {
-      return html.replace(/@@MATHBLOCK(\d+)@@/g, (_, i) => '<div class="math-block">' + blocks[Number(i)] + '</div>');
+      return html.replace(/@@MATHBLOCK(\d+)@@/g, (_, i) => {
+        const b = blocks[Number(i)];
+        if (!b) return '';
+        return b.type === 'display'
+          ? '<div class="math-block notranslate">\\[' + b.tex + '\\]</div>'
+          : '<span class="math-inline notranslate">\\(' + b.tex + '\\)</span>';
+      });
+    }
+
+    async function typesetMath() {
+      if (window.MathJax && MathJax.typesetPromise) {
+        if (MathJax.typesetClear) MathJax.typesetClear([content]);
+        await MathJax.typesetPromise([content]);
+      }
     }
 
     async function getDoc(id) {
@@ -503,7 +526,8 @@
         const html = marked.parse(md);
         content.innerHTML = restoreMath(html, blocks);
         buildToc();
-        statusBox.textContent = `Đã tải Chương ${id} • chỉ chương đang hoạt động được nạp`;
+        await typesetMath();
+        statusBox.textContent = `Đã tải Chương ${id} • công thức MathJax đã dựng • chỉ chương đang hoạt động được nạp`;
         updateChapterState(id);
       } catch (err) {
         content.innerHTML = '<p>Không thể tải nội dung. Vui lòng kiểm tra lại dữ liệu.</p>';
@@ -519,7 +543,7 @@
         KNOWLEDGE = await r.json();
         const cropMap = KNOWLEDGE?.crops || {};
         cropSelect.innerHTML = Object.entries(cropMap).map(([key, crop]) => {
-          return `<option value="${key}">${crop.name || key}</option>`;
+          return `<option value="${key}">${crop.name_vi || crop.name || key}</option>`;
         }).join('');
         document.getElementById('cropCount').textContent = String(Object.keys(cropMap).length || 0);
         document.getElementById('topicCount').textContent = String((KNOWLEDGE?.topics || []).length || 0);
