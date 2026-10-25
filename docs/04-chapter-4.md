@@ -639,7 +639,7 @@ Không biến thành threshold tử vong phổ quát nếu chưa kiểm định.
 
 ## 4.5. Phloem – loading – pressure flow – source–sink
 
-Phloem là con đường vận chuyển dài hạn chủ yếu của assimilates từ source tới sink. Mô hình pressure-flow/Münch xem gradient áp suất thủy tĩnh, hình thành nhờ loading và unloading chất tan, là driving force chính của bulk flow. citeturn894170search0turn894170search1
+Phloem là con đường vận chuyển dài hạn chủ yếu của assimilates từ source tới sink. Mô hình pressure-flow/Münch xem gradient áp suất thủy tĩnh, hình thành nhờ loading và unloading chất tan, là driving force chính của bulk flow.
 
 ### 4.5.1. Source
 
@@ -827,7 +827,7 @@ g_0
 \frac{A_n}{C_s}
 $$
 
-Medlyn-type models liên kết stomatal conductance với assimilation và VPD; tham số \(g_0,g_1\) phụ thuộc plant functional type/crop và không phải hằng số phổ quát. citeturn894170search4turn894170search6
+Medlyn-type models liên kết stomatal conductance với assimilation và VPD; tham số \(g_0,g_1\) phụ thuộc plant functional type/crop và không phải hằng số phổ quát.
 
 ### 4.6.5. Hydraulic limitation
 
@@ -1285,7 +1285,7 @@ Hô hấp là carbon cost thực, nên phải liên kết với carbon balance t
 
 ## 4.9. O₂ – hypoxia – anoxia – fermentation – aerenchyma – Eh
 
-Các phản ứng low-O₂ bao gồm thay đổi sử dụng carbohydrate, fermentation, hình thành aerenchyma và radial oxygen loss barrier ở các loài thích nghi ngập. citeturn894170search7
+Các phản ứng low-O₂ bao gồm thay đổi sử dụng carbohydrate, fermentation, hình thành aerenchyma và radial oxygen loss barrier ở các loài thích nghi ngập.
 
 ### 4.9.1. O₂ concentration và Eh khác nhau
 
