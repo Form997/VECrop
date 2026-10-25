@@ -42,6 +42,7 @@ def validate_bundle(root: Path) -> bool:
         "partials/experiment.html", "js/app-router.js", "js/experiment.js",
         "js/experiment-pro.js", "js/evidence-autofill.js",
         "js/experiment-3d.js", "js/desktop-client.js",
+        "js/desktop-data-client.js", "css/desktop-data-client.css",
         "desktop-build.json", "vendor/marked.min.js", "vendor/tex-svg-full.js",
     ]
     return all((root / p).is_file() for p in files)

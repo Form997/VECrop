@@ -49,9 +49,12 @@ def main():
     if old_marked not in html or old_math not in html:
         raise ValueError("Expected CDN scripts not found; inspect index.html before packaging")
     html=html.replace(old_marked,"vendor/marked.min.js").replace(old_math,"vendor/tex-svg-full.js")
-    html=html.replace("</body>",'<script src="js/desktop-client.js"></script>\n</body>')
+    html=html.replace("</head>",'<link rel="stylesheet" href="css/desktop-data-client.css">\n</head>')
+    html=html.replace("</body>",'<script src="js/desktop-client.js"></script><script src="js/desktop-data-client.js"></script>\n</body>')
     page.write_text(html,encoding="utf-8")
     shutil.copy2(ROOT/"desktop"/"client.js",DEST/"js"/"desktop-client.js")
+    shutil.copy2(ROOT/"desktop"/"data_client.js",DEST/"js"/"desktop-data-client.js")
+    shutil.copy2(ROOT/"desktop"/"data_client.css",DEST/"css"/"desktop-data-client.css")
     build = {
         "sha": os.getenv("GITHUB_SHA", "local"),
         "run_number": int(os.getenv("GITHUB_RUN_NUMBER", "0")),
