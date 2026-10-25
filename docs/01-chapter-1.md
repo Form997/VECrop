@@ -4,29 +4,9 @@
 
 Chương này thiết lập nền tảng sinh lý học, vật lý và toán học cho VECrop. Mục tiêu không phải tạo ra một “định luật mới” thay thế sinh lý thực vật hiện có, mà xây dựng một **khung tích hợp có thể kiểm định** để nối các quá trình:
 
-\[
-\boxed{
-\text{môi trường vùng rễ}
-\rightarrow
-\text{nước và ion}
-\rightarrow
-\text{rễ}
-\rightarrow
-\text{xylem}
-\rightarrow
-\text{lá}
-\rightarrow
-\text{quang hợp}
-\rightarrow
-\text{phloem}
-\rightarrow
-\text{source--sink}
-\rightarrow
-\text{sinh khối}
-\rightarrow
-\text{năng suất}
-}
-\]
+<div class="flow-chain">
+<strong>Môi trường vùng rễ</strong> → <strong>Nước và ion</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>Sinh khối</strong> → <strong>Năng suất</strong>
+</div>
 
 VECrop phân biệt ba cấp:
 
