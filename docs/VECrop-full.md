@@ -1,6 +1,6 @@
 # VECrop — Giáo trình tổng hợp
 
-> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.19**.
+> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.20**.
 
 ---
 
@@ -14892,13 +14892,2200 @@ chứ không chỉ là một giá trị điểm.
 
 ---
 
+
+## 4.20. Khung kiểm định đa cây trồng – bộ test cuối Chương 4 cho các nhóm cây thương mại
+
+> **Mục tiêu:** 4.20 xây dựng bộ kiểm định cuối Chương 4 để VECrop có thể mở rộng từ lúa–ngô–xà lách sang hầu hết các nhóm cây trồng thương mại. Không giả định một bộ tham số chung cho mọi loài; chỉ chia sẻ **khung vật lý–sinh lý**, còn parameter, phenology, cơ quan thu hoạch và tiêu chí chất lượng phải cấu hình theo crop/cultivar.
+
+### 4.20.1. Nguyên tắc bao phủ đa cây trồng
+
+VECrop không nên tạo một “siêu cây trồng trung bình”.
+
+Thay vào đó:
+
+$
+Core\ engine
++
+Crop\ configuration
++
+Cultivar\ parameters
++
+Management
+=
+Simulation
+$
+
+### 4.20.2. Phân nhóm theo kiến trúc sinh lý và cơ quan thu hoạch
+
+Các nhóm chính:
+- ngũ cốc;
+- cây họ đậu;
+- cây lấy dầu;
+- cây củ/rễ;
+- cây rau lá;
+- rau quả;
+- cây ăn quả lâu năm;
+- cây đường;
+- cây sợi;
+- cây đồ uống;
+- cây gia vị/dược liệu;
+- cây thức ăn gia súc;
+- cây trồng nhà kính/thủy canh;
+- cây nhiệt đới lâu năm;
+- cây lấy nhựa/mủ;
+- cây lấy hạt đặc sản;
+- cây hoa/cảnh;
+- cây sinh khối/năng lượng.
+
+### 4.20.3. Khung test chung cho mọi cây
+
+Mỗi crop configuration tối thiểu phải qua:
+1. unit test;
+2. balance test;
+3. phenology test;
+4. growth test;
+5. stress test;
+6. yield-component test;
+7. uncertainty test;
+8. extrapolation test.
+
+### 4.20.4. Bộ biến tối thiểu
+
+$
+\mathbf Z_{min}
+=
+[
+Phenology,
+LAI,
+Biomass,
+Root,
+Water,
+N,
+Yield
+]^T
+$
+
+### 4.20.5. Bộ biến nâng cao
+
+$
+\mathbf Z_{adv}
+=
+[
+\Psi,
+g_s,
+A_n,
+C_i,
+NPK,
+Phloem,
+Sink,
+ROS,
+Hormone,
+Senescence,
+Quality
+]^T
+$
+
+### 4.20.6. Chuẩn dữ liệu cây trồng
+
+Mỗi crop phải có metadata:
+- species;
+- cultivar;
+- sowing/transplant date;
+- density;
+- management;
+- soil/substrate;
+- weather;
+- phenology;
+- harvest definition.
+
+### 4.20.7. Không dùng tên thương mại thay species
+
+Tên thương mại phải map về:
+- species;
+- cultivar/variety;
+- production system.
+
+### 4.20.8. Cấu hình quang hợp
+
+Phân loại:
+- C3;
+- C4;
+- CAM nếu áp dụng.
+
+Không dùng FvCB C3 nguyên xi cho C4.
+
+### 4.20.9. Cấu hình cơ quan kinh tế
+
+$
+Harvest\ organ
+\in
+\{
+grain,leaf,fruit,root,tuber,stem,fiber,seed,flower,latex,biomass
+\}
+$
+
+### 4.20.10. Cấu hình vòng đời
+
+- annual;
+- biennial;
+- perennial.
+
+### 4.20.11. Cấu hình hệ rễ
+
+- shallow fibrous;
+- deep fibrous;
+- taproot;
+- storage root;
+- rhizome/tuber-linked.
+
+### 4.20.12. Cấu hình sinh sản
+
+- self-pollinated;
+- cross-pollinated;
+- vegetative harvest;
+- perennial bearing cycle.
+
+### 4.20.13. Cấu hình phenology
+
+Mỗi crop cần:
+- emergence;
+- vegetative;
+- reproductive;
+- filling;
+- maturity
+hoặc mapping tương đương.
+
+### 4.20.14. Cấu hình harvest rule
+
+Harvest có thể theo:
+- physiological maturity;
+- market maturity;
+- sugar content;
+- size;
+- color;
+- dry matter;
+- fiber quality;
+- oil content.
+
+### 4.20.15. Ngũ cốc – phạm vi
+
+Bao gồm điển hình:
+- rice;
+- maize;
+- wheat;
+- barley;
+- sorghum;
+- millet;
+- oats;
+- rye;
+- triticale.
+
+### 4.20.16. Ngũ cốc – yield identity
+
+$
+Y
+=
+Heads/Panicles/Ears\ area^{-1}
+\times
+Grains\ unit^{-1}
+\times
+Grain\ weight
+$
+
+### 4.20.17. Ngũ cốc – test bắt buộc
+
+Phải kiểm:
+- tiller/ear establishment;
+- flowering;
+- grain number;
+- grain filling;
+- harvest index;
+- lodging nếu có.
+
+### 4.20.18. Lúa
+
+Cần:
+- flooded/AWD;
+- redox;
+- NH4+/NO3-;
+- tillering;
+- panicle;
+- sterility;
+- grain filling;
+- stem NSC.
+
+### 4.20.19. Ngô
+
+Cần:
+- C4 photosynthesis;
+- deep root;
+- ASI;
+- ear/kernel set;
+- post-silking source;
+- kernel filling.
+
+### 4.20.20. Lúa mì
+
+Cần:
+- vernalization tùy cultivar;
+- photoperiod;
+- tillering;
+- spike development;
+- anthesis;
+- grain number;
+- grain protein.
+
+### 4.20.21. Barley
+
+Tương tự wheat nhưng parameter riêng cho:
+- phenology;
+- tillering;
+- grain filling;
+- malting quality nếu mục tiêu thương mại.
+
+### 4.20.22. Sorghum
+
+Cần:
+- C4;
+- drought adaptation;
+- stay-green;
+- panicle sink;
+- grain/silage configuration.
+
+### 4.20.23. Millet
+
+Cần cấu hình theo loài:
+- pearl millet;
+- finger millet;
+- foxtail millet
+không dùng chung parameter.
+
+### 4.20.24. Oats/Rye/Triticale
+
+Cần parameter riêng cho:
+- cold response;
+- vernalization;
+- tillering;
+- grain quality.
+
+### 4.20.25. Cây họ đậu – phạm vi
+
+Bao gồm:
+- soybean;
+- peanut;
+- mung bean;
+- common bean;
+- pea;
+- chickpea;
+- lentil;
+- cowpea;
+- faba bean.
+
+### 4.20.26. Họ đậu – N fixation
+
+Cần thêm biological N fixation:
+
+$
+N_{fix}
+=
+f(
+Nodule,
+C,
+O_2,
+N_{soil},
+T,
+Water
+)
+$
+
+### 4.20.27. Carbon cost của fixation
+
+$
+C_{fix}
+>
+0
+$
+
+Không coi N fixation là miễn phí.
+
+### 4.20.28. Soybean
+
+Cần:
+- photoperiod;
+- nodulation;
+- pod set;
+- seed number;
+- seed oil/protein.
+
+### 4.20.29. Peanut
+
+Cần:
+- flowering;
+- pegging;
+- pod development dưới đất;
+- Ca supply;
+- pod filling.
+
+### 4.20.30. Mung/common bean/cowpea
+
+Cần:
+- flowering waves;
+- pod set;
+- seed filling;
+- heat/drought sensitivity quanh flowering.
+
+### 4.20.31. Chickpea/lentil/pea
+
+Cần:
+- cool-season phenology;
+- pod set;
+- seed filling;
+- terminal drought response.
+
+### 4.20.32. Cây lấy dầu – phạm vi
+
+Bao gồm:
+- canola/rapeseed;
+- sunflower;
+- sesame;
+- oil palm;
+- safflower;
+- castor;
+- flaxseed.
+
+### 4.20.33. Oil yield
+
+$
+Oil\ yield
+=
+Seed/Fruit\ yield
+\times
+Oil\ fraction
+$
+
+### 4.20.34. Sunflower
+
+Cần:
+- head size;
+- seed number;
+- oil concentration;
+- drought around flowering.
+
+### 4.20.35. Rapeseed/canola
+
+Cần:
+- branching;
+- pod number;
+- seed number;
+- oil/protein;
+- lodging.
+
+### 4.20.36. Sesame
+
+Cần:
+- indeterminate flowering;
+- capsule number;
+- shattering loss;
+- oil concentration.
+
+### 4.20.37. Oil palm
+
+Cần:
+- perennial architecture;
+- bunch initiation;
+- bunch filling;
+- leaf area dynamics;
+- harvest cycles;
+- oil extraction trait.
+
+### 4.20.38. Cây củ/rễ – phạm vi
+
+Bao gồm:
+- potato;
+- cassava;
+- sweet potato;
+- carrot;
+- beet;
+- radish;
+- taro;
+- yam.
+
+### 4.20.39. Storage-organ allocation
+
+$
+a_{storage}
+=
+f(
+DVS,
+Sink,
+Carbon,
+Hormone,
+Temperature
+)
+$
+
+### 4.20.40. Potato
+
+Cần:
+- tuber initiation;
+- tuber number;
+- bulking;
+- photoperiod;
+- temperature;
+- dry matter;
+- size classes.
+
+### 4.20.41. Cassava
+
+Cần:
+- storage-root initiation;
+- long-season source–sink;
+- drought;
+- starch accumulation.
+
+### 4.20.42. Sweet potato
+
+Cần:
+- storage-root formation;
+- vine/root allocation;
+- marketable root size.
+
+### 4.20.43. Carrot/radish/beet
+
+Cần:
+- storage-root growth;
+- bolting risk;
+- root quality;
+- sugar/dry matter.
+
+### 4.20.44. Taro/yam
+
+Cần:
+- corm/tuber formation;
+- canopy duration;
+- water relations;
+- storage sink.
+
+### 4.20.45. Rau lá – phạm vi
+
+Bao gồm:
+- lettuce;
+- spinach;
+- cabbage;
+- kale;
+- mustard greens;
+- bok choy;
+- celery;
+- herbs harvested for leaves.
+
+### 4.20.46. Rau lá – yield definition
+
+$
+Y_{market}
+=
+Fresh\ marketable\ shoot
+$
+
+### 4.20.47. Rau lá – quality constraints
+
+Cần:
+- leaf size;
+- color/chlorophyll;
+- nitrate;
+- tipburn;
+- senescence;
+- bolting;
+- disease damage.
+
+### 4.20.48. Lettuce
+
+Cần:
+- shallow root;
+- rapid leaf expansion;
+- Ca transport;
+- tipburn;
+- fresh/dry matter;
+- bolting.
+
+### 4.20.49. Cabbage
+
+Cần:
+- head initiation;
+- head filling;
+- compactness;
+- marketable head mass.
+
+### 4.20.50. Spinach
+
+Cần:
+- rapid leaf production;
+- bolting;
+- nitrate concentration;
+- photoperiod/temperature.
+
+### 4.20.51. Celery
+
+Cần:
+- petiole biomass;
+- water status;
+- marketable stalk quality.
+
+### 4.20.52. Rau quả – phạm vi
+
+Bao gồm:
+- tomato;
+- pepper/chili;
+- cucumber;
+- eggplant;
+- melon;
+- watermelon;
+- squash;
+- okra.
+
+### 4.20.53. Fruit-crop yield identity
+
+$
+Y
+=
+Fruit\ number
+\times
+Mean\ fruit\ weight
+\times
+Marketable\ fraction
+$
+
+### 4.20.54. Tomato
+
+Cần:
+- truss initiation;
+- flower set;
+- fruit number;
+- fruit growth;
+- soluble solids;
+- blossom-end rot;
+- harvest waves.
+
+### 4.20.55. Pepper/chili
+
+Cần:
+- repeated flowering;
+- fruit set;
+- fruit load feedback;
+- heat-sensitive pollen;
+- marketable size/color.
+
+### 4.20.56. Cucumber
+
+Cần:
+- sex expression;
+- fruit set;
+- rapid fruit growth;
+- greenhouse humidity;
+- harvest frequency.
+
+### 4.20.57. Eggplant
+
+Cần:
+- fruit set;
+- repeated harvest;
+- fruit size;
+- temperature response.
+
+### 4.20.58. Melon/watermelon
+
+Cần:
+- vine growth;
+- flowering;
+- fruit set;
+- sugar accumulation;
+- fruit water balance.
+
+### 4.20.59. Squash/pumpkin
+
+Cần:
+- fruit number;
+- vine allocation;
+- fruit dry matter;
+- repeated/terminal harvest tùy crop.
+
+### 4.20.60. Cây ăn quả lâu năm – phạm vi
+
+Bao gồm:
+- citrus;
+- mango;
+- banana;
+- apple;
+- pear;
+- grape;
+- avocado;
+- peach;
+- plum;
+- lychee;
+- longan;
+- guava;
+- papaya;
+- dragon fruit.
+
+### 4.20.61. Perennial state carryover
+
+Với cây lâu năm:
+
+$
+X_{year+1,0}
+=
+f(X_{year,end})
+$
+
+Không reset biomass về 0 mỗi vụ.
+
+### 4.20.62. Reserve carryover
+
+$
+Reserve_{next}
+=
+Reserve_{end}
+-
+Dormancy/maintenance\ cost
+$
+
+### 4.20.63. Alternate bearing
+
+Một số cây có:
+$
+Yield_t
+\leftrightarrow
+Flower\ induction_{t+1}
+$
+
+cần memory qua năm.
+
+### 4.20.64. Citrus
+
+Cần:
+- flowering flush;
+- fruit set;
+- fruit drop;
+- size;
+- juice/TSS/acid;
+- alternate bearing ở một số cultivar.
+
+### 4.20.65. Mango
+
+Cần:
+- flowering induction;
+- panicle;
+- fruit set;
+- fruit drop;
+- carbohydrate reserves;
+- alternate bearing.
+
+### 4.20.66. Banana
+
+Cần:
+- leaf emergence;
+- pseudostem biomass;
+- bunch initiation;
+- hand/finger development;
+- ratoon cycle.
+
+### 4.20.67. Apple/pear
+
+Cần:
+- chilling;
+- dormancy;
+- bloom;
+- fruit set;
+- thinning;
+- fruit size;
+- sugar/firmness.
+
+### 4.20.68. Grapevine
+
+Cần:
+- budbreak;
+- flowering;
+- berry set;
+- veraison;
+- sugar/acid;
+- pruning;
+- perennial reserve.
+
+### 4.20.69. Avocado
+
+Cần:
+- flowering type;
+- fruit set;
+- strong fruit drop;
+- alternate bearing;
+- oil/dry matter.
+
+### 4.20.70. Peach/plum
+
+Cần:
+- chilling;
+- bloom;
+- fruit set;
+- thinning;
+- fruit size;
+- harvest quality.
+
+### 4.20.71. Lychee/longan
+
+Cần:
+- floral induction;
+- temperature cues;
+- fruit set;
+- fruit drop;
+- carbohydrate reserve.
+
+### 4.20.72. Guava/papaya
+
+Cần:
+- repeated flowering;
+- fruit development;
+- continuous harvest;
+- temperature/water effects.
+
+### 4.20.73. Dragon fruit
+
+Cần:
+- CAM-capable physiology;
+- flowering induction;
+- fruit set;
+- night gas exchange nếu mô hình cơ chế.
+
+### 4.20.74. Cây đường – phạm vi
+
+Bao gồm:
+- sugarcane;
+- sugar beet.
+
+### 4.20.75. Sugar yield
+
+$
+Sugar\ yield
+=
+Biomass_{harvest}
+\times
+Sugar\ concentration
+$
+
+### 4.20.76. Sugarcane
+
+Cần:
+- tillering;
+- stalk elongation;
+- sucrose accumulation;
+- ratoon;
+- lodging;
+- maturity index.
+
+### 4.20.77. Sugar beet
+
+Cần:
+- storage root;
+- sucrose concentration;
+- bolting;
+- impurity/quality traits.
+
+### 4.20.78. Cây sợi – phạm vi
+
+Bao gồm:
+- cotton;
+- flax;
+- hemp;
+- jute.
+
+### 4.20.79. Fiber yield
+
+$
+Fiber\ yield
+=
+Harvested\ biomass
+\times
+Fiber\ fraction
+\times
+Quality\ factor
+$
+
+### 4.20.80. Cotton
+
+Cần:
+- square;
+- flower;
+- boll set;
+- boll retention;
+- fiber length/strength;
+- defoliation/harvest.
+
+### 4.20.81. Flax/hemp/jute
+
+Cần:
+- stem elongation;
+- fiber deposition;
+- maturity;
+- lodging;
+- fiber quality.
+
+### 4.20.82. Cây đồ uống – phạm vi
+
+Bao gồm:
+- coffee;
+- tea;
+- cocoa.
+
+### 4.20.83. Coffee
+
+Cần:
+- flowering triggered by rainfall/dry period;
+- fruit set;
+- berry filling;
+- biennial bearing;
+- shade effects.
+
+### 4.20.84. Tea
+
+Cần:
+- shoot flushing;
+- plucking interval;
+- leaf quality;
+- shade;
+- N management.
+
+### 4.20.85. Cocoa
+
+Cần:
+- perennial canopy;
+- flowering/cherelle;
+- pod set;
+- pod filling;
+- shade/water stress.
+
+### 4.20.86. Cây gia vị và dược liệu
+
+Bao gồm:
+- ginger;
+- turmeric;
+- garlic;
+- onion;
+- coriander;
+- basil;
+- mint;
+- lemongrass;
+- medicinal herbs.
+
+### 4.20.87. Onion/garlic
+
+Cần:
+- bulb initiation;
+- photoperiod;
+- bulb filling;
+- dry matter;
+- curing.
+
+### 4.20.88. Ginger/turmeric
+
+Cần:
+- rhizome initiation;
+- rhizome filling;
+- canopy duration;
+- dry matter/active compounds.
+
+### 4.20.89. Herbs
+
+Harvest có thể theo:
+- leaf biomass;
+- essential oil;
+- active compound.
+
+Không dùng biomass đơn thuần làm objective duy nhất.
+
+### 4.20.90. Cây thức ăn gia súc
+
+Bao gồm:
+- alfalfa;
+- clover;
+- ryegrass;
+- Napier grass;
+- forage maize;
+- forage sorghum.
+
+### 4.20.91. Forage yield
+
+$
+Y_{forage}
+=
+Harvestable\ biomass
+$
+
+nhưng quality cần:
+- crude protein;
+- fiber;
+- digestibility;
+- moisture.
+
+### 4.20.92. Multi-cut system
+
+Sau mỗi cắt:
+
+$
+B_{shoot}^{+}
+=
+B_{shoot}^{-}
+-
+Harvest
+$
+
+và regrowth dùng reserve/root state còn lại.
+
+### 4.20.93. Alfalfa/clover
+
+Cần:
+- N fixation;
+- regrowth;
+- cutting interval;
+- reserve dynamics.
+
+### 4.20.94. Napier/forage grasses
+
+Cần:
+- repeated cutting;
+- tillering;
+- stem/leaf ratio;
+- digestibility decline theo maturity.
+
+### 4.20.95. Cây nhiệt đới công nghiệp lâu năm
+
+Bao gồm:
+- rubber;
+- coconut;
+- cashew;
+- pepper;
+- areca.
+
+### 4.20.96. Rubber
+
+Cơ quan kinh tế là latex.
+
+Cần:
+- canopy;
+- trunk growth;
+- latex regeneration;
+- tapping schedule;
+- carbon cost;
+- drought effects.
+
+### 4.20.97. Coconut
+
+Cần:
+- perennial leaf production;
+- inflorescence;
+- nut set;
+- nut filling;
+- multi-year reserve.
+
+### 4.20.98. Cashew
+
+Cần:
+- flowering;
+- nut set;
+- apple/nut partition;
+- alternate production.
+
+### 4.20.99. Black pepper
+
+Cần:
+- vine growth;
+- spike initiation;
+- berry set;
+- support system;
+- root disease/water stress sensitivity.
+
+### 4.20.100. Cây hạt đặc sản
+
+Bao gồm:
+- sesame;
+- quinoa;
+- buckwheat;
+- chia;
+- amaranth.
+
+Cần cấu hình theo:
+- inflorescence;
+- seed set;
+- filling;
+- shattering;
+- grain quality.
+
+### 4.20.101. Cây hoa/cảnh
+
+Bao gồm:
+- chrysanthemum;
+- rose;
+- lily;
+- orchid;
+- marigold;
+- potted ornamentals.
+
+### 4.20.102. Flower marketable yield
+
+Có thể là:
+$
+Y_{flower}
+=
+Number_{marketable\ stems}
+\times
+Quality
+$
+
+### 4.20.103. Flower quality
+
+Cần:
+- stem length;
+- flower diameter;
+- color;
+- bud stage;
+- vase life.
+
+### 4.20.104. Photoperiodic ornamentals
+
+Một số cây hoa rất nhạy photoperiod nên phenology module phải crop-specific.
+
+### 4.20.105. Cây sinh khối/năng lượng
+
+Bao gồm:
+- miscanthus;
+- switchgrass;
+- energy cane;
+- short-rotation biomass crops.
+
+### 4.20.106. Biomass objective
+
+$
+Y_{bioenergy}
+=
+Dry\ biomass
+\times
+Energy/Conversion\ quality
+$
+
+### 4.20.107. Nhà kính
+
+Cần thêm:
+- controlled temperature;
+- humidity;
+- CO₂ enrichment;
+- artificial light;
+- fertigation;
+- substrate volume.
+
+### 4.20.108. Hydroponics
+
+State vùng rễ:
+$
+[
+EC,pH,T_{solution},DO,N,P,K,Ca,Mg,Na,Cl
+]
+$
+
+### 4.20.109. Nutrient solution balance
+
+$
+\frac{dM_{i,tank}}{dt}
+=
+Input_i
+-
+Uptake_i
+-
+Drain_i
++
+Return_i
+$
+
+### 4.20.110. Greenhouse fruit crops
+
+Tomato/cucumber/pepper cần:
+- truss/fruit load;
+- pruning;
+- harvest waves;
+- climate control.
+
+### 4.20.111. Vertical farming
+
+Cần:
+- PPFD;
+- photoperiod;
+- DLI;
+- CO₂;
+- airflow;
+- root-zone solution;
+- layer-specific microclimate.
+
+### 4.20.112. Controlled-environment test
+
+Phải kiểm:
+- energy/light input;
+- nutrient balance;
+- water balance;
+- growth rate;
+- marketable yield.
+
+### 4.20.113. Cây CAM
+
+Với pineapple, dragon fruit và CAM crops:
+- khí khổng mở đêm;
+- acid accumulation;
+- day/night carbon cycle.
+
+Không dùng gas-exchange C3 ban ngày nguyên xi.
+
+### 4.20.114. Pineapple
+
+Cần:
+- CAM;
+- rosette architecture;
+- floral induction;
+- fruit development;
+- sugar/acid quality.
+
+### 4.20.115. Cây lấy mủ/nhựa
+
+Ngoài rubber có thể có crop sản xuất latex/resin.
+
+Output phải là:
+$
+Flow_{latex/resin}
+$
+chứ không chỉ biomass.
+
+### 4.20.116. Cây gia vị lấy hạt/quả
+
+Ví dụ:
+- pepper;
+- coriander;
+- cumin;
+- chili.
+
+Objective có thể gồm:
+- dry yield;
+- essential oil;
+- pungency/active compound.
+
+### 4.20.117. Crop quality module
+
+Quality state tổng quát:
+$
+\mathbf Q_c
+=
+[
+Moisture,
+Protein,
+Oil,
+Sugar,
+Acid,
+Fiber,
+Color,
+Firmness,
+Defect
+]^T
+$
+
+### 4.20.118. Marketability module
+
+$
+Y_{market}
+=
+Y_{gross}
+f_{market}
+$
+
+### 4.20.119. Marketability không phổ quát
+
+Tiêu chí khác nhau theo:
+- commodity;
+- thị trường;
+- processing;
+- export/domestic standards.
+
+### 4.20.120. Multi-harvest crops
+
+Với tomato, cucumber, pepper, tea, coffee:
+$
+Y_{season}
+=
+\sum_{h=1}^{n}
+Y_h
+$
+
+### 4.20.121. Perennial harvest cycles
+
+Cây lâu năm cần:
+$
+State_{cycle+1}
+=
+f(State_{cycle},Harvest,Stress)
+$
+
+### 4.20.122. Ratoon crops
+
+Sugarcane, banana và một số grasses cần carryover:
+- root/rhizome;
+- reserves;
+- disease pressure;
+- stand age.
+
+### 4.20.123. Grafting
+
+Với fruit/vegetable grafted crops:
+- rootstock;
+- scion
+phải có parameter tương tác riêng nếu mô hình sâu.
+
+### 4.20.124. Rootstock–scion coupling
+
+$
+Hydraulics_{rootstock}
+\rightarrow
+Scion\ water/nutrient
+\rightarrow
+Growth/Yield
+$
+
+### 4.20.125. Pollination module
+
+Cần cho:
+- fruit crops;
+- seed crops;
+- cross-pollinated crops.
+
+### 4.20.126. Pollination success
+
+$
+f_{poll}
+=
+f(
+Flowering\ overlap,
+Temperature,
+Humidity,
+Pollinator,
+Wind
+)
+$
+
+### 4.20.127. Fruit set
+
+$
+N_{fruit,set}
+=
+N_{flower}
+f_{poll}
+f_{fert}
+(1-f_{abort})
+$
+
+### 4.20.128. Thinning
+
+Management:
+$
+N_{fruit}^{+}
+=
+N_{fruit}^{-}
+-
+N_{thinned}
+$
+
+### 4.20.129. Pruning
+
+Pruning thay đổi:
+- LAI;
+- source capacity;
+- sink distribution;
+- architecture.
+
+### 4.20.130. Training system
+
+Đặc biệt cho:
+- grape;
+- tomato;
+- cucumber;
+- fruit trees.
+
+Cần ảnh hưởng tới light interception.
+
+### 4.20.131. Planting density
+
+$
+Y_{area}
+=
+Density
+\times
+Y_{plant}
+$
+
+nhưng competition phải được mô hình hóa.
+
+### 4.20.132. Intercropping
+
+Không thể dùng single-crop canopy trực tiếp.
+
+Cần:
+- species A/B;
+- competition;
+- light partition;
+- root overlap;
+- nutrient sharing/competition.
+
+### 4.20.133. Mixed canopy radiation
+
+$
+I_k
+=
+f(
+LAI_A,
+LAI_B,
+height_A,
+height_B,
+leaf\ angle
+)
+$
+
+### 4.20.134. Agroforestry
+
+Cần:
+- tree–crop competition;
+- shade;
+- root depth separation;
+- long-term woody biomass.
+
+### 4.20.135. Salinity-tolerant crops
+
+Không dùng cùng EC threshold cho:
+- barley;
+- tomato;
+- lettuce;
+- rice.
+
+### 4.20.136. Flood-tolerant crops
+
+Không dùng rice hypoxia parameter cho maize/lettuce.
+
+### 4.20.137. Drought-tolerant crops
+
+Không suy tolerance chỉ từ một \(P_{50}\).
+
+Cần:
+- stomatal strategy;
+- rooting;
+- osmotic adjustment;
+- phenology;
+- reserve.
+
+### 4.20.138. Heat tolerance
+
+Phải phân biệt:
+- vegetative heat;
+- reproductive heat;
+- filling heat.
+
+### 4.20.139. Cold/chilling
+
+Cây nhiệt đới có thể bị chilling mà chưa freezing.
+
+### 4.20.140. Frost
+
+Cần damage module riêng nếu mô hình crop vùng lạnh.
+
+### 4.20.141. Nutrient-specific tests
+
+Mỗi crop nên có test:
+- N deficiency;
+- P deficiency;
+- K deficiency;
+- Ca-related disorder nếu relevant;
+- Mg/S/micronutrient khi có dữ liệu.
+
+### 4.20.142. Calcium disorders
+
+Quan trọng ở:
+- lettuce tipburn;
+- tomato blossom-end rot;
+- apple bitter pit.
+
+Không mô hình bằng total Ca soil đơn thuần.
+
+### 4.20.143. Iron deficiency
+
+Quan trọng ở nhiều horticultural crops, đặc biệt pH cao.
+
+Cần availability + root response.
+
+### 4.20.144. Boron
+
+Quan trọng với:
+- reproductive development;
+- cell wall
+ở một số crops.
+
+Threshold cần species-specific.
+
+### 4.20.145. Silicon
+
+Có ý nghĩa ở:
+- rice;
+- sugarcane;
+- grasses.
+
+Không coi là essential nutrient universal cho mọi crop.
+
+### 4.20.146. Quality vs quantity
+
+Một crop model thương mại cần:
+$
+Objective
+=
+f(Yield,Quality,Marketability)
+$
+
+### 4.20.147. Disease/pest placeholder
+
+Chương 4 chỉ nên để interface:
+$
+Damage_{biotic}(t)
+$
+
+không giả mô hình sâu nếu chưa có epidemiology module.
+
+### 4.20.148. Biotic stress effects
+
+Có thể tác động:
+- LAI;
+- photosynthesis;
+- root function;
+- reproductive organs;
+- marketable fraction.
+
+### 4.20.149. Không double count disease
+
+Nếu disease đã giảm LAI thì không phạt thêm photosynthesis lần nữa bằng cùng severity factor nếu đã bao hàm.
+
+### 4.20.150. Weed competition
+
+Cần module riêng nếu muốn:
+- light competition;
+- water competition;
+- nutrient competition.
+
+### 4.20.151. Lodging
+
+Quan trọng ở:
+- rice;
+- wheat;
+- barley;
+- maize;
+- tall biomass crops.
+
+### 4.20.152. Shattering
+
+Quan trọng ở:
+- cereals;
+- sesame;
+- some legumes.
+
+### 4.20.153. Cracking/splitting
+
+Quan trọng ở:
+- tomato;
+- cherry;
+- grape;
+- citrus
+tùy crop.
+
+### 4.20.154. Postharvest boundary
+
+VECrop Chương 4 dừng ở harvest.
+
+Postharvest physiology chỉ nối qua output:
+- moisture;
+- sugar;
+- acidity;
+- firmness;
+- storage reserves.
+
+### 4.20.155. Crop configuration schema
+
+Mỗi crop cần:
+$
+Config=
+\{
+Photosynthesis,
+Phenology,
+Root,
+Sink,
+Harvest,
+Quality,
+Stress
+\}
+$
+
+### 4.20.156. Cultivar overrides
+
+$
+\theta_{cultivar}
+=
+\theta_{crop}
++
+\Delta\theta_{cultivar}
+$
+
+### 4.20.157. Site overrides
+
+$
+\theta_{site}
+=
+[
+soil,
+weather,
+management
+]
+$
+
+### 4.20.158. Validation hierarchy đa cây
+
+Mỗi crop phải qua:
+1. process validation;
+2. organ validation;
+3. whole-plant validation;
+4. yield validation;
+5. multi-environment validation.
+
+### 4.20.159. Process validation
+
+Ví dụ:
+- gas exchange;
+- water uptake;
+- nutrient uptake.
+
+### 4.20.160. Organ validation
+
+Ví dụ:
+- root depth;
+- leaf area;
+- fruit/grain growth.
+
+### 4.20.161. Whole-plant validation
+
+Phải kiểm:
+- total biomass;
+- organ partition;
+- water use;
+- nutrient accumulation.
+
+### 4.20.162. Yield validation
+
+Phải kiểm:
+- yield components;
+- gross yield;
+- marketable yield.
+
+### 4.20.163. Multi-environment validation
+
+Ít nhất:
+- different season;
+- different water regime;
+- different nutrient regime
+nếu muốn dùng rộng.
+
+### 4.20.164. Crop-specific uncertainty
+
+Mỗi crop cần sensitivity ranking riêng.
+
+Không dùng ranking của rice cho tomato.
+
+### 4.20.165. Parameter identifiability theo crop
+
+Một parameter có thể identifiable ở crop này nhưng không ở crop khác vì observation khác.
+
+### 4.20.166. Minimal dataset – field cereals
+
+Tối thiểu:
+- weather;
+- soil water;
+- phenology;
+- LAI;
+- biomass;
+- yield components.
+
+### 4.20.167. Minimal dataset – horticulture
+
+Tối thiểu:
+- climate;
+- irrigation/fertigation;
+- root-zone EC/pH;
+- organ number;
+- organ mass;
+- marketable fraction.
+
+### 4.20.168. Minimal dataset – perennial fruit
+
+Tối thiểu:
+- annual phenology;
+- canopy state;
+- flowering;
+- fruit set;
+- fruit growth;
+- reserve/previous-year state;
+- yield.
+
+### 4.20.169. Minimal dataset – hydroponics
+
+Tối thiểu:
+- EC;
+- pH;
+- solution temperature;
+- DO;
+- nutrient concentrations;
+- water uptake;
+- biomass;
+- yield.
+
+### 4.20.170. Minimum acceptance test
+
+Một crop config không được coi là sẵn sàng nếu chưa qua:
+- unit consistency;
+- mass balance;
+- phenology sanity;
+- yield-component sanity;
+- validation.
+
+### 4.20.171. Universal limiting tests
+
+Mọi crop phải kiểm:
+- no light;
+- no water;
+- no root;
+- no sink;
+- extreme temperature;
+- nutrient depletion.
+
+### 4.20.172. Crop-specific limiting tests
+
+Ví dụ:
+- rice: anoxia/reoxygenation;
+- maize: drought at silking;
+- lettuce: Ca transport/tipburn;
+- potato: high temperature at tuberization;
+- tomato: blossom-end rot;
+- apple: chilling/bloom.
+
+### 4.20.173. Yield identity test
+
+Mỗi crop phải có identity phù hợp.
+
+Ví dụ cereal:
+$
+Y=N_{grain}W_{grain}
+$
+
+fruit crop:
+$
+Y=N_{fruit}W_{fruit}
+$
+
+leaf crop:
+$
+Y=B_{marketable\ leaf}
+$
+
+### 4.20.174. Harvest index test
+
+Chỉ dùng HI khi định nghĩa phù hợp với commodity.
+
+### 4.20.175. Quality consistency test
+
+Quality output phải nhất quán với:
+- composition;
+- maturity;
+- water status.
+
+### 4.20.176. Economic consistency test
+
+Nếu model dùng recommendation:
+$
+Profit
+=
+Revenue-Cost
+$
+
+không chỉ tối đa biological yield.
+
+### 4.20.177. Marketability consistency
+
+Một crop có total biomass cao vẫn có thể:
+$
+Y_{market}\ll Y_{gross}
+$
+
+### 4.20.178. Perennial carryover test
+
+Cây lâu năm phải:
+- giữ biomass/reserve;
+- không reset phenology sai;
+- theo dõi bearing cycle.
+
+### 4.20.179. Multi-harvest carryover test
+
+Sau mỗi lần harvest:
+- sink giảm;
+- source giữ lại;
+- regrowth/next fruit wave cập nhật.
+
+### 4.20.180. Ratoon carryover test
+
+Cần giữ:
+- root/rhizome;
+- stand age;
+- reserve;
+- disease/stress memory.
+
+### 4.20.181. Grafting test
+
+Nếu grafted:
+- rootstock hydraulics;
+- scion phenology;
+- yield response
+phải kết nối đúng.
+
+### 4.20.182. Crop switch test
+
+Chuyển từ crop A sang crop B phải đổi:
+- photosynthesis mode;
+- phenology;
+- sink;
+- harvest;
+- quality;
+- parameter set.
+
+### 4.20.183. No-hidden-parameter rule
+
+Không được tự tạo parameter “hợp lý” mà không ghi:
+- source;
+- calibration;
+- assumption.
+
+### 4.20.184. Provenance matrix
+
+Mỗi crop config cần bảng:
+| Parameter | Crop | Cultivar | Unit | Source | Status |
+|---|---|---|---|---|---|
+
+### 4.20.185. Validation matrix
+
+| Crop | Process | Variable | Dataset | Metric | Pass/Fail |
+|---|---|---|---|---|---|
+
+### 4.20.186. Stress matrix
+
+| Crop | Stress | Sensitive stage | Mechanism | Observables |
+|---|---|---|---|---|
+
+### 4.20.187. Yield-component matrix
+
+| Crop group | Number component | Size component | Marketability |
+|---|---|---|---|
+| cereal | grain number | grain weight | harvest loss |
+| fruit | fruit number | fruit weight | defect |
+| root/tuber | organ number | organ size | grade |
+| leaf | leaf biomass | leaf expansion | defect |
+
+### 4.20.188. Universal core không có nghĩa universal parameter
+
+Có thể dùng chung:
+- mass balance;
+- water potential;
+- transport equations;
+- bookkeeping.
+
+Không dùng chung vô điều kiện:
+- \(V_{cmax}\);
+- \(P_{50}\);
+- phenology;
+- sink parameters.
+
+### 4.20.189. Commodity-first design
+
+Cấu hình crop phải bắt đầu từ câu hỏi:
+“Cái gì được bán/thu hoạch?”
+
+Sau đó mới định nghĩa:
+- yield;
+- quality;
+- harvest timing.
+
+### 4.20.190. Crop-market mapping
+
+Ví dụ:
+- lettuce → fresh leaf;
+- rice → dry grain;
+- sugarcane → stalk sugar;
+- rubber → latex;
+- tea → young shoots;
+- coffee → berries/beans;
+- cotton → lint;
+- ornamentals → stems/flowers.
+
+### 4.20.191. Không dùng yield chung cho mọi crop
+
+$
+Yield_{crop}
+=
+f(Harvest\ organ,Market\ definition)
+$
+
+### 4.20.192. Crop-family inheritance
+
+VECrop có thể cho config kế thừa:
+$
+CropConfig
+\leftarrow
+FamilyTemplate
+$
+
+nhưng cultivar vẫn override.
+
+### 4.20.193. Template cereal
+
+Bật mặc định:
+- grain sink;
+- tillering/branching;
+- grain filling;
+- HI.
+
+### 4.20.194. Template leafy
+
+Bật:
+- leaf expansion;
+- marketable fresh mass;
+- senescence;
+- bolting.
+
+### 4.20.195. Template fruiting vegetable
+
+Bật:
+- flowering;
+- fruit set;
+- repeated harvest;
+- fruit quality.
+
+### 4.20.196. Template perennial fruit
+
+Bật:
+- dormancy/flush;
+- reserve carryover;
+- fruit set;
+- annual cycle.
+
+### 4.20.197. Template root/tuber
+
+Bật:
+- storage organ initiation;
+- bulking;
+- size grading.
+
+### 4.20.198. Template forage
+
+Bật:
+- biomass quality;
+- cutting;
+- regrowth.
+
+### 4.20.199. Template industrial perennial
+
+Bật:
+- multi-year biomass;
+- repeated harvest/tapping;
+- reserve carryover.
+
+### 4.20.200. Template controlled environment
+
+Bật:
+- artificial light;
+- CO₂;
+- fertigation;
+- climate control;
+- high-frequency sensing.
+
+### 4.20.201. Crop onboarding workflow
+
+Khi thêm crop mới:
+1. xác định harvest organ;
+2. xác định photosynthesis type;
+3. xác định phenology;
+4. xác định root architecture;
+5. xác định sink;
+6. xác định quality;
+7. thu parameter;
+8. kiểm định.
+
+### 4.20.202. Parameter collection hierarchy
+
+Ưu tiên:
+1. primary experiment;
+2. peer-reviewed crop-specific literature;
+3. authoritative handbook/database;
+4. calibration;
+5. assumption có gắn cờ.
+
+### 4.20.203. Không bịa tham số
+
+Nếu thiếu:
+$
+\theta_i=NA
+$
+
+tốt hơn tự gán số không có nguồn.
+
+### 4.20.204. Crop readiness levels
+
+Có thể định nghĩa:
+- R0: concept only;
+- R1: parameterized;
+- R2: calibrated;
+- R3: validated;
+- R4: multi-site validated;
+- R5: decision-support ready.
+
+### 4.20.205. R0
+Chỉ có:
+- equations;
+- config skeleton.
+
+### 4.20.206. R1
+Có parameter có nguồn nhưng chưa fit local.
+
+### 4.20.207. R2
+Đã calibration.
+
+### 4.20.208. R3
+Đã validation độc lập.
+
+### 4.20.209. R4
+Đã validation nhiều mùa/site.
+
+### 4.20.210. R5
+Có:
+- uncertainty;
+- failure flags;
+- management recommendation validation.
+
+### 4.20.211. Không gọi production-ready sớm
+
+Crop config chỉ nên gọi production-ready khi đạt validation thực địa phù hợp.
+
+### 4.20.212. Crop catalog
+
+VECrop nên có catalog metadata:
+- crop;
+- species;
+- group;
+- photosynthesis;
+- harvest organ;
+- cycle;
+- readiness.
+
+### 4.20.213. Example catalog fields
+
+$
+[
+crop\_id,
+species,
+cultivar,
+group,
+C3/C4/CAM,
+harvest\_organ,
+readiness
+]
+$
+
+### 4.20.214. Validation summary card
+
+Mỗi crop nên có:
+- datasets;
+- climates;
+- soils;
+- seasons;
+- RMSE/MAE;
+- uncertainty;
+- known limitations.
+
+### 4.20.215. Failure-domain card
+
+Ghi rõ:
+- chưa kiểm flood;
+- chưa kiểm salinity;
+- chưa kiểm high heat;
+- chưa kiểm perennial carryover
+nếu chưa có dữ liệu.
+
+### 4.20.216. Crop-specific explainability
+
+Một yield loss phải giải thích theo crop.
+
+Ví dụ:
+- maize: kernel set;
+- rice: sterility;
+- tomato: fruit set;
+- lettuce: marketable leaf loss.
+
+### 4.20.217. Common engine output
+
+Mọi crop có thể xuất:
+$
+[
+Water,
+Carbon,
+Nutrients,
+Biomass,
+Phenology,
+Yield,
+Uncertainty
+]
+$
+
+### 4.20.218. Commodity-specific output
+
+Ngoài core:
+- grain protein;
+- oil;
+- sugar;
+- fiber;
+- latex;
+- fruit Brix;
+- marketability.
+
+### 4.20.219. Final cross-crop conservation test
+
+Mọi crop phải thỏa:
+$
+Input-Output-\Delta Storage\approx0
+$
+
+cho các pool chính.
+
+### 4.20.220. Final cross-crop unit test
+
+Không chấp nhận config có:
+- mixed fresh/dry mass;
+- per-plant/per-area confusion;
+- incompatible time units.
+
+### 4.20.221. Final cross-crop phenology test
+
+Phải kiểm stage sequence không đảo:
+$
+Emergence
+\rightarrow
+Vegetative
+\rightarrow
+Reproductive
+\rightarrow
+Maturity
+$
+
+hoặc sequence crop-specific tương đương.
+
+### 4.20.222. Final cross-crop yield test
+
+Yield phải xuất phát từ:
+- harvest organ;
+- source;
+- sink;
+- development;
+- allocation.
+
+### 4.20.223. Final cross-crop uncertainty test
+
+Mỗi forecast quan trọng phải có:
+- interval;
+- domain flag;
+- data-quality flag.
+
+### 4.20.224. Final cross-crop provenance test
+
+Không có parameter quan trọng nào thiếu:
+- source;
+- unit;
+- status.
+
+### 4.20.225. Final cross-crop double-count test
+
+Mỗi stress phải audit pathway.
+
+Không được:
+$
+Mechanistic\ stress
++
+Empirical\ penalty
+$
+cho cùng effect nếu chưa chứng minh cần cả hai.
+
+### 4.20.226. Final cross-crop validation principle
+
+Một crop mới không được coi là “đã có trong VECrop” chỉ vì có tên.
+
+Nó chỉ thực sự được hỗ trợ khi:
+$
+Config
++
+Parameters
++
+Calibration
++
+Validation
+$
+đều tồn tại.
+
+### 4.20.227. Khung kết thúc Chương 4
+
+<div class="flow-chain">
+<strong>Core physiology</strong> → <strong>Crop template</strong> → <strong>Cultivar parameterization</strong> → <strong>Calibration</strong> → <strong>Validation</strong> → <strong>Uncertainty</strong> → <strong>Marketable yield</strong>
+</div>
+
+### 4.20.228. Kết luận Chương 4
+
+Chương 4 kết thúc bằng nguyên tắc:
+
+$
+One\ core
+\neq
+One\ crop
+$
+
+Đúng hơn:
+
+$
+One\ mechanistic\ core
++
+Many\ crop\ configurations
+$
+
+VECrop có thể mở rộng tới rất nhiều cây trồng thương mại nếu:
+1. giữ chung các định luật vật lý và mass balance;
+2. thay đổi đúng photosynthesis, phenology, root, sink và harvest logic;
+3. không chuyển tham số sinh học tùy tiện giữa loài;
+4. mỗi crop có provenance, calibration, validation và uncertainty riêng;
+5. chỉ công bố mức hỗ trợ tương ứng readiness level thực tế.
+
+**Điểm dừng Chương 4: 4.20.**
+
+---
+
 # Chuỗi tích hợp cuối Chương 4
 
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
 
-**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.19.**
+**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.20.**
 
 ---
 
@@ -14934,10 +17121,12 @@ chứ không chỉ là một giá trị điểm.
 28. Reviews on coupled water–carbon–nitrogen modeling and integrated crop systems.
 29. Literature on global sensitivity analysis, identifiability, uncertainty quantification and Bayesian calibration for dynamic crop and environmental models.
 30. Literature on model evaluation, cross-validation, data assimilation and uncertainty-aware decision support in agricultural systems.
+31. Crop physiology and crop-model literature covering cereals, legumes, oilseeds, root/tuber crops, vegetables, perennial fruit crops, forage, industrial crops and controlled-environment agriculture.
+32. Authoritative crop-specific agronomy, phenology, yield-component and quality literature should be attached to each future crop configuration rather than treated as universal parameters.
 
 > **Quy tắc VECrop:** mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.
 
 
 ---
 
-> **Điểm dừng hiện tại:** 4.19. Chưa có nội dung sau 4.19.
+> **Điểm dừng Chương 4:** 4.20.
