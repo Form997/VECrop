@@ -64,3 +64,10 @@ Không tự bịa pH/EC/năng suất hay biến DOI của công trình khác th�
 - Nếu dùng chế độ `--browser`, dữ liệu trình duyệt nằm trong profile của Edge/Chrome khác với WebView2 và sẽ không tự chuyển. Dùng Xuất/Nhập JSON.
 
 **Lưu ý:** workflow cần GitHub Actions và quyền GITHUB_TOKEN `contents: write` để phát hành Release; nếu repo hạn chế thì Actions artifact vẫn có thể có, nhưng chưa có Release để ứng dụng phát hiện tự động.
+
+
+## Kho DATA SQLite
+
+Bản VECrop Desktop Windows đã có khung 🗄️ DATA: **Lưu vào DATA**, **Danh sách thí nghiệm**, **Lịch sử**, **Sao lưu SQLite**. Cơ sở dữ liệu nằm ở %LOCALAPPDATA%/VECropDesktop/data/vecrop.sqlite3, tách hoàn toàn khỏi file EXE; bản sao lưu nằm ở %LOCALAPPDATA%/VECropDesktop/backups.
+
+Khi mở bộ dữ liệu cũ, các chỉnh sửa tiếp theo được tự lưu vào SQLite sau vài giây và tạo phiên bản mới. Có kiểm tra phiên bản để không ghi đè các thay đổi gần đây của cùng mã thí nghiệm. Xem [Tài liệu kiến trúc DATA](../docs/DATA-ARCHITECTURE.md).
