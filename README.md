@@ -1,4 +1,4 @@
-# VECrop
+# VECrop - Cây trồng và vấn đề sinh thái nâng cao
 
 ## 🌍 VECrop in many languages — Giới thiệu đa ngôn ngữ
 
