@@ -186,6 +186,7 @@ class Updater:
             self.error = "Không thể kiểm tra phiên bản trực tuyến: " + str(exc)[:160]
 
     def start_release_check(self) -> None:
+        self.release_state = "checking"
         threading.Thread(target=self.check_release, daemon=True).start()
 
     def start_sync(self) -> bool:

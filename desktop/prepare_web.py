@@ -1,6 +1,8 @@
 """Collect local app data + pinned offline JS libraries for Windows packaging."""
 from __future__ import annotations
 import hashlib
+import json
+import os
 from pathlib import Path
 import shutil
 import sys
@@ -47,7 +49,14 @@ def main():
     if old_marked not in html or old_math not in html:
         raise ValueError("Expected CDN scripts not found; inspect index.html before packaging")
     html=html.replace(old_marked,"vendor/marked.min.js").replace(old_math,"vendor/tex-svg-full.js")
+    html=html.replace("</body>",'<script src="js/desktop-client.js"></script>\n</body>')
     page.write_text(html,encoding="utf-8")
+    shutil.copy2(ROOT/"desktop"/"client.js",DEST/"js"/"desktop-client.js")
+    build = {
+        "sha": os.getenv("GITHUB_SHA", "local"),
+        "run_number": int(os.getenv("GITHUB_RUN_NUMBER", "0")),
+    }
+    (DEST/"desktop-build.json").write_text(json.dumps(build), encoding="utf-8")
     vendor=DEST/"vendor";vendor.mkdir(exist_ok=True)
     for name,urls in ASSETS.items():download(name,urls,vendor)
     sys.path.insert(0,str(ROOT/"desktop"))

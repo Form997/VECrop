@@ -18,7 +18,7 @@ class TestUpdates(unittest.TestCase):
         self.assertFalse(is_public_content("config/script.py"))
 
     def test_git_hash(self):
-        self.assertEqual(git_blob_sha(b"test content"), "bb35b25606dc4cb5fe96c044e9888289b2b11760")
+        self.assertEqual(git_blob_sha(b"test content"), "08cf6101416f0ce0dda3c80e627f333854c4085c")
 
     def test_manifest_requires_textbook(self):
         with self.assertRaises(ValueError):
