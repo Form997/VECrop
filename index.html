@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>VECrop — Trang làm việc</title>
-  <meta name="description" content="VECrop — trang làm việc tích hợp giáo trình Chương 1 đến 12">
+  <meta name="description" content="VECrop — trang làm việc tích hợp giáo trình Chương 1 đến 16">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     window.MathJax={tex:{inlineMath:[['
   </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <style>
     :root{--bg:#f6f8fb;--panel:#fff;--text:#17202a;--muted:#687386;--line:#e4e9f0;--accent:#1f7a4d;--code:#0f172a;--shadow:0 8px 24px rgba(15,23,42,.08)}
     [data-theme="dark"]{--bg:#0d1117;--panel:#161b22;--text:#e6edf3;--muted:#9da7b3;--line:#2d333b;--accent:#4ac17a;--code:#0b1220;--shadow:none}
@@ -92,7 +92,7 @@ async function loadDoc(){
     const r=await fetch('docs/VECrop-full.md',{cache:'no-store'});
     if(!r.ok)throw new Error('HTTP '+r.status);
     rawMarkdown=await r.text();render(rawMarkdown);
-    statusEl.textContent='VECrop — giáo trình làm việc từ Chương 1 đến Chương 12';
+    statusEl.textContent='VECrop — giáo trình làm việc từ Chương 1 đến Chương 16';
   }catch(err){
     contentEl.innerHTML='<h1>Không tải được tài liệu</h1><p>Hãy mở trang bằng GitHub Pages hoặc một web server. Lỗi: '+err.message+'</p>';
   }
