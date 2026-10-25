@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VECrop — Chương 1</title>
+<meta name="description" content="VECrop — Chương 1: Cơ sở sinh lý – vật lý – toán học của hấp thu dinh dưỡng">
+<script>
+window.MathJax={
+  tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],processEscapes:true},
+  svg:{fontCache:'global'}
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--bg:#f5f7fa;--panel:#fff;--text:#17202a;--muted:#667085;--line:#e4e7ec;--accent:#176b44}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.68 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.top{max-width:1440px;margin:auto;display:flex;gap:14px;align-items:center;padding:12px 18px}
+.brand{font-size:20px;font-weight:800;white-space:nowrap}.brand span{color:var(--accent)}
+#search{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:9px}
+.layout{max-width:1440px;margin:auto;display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;padding:18px}
+aside{position:sticky;top:72px;height:calc(100vh - 92px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px}
+aside strong{display:block;margin-bottom:8px}
+aside a{display:block;color:var(--muted);text-decoration:none;padding:5px 7px;border-radius:7px;font-size:14px}
+aside a:hover{background:#edf7f1;color:var(--accent)}
+main{background:#fff;border:1px solid var(--line);border-radius:12px;padding:34px 42px;min-width:0}
+article{max-width:980px;margin:auto}
+h1,h2,h3{line-height:1.25;scroll-margin-top:86px}h1{font-size:2.15rem}h2{margin-top:2.1em;border-bottom:1px solid var(--line);padding-bottom:.35em}h3{margin-top:1.5em}
+code{background:#eef1f4;padding:.15em .35em;border-radius:5px}
+blockquote{border-left:4px solid var(--accent);background:#f2f8f4;margin:1em 0;padding:.7em 1em}
+.math-block{overflow-x:auto;text-align:center;margin:1.15em 0}
+.flow-chain{padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:#f1f8f4;line-height:2;overflow-x:auto}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto;margin:1em 0}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{background:#f7f9fb}
+hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
+@media(max-width:900px){.layout{display:block;padding:10px}aside{display:none}main{padding:20px 14px}.top{flex-wrap:wrap}#search{flex-basis:100%}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand"><span>VE</span>Crop — Chương 1</div><input id="search" placeholder="Tìm trong Chương 1…"></div></header>
+<div class="layout">
+<aside><strong>Mục lục Chương 1</strong><nav id="toc"></nav></aside>
+<main><article id="content"><h1>Chương 1. Cơ sở sinh lý – vật lý – toán học của hấp thu dinh dưỡng trong VECrop</h1>
+<blockquote><strong>Trạng thái học thuật:</strong> Chương này tổng hợp kiến thức nền đã được thiết lập trong sinh lý thực vật, dinh dưỡng cây trồng, vật lý đất–nước và nhiệt động học. Các cấu trúc mang tên <strong>VECrop</strong> hoặc <strong>HSY</strong> được ghi rõ là *mô hình/khung đề xuất* và không được xem là định luật sinh học cho đến khi được hiệu chỉnh và kiểm định.</blockquote>
+<hr>
+<h2>1.1. Mục tiêu của Chương 1</h2>
+<p>Chương 1 xây dựng nền tảng để các chương sau có thể mô hình hóa cây trồng mà không trộn lẫn giữa:</p>
+<ul>
+<li>đại lượng vật lý;</li>
+<li>trạng thái sinh lý;</li>
+<li>thông lượng;</li>
+<li>tham số thực nghiệm;</li>
+<li>chỉ số tổng hợp;</li>
+<li>biến quản lý;</li>
+<li>năng suất cuối cùng.</li>
+</ul>
+<p>Chuỗi khái niệm tổng quát:</p>
+<div class="flow-chain">
+<strong>Môi trường vùng rễ</strong> → <strong>Nước và ion</strong> → <strong>Rễ</strong> → <strong>Mạch dẫn</strong> → <strong>Lá</strong> → <strong>Quang hợp</strong> → <strong>Source–sink</strong> → <strong>Sinh khối</strong> → <strong>Năng suất</strong>
+</div>
+<p>Mọi module VECrop phải thỏa bốn yêu cầu:</p>
+<ol>
+<li>có ý nghĩa sinh lý;</li>
+<li>nhất quán về đơn vị;</li>
+<li>bảo toàn vật chất/năng lượng khi thích hợp;</li>
+<li>có thể hiệu chỉnh và kiểm định bằng dữ liệu.</li>
+</ol>
+<hr>
+<h2>1.2. Hệ cây trồng là một hệ mở</h2>
+<p>Cây trao đổi liên tục:</p>
+<ul>
+<li>nước;</li>
+<li>CO₂ và O₂;</li>
+<li>ion khoáng;</li>
+<li>nhiệt;</li>
+<li>bức xạ;</li>
+<li>carbon hữu cơ;</li>
+<li>tín hiệu hóa học.</li>
+</ul>
+<p>Ta ký hiệu trạng thái tổng quát:</p>
+<div class="math-block">\[\mathbf X(t)=
+[\mathbf X_{env},\mathbf X_{root},\mathbf X_{vascular},\mathbf X_{leaf},\mathbf X_{met},\mathbf X_{growth}]^T\]</div>
+<p>và động lực:</p>
+<div class="math-block">\[\frac{d\mathbf X}{dt}
+=
+\mathbf f(\mathbf X,\mathbf U,\boldsymbol\theta,t)\]</div>
+<p>trong đó:</p>
+<ul>
+<li>\(\mathbf U\): tác động ngoại sinh/quản lý;</li>
+<li>\(\boldsymbol\theta\): tập tham số;</li>
+<li>\(t\): thời gian.</li>
+</ul>
+<hr>
+<h2>1.3. Vector môi trường đầu vào</h2>
+<p>Một tập biến môi trường cơ bản:</p>
+<div class="math-block">\[\mathbf X_{env}
+=
+[EC,pH,\theta,pF,\Psi_{soil},T,I,CO_2,O_2,Eh,OM,N,P,K,\ldots]^T\]</div>
+<p>Không phải mọi biến đều bắt buộc trong mọi mô hình. Chỉ giữ biến khi:</p>
+<ul>
+<li>có cơ chế rõ ràng;</li>
+<li>có dữ liệu đo hoặc có thể suy ra;</li>
+<li>tránh trùng thông tin với biến khác.</li>
+</ul>
+<hr>
+<h2>1.4. Bảo toàn vật chất</h2>
+<p>Với một chất \(i\):</p>
+<div class="math-block">\[\frac{dM_i}{dt}
+=
+\sum F_{i,in}
+-
+\sum F_{i,out}
++
+P_i
+-
+C_i\]</div>
+<p>Trong đó:</p>
+<ul>
+<li>\(M_i\): lượng chất tích trữ;</li>
+<li>\(F_{i,in}\): dòng vào;</li>
+<li>\(F_{i,out}\): dòng ra;</li>
+<li>\(P_i\): quá trình tạo;</li>
+<li>\(C_i\): quá trình tiêu thụ.</li>
+</ul>
+<p>Với một nguyên tố như N, P hoặc K trong toàn cây:</p>
+<div class="math-block">\[\frac{dM_i}{dt}=U_i-L_i\]</div>
+<p>vì chuyển từ lá sang hạt chỉ là <strong>tái phân bố nội bộ</strong>, không phải tạo hay mất nguyên tố.</p>
+<hr>
+<h2>1.5. Bảo toàn carbon</h2>
+<p>Carbon được bổ sung chủ yếu qua quang hợp và mất chủ yếu qua hô hấp.</p>
+<div class="math-block">\[\frac{dM_C}{dt}
+=
+A_C-R_C-L_C\]</div>
+<p>Trong đó:</p>
+<ul>
+<li>\(A_C\): carbon đồng hóa;</li>
+<li>\(R_C\): carbon hô hấp;</li>
+<li>\(L_C\): các tổn thất khác nếu có.</li>
+</ul>
+<p>Đây là nền tảng để nối quang hợp với sinh khối.</p>
+<hr>
+<h2>1.6. Phân biệt lượng, nồng độ, hoạt độ và thông lượng</h2>
+<h3>Lượng chất</h3>
+<div class="math-block">\[M_i\]</div>
+<p>đơn vị: mol, mmol, g, kg,...</p>
+<h3>Nồng độ</h3>
+<div class="math-block">\[C_i=\frac{M_i}{V}\]</div>
+<h3>Hoạt độ</h3>
+<div class="math-block">\[a_i=\gamma_iC_i\]</div>
+<h3>Thông lượng</h3>
+<div class="math-block">\[J_i
+=
+\frac{\text{lượng chất}}
+{\text{diện tích}\times\text{thời gian}}\]</div>
+<p>Không được cộng trực tiếp:</p>
+<div class="math-block">\[M_i+C_i+J_i\]</div>
+<p>vì chúng không cùng thứ nguyên.</p>
+<hr>
+<h2>1.7. Kiểm tra thứ nguyên</h2>
+<p>Một phương trình chỉ hợp lệ khi hai vế có cùng đơn vị.</p>
+<p>Ví dụ:</p>
+<div class="math-block">\[J_w=-K_h\nabla\Psi_w\]</div>
+<p>phải thỏa:</p>
+<div class="math-block">\[[K_h][\nabla\Psi_w]=[J_w]\]</div>
+<p>Một biểu thức kiểu:</p>
+<div class="math-block">\[v=G+HSY\]</div>
+<p>không hợp lệ nếu \(v\) có đơn vị vận tốc còn \(HSY\) không thứ nguyên.</p>
+<p>Nếu HSY điều chỉnh vận tốc:</p>
+<div class="math-block">\[v=v_0HSY\]</div>
+<p>là hợp lý về thứ nguyên hơn, nhưng vẫn cần kiểm định sinh học.</p>
+<hr>
+<h2>1.8. Thế nước</h2>
+<p>Thế nước tổng:</p>
+<div class="math-block">\[\Psi_w
+=
+\Psi_p+\Psi_s+\Psi_m+\Psi_g\]</div>
+<p>Trong đó:</p>
+<ul>
+<li>\(\Psi_p\): thế áp suất;</li>
+<li>\(\Psi_s\): thế thẩm thấu;</li>
+<li>\(\Psi_m\): thế ma trận;</li>
+<li>\(\Psi_g\): thế trọng trường.</li>
+</ul>
+<p>Đơn vị thường dùng:</p>
+<div class="math-block">\[MPa\]</div>
+<hr>
+<h2>1.9. Thế thẩm thấu</h2>
+<p>Ở mức lý tưởng:</p>
+<div class="math-block">\[\Psi_s=-iCRT\]</div>
+<p>Trong hệ nhiều ion:</p>
+<div class="math-block">\[\Psi_s
+\approx
+-RT\sum_i\phi_iC_i\]</div>
+<p>Với dung dịch không lý tưởng:</p>
+<div class="math-block">\[a_i=\gamma_iC_i\]</div>
+<p>nên cần phân biệt nồng độ với hoạt độ.</p>
+<hr>
+<h2>1.10. Dòng nước theo gradient thế nước</h2>
+<p>Dạng liên tục:</p>
+<div class="math-block">\[\vec J_w=-K_h\nabla\Psi_w\]</div>
+<p>Dạng hai nút:</p>
+<div class="math-block">\[Q_w=K(\Psi_1-\Psi_2)\]</div>
+<p>Dòng nước không được mô tả bằng cách cộng hormone, root pressure và transpiration thành một “lực tổng hợp” nếu các đại lượng không cùng đơn vị.</p>
+<hr>
+<h2>1.11. Hệ SPAC</h2>
+<p>SPAC là chuỗi đất–cây–khí quyển.</p>
+<p>Trong nhiều trạng thái cây đang thoát hơi:</p>
+<div class="math-block">\[\Psi_{soil}&gt;\Psi_{root}&gt;\Psi_{stem}&gt;\Psi_{leaf}\]</div>
+<p>Điều này không có nghĩa gradient luôn cố định ở mọi thời điểm.</p>
+<p>Ban đêm, sau tưới, khi root pressure xuất hiện hoặc khi hydraulic redistribution xảy ra, trạng thái có thể khác.</p>
+<hr>
+<h2>1.12. pF và trạng thái nước đất</h2>
+<p>Định nghĩa:</p>
+<div class="math-block">\[pF=\log_{10}|h|\]</div>
+<p>với \(h\) là pressure head tính bằng cm nước.</p>
+<p>Do đó:</p>
+<div class="math-block">\[h=10^{pF}\]</div>
+<p>pF không phải relative humidity và không được thay thế bằng RH không khí.</p>
+<hr>
+<h2>1.13. Đường cong giữ nước van Genuchten</h2>
+<p>Một mô hình phổ biến:</p>
+<div class="math-block">\[S_e=
+\frac{\theta-\theta_r}
+{\theta_s-\theta_r}
+=
+\left[
+1+(\alpha |h|)^n
+\right]^{-m}\]</div>
+<p>thường:</p>
+<div class="math-block">\[m=1-\frac1n\]</div>
+<p>trong đó:</p>
+<ul>
+<li>\(\theta_r\): water content dư;</li>
+<li>\(\theta_s\): water content bão hòa;</li>
+<li>\(\alpha,n,m\): tham số đất.</li>
+</ul>
+<p>Các tham số này phải được hiệu chỉnh theo đất/giá thể.</p>
+<hr>
+<h2>1.14. Dòng nước trong đất</h2>
+<p>Một biểu diễn Darcy–Buckingham:</p>
+<div class="math-block">\[\mathbf q
+=
+-K(\theta)\nabla(\Psi_m+\Psi_g)\]</div>
+<p>Ở dạng động có thể dẫn tới Richards equation:</p>
+<div class="math-block">\[\frac{\partial\theta}{\partial t}
+=
+\nabla\cdot
+[
+K(\theta)
+\nabla(\Psi_m+\Psi_g)
+]
+-
+S_{root}\]</div>
+<p>Trong đó \(S_{root}\) là sink do rễ hút nước.</p>
+<hr>
+<h2>1.15. Tổng dinh dưỡng không bằng dinh dưỡng khả dụng</h2>
+<p>Cần phân biệt:</p>
+<div class="math-block">\[M_{total}
+=
+M_{unavailable}
++
+M_{potential}
++
+M_{solution}\]</div>
+<p>Tính khả dụng phụ thuộc:</p>
+<ul>
+<li>pH;</li>
+<li>nước;</li>
+<li>redox;</li>
+<li>sorption;</li>
+<li>precipitation;</li>
+<li>microbial mineralization;</li>
+<li>root exudation;</li>
+<li>mass flow;</li>
+<li>diffusion.</li>
+</ul>
+<p>Không suy trực tiếp từ total nutrient sang uptake.</p>
+<hr>
+<h2>1.16. Mass flow và diffusion</h2>
+<p>Dòng ion trong vùng rễ có thể viết:</p>
+<div class="math-block">\[J_i^{soil}
+=
+q_wC_i
+-
+D_{eff,i}\nabla C_i\]</div>
+<p>Thành phần đầu là mass flow, thành phần sau là diffusion.</p>
+<p>Mức đóng góp của hai cơ chế phụ thuộc:</p>
+<ul>
+<li>độ linh động ion;</li>
+<li>water flux;</li>
+<li>soil buffering;</li>
+<li>root demand;</li>
+<li>geometry vùng rễ.</li>
+</ul>
+<hr>
+<h2>1.17. Depletion zone quanh rễ</h2>
+<p>Rễ hấp thu có thể tạo gradient nồng độ:</p>
+<div class="math-block">\[\frac{\partial C_i}{\partial t}
+=
+D_{eff,i}\nabla^2C_i
+-
+R_{uptake,i}
++
+R_{source,i}\]</div>
+<p>Đây là lý do nồng độ bulk soil không luôn phản ánh nồng độ thực tại bề mặt rễ.</p>
+<hr>
+<h2>1.18. Thế điện hóa của ion</h2>
+<p>Chemical potential mở rộng:</p>
+<div class="math-block">\[\widetilde\mu_i
+=
+\mu_i^0
++
+RT\ln a_i
++
+z_iF\psi\]</div>
+<p>Chênh lệch qua màng:</p>
+<div class="math-block">\[\Delta\widetilde\mu_i
+=
+RT\ln
+\frac{a_{i,in}}{a_{i,out}}
++
+z_iF(\psi_{in}-\psi_{out})\]</div>
+<p>Ion transport vì thế phụ thuộc cả:</p>
+<ul>
+<li>concentration/activity gradient;</li>
+<li>membrane potential.</li>
+</ul>
+<hr>
+<h2>1.19. Điện thế Nernst</h2>
+<div class="math-block">\[E_i=
+\frac{RT}{z_iF}
+\ln
+\frac{a_{i,out}}{a_{i,in}}\]</div>
+<p>Với một channel:</p>
+<div class="math-block">\[I_i=g_i(V_m-E_i)\]</div>
+<p>Dấu và độ lớn của \(V_m-E_i\) quyết định driving force điện hóa theo quy ước dòng đã chọn.</p>
+<hr>
+<h2>1.20. H+-ATPase và proton motive force</h2>
+<p>H+-ATPase dùng ATP để bơm proton ra ngoài tế bào.</p>
+<p>Nó tạo:</p>
+<ul>
+<li>điện thế màng;</li>
+<li>gradient pH;</li>
+<li>proton motive force.</li>
+</ul>
+<p>Một biểu diễn:</p>
+<div class="math-block">\[\Delta p
+=
+\Delta\psi
+-
+\frac{2.303RT}{F}\Delta pH\]</div>
+<p>Nhiều transporter hấp thu dinh dưỡng sử dụng gradient H+ này.</p>
+<p><strong>H+-ATPase không bơm nước trực tiếp.</strong></p>
+<hr>
+<h2>1.21. Động học transporter</h2>
+<p>Một dạng Michaelis–Menten:</p>
+<div class="math-block">\[J_i
+=
+V_{\max,i}
+\frac{C_i}{K_{m,i}+C_i}\]</div>
+<p>Nhưng uptake thực có thể gồm:</p>
+<div class="math-block">\[J_i
+=
+J_{HATS,i}
++
+J_{LATS,i}
+-
+J_{efflux,i}\]</div>
+<p>HATS:</p>
+<div class="math-block">\[J_{HATS,i}
+=
+V_{\max,H,i}
+\frac{C_i}{K_{m,H,i}+C_i}\]</div>
+<p>LATS có thể gần tuyến tính trong một miền:</p>
+<div class="math-block">\[J_{LATS,i}\approx k_LC_i\]</div>
+<p>chỉ khi dữ liệu hỗ trợ.</p>
+<hr>
+<h2>1.22. Tham số uptake không phải hằng số phổ quát</h2>
+<p>\(K_m\) và \(V_{\max}\) có thể thay đổi theo:</p>
+<ul>
+<li>species;</li>
+<li>cultivar;</li>
+<li>root age;</li>
+<li>root zone;</li>
+<li>nutrient history;</li>
+<li>pH;</li>
+<li>temperature;</li>
+<li>O₂;</li>
+<li>transporter expression.</li>
+</ul>
+<p>VECrop bắt buộc lưu metadata của tham số.</p>
+<hr>
+<h2>1.23. EC không phải nồng độ từng nutrient</h2>
+<p>Bắt buộc phân biệt:</p>
+<div class="math-block">\[EC\neq C_N\]</div>
+<div class="math-block">\[EC\neq C_P\]</div>
+<div class="math-block">\[EC\neq C_K\]</div>
+<p>Hai dung dịch cùng EC vẫn có thể có thành phần ion hoàn toàn khác nhau.</p>
+<p>Do đó:</p>
+<div class="math-block">\[EC
+\rightarrow
+\text{ionic environment / salinity information}\]</div>
+<p>còn:</p>
+<div class="math-block">\[C_i
+\rightarrow
+\text{uptake của ion }i\]</div>
+<hr>
+<h2>1.24. Vai trò của pH</h2>
+<p>pH ảnh hưởng:</p>
+<ul>
+<li>ion speciation;</li>
+<li>adsorption/desorption;</li>
+<li>precipitation/dissolution;</li>
+<li>proton-coupled transport;</li>
+<li>microbial transformations.</li>
+</ul>
+<p>Một dạng reduced model:</p>
+<div class="math-block">\[J_i^{eff}
+=
+J_iF_{pH,i}\]</div>
+<p>nhưng:</p>
+<div class="math-block">\[F_{pH,N}\neq F_{pH,P}\neq F_{pH,K}\]</div>
+<p>Nếu speciation được mô hình cơ chế đầy đủ, không nên nhân thêm một \(F_{pH}\) tổng quát.</p>
+<hr>
+<h2>1.25. Nhiệt độ</h2>
+<p>Một dạng Arrhenius:</p>
+<div class="math-block">\[k(T)
+=
+k_{ref}
+\exp
+\left[
+-\frac{E_a}{R}
+\left(
+\frac1T-\frac1{T_{ref}}
+\right)
+\right]\]</div>
+<p>Nhiệt độ tác động đồng thời lên:</p>
+<ul>
+<li>diffusion;</li>
+<li>water viscosity;</li>
+<li>membrane transport;</li>
+<li>respiration;</li>
+<li>enzyme activity;</li>
+<li>root growth.</li>
+</ul>
+<hr>
+<h2>1.26. Oxy và năng lượng rễ</h2>
+<p>Một saturation function:</p>
+<div class="math-block">\[R_{O_2}
+=
+R_{O_2,\max}
+\frac{C_{O_2}}{K_{O_2}+C_{O_2}}\]</div>
+<p>Chuỗi cơ chế:</p>
+<div class="math-block">\[O_2
+\rightarrow
+respiration
+\rightarrow
+ATP
+\rightarrow
+H^+\text{-ATPase}
+\rightarrow
+ion\ transport\]</div>
+<p>Một index cung–cầu năng lượng:</p>
+<div class="math-block">\[H_E
+=
+\min
+\left(
+1,
+\frac{ATP_{sup}}
+{ATP_{dem}+\varepsilon}
+\right)\]</div>
+<p>được xem là <strong>VECrop reduced diagnostic formulation</strong> nếu chưa mô hình ATP trực tiếp.</p>
+<hr>
+<h2>1.27. Liebig và yếu tố giới hạn</h2>
+<p>Một dạng giảm lược:</p>
+<div class="math-block">\[H_{Liebig}
+=
+\min(R_1,R_2,\ldots,R_m)\]</div>
+<p>với:</p>
+<div class="math-block">\[0\le R_j\le1\]</div>
+<p>Đây là rule mô hình hóa giới hạn, không có nghĩa sinh trưởng thực tế luôn được quyết định bởi đúng một biến.</p>
+<hr>
+<h2>1.28. Đáp ứng kiểu Shelford</h2>
+<p>Một response hai phía có thể mô tả bằng Gaussian:</p>
+<div class="math-block">\[R_j(x)
+=
+\exp
+\left[
+-\frac{(x-\mu_j)^2}
+{2\sigma_j^2}
+\right]\]</div>
+<p>Trong thực tế có thể cần hàm bất đối xứng vì stress phía thấp và phía cao không giống nhau.</p>
+<p>Các \(\mu_j,\sigma_j\) phải được hiệu chỉnh.</p>
+<hr>
+<h2>1.29. Chuẩn hóa biến</h2>
+<p>Không được cộng:</p>
+<div class="math-block">\[EC+pH+T+N\]</div>
+<p>một cách trực tiếp.</p>
+<p>Min–max:</p>
+<div class="math-block">\[x^*
+=
+\frac{x-x_{min}}{x_{max}-x_{min}}\]</div>
+<p>Sigmoid:</p>
+<div class="math-block">\[x^*
+=
+\frac{1}
+{1+\exp[-k(x-x_{50})]}\]</div>
+<p>Optimum response:</p>
+<div class="math-block">\[R(x)
+=
+\exp
+\left[
+-\frac{(x-\mu)^2}
+{2\sigma^2}
+\right]\]</div>
+<p>Việc chọn hàm phải dựa trên cơ chế và dữ liệu.</p>
+<hr>
+<h2>1.30. HSY trong VECrop</h2>
+<p>HSY được định nghĩa là <strong>khung tổng hợp trạng thái</strong>, không phải lực hay năng lượng mới.</p>
+<p>Ba thành phần:</p>
+<div class="math-block">\[\Phi_1
+=
+\text{structure / vascular integrity}\]</div>
+<div class="math-block">\[\Phi_2
+=
+\text{gene–protein–enzyme–transport–energy}\]</div>
+<div class="math-block">\[\Phi_3
+=
+\text{hormone–signaling–development}\]</div>
+<p>Một dạng chuẩn hóa:</p>
+<div class="math-block">\[H_{cell}
+=
+w_1\Phi_1+w_2\Phi_2+w_3\Phi_3\]</div>
+<p>với:</p>
+<div class="math-block">\[w_i\ge0\]</div>
+<div class="math-block">\[\sum_iw_i=1\]</div>
+<p>và:</p>
+<div class="math-block">\[0\le\Phi_i\le1\]</div>
+<hr>
+<h2>1.31. Quá trình 1: cấu trúc</h2>
+<p>\(\Phi_1\) có thể bao gồm:</p>
+<ul>
+<li>cell wall integrity;</li>
+<li>cellulose/hemicellulose/lignin;</li>
+<li>vascular anatomy;</li>
+<li>pit properties;</li>
+<li>active root area.</li>
+</ul>
+<p>Một dạng:</p>
+<div class="math-block">\[\Phi_1
+=
+\sum_kw_{1k}S_k^*\]</div>
+<p>Không được double count một trait vừa tính trực tiếp trong hydraulic conductance vừa đưa lại vào \(\Phi_1\).</p>
+<hr>
+<h2>1.32. Quá trình 2: gene–protein–enzyme–transport</h2>
+<p>Khung đề xuất:</p>
+<div class="math-block">\[\Phi_{2,i}
+=
+\operatorname{clip}
+\left[
+s_i(Q)
+(S_{4,i}^*+S_{5,i}^*-S_{6,i}^*),
+0,1
+\right]\]</div>
+<p>Regulatory function:</p>
+<div class="math-block">\[s_i(Q)
+=
+\frac1
+{1+\exp[-(\beta_{0i}+\sum_j\beta_{ji}Q_j^*)]}\]</div>
+<p>Nối với capacity:</p>
+<div class="math-block">\[V_{\max,i}^{eff}
+=
+V_{\max,i}^{ref}
+s_i(Q)
+F_{stage,i}
+F_{T,i}
+F_{O_2,i}\]</div>
+<p>Gene/protein điều chỉnh capacity; không được gọi là “lực vận chuyển”.</p>
+<hr>
+<h2>1.33. Quá trình 3: hormone và phát triển</h2>
+<p>Khung đề xuất:</p>
+<div class="math-block">\[\Phi_{3,o}
+=
+\operatorname{clip}
+\left[
+y_o(Q,t)
+(S_{7,o}^*+S_{8,o}^*-S_{9,o}^*),
+0,1
+\right]\]</div>
+<p>với:</p>
+<div class="math-block">\[y_o(t)
+=
+\sigma
+\left[
+\beta_{0,o,g}
++
+\sum_h\beta_{h,o,g}H_h^*(t)
+\right]\]</div>
+<p>Không dùng biểu thức cứng:</p>
+<div class="math-block">\[Auxin+GA+CK-ABA-Ethylene\]</div>
+<p>vì vai trò hormone phụ thuộc cơ quan, giai đoạn và điều kiện.</p>
+<hr>
+<h2>1.34. Phân biệt HSY với Harvest Index</h2>
+<p>Harvest Index:</p>
+<div class="math-block">\[HI_{harvest}
+=
+\frac{Y_{economic}}
+{B_{aboveground}}\]</div>
+<p>Nếu dùng health index, nên ký hiệu:</p>
+<div class="math-block">\[H_{crop}\]</div>
+<p>để không trùng với \(HI_{harvest}\).</p>
+<hr>
+<h2>1.35. Không nhân RUE × WUE × NUE trực tiếp</h2>
+<p>RUE, WUE và NUE có đơn vị/định nghĩa khác nhau.</p>
+<p>Do đó:</p>
+<div class="math-block">\[RUE\times WUE\times NUE\]</div>
+<p>không tự động tạo ra một chỉ số vật lý hợp lệ.</p>
+<p>Nếu cần kết hợp:</p>
+<div class="math-block">\[RUE^*,WUE^*,NUE^*\in[0,1]\]</div>
+<p>và phải kiểm tra double counting.</p>
+<hr>
+<h2>1.36. Mật độ cây</h2>
+<p>Một dạng empirical:</p>
+<div class="math-block">\[Y(D)
+=
+\alpha De^{-\beta D}\]</div>
+<p>cho:</p>
+<div class="math-block">\[D_{opt}
+=
+\frac1\beta\]</div>
+<p>Đây chỉ là hệ quả của hàm đã chọn.</p>
+<p>Nếu HSY phụ thuộc mật độ:</p>
+<div class="math-block">\[\frac{d\ln Y}{dD}
+=
+\frac1D-\beta
++
+\frac{\partial\ln HSY}{\partial D}
+=
+0\]</div>
+<hr>
+<h2>1.37. Tổng, tích phân và miền liên tục</h2>
+<p>Với lớp rời rạc:</p>
+<div class="math-block">\[\sum_{i=1}^{n}F_i\]</div>
+<p>Với chiều cao liên tục:</p>
+<div class="math-block">\[\int_0^HF(z)\,dz\]</div>
+<p>Theo không gian và thời gian:</p>
+<div class="math-block">\[\int_0^T
+\int_0^H
+F(z,t)\,dz\,dt\]</div>
+<p>Không dùng tích phân nhiều chiều nếu không xác định biến tích phân tương ứng.</p>
+<hr>
+<h2>1.38. Mô hình cơ chế và mô hình rút gọn</h2>
+<h3>Mechanistic model</h3>
+<div class="math-block">\[Y
+=
+f(
+water,
+ions,
+photosynthesis,
+respiration,
+allocation,
+growth
+)\]</div>
+<h3>Reduced model</h3>
+<p>Một dạng có thể dùng:</p>
+<div class="math-block">\[Y_{reduced}
+=
+Y_{pot}
+C_D(D)
+\overline{HSY}\]</div>
+<p>Nếu mô hình đã giải stress trực tiếp thì không được:</p>
+<div class="math-block">\[Y_{mechanistic}
+\times
+HSY_{diag}\]</div>
+<p>một lần nữa.</p>
+<hr>
+<h2>1.39. Khung sáu lớp VECrop</h2>
+<h3>Lớp 1 — Environment/root zone</h3>
+<div class="math-block">\[\mathbf X_{env}\]</div>
+<h3>Lớp 2 — Cell/metabolism</h3>
+<div class="math-block">\[H_{cell}\]</div>
+<h3>Lớp 3 — Hydraulics/vascular transport</h3>
+<div class="math-block">\[J_w,\ K_{root},\ K_x,\ \Psi\]</div>
+<h3>Lớp 4 — Population/canopy</h3>
+<div class="math-block">\[D,\ LAI,\ competition\]</div>
+<h3>Lớp 5 — Photosynthesis/source–sink/biomass</h3>
+<div class="math-block">\[A_n,\ A_{can},\ F_C,\ B,\ Y\]</div>
+<h3>Lớp 6 — Management/economics</h3>
+<div class="math-block">\[\mathbf u
+=
+\{N,P,K,irrigation,D,light,CO_2,\ldots\}\]</div>
+<hr>
+<h2>1.40. Lợi nhuận và tối ưu quản lý</h2>
+<p>Một objective:</p>
+<div class="math-block">\[\Pi
+=
+P_YY
+-
+C_{fert}
+-
+C_{water}
+-
+C_{energy}
+-
+C_{labor}
+-
+C_{other}\]</div>
+<p>Mục tiêu:</p>
+<div class="math-block">\[\max_{\mathbf u}\Pi\]</div>
+<p>nhưng không được tối ưu kinh tế khi mô hình sinh lý chưa được kiểm định.</p>
+<hr>
+<h2>1.41. Nhận dạng tham số</h2>
+<p>Tập tham số:</p>
+<div class="math-block">\[\boldsymbol\theta
+=
+[K_m,V_{\max},K_h,V_{cmax},J_{max},k_{rem},\ldots]^T\]</div>
+<p>Hiệu chỉnh least squares:</p>
+<div class="math-block">\[\hat{\boldsymbol\theta}
+=
+\arg\min_{\boldsymbol\theta}
+\sum_t
+[
+y_{obs}(t)
+-
+y_{model}(t;\boldsymbol\theta)
+]^2\]</div>
+<p>Cần phân biệt:</p>
+<ul>
+<li>structural identifiability;</li>
+<li>practical identifiability;</li>
+<li>parameter correlation.</li>
+</ul>
+<hr>
+<h2>1.42. Độ bất định</h2>
+<div class="math-block">\[Y=f(\mathbf X,\boldsymbol\theta)\]</div>
+<p>Nguồn bất định:</p>
+<ul>
+<li>sensor error;</li>
+<li>spatial variability;</li>
+<li>parameter uncertainty;</li>
+<li>model structural error;</li>
+<li>cultivar variability;</li>
+<li>weather uncertainty.</li>
+</ul>
+<p>Monte Carlo:</p>
+<div class="math-block">\[\mathbf X^{(k)},\boldsymbol\theta^{(k)}
+\rightarrow
+Y^{(k)}\]</div>
+<p>Nên báo cáo phân bố, quantile hoặc interval thay vì chỉ một con số.</p>
+<hr>
+<h2>1.43. Kiểm tra cân bằng</h2>
+<p>Nước:</p>
+<div class="math-block">\[Water_{in}
+-
+Water_{out}
+-
+\Delta Storage
+\approx0\]</div>
+<p>Nitrogen:</p>
+<div class="math-block">\[N_{uptake}
+-
+N_{loss}
+-
+\Delta N_{plant}
+\approx0\]</div>
+<p>Carbon:</p>
+<div class="math-block">\[C_{assimilation}
+-
+C_{respiration}
+-
+\Delta C_{biomass}
+\approx0\]</div>
+<p>Nếu balance error lớn, đầu ra yield không đáng tin để diễn giải.</p>
+<hr>
+<h2>1.44. Phân cấp dữ liệu</h2>
+<h3>Cấp A — quan sát trực tiếp</h3>
+<ul>
+<li>EC;</li>
+<li>pH;</li>
+<li>soil water;</li>
+<li>temperature;</li>
+<li>gas exchange;</li>
+<li>biomass;</li>
+<li>tissue nutrient.</li>
+</ul>
+<h3>Cấp B — tham số suy ra</h3>
+<ul>
+<li>\(K_h\);</li>
+<li>\(K_m\);</li>
+<li>\(V_{\max}\);</li>
+<li>\(V_{cmax}\);</li>
+<li>\(J_{max}\).</li>
+</ul>
+<h3>Cấp C — chỉ số tổng hợp</h3>
+<ul>
+<li>\(H_{env}\);</li>
+<li>\(H_{cell}\);</li>
+<li>\(HSY_{diag}\).</li>
+</ul>
+<p>Càng lên cấp cao càng phải báo uncertainty và provenance.</p>
+<hr>
+<h2>1.45. Metadata bắt buộc cho tham số</h2>
+<table><thead><tr><th>Trường</th><th>Nội dung</th></tr></thead><tbody><tr><td>parameter</td><td>tên tham số</td></tr><tr><td>symbol</td><td>ký hiệu</td></tr><tr><td>species</td><td>loài</td></tr><tr><td>cultivar</td><td>giống</td></tr><tr><td>organ</td><td>cơ quan</td></tr><tr><td>stage</td><td>giai đoạn</td></tr><tr><td>environment</td><td>điều kiện</td></tr><tr><td>treatment</td><td>nghiệm thức</td></tr><tr><td>value</td><td>giá trị</td></tr><tr><td>unit</td><td>đơn vị</td></tr><tr><td>method</td><td>phương pháp</td></tr><tr><td>source</td><td>DOI/URL</td></tr><tr><td>role</td><td>calibration/validation/context</td></tr><tr><td>uncertainty</td><td>SD/SE/CI nếu có</td></tr></tbody></table>
+<hr>
+<h2>1.46. Ba cây kiểm định ban đầu</h2>
+<h3>Lúa</h3>
+<ul>
+<li>C3;</li>
+<li>ngập/AWD;</li>
+<li>root-zone redox;</li>
+<li>aerenchyma;</li>
+<li>NH4+/NO3− balance;</li>
+<li>grain sink.</li>
+</ul>
+<h3>Ngô</h3>
+<ul>
+<li>C4;</li>
+<li>deep rooting;</li>
+<li>drought/VPD hydraulics;</li>
+<li>strong reproductive sink;</li>
+<li>post-silking nutrient dynamics.</li>
+</ul>
+<h3>Xà lách</h3>
+<ul>
+<li>C3;</li>
+<li>shallow roots;</li>
+<li>root-zone temperature;</li>
+<li>EC/pH/DO;</li>
+<li>Ca transport;</li>
+<li>tipburn;</li>
+<li>marketable leaf biomass.</li>
+</ul>
+<p>Một phương trình chỉ được coi có tính tổng quát khi được kiểm tra giữa nhiều hệ sinh lý/môi trường.</p>
+<hr>
+<h2>1.47. Kiến thức nền và phần VECrop đề xuất</h2>
+<h3>Kiến thức nền đã được thiết lập</h3>
+<ul>
+<li>mass conservation;</li>
+<li>water potential;</li>
+<li>Darcy-type flow;</li>
+<li>soil-water retention;</li>
+<li>electrochemical potential;</li>
+<li>Nernst relation;</li>
+<li>transporter saturation kinetics;</li>
+<li>proton motive force;</li>
+<li>xylem/phloem transport;</li>
+<li>source–sink;</li>
+<li>plant mineral nutrition.</li>
+</ul>
+<h3>Thành phần VECrop đề xuất</h3>
+<ul>
+<li>cấu trúc sáu lớp;</li>
+<li>\(\Phi_1,\Phi_2,\Phi_3\);</li>
+<li>HSY diagnostic framework;</li>
+<li>logistic regulation cho \(s_i\) và \(y_o\);</li>
+<li>cách coupling giữa các module.</li>
+</ul>
+<p>Các phần này phải được ghi:</p>
+<p><strong>proposed framework / calibration required / validation required</strong></p>
+<p>cho tới khi có bằng chứng đầy đủ.</p>
+<hr>
+<h2>1.48. Những khẳng định không được phép dùng</h2>
+<p>Không viết:</p>
+<ul>
+<li>“HSY là định luật mới”.</li>
+<li>“một bộ tham số đúng cho mọi cây”.</li>
+<li>“EC bằng nồng độ dinh dưỡng”.</li>
+<li>“root pressure là lực chính cho toàn bộ xylem”.</li>
+<li>“mọi dòng mạch đều hướng lên”.</li>
+<li>“RUE × WUE × NUE là một đại lượng vật lý”.</li>
+<li>“một giá trị từ một nghiên cứu là hằng số sinh học”.</li>
+<li>“hormone cộng trừ trực tiếp tạo ra lực vận chuyển”.</li>
+</ul>
+<hr>
+<h2>1.49. Tiêu chí kiểm định VECrop</h2>
+<p>Một phiên bản VECrop chỉ nên được xem là tiến bộ nếu:</p>
+<ol>
+<li>bảo toàn vật chất tốt;</li>
+<li>có dimensional consistency;</li>
+<li>tham số có ý nghĩa sinh lý;</li>
+<li>dự báo tốt hơn baseline;</li>
+<li>validation độc lập;</li>
+<li>uncertainty được báo cáo;</li>
+<li>không tăng phức tạp vô ích;</li>
+<li>tạo được giả thuyết thực nghiệm kiểm chứng được.</li>
+</ol>
+<hr>
+<h2>1.50. Kết luận Chương 1</h2>
+<p>Chương 1 thiết lập chuỗi nền:</p>
+<div class="flow-chain">
+<strong>Môi trường</strong> → <strong>gradient vật lý</strong> → <strong>vận chuyển sinh học</strong> → <strong>chuyển hóa</strong> → <strong>phân bổ</strong> → <strong>sinh khối</strong> → <strong>năng suất</strong>
+</div>
+<p>Mọi phần VECrop phải giữ bốn nguyên tắc:</p>
+<div class="math-block">\[\boxed{
+\text{Mass balance}
++
+\text{Dimensional consistency}
++
+\text{Physiological meaning}
++
+\text{Experimental testability}
+}\]</div>
+<p>HSY không phải lực hoặc năng lượng mới. Trong mô hình cơ chế đầy đủ, vai trò phù hợp nhất của HSY là <strong>chỉ số chẩn đoán trạng thái tích hợp</strong>.</p>
+<hr>
+<h1>Tài liệu nền tảng</h1>
+<ol>
+<li>Rengel Z., Cakmak I., White P.J. (eds.). <strong>Marschner's Mineral Nutrition of Plants. 4th ed.</strong> Academic Press, 2023. DOI: 10.1016/C2019-0-00491-8.</li>
+<li>Coskun D., White P.J. <strong>Ion-uptake mechanisms of individual cells and roots: short-distance transport.</strong> In *Marschner's Mineral Nutrition of Plants*, 4th ed., 2023.</li>
+<li>White P.J., Ding G. <strong>Long-distance transport in the xylem and phloem.</strong> In *Marschner's Mineral Nutrition of Plants*, 4th ed., 2023.</li>
+<li>van Genuchten M.Th. (1980). <strong>A Closed-form Equation for Predicting the Hydraulic Conductivity of Unsaturated Soils.</strong> *Soil Science Society of America Journal* 44. DOI: 10.2136/sssaj1980.03615995004400050002x.</li>
+<li>Kramer P.J., Boyer J.S. <strong>Water Relations of Plants and Soils.</strong> Academic Press, 1995.</li>
+<li>Nobel P.S. <strong>Physicochemical and Environmental Plant Physiology. 4th ed.</strong> Academic Press, 2009.</li>
+<li>Taiz L. et al. <strong>Plant Physiology and Development.</strong> Oxford University Press/Sinauer.</li>
+</ol>
+<blockquote><strong>Quy tắc nguồn của VECrop:</strong> mọi tham số số học đưa vào mô hình phải có provenance theo species/cultivar/organ/stage/environment/method/unit; nếu chưa có nguồn hoặc chưa hiệu chỉnh phải ghi rõ là *example*, *study-specific*, *calibration parameter* hoặc *proposed*.</blockquote>
+</article></main>
+</div>
+<script>
+const content=document.getElementById('content'),toc=document.getElementById('toc');
+const slug=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+[...content.querySelectorAll('h1,h2,h3')].forEach((h,i)=>{
+ h.id=slug(h.textContent)||('s'+i);
+ const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;
+ a.style.paddingLeft=h.tagName==='H1'?'6px':h.tagName==='H2'?'16px':'28px';toc.appendChild(a);
+});
+document.getElementById('search').addEventListener('input',e=>{
+ const q=e.target.value.trim().toLowerCase();if(!q)return;
+ const hit=[...content.querySelectorAll('h1,h2,h3,p,li,td')].find(x=>x.textContent.toLowerCase().includes(q));
+ if(hit)hit.scrollIntoView({behavior:'smooth',block:'center'});
+});
+</script>
+</body>
+</html>
