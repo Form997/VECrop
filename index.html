@@ -255,6 +255,14 @@
     .goog-logo-link,.goog-te-gadget span { display:none !important; }
     .goog-te-gadget { font-size:0 !important; color:transparent !important; }
     .translate-note { max-width:1500px; margin:0 auto; padding:0 18px 8px; color:var(--muted); font-size:.78rem; }
+    .chapter-nav { max-width:1500px; margin:12px auto 0; padding:0 18px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .chapter-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px 14px; cursor:pointer; box-shadow:var(--shadow); }
+    .chapter-card:hover,.chapter-card.active { border-color:var(--accent); background:var(--success); }
+    .chapter-card b { display:block; color:var(--accent); }
+    .chapter-card span { font-size:.82rem; color:var(--muted); }
+    .chapter-pager { display:flex; justify-content:space-between; gap:10px; margin:24px 0 0; }
+    .chapter-pager button[disabled]{ opacity:.4; cursor:not-allowed; }
+    @media (max-width:820px){ .chapter-nav{grid-template-columns:1fr 1fr;} }
     @media (max-width: 1100px) {
       .layout { grid-template-columns: 240px minmax(0, 1fr); }
       .smart { grid-column: 1 / -1; }
@@ -276,8 +284,7 @@
           <input id="search" type="text" placeholder="Tìm kiếm trong giáo trình..." />
           <div id="results" class="search-results"></div>
         </div>
-        <select id="chapter" data-i18n-select="chapter">
-          <option value="all">Tất cả chương</option>
+        <select id="chapter" data-i18n-select="chapter" aria-label="Chọn chương">
           <option value="1">Chương 1</option>
           <option value="2">Chương 2</option>
           <option value="3">Chương 3</option>
@@ -308,8 +315,15 @@
     <div class="translate-note" id="translateNote">Ngôn ngữ giao diện dùng từ điển cục bộ. Dịch toàn bộ giáo trình sử dụng dịch vụ Google Translate khi khả dụng.</div>
   </header>
 
+  <section class="chapter-nav" id="chapterNav">
+    <div class="chapter-card" data-chapter="1"><b>Chương 1</b><span>Nền tảng sinh lý – vật lý – toán học</span></div>
+    <div class="chapter-card" data-chapter="2"><b>Chương 2</b><span>Môi trường vùng rễ</span></div>
+    <div class="chapter-card" data-chapter="3"><b>Chương 3</b><span>HSY cấp tế bào</span></div>
+    <div class="chapter-card" data-chapter="4"><b>Chương 4</b><span>Thủy lực – whole plant – yield</span></div>
+  </section>
+
   <section class="stats">
-    <div class="stat"><b id="chaptersCount">4</b><span>Chương đang hoạt động</span></div>
+    <div class="stat"><b id="chaptersCount">1/4</b><span>Chỉ tải chương đang chọn</span></div>
     <div class="stat"><b id="cropCount">—</b><span>Hồ sơ cây từ Python</span></div>
     <div class="stat"><b id="topicCount">—</b><span>Chủ đề AI gợi ý</span></div>
     <div class="stat"><b id="modeStatus">Web</b><span>Trạng thái hệ thống</span></div>
@@ -325,6 +339,10 @@
       <article id="content">
         <p>Đang tải nội dung giáo trình...</p>
       </article>
+      <div class="chapter-pager">
+        <button id="prevChapter">← Chương trước</button>
+        <button id="nextChapter">Chương sau →</button>
+      </div>
     </main>
 
     <section class="smart panel">
@@ -382,7 +400,7 @@
       document.getElementById("quickTitle").textContent=t.quick;
       document.getElementById("translateNote").textContent=t.note;
       const opts=chapterSelect.options;
-      if(opts.length>=5){opts[0].textContent=t.all; for(let i=1;i<=4;i++) opts[i].textContent=t.chapter+" "+i;}
+      for(let i=0;i<opts.length;i++) opts[i].textContent=t.chapter+" "+opts[i].value;
       localStorage.setItem("vecrop-ui-lang",lang);
     }
     function googleTranslateElementInit(){
@@ -478,21 +496,15 @@
       statusBox.textContent = 'Đang tải nội dung...';
       content.innerHTML = '<p>Đang tải giáo trình...</p>';
       try {
-        const ids = chapterSelect.value === 'all' ? ['1', '2', '3', '4'] : [chapterSelect.value];
-        let merged = ['# VECrop Intelligence', '', '---', ''];
-        for (const id of ids) {
-          const raw = await getDoc(id);
-          merged.push(raw.replace(/^#\s*.*$/m, ''));
-          merged.push('');
-          merged.push('---');
-          merged.push('');
-        }
-        const text = merged.join('\n');
+        const id = chapterSelect.value;
+        const raw = await getDoc(id);
+        const text = raw;
         const { md, blocks } = protectMath(text);
         const html = marked.parse(md);
         content.innerHTML = restoreMath(html, blocks);
         buildToc();
-        statusBox.textContent = `Đã tải: ${ids.length} chương`;
+        statusBox.textContent = `Đã tải Chương ${id} • chỉ chương đang hoạt động được nạp`;
+        updateChapterState(id);
       } catch (err) {
         content.innerHTML = '<p>Không thể tải nội dung. Vui lòng kiểm tra lại dữ liệu.</p>';
         statusBox.textContent = 'Lỗi tải dữ liệu';
@@ -598,6 +610,32 @@
       });
     }
 
+    function updateChapterState(id){
+      document.querySelectorAll('.chapter-card').forEach(card=>{
+        card.classList.toggle('active', card.dataset.chapter===String(id));
+      });
+      const n=Number(id);
+      document.getElementById('prevChapter').disabled=n<=1;
+      document.getElementById('nextChapter').disabled=n>=4;
+      const url=new URL(window.location.href);
+      url.searchParams.set('chapter',id);
+      history.replaceState(null,'',url);
+      document.title='VECrop — Chương '+id;
+      document.getElementById('chaptersCount').textContent=id+'/4';
+    }
+
+    function goChapter(id){
+      const n=Math.max(1,Math.min(4,Number(id)||1));
+      chapterSelect.value=String(n);
+      render();
+    }
+
+    document.querySelectorAll('.chapter-card').forEach(card=>{
+      card.addEventListener('click',()=>goChapter(card.dataset.chapter));
+    });
+    document.getElementById('prevChapter').addEventListener('click',()=>goChapter(Number(chapterSelect.value)-1));
+    document.getElementById('nextChapter').addEventListener('click',()=>goChapter(Number(chapterSelect.value)+1));
+
     chapterSelect.addEventListener('change', render);
     searchInput.addEventListener('input', () => smartSearch(searchInput.value));
     document.addEventListener('click', (e) => {
@@ -612,6 +650,9 @@
     applyUiLanguage(savedLang);
     uiLanguage.addEventListener('change',()=>applyUiLanguage(uiLanguage.value));
 
+    const initialChapter=new URLSearchParams(location.search).get('chapter');
+    chapterSelect.value=['1','2','3','4'].includes(initialChapter)?initialChapter:'1';
+    updateChapterState(chapterSelect.value);
     Promise.all([loadKnowledge(), render()]);
   </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>\n</body>
