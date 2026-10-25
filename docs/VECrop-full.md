@@ -7011,11 +7011,11 @@ Các tín hiệu chính cần phân biệt:
 
 Không được đồng nhất:
 
-$
+$$
 Sugar\ concentration
 =
 Carbon\ flux
-$
+$$
 
 vì concentration là state, còn flux là tốc độ vận chuyển/chuyển hóa.
 
@@ -7023,7 +7023,7 @@ vì concentration là state, còn flux là tốc độ vận chuyển/chuyển h
 
 Hexokinase (HXK) vừa xúc tác:
 
-$
+$$
 Glucose
 +
 ATP
@@ -7031,18 +7031,18 @@ ATP
 Glucose\text{-}6\text{-}phosphate
 +
 ADP
-$
+$$
 
 vừa tham gia sugar signaling.
 
 Một reduced signal:
 
-$
+$$
 S_{HXK}
 =
 \frac{Glu}
 {K_{HXK}+Glu}
-$
+$$
 
 chỉ là biểu diễn VECrop đề xuất khi không mô hình pathway HXK chi tiết.
 
@@ -7055,9 +7055,9 @@ Sucrose là:
 
 Một biến trạng thái:
 
-$
+$$
 C_{Suc,o}
-$
+$$
 
 nên được giữ theo cơ quan khi dữ liệu cho phép.
 
@@ -7067,12 +7067,12 @@ T6P là một tín hiệu quan trọng liên hệ sucrose availability với tă
 
 Một reduced coupling:
 
-$
+$$
 S_{T6P}
 =
 \frac{T6P}
 {K_{T6P}+T6P}
-$
+$$
 
 Không dùng T6P như đại diện trực tiếp cho lượng carbon dự trữ.
 
@@ -7080,11 +7080,11 @@ Không dùng T6P như đại diện trực tiếp cho lượng carbon dự trữ
 
 Ở mức khái niệm:
 
-$
+$$
 Sucrose\uparrow
 \Rightarrow
 T6P\uparrow
-$
+$$
 
 trong nhiều mô và điều kiện, nhưng slope và dynamics phụ thuộc:
 - tissue;
@@ -7101,11 +7101,11 @@ SnRK1 là kinase cảm nhận trạng thái năng lượng/carbon.
 
 Khi thiếu năng lượng:
 
-$
+$$
 Energy\ deficit
 \rightarrow
 SnRK1\uparrow
-$
+$$
 
 SnRK1 có xu hướng:
 - ức chế anabolism;
@@ -7123,11 +7123,11 @@ TOR là kinase tích hợp:
 
 Khi điều kiện thuận lợi:
 
-$
+$$
 Carbon/Nutrient/Energy\uparrow
 \rightarrow
 TOR\uparrow
-$
+$$
 
 TOR thường liên quan:
 - translation;
@@ -7140,17 +7140,17 @@ TOR thường liên quan:
 
 Một conceptual antagonism:
 
-$
+$$
 SnRK1
 \dashv
 Growth/Anabolism
-$
+$$
 
-$
+$$
 TOR
 \rightarrow
 Growth/Anabolism
-$
+$$
 
 Nhưng không nên xem SnRK1 và TOR là hai biến luôn đối xứng hoàn toàn.
 
@@ -7158,11 +7158,11 @@ Nhưng không nên xem SnRK1 và TOR là hai biến luôn đối xứng hoàn to
 
 Một conceptual link:
 
-$
+$$
 T6P\uparrow
 \Rightarrow
 SnRK1\ activity\downarrow
-$
+$$
 
 trong nhiều bối cảnh mô thực vật.
 
@@ -7172,31 +7172,31 @@ Không mặc định cùng độ nhạy ở mọi tissue/crop.
 
 Một reduced carbon status:
 
-$
+$$
 S_C
 =
 \frac{C_{sugar}}
 {K_C+C_{sugar}}
-$
+$$
 
 Nếu tách nhiều pool:
 
-$
+$$
 \mathbf C_{sugar}
 =
 [Sucrose,Glucose,Fructose,Starch,T6P]^T
-$
+$$
 
 ### 4.13.11. Energy status
 
 Một reduced energy state:
 
-$
+$$
 S_E
 =
 \frac{ATP}
 {K_E+ATP}
-$
+$$
 
 Ở mức cơ chế sâu hơn có thể dùng:
 - ATP/ADP;
@@ -7208,7 +7208,7 @@ $
 
 Một VECrop proposal:
 
-$
+$$
 A_{TOR}
 =
 \sigma
@@ -7223,7 +7223,7 @@ A_{TOR}
 -
 \beta_SS_{stress}
 )
-$
+$$
 
 Các coefficient phải được calibration.
 
@@ -7231,7 +7231,7 @@ Các coefficient phải được calibration.
 
 Một VECrop proposal:
 
-$
+$$
 A_{SnRK1}
 =
 \sigma
@@ -7244,7 +7244,7 @@ A_{SnRK1}
 +
 \gamma_SS_{stress}
 )
-$
+$$
 
 Không xem phương trình này là pathway sinh học chính xác.
 
@@ -7259,7 +7259,7 @@ Sugar signaling tương tác với:
 
 Một regulator:
 
-$
+$$
 y_o
 =
 f(
@@ -7270,7 +7270,7 @@ ROS,
 MAPK,
 stage
 )
-$
+$$
 
 ### 4.13.15. Carbon–nitrogen coupling
 
@@ -7281,7 +7281,7 @@ Tăng trưởng cần đồng thời:
 
 Một stoichiometric constraint:
 
-$
+$$
 Growth_o
 \le
 \min
@@ -7289,7 +7289,7 @@ Growth_o
 C_{avail,o}/q_{C,o},
 N_{avail,o}/q_{N,o}
 )
-$
+$$
 
 Đây là reduced Liebig-style formulation.
 
@@ -7299,13 +7299,13 @@ Nitrate/ammonium assimilation cần carbon skeleton và reducing power.
 
 Một conceptual link:
 
-$
+$$
 N\ assimilation
 \rightarrow
 C\ skeleton\ demand
 +
 ATP/NAD(P)H\ demand
-$
+$$
 
 Do đó N uptake cao không bảo đảm growth nếu carbon/energy giới hạn.
 
@@ -7313,21 +7313,21 @@ Do đó N uptake cao không bảo đảm growth nếu carbon/energy giới hạn
 
 Khi sink demand thấp:
 
-$
+$$
 Sucrose_{leaf}\uparrow
 \rightarrow
 feedback\ regulation
 \rightarrow
 photosynthetic\ capacity\ change
-$
+$$
 
 Khi sink demand cao:
 
-$
+$$
 Export\uparrow
 \rightarrow
 source\ utilization\uparrow
-$
+$$
 
 Mức độ phụ thuộc crop/stage.
 
@@ -7335,20 +7335,20 @@ Mức độ phụ thuộc crop/stage.
 
 Từ 4.5:
 
-$
+$$
 SS_o=M_oq_o
-$
+$$
 
 Bổ sung carbon-energy regulation:
 
-$
+$$
 SS_o^{eff}
 =
 SS_o
 F_{sugar,o}
 F_{energy,o}
 F_{stage,o}
-$
+$$
 
 Các factor này chỉ dùng nếu chưa được giải trực tiếp trong \(q_o\).
 
@@ -7356,13 +7356,13 @@ Các factor này chỉ dùng nếu chưa được giải trực tiếp trong \(q
 
 Một reduced capacity:
 
-$
+$$
 G_o^{cap}
 =
 G_{o,max}
 A_{TOR}
 (1-A_{SnRK1}^{eff})
-$
+$$
 
 Đây là VECrop proposal, cần validation.
 
@@ -7370,27 +7370,27 @@ $
 
 Một balance:
 
-$
+$$
 \frac{dC_{starch}}{dt}
 =
 P_{starch}
 -
 D_{starch}
-$
+$$
 
 Ban ngày:
 
-$
+$$
 P_{starch}>0
-$
+$$
 
 thường tăng.
 
 Ban đêm:
 
-$
+$$
 D_{starch}>0
-$
+$$
 
 cung carbon cho respiration và growth.
 
@@ -7398,13 +7398,13 @@ cung carbon cho respiration và growth.
 
 Nếu starch reserve không đủ:
 
-$
+$$
 C_{starch}\downarrow
 \rightarrow
 Sugar\downarrow
 \rightarrow
 SnRK1\uparrow
-$
+$$
 
 có thể làm:
 - growth giảm;
@@ -7415,7 +7415,7 @@ có thể làm:
 
 Một day-night balance:
 
-$
+$$
 C_{net,day}
 =
 A_{day}
@@ -7425,9 +7425,9 @@ R_{day}
 Export_{day}
 -
 Storage_{day}
-$
+$$
 
-$
+$$
 C_{net,night}
 =
 Mobilization_{starch}
@@ -7435,13 +7435,13 @@ Mobilization_{starch}
 R_{night}
 -
 Growth_{night}
-$
+$$
 
 ### 4.13.23. Carbon starvation diagnostic
 
 Một reduced index:
 
-$
+$$
 H_C
 =
 \min
@@ -7450,7 +7450,7 @@ H_C
 \frac{C_{available}}
 {C_{demand}+\varepsilon}
 \right)
-$
+$$
 
 Không dùng nếu carbon balance đã được mô hình hóa đầy đủ.
 
@@ -7458,15 +7458,15 @@ Không dùng nếu carbon balance đã được mô hình hóa đầy đủ.
 
 Under stress:
 
-$
+$$
 Growth\downarrow
-$
+$$
 
 có thể đồng thời:
 
-$
+$$
 Survival\ capacity\uparrow
-$
+$$
 
 Do đó HSY không được định nghĩa đơn giản là “growth càng cao càng khỏe”.
 
@@ -7474,7 +7474,7 @@ Do đó HSY không được định nghĩa đơn giản là “growth càng cao 
 
 Có thể mở rộng state vector:
 
-$
+$$
 \mathbf x_C
 =
 [
@@ -7486,11 +7486,11 @@ SnRK1,
 TOR,
 ATP
 ]^T
-$
+$$
 
 Dynamics:
 
-$
+$$
 \frac{d\mathbf x_C}{dt}
 =
 \mathbf f_C(
@@ -7502,15 +7502,15 @@ Hormone,
 Stress,
 stage
 )
-$
+$$
 
 ### 4.13.26. Coupling với Chương 4.5
 
 Phloem đưa sucrose tới sink:
 
-$
+$$
 F_C=C_{Suc}Q_{ph}
-$
+$$
 
 4.13 chuyển flux này thành trạng thái carbon–energy điều khiển growth capacity.
 
@@ -7518,11 +7518,11 @@ $
 
 Từ ATP balance:
 
-$
+$$
 ATP_{sup}
 \leftrightarrow
 S_E
-$
+$$
 
 Không được vừa dùng \(H_E\) vừa dùng lại cùng ATP limitation trong \(A_{TOR}\) nếu dẫn đến double counting.
 
@@ -7530,7 +7530,7 @@ Không được vừa dùng \(H_E\) vừa dùng lại cùng ATP limitation trong
 
 Một regulatory function mở rộng:
 
-$
+$$
 y_o
 =
 f(
@@ -7543,7 +7543,7 @@ SnRK1,
 TOR,
 stage
 )
-$
+$$
 
 ### 4.13.29. Lúa
 
@@ -7636,7 +7636,7 @@ Sugar sensing không thay thế carbon balance.
 
 Đúng hơn:
 
-$
+$$
 Carbon\ balance
 \rightarrow
 Sugar\ status
@@ -7646,7 +7646,7 @@ T6P/SnRK1/TOR
 Regulation
 \rightarrow
 Growth\ capacity
-$
+$$
 
 Trong VECrop, T6P–SnRK1–TOR nên được dùng như **regulatory layer**, còn carbon flux và biomass vẫn phải tuân theo conservation.
 
@@ -7676,7 +7676,7 @@ Meristem cung cấp tế bào mới cho:
 
 Do đó:
 
-$
+$$
 Organ\ growth
 =
 Cell\ production
@@ -7684,7 +7684,7 @@ Cell\ production
 Cell\ expansion
 +
 Differentiation
-$
+$$
 
 Không nên mô tả tăng trưởng cơ quan chỉ bằng biomass accumulation.
 
@@ -7692,16 +7692,16 @@ Không nên mô tả tăng trưởng cơ quan chỉ bằng biomass accumulation.
 
 Một decomposition:
 
-$
+$$
 B_o
 =
 N_{cell,o}
 m_{cell,o}
-$
+$$
 
 Suy ra:
 
-$
+$$
 \frac{dB_o}{dt}
 =
 N_{cell,o}
@@ -7709,7 +7709,7 @@ N_{cell,o}
 +
 m_{cell,o}
 \frac{dN_{cell,o}}{dt}
-$
+$$
 
 Trong đó:
 - \(N_{cell,o}\): số tế bào;
@@ -7721,12 +7721,12 @@ Trong đó:
 
 Một dạng:
 
-$
+$$
 \frac{dN_{cell}}{dt}
 =
 r_{div}
 N_{cycling}
-$
+$$
 
 trong đó:
 - \(r_{div}\): division rate;
@@ -7736,17 +7736,17 @@ trong đó:
 
 Nếu chu kỳ tế bào trung bình là:
 
-$
+$$
 T_c
-$
+$$
 
 thì một approximation:
 
-$
+$$
 r_{div}
 \approx
 \frac{\ln 2}{T_c}
-$
+$$
 
 chỉ hợp lý khi population tăng gần exponential.
 
@@ -7760,11 +7760,11 @@ Cell cycle gồm:
 
 Một state vector:
 
-$
+$$
 \mathbf N_{cycle}
 =
 [N_{G1},N_S,N_{G2},N_M]^T
-$
+$$
 
 Ở mô hình sâu có thể dùng transition rates giữa các pha.
 
@@ -7778,7 +7778,7 @@ Cell cycle được điều hòa bởi:
 
 VECrop không cần mô hình chi tiết protein nếu dữ liệu không đủ; có thể dùng:
 
-$
+$$
 r_{div}^{eff}
 =
 r_{div}^{ref}
@@ -7787,7 +7787,7 @@ F_{N}
 F_{TOR}
 F_{Hormone}
 F_T
-$
+$$
 
 đây là reduced formulation.
 
@@ -7795,13 +7795,13 @@ $
 
 Từ 4.13:
 
-$
+$$
 Carbon/Nutrient/Energy
 \rightarrow
 TOR
 \rightarrow
 Meristem\ activation
-$
+$$
 
 TOR có thể điều phối:
 - cell-cycle entry;
@@ -7813,13 +7813,13 @@ TOR có thể điều phối:
 
 Khi năng lượng thiếu:
 
-$
+$$
 SnRK1\uparrow
 \rightarrow
 Anabolism\downarrow
 \rightarrow
 Cell\ proliferation\downarrow
-$
+$$
 
 Đây là directional biological relation; quantitative strength cần calibration.
 
@@ -7827,18 +7827,18 @@ $
 
 Từ Lockhart-type framework:
 
-$
+$$
 \frac{dV}{dt}
 =
 \phi
 (P-Y)
-$
+$$
 
 khi:
 
-$
+$$
 P>Y
-$
+$$
 
 Cell expansion phụ thuộc:
 - turgor;
@@ -7849,16 +7849,16 @@ Cell expansion phụ thuộc:
 
 ### 4.14.11. Relative expansion rate
 
-$
+$$
 RER
 =
 \frac1V
 \frac{dV}{dt}
-$
+$$
 
 Một reduced formulation:
 
-$
+$$
 RER
 =
 RER_{max}
@@ -7866,23 +7866,23 @@ F_{\Psi}
 F_{wall}
 F_{auxin}
 F_{TOR}
-$
+$$
 
 ### 4.14.12. Turgor–growth coupling
 
-$
+$$
 \Psi_w
 =
 \Psi_p+\Psi_s
-$
+$$
 
 Ở cấp tế bào, giảm water potential ngoài có thể làm:
 
-$
+$$
 P\downarrow
 \rightarrow
 Cell\ expansion\downarrow
-$
+$$
 
 trước khi photosynthesis giảm mạnh.
 
@@ -7896,7 +7896,7 @@ Cell expansion liên quan đến:
 
 Một conceptual chain:
 
-$
+$$
 H^+\ export
 \rightarrow
 Wall\ acidification
@@ -7904,7 +7904,7 @@ Wall\ acidification
 Wall\ loosening
 \rightarrow
 Expansion
-$
+$$
 
 Không nên biến acid growth thành cơ chế duy nhất cho mọi mô.
 
@@ -7917,11 +7917,11 @@ Auxin có thể tăng cell expansion trong một số mô qua:
 
 Một reduced response:
 
-$
+$$
 F_{IAA}
 =
 f(IAA,organ,stage)
-$
+$$
 
 Không dùng cùng hàm cho root và shoot.
 
@@ -7935,11 +7935,11 @@ Cytokinin liên quan:
 
 Một organ-specific regulator:
 
-$
+$$
 F_{CK,o}
 =
 f(CK_o,stage)
-$
+$$
 
 ### 4.14.16. GA và elongation
 
@@ -7950,12 +7950,12 @@ GA thường liên quan:
 
 Một reduced elongation factor:
 
-$
+$$
 F_{GA}
 =
 \frac{GA}
 {K_{GA}+GA}
-$
+$$
 
 chỉ dùng khi có calibration.
 
@@ -7977,13 +7977,13 @@ Tế bào rời meristem phải chuyển từ:
 
 Một conceptual transition:
 
-$
+$$
 Meristematic
 \rightarrow
 Expansion
 \rightarrow
 Differentiated
-$
+$$
 
 ### 4.14.19. Root developmental zones
 
@@ -8000,22 +8000,22 @@ RAM có thể tách:
 
 Một balance:
 
-$
+$$
 \frac{dL_r}{dt}
 =
 v_{cell\ production}
 +
 v_{elongation}
-$
+$$
 
 Trong reduced form:
 
-$
+$$
 RGR_{root}
 =
 RGR_{root,max}
 F_TF_{\Psi}F_NF_{O_2}F_{TOR}
-$
+$$
 
 ### 4.14.21. Shoot apical meristem
 
@@ -8030,14 +8030,14 @@ Meristem state cần liên kết với phenology.
 
 Một phyllochron-type framework:
 
-$
+$$
 N_{leaf}(t)
 =
 N_0
 +
 \frac{TT(t)}
 {Phyllochron}
-$
+$$
 
 chỉ dùng trong miền phát triển phù hợp.
 
@@ -8047,7 +8047,7 @@ Phyllochron phụ thuộc genotype và temperature regime.
 
 Một dạng đơn giản:
 
-$
+$$
 TT
 =
 \sum_d
@@ -8056,7 +8056,7 @@ TT
 0,
 T_{mean,d}-T_b
 )
-$
+$$
 
 Trong đó \(T_b\) là base temperature.
 
@@ -8071,7 +8071,7 @@ Một process có thể có:
 
 Một triangular response:
 
-$
+$$
 f_T(T)
 =
 \begin{cases}
@@ -8080,7 +8080,7 @@ f_T(T)
 \frac{T_{max}-T}{T_{max}-T_{opt}},&T_{opt}\le T<T_{max}\\
 0,&T\ge T_{max}
 \end{cases}
-$
+$$
 
 Đây là reduced phenology function.
 
@@ -8088,12 +8088,12 @@ $
 
 Khi temperature response phi tuyến mạnh:
 
-$
+$$
 TT_{eff}
 =
 \sum_t
 f_T(T_t)\Delta t
-$
+$$
 
 có ý nghĩa hơn linear degree-day.
 
@@ -8101,11 +8101,11 @@ có ý nghĩa hơn linear degree-day.
 
 Một developmental modifier:
 
-$
+$$
 F_P
 =
 f(Daylength,genotype,stage)
-$
+$$
 
 Không giả định mọi cultivar cùng photoperiod sensitivity.
 
@@ -8125,7 +8125,7 @@ Vernalization là đáp ứng phát triển với prolonged low temperature ở 
 
 Một reduced state:
 
-$
+$$
 V(t)
 =
 \min
@@ -8135,7 +8135,7 @@ V(t-\Delta t)
 +
 r_V(T)\Delta t
 \right)
-$
+$$
 
 Chỉ áp dụng với crop có vernalization requirement.
 
@@ -8153,7 +8153,7 @@ có bằng chứng phù hợp.
 
 Một reduced formulation:
 
-$
+$$
 D_{dev}
 =
 D_{max}
@@ -8161,7 +8161,7 @@ F_T
 F_P
 F_V
 F_G
-$
+$$
 
 Trong đó:
 - \(F_T\): temperature;
@@ -8173,9 +8173,9 @@ Trong đó:
 
 Một state:
 
-$
+$$
 0\le DVS\le2
-$
+$$
 
 ví dụ:
 - \(DVS=0\): emergence;
@@ -8188,13 +8188,13 @@ ví dụ:
 
 Một threshold:
 
-$
+$$
 DVS(t+\Delta t)
 =
 DVS(t)
 +
 r_{dev}\Delta t
-$
+$$
 
 Khi vượt threshold thì chuyển stage.
 
@@ -8214,7 +8214,7 @@ Do đó thermal time chỉ là reduced layer.
 
 Một signal:
 
-$
+$$
 C_{circ}(t)
 =
 A\sin
@@ -8222,7 +8222,7 @@ A\sin
 \frac{2\pi t}{24}
 +\phi
 \right)
-$
+$$
 
 chỉ là mathematical proxy.
 
@@ -8246,11 +8246,11 @@ Không đồng nhất thermomorphogenesis với heat damage.
 
 Phân biệt:
 
-$
+$$
 Development
 \neq
 Growth
-$
+$$
 
 Growth: tăng kích thước/biomass.
 
@@ -8262,23 +8262,23 @@ Một cây có thể phát triển nhanh về stage nhưng biomass thấp.
 
 Một organ number model:
 
-$
+$$
 \frac{dN_o}{dt}
 =
 r_{init,o}
-$
+$$
 
 với:
 
-$
+$$
 r_{init,o}
 =
 f(T,photoperiod,meristem,genotype)
-$
+$$
 
 ### 4.14.38. Leaf area expansion
 
-$
+$$
 \frac{dA_L}{dt}
 =
 N_L
@@ -8286,18 +8286,18 @@ N_L
 +
 A_{cell}
 \frac{dN_{cell}}{dt}
-$
+$$
 
 Tương tự decomposition biomass.
 
 ### 4.14.39. Specific leaf area
 
-$
+$$
 SLA
 =
 \frac{Leaf\ area}
 {Leaf\ dry\ mass}
-$
+$$
 
 SLA có thể thay đổi theo:
 - light;
@@ -8309,27 +8309,27 @@ Không giữ cố định cả vụ nếu cần mechanistic accuracy.
 
 ### 4.14.40. LAI formation
 
-$
+$$
 LAI
 =
 \frac{Leaf\ area}{Ground\ area}
-$
+$$
 
 Dynamics:
 
-$
+$$
 \frac{dLAI}{dt}
 =
 LAI_{growth}
 -
 LAI_{senescence}
-$
+$$
 
 ### 4.14.41. Root–shoot coordination
 
 Một allocation balance:
 
-$
+$$
 C_{growth}
 =
 C_{root}
@@ -8337,7 +8337,7 @@ C_{root}
 C_{shoot}
 +
 C_{reproductive}
-$
+$$
 
 Meristem demand cạnh tranh carbon theo source–sink status.
 
@@ -8345,14 +8345,14 @@ Meristem demand cạnh tranh carbon theo source–sink status.
 
 Một sink demand:
 
-$
+$$
 Demand_{meristem}
 =
 M_{meristem}
 q_{meristem}
 F_{TOR}
 F_{stage}
-$
+$$
 
 Đây là VECrop proposed formulation.
 
@@ -8360,31 +8360,31 @@ $
 
 Nếu carbon đủ nhưng division thấp:
 
-$
+$$
 Growth
 \approx
 Cell\ number\ limited
-$
+$$
 
 Nếu division đủ nhưng water/turgor thấp:
 
-$
+$$
 Growth
 \approx
 Cell\ expansion\ limited
-$
+$$
 
 ### 4.14.44. Multiplicative limitation caution
 
 Không mặc định:
 
-$
+$$
 Growth
 =
 F_{division}
 F_{expansion}
 F_{differentiation}
-$
+$$
 
 vì các process có coupling và compensation.
 
@@ -8398,12 +8398,12 @@ Stress có thể:
 
 Một reduced modifier:
 
-$
+$$
 r_{div}^{stress}
 =
 r_{div}^{ref}
 F_{stress}
-$
+$$
 
 ### 4.14.46. Drought
 
@@ -8419,11 +8419,11 @@ Expansion có thể phản ứng trước photosynthesis.
 
 Hypoxia:
 
-$
+$$
 ATP\downarrow
 \rightarrow
 Cell\ cycle/expansion\downarrow
-$
+$$
 
 nhưng rice roots có adaptation đặc thù.
 
@@ -8458,11 +8458,11 @@ Developmental stage quyết định:
 
 Do đó:
 
-$
+$$
 SS_o
 =
 SS_o(stage)
-$
+$$
 
 ### 4.14.51. Phenology × respiration
 
@@ -8475,11 +8475,11 @@ Không dùng một hệ số duy nhất cho cả vòng đời.
 
 ### 4.14.52. Phenology × nutrient demand
 
-$
+$$
 q_{i,o}^{*}
 =
 q_{i,o}^{*}(stage)
-$
+$$
 
 Nutrient target concentration thay đổi theo stage và organ.
 
@@ -8500,13 +8500,13 @@ VECrop cần map stage theo cultivar.
 
 Một reduced tiller balance:
 
-$
+$$
 \frac{dN_{tiller}}{dt}
 =
 Initiation
 -
 Mortality
-$
+$$
 
 Initiation phụ thuộc:
 - carbon;
@@ -8531,13 +8531,13 @@ Thermal time thường hữu ích nhưng cultivar-specific.
 
 Một diagnostic:
 
-$
+$$
 ASI
 =
 t_{silking}
 -
 t_{anthesis}
-$
+$$
 
 ASI tăng trong stress có thể phản ánh reproductive stress.
 
@@ -8566,7 +8566,7 @@ Không dùng một threshold nhiệt duy nhất cho mọi cultivar.
 
 Một general form:
 
-$
+$$
 \frac{dB_o}{dt}
 =
 G_o^{pot}
@@ -8574,7 +8574,7 @@ F_{source}
 F_{water}
 F_{nut}
 F_{dev}
-$
+$$
 
 Đây là reduced form và phải tránh double counting.
 
@@ -8582,7 +8582,7 @@ $
 
 Ở mức cơ chế hơn:
 
-$
+$$
 \frac{dB_o}{dt}
 =
 Carbon\ allocation_o
@@ -8590,7 +8590,7 @@ Carbon\ allocation_o
 Respiration_o
 -
 Turnover_o
-$
+$$
 
 và meristem/cell-expansion module quyết định capacity.
 
@@ -8598,7 +8598,7 @@ và meristem/cell-expansion module quyết định capacity.
 
 Một proposed capacity:
 
-$
+$$
 G_o^{cap}
 =
 f(
@@ -8609,11 +8609,11 @@ TOR_o,
 Hormone_o,
 Stage
 )
-$
+$$
 
 ### 4.14.62. Growth rate thực
 
-$
+$$
 G_o
 =
 \min
@@ -8621,7 +8621,7 @@ G_o
 G_o^{source},
 G_o^{cap}
 )
-$
+$$
 
 Đây là conceptual supply–capacity coupling.
 
@@ -8629,11 +8629,11 @@ $
 
 Từ 4.5:
 
-$
+$$
 SS_o
 =
 M_oq_o
-$
+$$
 
 4.14 giúp giải thích \(M_o\) qua:
 - cell number;
@@ -8644,7 +8644,7 @@ $
 
 Chuỗi:
 
-$
+$$
 Sugar/T6P/TOR
 \rightarrow
 CellCycle
@@ -8652,7 +8652,7 @@ CellCycle
 Meristem
 \rightarrow
 Organ\ growth
-$
+$$
 
 ### 4.14.65. Coupling với 4.12
 
@@ -8666,23 +8666,23 @@ Hormone–Ca–ROS–MAPK có thể điều chỉnh:
 
 Leaf development quyết định:
 
-$
+$$
 LAI
-$
+$$
 
 và từ đó ảnh hưởng:
 
-$
+$$
 A_{can}
-$
+$$
 
 ### 4.14.67. Coupling với 4.7
 
 Phenology quyết định:
 
-$
+$$
 Req_{i,o}
-$
+$$
 
 và remobilization timing.
 
@@ -8764,29 +8764,29 @@ thì không nhân thêm một “stage factor” chung vào yield.
 
 Phát triển cây cần tách hai trục:
 
-$
+$$
 Growth
 \neq
 Development
-$
+$$
 
 và mô hình VECrop nên biểu diễn:
 
-$
+$$
 Environment
 \rightarrow
 Developmental\ timing
 \rightarrow
 Organ\ capacity
-$
+$$
 
 song song với:
 
-$
+$$
 Carbon/Nutrient/Water
 \rightarrow
 Growth\ realization
-$
+$$
 
 Như vậy phenology xác định **khi nào và cơ quan nào có khả năng tăng trưởng**, còn source–sink, hydraulics và metabolism xác định **mức tăng trưởng thực sự đạt được**.
 
@@ -8812,11 +8812,11 @@ Senescence không chỉ là “già đi” thụ động.
 
 Không đồng nhất:
 
-$
+$$
 Senescence
 =
 PCD
-$
+$$
 
 Senescence có thể kéo dài nhiều ngày hoặc nhiều tuần, còn PCD là pha kết thúc của một số chương trình phát triển/stress.
 
@@ -8824,7 +8824,7 @@ Senescence có thể kéo dài nhiều ngày hoặc nhiều tuần, còn PCD là
 
 Một developmental driver:
 
-$
+$$
 S_{dev}
 =
 f(
@@ -8833,7 +8833,7 @@ DVS,
 organ,
 genotype
 )
-$
+$$
 
 Senescence có thể bắt đầu ngay cả khi môi trường không stress.
 
@@ -8841,7 +8841,7 @@ Senescence có thể bắt đầu ngay cả khi môi trường không stress.
 
 Stress có thể thúc đẩy senescence:
 
-$
+$$
 S_{stress}
 =
 f(
@@ -8852,7 +8852,7 @@ nutrient\ deficiency,
 pathogen,
 shade
 )
-$
+$$
 
 Không được dùng một stress factor chung cho mọi nguyên nhân.
 
@@ -8860,24 +8860,24 @@ Không được dùng một stress factor chung cho mọi nguyên nhân.
 
 Một reduced state:
 
-$
+$$
 \frac{dS_o}{dt}
 =
 r_{sen,o}
 (1-S_o)
-$
+$$
 
 với:
 
-$
+$$
 0\le S_o\le1
-$
+$$
 
 Trong đó \(S_o=0\) là chưa senescent và \(S_o=1\) là senescence hoàn tất.
 
 ### 4.15.6. Rate phụ thuộc stage và stress
 
-$
+$$
 r_{sen,o}
 =
 r_{0,o}
@@ -8887,7 +8887,7 @@ F_{water}
 F_N
 F_{hormone}
 F_{ROS}
-$
+$$
 
 Đây là reduced VECrop formulation.
 
@@ -8895,11 +8895,11 @@ $
 
 Một proxy:
 
-$
+$$
 \frac{dChl}{dt}
 =
 -k_{Chl}S_oChl
-$
+$$
 
 Chlorophyll decline là chỉ báo hữu ích nhưng không bằng toàn bộ senescence state.
 
@@ -8907,25 +8907,25 @@ Chlorophyll decline là chỉ báo hữu ích nhưng không bằng toàn bộ se
 
 Một reduced relation:
 
-$
+$$
 V_{cmax}^{eff}
 =
 V_{cmax}^{green}
 F_{sen}
-$
+$$
 
-$
+$$
 J_{max}^{eff}
 =
 J_{max}^{green}
 F_{sen}
-$
+$$
 
 với:
 
-$
+$$
 F_{sen}=1-S_o
-$
+$$
 
 chỉ là approximation.
 
@@ -8937,19 +8937,19 @@ Trong leaf senescence, chloroplast thường là nguồn lớn của N được 
 
 Một protein pool:
 
-$
+$$
 \frac{dP_o}{dt}
 =
 Synthesis_o
 -
 Degradation_o
-$
+$$
 
 Trong senescence:
 
-$
+$$
 Degradation_o\uparrow
-$
+$$
 
 ### 4.15.11. Proteolysis
 
@@ -8960,42 +8960,42 @@ Proteolysis tạo:
 
 Một flux:
 
-$
+$$
 F_{prot\rightarrow AA}
 =
 k_{prot}S_oP_o
-$
+$$
 
 ### 4.15.12. Nitrogen remobilization
 
 Từ 4.7:
 
-$
+$$
 F_{rem,N,o}
 =
 k_{rem,N,o}(t)
 M_{N,o}^{mob}
-$
+$$
 
 4.15 mở rộng bằng senescence control:
 
-$
+$$
 F_{rem,N,o}^{eff}
 =
 k_{rem,N,o}
 S_o
 M_{N,o}^{mob}
-$
+$$
 
 ### 4.15.13. Phosphorus remobilization
 
-$
+$$
 F_{rem,P,o}
 =
 k_{rem,P,o}
 S_o
 M_{P,o}^{mob}
-$
+$$
 
 Khả năng remobilize P phụ thuộc:
 - chemical form;
@@ -9009,25 +9009,25 @@ K thường có mobility cao trong phloem.
 
 Một balance:
 
-$
+$$
 F_{rem,K,o}
 =
 k_{rem,K,o}
 S_o
 M_{K,o}^{mob}
-$
+$$
 
 ### 4.15.15. Mineral-specific remobilization
 
 Không dùng:
 
-$
+$$
 F_{rem,N}
 =
 F_{rem,P}
 =
 F_{rem,K}
-$
+$$
 
 vì mobility và biochemical binding khác nhau.
 
@@ -9035,13 +9035,13 @@ vì mobility và biochemical binding khác nhau.
 
 Một lá có thể chuyển:
 
-$
+$$
 Sink\ leaf
 \rightarrow
 Source\ leaf
 \rightarrow
 Senescing\ source
-$
+$$
 
 Trong giai đoạn senescing, export vẫn có thể cao dù photosynthesis đang giảm.
 
@@ -9049,10 +9049,10 @@ Trong giai đoạn senescing, export vẫn có thể cao dù photosynthesis đan
 
 Trong reproductive stage:
 
-$
+$$
 Priority_{grain}
 \uparrow
-$
+$$
 
 có thể thúc đẩy remobilization từ vegetative organs.
 
@@ -9060,7 +9060,7 @@ có thể thúc đẩy remobilization từ vegetative organs.
 
 Stored carbon có thể được huy động:
 
-$
+$$
 Starch/Fructan/NSC
 \rightarrow
 Sucrose
@@ -9068,11 +9068,11 @@ Sucrose
 Phloem
 \rightarrow
 Sink
-$
+$$
 
 ### 4.15.19. NSC pool
 
-$
+$$
 NSC
 =
 Sucrose
@@ -9082,19 +9082,19 @@ Glucose
 Fructose
 +
 Starch
-$
+$$
 
 tùy định nghĩa thực nghiệm.
 
 ### 4.15.20. Carbon remobilization flux
 
-$
+$$
 F_{rem,C,o}
 =
 k_{rem,C,o}
 S_o
 M_{C,o}^{storage}
-$
+$$
 
 ### 4.15.21. Hormone control
 
@@ -9115,11 +9115,11 @@ một cách tuyệt đối cho mọi mô.
 
 Trong nhiều bối cảnh:
 
-$
+$$
 CK\uparrow
 \Rightarrow
 Senescence\ delay
-$
+$$
 
 nhưng magnitude phụ thuộc:
 - tissue;
@@ -9131,11 +9131,11 @@ nhưng magnitude phụ thuộc:
 
 Ethylene có thể thúc đẩy senescence ở nhiều hệ:
 
-$
+$$
 ET\uparrow
 \Rightarrow
 r_{sen}\uparrow
-$
+$$
 
 nhưng response phải organ-specific.
 
@@ -9154,7 +9154,7 @@ ROS có thể vừa là signal vừa là damage.
 
 Một coupling:
 
-$
+$$
 r_{sen}
 =
 r_0
@@ -9162,7 +9162,7 @@ r_0
 1+\alpha_{ROS}S_{ROS}
 +\beta_{D}D_{ROS}
 ]
-$
+$$
 
 Đây là proposed formulation.
 
@@ -9176,13 +9176,13 @@ Autophagy đóng vai trò trong:
 
 Một reduced flux:
 
-$
+$$
 F_{auto}
 =
 k_{auto}
 A_{auto}
 M_{substrate}
-$
+$$
 
 ### 4.15.27. Autophagy không đồng nhất với cell death
 
@@ -9190,17 +9190,17 @@ Autophagy có thể hỗ trợ survival và recycling trước khi PCD xảy ra.
 
 Do đó:
 
-$
+$$
 Autophagy
 \neq
 PCD
-$
+$$
 
 ### 4.15.28. Programmed cell death state
 
 Một PCD activation state:
 
-$
+$$
 A_{PCD}
 =
 \sigma
@@ -9215,17 +9215,17 @@ A_{PCD}
 +
 \beta_{dev}DVS
 )
-$
+$$
 
 Đây là VECrop proposed diagnostic.
 
 ### 4.15.29. Membrane integrity decline
 
-$
+$$
 H_{mem}
 =
 e^{-\lambda DD}
-$
+$$
 
 với \(D\) là damage state tổng hợp.
 
@@ -9233,7 +9233,7 @@ với \(D\) là damage state tổng hợp.
 
 Một organ export:
 
-$
+$$
 F_{export,o}
 =
 F_{phloem,o}
@@ -9245,16 +9245,16 @@ F_{rem,N,o}
 F_{rem,P,o}
 +
 F_{rem,K,o}
-$
+$$
 
 ### 4.15.31. Reproductive sink coupling
 
-$
+$$
 F_{rem,i\rightarrow grain}
 =
 a_{grain,i}
 F_{rem,i,total}
-$
+$$
 
 Trong đó \(a_{grain,i}\) phụ thuộc sink strength.
 
@@ -9262,7 +9262,7 @@ Trong đó \(a_{grain,i}\) phụ thuộc sink strength.
 
 Một grain nutrient balance:
 
-$
+$$
 \frac{dM_{i,grain}}{dt}
 =
 U_{new,i}
@@ -9270,30 +9270,30 @@ U_{new,i}
 F_{rem,i\rightarrow grain}
 -
 Loss_i
-$
+$$
 
 ### 4.15.33. New uptake và remobilization
 
 Final grain nutrient có thể đến từ hai nguồn:
 
-$
+$$
 M_{i,grain}
 =
 M_{i,new\ uptake}
 +
 M_{i,remobilized}
-$
+$$
 
 Không được suy rằng toàn bộ grain N đến từ remobilization.
 
 ### 4.15.34. Remobilization efficiency
 
-$
+$$
 RE_i
 =
 \frac{M_{i,remobilized}}
 {M_{i,pre-senescence}}
-$
+$$
 
 Cần định nghĩa rõ pool và thời điểm đo.
 
@@ -9301,12 +9301,12 @@ Cần định nghĩa rõ pool và thời điểm đo.
 
 Từ biomass/tissue concentration:
 
-$
+$$
 ARE_i
 =
 \frac{M_{i,pre}-M_{i,post}}
 {M_{i,pre}}
-$
+$$
 
 Đây là apparent metric, không chứng minh flux đích đến.
 
@@ -9323,40 +9323,40 @@ có thể giúp phân biệt uptake mới và remobilization.
 
 LAI dynamics:
 
-$
+$$
 \frac{dLAI}{dt}
 =
 LAI_{growth}
 -
 LAI_{sen}
-$
+$$
 
 Một senescence loss:
 
-$
+$$
 LAI_{sen}
 =
 k_{LAI,sen}S_{leaf}LAI
-$
+$$
 
 ### 4.15.38. Green leaf area index
 
-$
+$$
 GLAI
 =
 LAI(1-S_{leaf})
-$
+$$
 
 Đây là reduced canopy representation.
 
 ### 4.15.39. Canopy photosynthesis under senescence
 
-$
+$$
 A_{can}
 =
 \int_0^{GLAI}
 A_n(L,t)\,dL
-$
+$$
 
 hoặc phải tách green/senescent fractions.
 
@@ -9383,15 +9383,15 @@ Không mặc định stay-green luôn tốt.
 
 Senescence quá sớm:
 
-$
+$$
 Source\ duration\downarrow
-$
+$$
 
 Senescence quá muộn có thể:
 
-$
+$$
 Remobilization\ efficiency\downarrow
-$
+$$
 
 tùy crop và mục tiêu thu hoạch.
 
@@ -9399,12 +9399,12 @@ tùy crop và mục tiêu thu hoạch.
 
 Một source-duration metric:
 
-$
+$$
 SAD
 =
 \int_{t_1}^{t_2}
 GLAI(t)\,dt
-$
+$$
 
 Green leaf area duration có thể liên hệ với cumulative carbon capture.
 
@@ -9412,7 +9412,7 @@ Green leaf area duration có thể liên hệ với cumulative carbon capture.
 
 Nếu sink nhỏ:
 
-$
+$$
 Sink\ limitation
 \rightarrow
 Sugar\ accumulation
@@ -9420,17 +9420,17 @@ Sugar\ accumulation
 Feedback
 \rightarrow
 Senescence\ regulation
-$
+$$
 
 ### 4.15.45. Sugar signaling
 
 Từ 4.13:
 
-$
+$$
 Sucrose/T6P/SnRK1/TOR
 \leftrightarrow
 Senescence
-$
+$$
 
 Carbon starvation và carbon excess có thể gây response khác nhau.
 
@@ -9438,9 +9438,9 @@ Carbon starvation và carbon excess có thể gây response khác nhau.
 
 Trong carbon deficit:
 
-$
+$$
 SnRK1\uparrow
-$
+$$
 
 có thể thúc đẩy:
 - catabolism;
@@ -9451,9 +9451,9 @@ có thể thúc đẩy:
 
 Khi growth-supporting carbon/nutrient cao:
 
-$
+$$
 TOR\uparrow
-$
+$$
 
 có thể trì hoãn một số starvation-like responses.
 
@@ -9463,11 +9463,11 @@ Không dùng TOR như “anti-senescence scalar” phổ quát.
 
 N deficiency có thể tăng senescence ở lá già:
 
-$
+$$
 N_{status}\downarrow
 \rightarrow
 Remobilization\uparrow
-$
+$$
 
 nhưng response phụ thuộc sink demand.
 
@@ -9526,7 +9526,7 @@ Không gộp disease senescence vào developmental senescence.
 
 ### 4.15.55. Organ-specific senescence
 
-$
+$$
 S_{leaf}
 \neq
 S_{root}
@@ -9534,7 +9534,7 @@ S_{root}
 S_{stem}
 \neq
 S_{grain}
-$
+$$
 
 Cần state riêng theo organ.
 
@@ -9550,30 +9550,30 @@ Root senescence ảnh hưởng:
 
 Một balance:
 
-$
+$$
 \frac{dM_{root}}{dt}
 =
 Growth_{root}
 -
 Mortality_{root}
-$
+$$
 
 Trong đó:
 
-$
+$$
 Mortality_{root}
 =
 k_{death}S_{root}M_{root}
-$
+$$
 
 ### 4.15.58. Active root fraction
 
-$
+$$
 f_{active}
 =
 \frac{M_{root,active}}
 {M_{root,total}}
-$
+$$
 
 Uptake nên phụ thuộc active fraction hơn total root biomass.
 
@@ -9620,11 +9620,11 @@ Cần đặc biệt theo dõi:
 
 Không đồng nhất:
 
-$
+$$
 Senescence
 =
 Necrosis
-$
+$$
 
 Necrosis có thể là damage/pathology, còn senescence là regulated developmental program.
 
@@ -9638,13 +9638,13 @@ Một leaf có thể senesce trước abscission nhưng hai quá trình không �
 
 Một reduced state:
 
-$
+$$
 A_{abs}
 =
 \sigma(
 \beta_0+\beta_{ET}ET^*-\beta_{IAA}IAA^*+\beta_SS_o
 )
-$
+$$
 
 chỉ dùng như proposed model.
 
@@ -9652,12 +9652,12 @@ chỉ dùng như proposed model.
 
 Nếu leaf rụng trước remobilization hoàn tất:
 
-$
+$$
 Loss_i
 =
 M_{i,leaf}
 A_{abs}
-$
+$$
 
 làm giảm nutrient-use efficiency.
 
@@ -9665,12 +9665,12 @@ làm giảm nutrient-use efficiency.
 
 Một crop-level metric:
 
-$
+$$
 NUE
 =
 \frac{Yield}
 {N\ input}
-$
+$$
 
 Cần phân biệt:
 - uptake efficiency;
@@ -9679,23 +9679,23 @@ Cần phân biệt:
 
 ### 4.15.68. Uptake efficiency
 
-$
+$$
 NUpE
 =
 \frac{N_{plant}}
 {N_{available/input}}
-$
+$$
 
 định nghĩa denominator phải ghi rõ.
 
 ### 4.15.69. Utilization efficiency
 
-$
+$$
 NUtE
 =
 \frac{Yield}
 {N_{plant}}
-$
+$$
 
 ### 4.15.70. Senescence và NUE
 
@@ -9711,7 +9711,7 @@ Remobilization không miễn phí về năng lượng.
 
 Một energetic cost:
 
-$
+$$
 ATP_{rem}
 =
 ATP_{proteolysis}
@@ -9719,7 +9719,7 @@ ATP_{proteolysis}
 ATP_{transport}
 +
 ATP_{reassimilation}
-$
+$$
 
 ### 4.15.72. Carbon cost của remobilization
 
@@ -9727,15 +9727,15 @@ Amino acid transport và N reassimilation có thể cần carbon skeleton.
 
 Do đó:
 
-$
+$$
 Remobilization
 \neq
 Zero\ cost
-$
+$$
 
 ### 4.15.73. Senescence state-space
 
-$
+$$
 \mathbf x_{sen}
 =
 [
@@ -9750,11 +9750,11 @@ Hormone,
 Autophagy,
 PCD
 ]^T
-$
+$$
 
 ### 4.15.74. Dynamics
 
-$
+$$
 \frac{d\mathbf x_{sen}}{dt}
 =
 \mathbf f_{sen}
@@ -9766,11 +9766,11 @@ stress,
 carbon,
 nutrient
 )
-$
+$$
 
 ### 4.15.75. Output
 
-$
+$$
 \mathbf y_{sen}
 =
 [
@@ -9782,7 +9782,7 @@ F_{rem,K},
 Mortality,
 Abscission
 ]^T
-$
+$$
 
 ### 4.15.76. Coupling với 4.7
 
@@ -9798,31 +9798,31 @@ $
 
 ### 4.15.77. Coupling với 4.13
 
-$
+$$
 Sugar/T6P/SnRK1/TOR
 \rightarrow
 Senescence\ regulation
-$
+$$
 
 ### 4.15.78. Coupling với 4.14
 
-$
+$$
 DVS
 \rightarrow
 Senescence\ program
-$
+$$
 
 Phenology xác định khi senescence developmentally competent.
 
 ### 4.15.79. Coupling với 4.6
 
-$
+$$
 Senescence
 \rightarrow
 GLAI\downarrow
 \rightarrow
 A_{can}\downarrow
-$
+$$
 
 ### 4.15.80. Coupling với 4.5
 
@@ -9902,7 +9902,7 @@ Trong VECrop, senescence phải được xem là một **quá trình điều hò
 
 Mô hình nên biểu diễn:
 
-$
+$$
 Development
 +
 Stress
@@ -9910,11 +9910,11 @@ Stress
 Source\text{-}Sink
 \rightarrow
 Senescence
-$
+$$
 
 sau đó:
 
-$
+$$
 Senescence
 \rightarrow
 Remobilization
@@ -9922,7 +9922,7 @@ Remobilization
 Photosynthetic\ decline
 +
 Organ\ turnover
-$
+$$
 
 để nối trực tiếp vòng đời cơ quan với năng suất và hiệu quả sử dụng dinh dưỡng.
 
@@ -9948,7 +9948,7 @@ Mục tiêu là tách rõ:
 
 ### 4.16.2. Tổng sinh khối
 
-$
+$$
 B_{tot}
 =
 B_{root}
@@ -9960,19 +9960,19 @@ B_{leaf}
 B_{repro}
 +
 B_{storage}
-$
+$$
 
 Tùy crop có thể bỏ hoặc gộp một số compartment.
 
 ### 4.16.3. Cân bằng sinh khối toàn cây
 
-$
+$$
 \frac{dB_{tot}}{dt}
 =
 G_{tot}
 -
 L_{turnover}
-$
+$$
 
 Trong đó:
 - \(G_{tot}\): biomass growth;
@@ -9982,12 +9982,12 @@ Trong đó:
 
 Nếu biomass quy đổi từ carbon:
 
-$
+$$
 G_C
 =
 Y_G
 C_{avail}
-$
+$$
 
 Trong đó \(Y_G\) là growth yield coefficient.
 
@@ -9995,35 +9995,35 @@ Không dùng một \(Y_G\) chung cho mọi tissue nếu thành phần hóa sinh 
 
 ### 4.16.5. Organ-specific growth
 
-$
+$$
 \frac{dB_o}{dt}
 =
 G_o
 -
 L_o
-$
+$$
 
 với:
 
-$
+$$
 o\in
 \{root,stem,leaf,reproductive,storage\}
-$
+$$
 
 ### 4.16.6. Allocation fraction
 
-$
+$$
 a_o
 =
 \frac{F_{C,o}}
 {\sum_jF_{C,j}}
-$
+$$
 
 với:
 
-$
+$$
 \sum_oa_o=1
-$
+$$
 
 nếu toàn bộ carbon growth được phân bổ cho các compartment này.
 
@@ -10031,20 +10031,20 @@ nếu toàn bộ carbon growth được phân bổ cho các compartment này.
 
 Từ 4.5:
 
-$
+$$
 a_o
 =
 \frac{SS_o^{eff}}
 {\sum_jSS_j^{eff}}
-$
+$$
 
 Trong đó:
 
-$
+$$
 SS_o^{eff}
 =
 M_oq_oF_{dev,o}F_{resource,o}
-$
+$$
 
 Đây là VECrop reduced formulation.
 
@@ -10052,43 +10052,43 @@ $
 
 Nếu carbon supply thấp:
 
-$
+$$
 \sum_oDemand_{C,o}
 >
 C_{available}
-$
+$$
 
 thì:
 
-$
+$$
 Growth
 \approx
 Source\ limited
-$
+$$
 
 ### 4.16.9. Sink limitation
 
 Nếu:
 
-$
+$$
 C_{available}
 >
 \sum_oDemand_{C,o}
-$
+$$
 
 nhưng organ growth capacity thấp thì:
 
-$
+$$
 Growth
 \approx
 Sink\ limited
-$
+$$
 
 ### 4.16.10. Supply–capacity coupling
 
 Một conceptual formulation:
 
-$
+$$
 G_o
 =
 \min
@@ -10096,11 +10096,11 @@ G_o
 G_{o}^{supply},
 G_{o}^{capacity}
 )
-$
+$$
 
 ### 4.16.11. Growth capacity
 
-$
+$$
 G_o^{capacity}
 =
 f(
@@ -10111,13 +10111,13 @@ TOR,
 Hormone,
 Stage
 )
-$
+$$
 
 nối trực tiếp với 4.14.
 
 ### 4.16.12. Supply term
 
-$
+$$
 G_o^{supply}
 =
 f(
@@ -10128,17 +10128,17 @@ K_o,
 Water_o,
 ATP_o
 )
-$
+$$
 
 ### 4.16.13. Carbon-to-biomass conversion
 
 Một organ-specific coefficient:
 
-$
+$$
 B_o
 =
 \eta_oC_o
-$
+$$
 
 Trong đó \(\eta_o\) phụ thuộc:
 - lipid;
@@ -10150,30 +10150,30 @@ Trong đó \(\eta_o\) phụ thuộc:
 
 Từ 4.8:
 
-$
+$$
 R_{G,o}
 =
 G_o
 \left(
 \frac1{Y_{G,o}}-1
 \right)
-$
+$$
 
 Phân bổ carbon phải trừ growth respiration trước khi tính dry matter gain.
 
 ### 4.16.15. Maintenance respiration
 
-$
+$$
 R_{M,o}
 =
 m_o(T)M_{met,o}
-$
+$$
 
 Tissue già có thể có metabolic fraction thấp hơn tissue non.
 
 ### 4.16.16. Net carbon available
 
-$
+$$
 C_{avail}
 =
 A_{can}
@@ -10183,7 +10183,7 @@ R_M
 R_G
 -
 L_C
-$
+$$
 
 Không double count respiration nếu \(Y_G\) đã bao gồm chi phí biosynthesis tương ứng.
 
@@ -10191,7 +10191,7 @@ Không double count respiration nếu \(Y_G\) đã bao gồm chi phí biosynthes
 
 Một root allocation state:
 
-$
+$$
 a_r
 =
 f(
@@ -10202,34 +10202,34 @@ Carbon,
 Hormone,
 Stage
 )
-$
+$$
 
 Root allocation thường thay đổi khi resource limitation thay đổi.
 
 ### 4.16.18. Shoot allocation
 
-$
+$$
 a_s
 =
 a_{leaf}+a_{stem}+a_{repro}
-$
+$$
 
 với:
 
-$
+$$
 a_r+a_s=1
-$
+$$
 
 trong mô hình hai compartment.
 
 ### 4.16.19. Root:shoot ratio
 
-$
+$$
 R:S
 =
 \frac{B_{root}}
 {B_{shoot}}
-$
+$$
 
 Không xem một giá trị R:S là optimum phổ quát.
 
@@ -10237,54 +10237,54 @@ Không xem một giá trị R:S là optimum phổ quát.
 
 Một conceptual hypothesis:
 
-$
+$$
 Allocation
 \rightarrow
 Resource\ acquisition\ balance
-$
+$$
 
 Cây có thể tăng allocation vào cơ quan giúp thu nhận resource đang giới hạn, nhưng response phụ thuộc crop và stage.
 
 ### 4.16.21. Leaf biomass
 
-$
+$$
 \frac{dB_{leaf}}{dt}
 =
 G_{leaf}
 -
 L_{leaf}
-$
+$$
 
 ### 4.16.22. Leaf area
 
-$
+$$
 A_{leaf}
 =
 SLA
 B_{leaf}
-$
+$$
 
 Nếu SLA biến đổi theo thời gian:
 
-$
+$$
 A_{leaf}(t)
 =
 SLA(t)B_{leaf}(t)
-$
+$$
 
 ### 4.16.23. LAI
 
-$
+$$
 LAI
 =
 \frac{A_{leaf}}{A_{ground}}
-$
+$$
 
 ### 4.16.24. Dynamic SLA
 
 Một reduced relationship:
 
-$
+$$
 SLA
 =
 SLA_{ref}
@@ -10292,13 +10292,13 @@ F_{light}
 F_N
 F_T
 F_{age}
-$
+$$
 
 Cần calibration.
 
 ### 4.16.25. Stem biomass
 
-$
+$$
 \frac{dB_{stem}}{dt}
 =
 G_{stem}
@@ -10306,47 +10306,47 @@ G_{stem}
 L_{stem}
 -
 F_{rem,stem}
-$
+$$
 
 Nếu stem là storage organ tạm thời thì phải tách structural và reserve pools.
 
 ### 4.16.26. Structural và reserve biomass
 
-$
+$$
 B_o
 =
 B_{struct,o}
 +
 B_{reserve,o}
-$
+$$
 
 Điều này hữu ích cho lúa và ngô khi stem tích trữ NSC.
 
 ### 4.16.27. Storage pool
 
-$
+$$
 \frac{dB_{reserve,o}}{dt}
 =
 Storage_o
 -
 Mobilization_o
-$
+$$
 
 ### 4.16.28. Reproductive biomass
 
-$
+$$
 \frac{dB_{repro}}{dt}
 =
 G_{repro}
 -
 Loss_{repro}
-$
+$$
 
 Ở crop lấy hạt, sink reproductive thường tăng mạnh sau flowering.
 
 ### 4.16.29. Reproductive allocation
 
-$
+$$
 a_{repro}
 =
 f(
@@ -10356,18 +10356,18 @@ Carbon,
 N,
 Water
 )
-$
+$$
 
 ### 4.16.30. Partition coefficient
 
 Một empirical partition coefficient:
 
-$
+$$
 p_o
 =
 \frac{\Delta B_o}
 {\Delta B_{tot}}
-$
+$$
 
 Phải xác định theo stage.
 
@@ -10375,31 +10375,31 @@ Phải xác định theo stage.
 
 Vì:
 
-$
+$$
 p_o
 =
 p_o(stage,environment,genotype)
-$
+$$
 
 ### 4.16.32. Allometry
 
 Một allometric relation:
 
-$
+$$
 B_y
 =
 aB_x^b
-$
+$$
 
 Log transform:
 
-$
+$$
 \ln B_y
 =
 \ln a
 +
 b\ln B_x
-$
+$$
 
 ### 4.16.33. Allometry không phải cơ chế
 
@@ -10413,82 +10413,82 @@ nếu mục tiêu là cơ chế.
 
 ### 4.16.34. Relative growth rate
 
-$
+$$
 RGR
 =
 \frac1B
 \frac{dB}{dt}
-$
+$$
 
 ### 4.16.35. Crop growth rate
 
-$
+$$
 CGR
 =
 \frac1{A_g}
 \frac{dB}{dt}
-$
+$$
 
 ### 4.16.36. Net assimilation rate
 
-$
+$$
 NAR
 =
 \frac1{A_L}
 \frac{dB}{dt}
-$
+$$
 
 NAR là chỉ số sinh trưởng, không đồng nhất trực tiếp với leaf gas-exchange \(A_n\).
 
 ### 4.16.37. Leaf area ratio
 
-$
+$$
 LAR
 =
 \frac{A_L}{B}
-$
+$$
 
 và:
 
-$
+$$
 RGR
 =
 NAR\times LAR
-$
+$$
 
 theo decomposition cổ điển.
 
 ### 4.16.38. Specific leaf area và leaf mass ratio
 
-$
+$$
 SLA
 =
 \frac{A_L}{B_L}
-$
+$$
 
-$
+$$
 LMR
 =
 \frac{B_L}{B}
-$
+$$
 
 Do đó:
 
-$
+$$
 LAR
 =
 SLA\times LMR
-$
+$$
 
 ### 4.16.39. Canopy closure
 
 Khi LAI tăng:
 
-$
+$$
 f_{intercept}
 =
 1-e^{-k_LLAI}
-$
+$$
 
 Canopy closure làm thay đổi:
 - light interception;
@@ -10500,9 +10500,9 @@ Canopy closure làm thay đổi:
 
 Khi LAI quá cao:
 
-$
+$$
 A_{lower\ canopy}\downarrow
-$
+$$
 
 và maintenance cost có thể tăng so với carbon gain.
 
@@ -10518,35 +10518,35 @@ Optimum LAI phụ thuộc:
 
 ### 4.16.42. Root biomass
 
-$
+$$
 \frac{dB_{root}}{dt}
 =
 G_{root}
 -
 Mortality_{root}
-$
+$$
 
 ### 4.16.43. Root length
 
-$
+$$
 L_{root}
 =
 SRL
 B_{root}
-$
+$$
 
 Trong đó:
 
-$
+$$
 SRL
 =
 \frac{Root\ length}
 {Root\ dry\ mass}
-$
+$$
 
 ### 4.16.44. Dynamic SRL
 
-$
+$$
 SRL
 =
 SRL_{ref}
@@ -10555,17 +10555,17 @@ F_{age}
 F_N
 F_P
 F_{water}
-$
+$$
 
 ### 4.16.45. Root surface area
 
 Một cylindrical approximation:
 
-$
+$$
 A_{root}
 =
 2\pi rL_{root}
-$
+$$
 
 Nếu diameter distribution rộng, phải tích phân theo root classes.
 
@@ -10583,12 +10583,12 @@ Total biomass không đủ mô tả nutrient acquisition.
 
 Một reduced form:
 
-$
+$$
 \frac{dZ_r}{dt}
 =
 v_{root,max}
 F_TF_{\Psi}F_{O_2}F_{soil}
-$
+$$
 
 ### 4.16.48. Soil mechanical resistance
 
@@ -10596,52 +10596,52 @@ Root elongation có thể giảm khi penetration resistance tăng.
 
 Một reduced modifier:
 
-$
+$$
 F_{PR}
 =
 f(PR)
-$
+$$
 
 Không dùng một threshold universal cho mọi đất và root type.
 
 ### 4.16.49. Root distribution by depth
 
-$
+$$
 \beta(z)
 =
 \frac{RLD(z)}
 {\int_0^{Z_r}RLD(z)\,dz}
-$
+$$
 
 với:
 
-$
+$$
 \int_0^{Z_r}\beta(z)\,dz=1
-$
+$$
 
 ### 4.16.50. Active root fraction
 
-$
+$$
 A_{root,active}
 =
 A_{root}
 f_{active}
-$
+$$
 
 Uptake và hydraulics nên dùng active fraction khi có dữ liệu.
 
 ### 4.16.51. Root turnover
 
-$
+$$
 Turnover_{root}
 =
 k_{turn,root}
 B_{root}
-$
+$$
 
 ### 4.16.52. Root exudation carbon cost
 
-$
+$$
 C_{root,total}
 =
 C_{growth}
@@ -10649,13 +10649,13 @@ C_{growth}
 C_{resp}
 +
 C_{exudation}
-$
+$$
 
 Exudation không được bỏ khỏi carbon budget nếu nghiên cứu rhizosphere.
 
 ### 4.16.53. Mycorrhizal carbon cost
 
-$
+$$
 C_{myc}
 =
 f(
@@ -10663,16 +10663,16 @@ colonization,
 P_{delivery},
 C_{supply}
 )
-$
+$$
 
 ### 4.16.54. Organ nitrogen concentration
 
-$
+$$
 N_{conc,o}
 =
 \frac{M_{N,o}}
 {B_o}
-$
+$$
 
 Growth dilution có thể làm concentration giảm dù total N tăng.
 
@@ -10680,11 +10680,11 @@ Growth dilution có thể làm concentration giảm dù total N tăng.
 
 Một empirical dilution curve:
 
-$
+$$
 N_c
 =
 aB^{-b}
-$
+$$
 
 Đây là benchmark empirical, không phải định luật phổ quát.
 
@@ -10696,12 +10696,12 @@ Không chuyển trực tiếp giữa crop/cultivar nếu chưa kiểm định.
 
 ### 4.16.57. Nutrient demand from biomass growth
 
-$
+$$
 Req_{i,o}
 =
 q_{i,o}^{*}
 \frac{dB_o}{dt}
-$
+$$
 
 nối trực tiếp 4.16 với 4.7.
 
@@ -10709,12 +10709,12 @@ nối trực tiếp 4.16 với 4.7.
 
 Nếu nutrient supply thấp:
 
-$
+$$
 L_i
 =
 \frac{Sup_i}
 {Req_i+\varepsilon}
-$
+$$
 
 thì organ growth capacity có thể giảm.
 
@@ -10722,23 +10722,23 @@ thì organ growth capacity có thể giảm.
 
 Nếu leaf expansion giảm do turgor:
 
-$
+$$
 LAI\downarrow
 \rightarrow
 Light\ interception\downarrow
 \rightarrow
 A_{can}\downarrow
-$
+$$
 
 ### 4.16.60. Carbon–growth feedback
 
 Nếu sink growth thấp:
 
-$
+$$
 Sucrose_{leaf}\uparrow
 \rightarrow
 Source\ feedback
-$
+$$
 
 nối 4.16 với 4.13.
 
@@ -10746,35 +10746,35 @@ nối 4.16 với 4.13.
 
 Từ 4.15:
 
-$
+$$
 L_{leaf}\uparrow
 \rightarrow
 GLAI\downarrow
-$
+$$
 
 và:
 
-$
+$$
 F_{rem}\uparrow
-$
+$$
 
 có thể đồng thời xảy ra.
 
 ### 4.16.62. Turnover balance
 
-$
+$$
 Net\ biomass\ change
 =
 Gross\ growth
 -
 Turnover
-$
+$$
 
 Không đồng nhất net biomass gain với gross production.
 
 ### 4.16.63. Aboveground biomass
 
-$
+$$
 AGB
 =
 B_{leaf}
@@ -10782,27 +10782,27 @@ B_{leaf}
 B_{stem}
 +
 B_{repro}
-$
+$$
 
 ### 4.16.64. Belowground biomass
 
-$
+$$
 BGB
 =
 B_{root}
 +
 B_{belowground\ storage}
-$
+$$
 
 tùy crop.
 
 ### 4.16.65. Shoot biomass
 
-$
+$$
 B_{shoot}
 =
 AGB
-$
+$$
 
 chỉ khi định nghĩa shoot không bao gồm cấu trúc dưới đất.
 
@@ -10810,32 +10810,32 @@ chỉ khi định nghĩa shoot không bao gồm cấu trúc dưới đất.
 
 Không trộn:
 
-$
+$$
 Fresh\ mass
 \neq
 Dry\ mass
-$
+$$
 
 Fresh mass phụ thuộc mạnh water content.
 
 ### 4.16.67. Dry matter fraction
 
-$
+$$
 DMF
 =
 \frac{Dry\ mass}
 {Fresh\ mass}
-$
+$$
 
 ### 4.16.68. Marketable biomass
 
 Đối với xà lách:
 
-$
+$$
 B_{market}
 \le
 B_{shoot}
-$
+$$
 
 do loại bỏ:
 - damaged leaves;
@@ -10847,7 +10847,7 @@ do loại bỏ:
 
 Một simplified decomposition:
 
-$
+$$
 B_{struct}
 =
 B_{cellwall}
@@ -10857,7 +10857,7 @@ B_{protein}
 B_{lipid}
 +
 B_{other}
-$
+$$
 
 ### 4.16.70. Biomass composition
 
@@ -10871,12 +10871,12 @@ Composition ảnh hưởng:
 
 Một generic cost:
 
-$
+$$
 C_{cost,o}
 =
 \sum_j
 c_jM_{j,o}
-$
+$$
 
 với \(c_j\) là carbon/energy cost theo thành phần.
 
@@ -10886,12 +10886,12 @@ Leaf, root, stem và grain có composition khác nhau.
 
 ### 4.16.73. Growth efficiency
 
-$
+$$
 GE
 =
 \frac{\Delta B}
 {C_{substrate}}
-$
+$$
 
 Cần định nghĩa denominator rõ.
 
@@ -10899,13 +10899,13 @@ Cần định nghĩa denominator rõ.
 
 Một empirical crop model:
 
-$
+$$
 \Delta B
 =
 RUE
 \times
 IPAR
-$
+$$
 
 RUE hữu ích như benchmark nhưng không thay thế photosynthesis-respiration model cơ chế.
 
@@ -10913,24 +10913,24 @@ RUE hữu ích như benchmark nhưng không thay thế photosynthesis-respiratio
 
 Nếu \(A_{can}\) đã tính carbon assimilation thì không:
 
-$
+$$
 B
 =
 A_{can}
 \times
 RUE
-$
+$$
 
 một cách máy móc.
 
 ### 4.16.76. Water-use efficiency
 
-$
+$$
 WUE
 =
 \frac{Biomass\ or\ Yield}
 {Water\ use}
-$
+$$
 
 Phải ghi rõ numerator và denominator.
 
@@ -10958,20 +10958,20 @@ Không hard-code cùng response cho mọi crop.
 
 Per-plant biomass:
 
-$
+$$
 B_{plant}
 =
 f(D)
-$
+$$
 
 Per-area biomass:
 
-$
+$$
 B_{area}
 =
 D
 B_{plant}
-$
+$$
 
 Hai đại lượng có thể phản ứng ngược chiều với density.
 
@@ -10989,11 +10989,11 @@ Một canopy model nên tránh gộp hết thành một density scalar nếu d�
 
 Trong quần thể:
 
-$
+$$
 B_i
 \neq
 B_j
-$
+$$
 
 ngay cả cùng genotype do competition và spatial heterogeneity.
 
@@ -11001,9 +11001,9 @@ ngay cả cùng genotype do competition và spatial heterogeneity.
 
 Có thể mô hình:
 
-$
+$$
 B\sim Lognormal(\mu_B,\sigma_B)
-$
+$$
 
 nếu cần mô tả variability quần thể.
 
@@ -11019,12 +11019,12 @@ Các compartment quan trọng:
 
 ### 4.16.84. Lúa: tiller biomass
 
-$
+$$
 B_{shoot}
 =
 \sum_{k=1}^{N_{tiller}}
 B_{tiller,k}
-$
+$$
 
 Tiller mortality cần nối với 4.14 và 4.15.
 
@@ -11041,12 +11041,12 @@ Post-silking allocation phải tách grain sink khỏi vegetative maintenance.
 
 ### 4.16.86. Ngô: kernel demand
 
-$
+$$
 Demand_{grain}
 =
 N_{kernel}
 q_{kernel}(t)
-$
+$$
 
 ### 4.16.87. Xà lách
 
@@ -11060,18 +11060,18 @@ Các compartment thực dụng:
 
 Market yield thường là fresh mass nên cần:
 
-$
+$$
 Fresh\ yield
 =
 \frac{Dry\ mass}
 {DMF}
-$
+$$
 
 chỉ khi DMF được đo/ước lượng phù hợp.
 
 ### 4.16.89. State-space biomass
 
-$
+$$
 \mathbf B
 =
 [
@@ -11081,36 +11081,36 @@ B_{leaf},
 B_{repro},
 B_{reserve}
 ]^T
-$
+$$
 
 ### 4.16.90. Biomass dynamics
 
-$
+$$
 \frac{d\mathbf B}{dt}
 =
 \mathbf G
 -
 \mathbf L
-$
+$$
 
 ### 4.16.91. Growth vector
 
-$
+$$
 \mathbf G
 =
 \mathbf a
 G_{tot}
-$
+$$
 
 với:
 
-$
+$$
 \sum_oa_o=1
-$
+$$
 
 ### 4.16.92. Turnover vector
 
-$
+$$
 \mathbf L
 =
 [
@@ -11120,23 +11120,23 @@ L_{leaf},
 L_{repro},
 L_{reserve}
 ]^T
-$
+$$
 
 ### 4.16.93. Allocation constraints
 
-$
+$$
 0\le a_o\le1
-$
+$$
 
 và:
 
-$
+$$
 \sum_oa_o=1
-$
+$$
 
 ### 4.16.94. Dynamic allocation
 
-$
+$$
 \frac{da_o}{dt}
 =
 f(
@@ -11146,7 +11146,7 @@ resource,
 hormone,
 stress
 )
-$
+$$
 
 thay vì xem \(a_o\) cố định.
 
@@ -11182,18 +11182,18 @@ Final yield không đủ nhận dạng:
 
 Biomass balance:
 
-$
+$$
 B_{tot}(t_2)
 -
 B_{tot}(t_1)
 \approx
 \int_{t_1}^{t_2}
 (G_{tot}-L_{turnover})dt
-$
+$$
 
 ### 4.16.99. Carbon-balance test
 
-$
+$$
 C_{assim}
 -
 C_{resp}
@@ -11202,7 +11202,7 @@ C_{export/loss}
 -
 \Delta C_{biomass}
 \approx0
-$
+$$
 
 ### 4.16.100. Coupling với 4.5
 
@@ -11254,7 +11254,7 @@ Sinh khối không nên được tính bằng một hệ số tăng trưởng du
 
 VECrop nên tách:
 
-$
+$$
 Gross\ production
 \rightarrow
 Respiration
@@ -11266,7 +11266,7 @@ Organ\ growth
 Turnover
 \rightarrow
 Net\ biomass
-$
+$$
 
 và giữ riêng:
 - source limitation;
@@ -11292,11 +11292,11 @@ và giữ riêng:
 
 Không được đồng nhất:
 
-$
+$$
 Biomass
 =
 Yield
-$
+$$
 
 vì năng suất kinh tế phụ thuộc cả:
 - tổng sinh khối;
@@ -11312,11 +11312,11 @@ vì năng suất kinh tế phụ thuộc cả:
 
 Một định nghĩa tổng quát:
 
-$
+$$
 Y_{econ}
 =
 \frac{M_{harvestable}}{A_{ground}}
-$
+$$
 
 Đơn vị thường:
 - kg m\(^{-2}\);
@@ -11324,22 +11324,22 @@ $
 
 ### 4.17.3. Năng suất sinh học
 
-$
+$$
 Y_{bio}
 =
 \frac{B_{total}}{A_{ground}}
-$
+$$
 
 Phải phân biệt với năng suất kinh tế.
 
 ### 4.17.4. Harvest Index
 
-$
+$$
 HI
 =
 \frac{Y_{econ}}
 {B_{aboveground}}
-$
+$$
 
 với cây lấy hạt.
 
@@ -11347,7 +11347,7 @@ Không dùng cùng định nghĩa cho mọi crop nếu cơ quan kinh tế khác 
 
 ### 4.17.5. Harvest Index không phải hằng số
 
-$
+$$
 HI
 =
 HI(
@@ -11357,7 +11357,7 @@ environment,
 source\text{-}sink,
 stress
 )
-$
+$$
 
 Không được giữ cố định cả vụ nếu muốn mô hình động.
 
@@ -11365,13 +11365,13 @@ Không được giữ cố định cả vụ nếu muốn mô hình động.
 
 Có thể phân rã:
 
-$
+$$
 Y
 =
 N_{unit}
 \times
 W_{unit}
-$
+$$
 
 Trong đó:
 - \(N_{unit}\): số đơn vị thu hoạch trên diện tích;
@@ -11381,22 +11381,22 @@ Trong đó:
 
 Công thức:
 
-$
+$$
 Y
 =
 N_{unit}
 W_{unit}
-$
+$$
 
 là identity cấu trúc nếu định nghĩa đúng.
 
 Nhưng không có nghĩa hai thành phần độc lập; thường tồn tại compensation:
 
-$
+$$
 N_{unit}\uparrow
 \Rightarrow
 W_{unit}\downarrow
-$
+$$
 
 ### 4.17.8. Sink number
 
@@ -11409,7 +11409,7 @@ Số sink được xác lập qua:
 
 Một balance:
 
-$
+$$
 \frac{dN_{sink}}{dt}
 =
 Initiation
@@ -11417,29 +11417,29 @@ Initiation
 Abortion
 -
 Loss
-$
+$$
 
 ### 4.17.9. Sink size
 
 Khối lượng sink:
 
-$
+$$
 M_{sink}
 =
 N_{sink}
 m_{sink}
-$
+$$
 
 ### 4.17.10. Potential sink capacity
 
 Một sink capacity:
 
-$
+$$
 Cap_{sink}
 =
 N_{sink}
 W_{max,sink}
-$
+$$
 
 Đây là upper bound cơ chế, không phải yield prediction trực tiếp.
 
@@ -11447,15 +11447,15 @@ $
 
 Từ 4.5:
 
-$
+$$
 SS_o
 =
 M_oq_o
-$
+$$
 
 Mở rộng cho organ kinh tế:
 
-$
+$$
 SS_{econ}
 =
 N_{sink}
@@ -11463,11 +11463,11 @@ q_{sink}
 F_{dev}
 F_{hormone}
 F_{resource}
-$
+$$
 
 ### 4.17.12. Source supply
 
-$
+$$
 Supply_C
 =
 A_{can}
@@ -11475,64 +11475,64 @@ A_{can}
 F_{rem,C}
 -
 R
-$
+$$
 
 Nếu dùng carbon unit nhất quán.
 
 ### 4.17.13. Sink demand
 
-$
+$$
 Demand_C
 =
 N_{sink}
 d_{sink}(t)
-$
+$$
 
 ### 4.17.14. Source limitation
 
 Nếu:
 
-$
+$$
 Supply_C
 <
 Demand_C
-$
+$$
 
 thì:
 
-$
+$$
 Growth_{sink}
 \approx
 Source\ limited
-$
+$$
 
 ### 4.17.15. Sink limitation
 
 Nếu:
 
-$
+$$
 Supply_C
 >
 Demand_C
-$
+$$
 
 nhưng sink capacity thấp:
 
-$
+$$
 Growth_{sink}
 \approx
 Sink\ limited
-$
+$$
 
 ### 4.17.16. Co-limitation
 
 Trong nhiều trường hợp:
 
-$
+$$
 Source\ limitation
 \land
 Sink\ limitation
-$
+$$
 
 có thể đồng thời tồn tại theo thời gian hoặc giữa organ.
 
@@ -11542,28 +11542,28 @@ Không ép mô hình chỉ chọn một nhãn cho cả vụ.
 
 Một generic filling rate:
 
-$
+$$
 \frac{dm_{sink}}{dt}
 =
 r_{fill}(t)
-$
+$$
 
 ### 4.17.18. Logistic filling
 
 Một empirical formulation:
 
-$
+$$
 m(t)
 =
 \frac{W_{max}}
 {1+\exp[-k(t-t_{50})]}
-$
+$$
 
 Không xem logistic là cơ chế sinh học.
 
 ### 4.17.19. Gompertz filling
 
-$
+$$
 m(t)
 =
 W_{max}
@@ -11571,7 +11571,7 @@ W_{max}
 [
 -\exp(-k(t-t_i))
 ]
-$
+$$
 
 Có thể phù hợp dữ liệu một số organ.
 
@@ -11579,7 +11579,7 @@ Có thể phù hợp dữ liệu một số organ.
 
 Ở mức cơ chế:
 
-$
+$$
 \frac{dM_{sink}}{dt}
 =
 F_{C,in}
@@ -11593,16 +11593,16 @@ F_{K,in}
 R_{sink}
 -
 Loss
-$
+$$
 
 ### 4.17.21. Filling duration
 
-$
+$$
 Y_{sink}
 \approx
 \int_{t_{set}}^{t_{maturity}}
 r_{fill}(t)\,dt
-$
+$$
 
 Năng suất phụ thuộc cả:
 - rate;
@@ -11612,9 +11612,9 @@ Năng suất phụ thuộc cả:
 
 Heat hoặc stress cuối vụ có thể làm:
 
-$
+$$
 Duration_{fill}\downarrow
-$
+$$
 
 dù instantaneous filling rate ban đầu không giảm mạnh.
 
@@ -11622,12 +11622,12 @@ dù instantaneous filling rate ban đầu không giảm mạnh.
 
 Một temperature modifier:
 
-$
+$$
 r_{fill}^{eff}
 =
 r_{fill,max}
 F_T(T)
-$
+$$
 
 Cardinal temperatures phải crop/stage-specific.
 
@@ -11635,46 +11635,46 @@ Cardinal temperatures phải crop/stage-specific.
 
 Không dùng:
 
-$
+$$
 Y
 =
 A_{can,mean}
 \times
 Duration
-$
+$$
 
 nếu source và sink thay đổi mạnh theo thời gian.
 
 Nên:
 
-$
+$$
 C_{sup,total}
 =
 \int
 Supply_C(t)\,dt
-$
+$$
 
 ### 4.17.25. Nitrogen supply cho sink
 
-$
+$$
 Supply_N
 =
 U_N
 +
 F_{rem,N}
-$
+$$
 
 ### 4.17.26. Protein yield
 
 Ở crop lấy hạt:
 
-$
+$$
 Protein\ yield
 =
 Y_{grain}
 \times
 Protein\ concentration
-$
+$$
 
 Yield và quality có thể trade-off.
 
@@ -11684,7 +11684,7 @@ Tăng carbohydrate accumulation có thể làm giảm nutrient concentration dù
 
 ### 4.17.28. Grain N balance
 
-$
+$$
 \frac{dM_{N,grain}}{dt}
 =
 U_{N,new}
@@ -11692,42 +11692,42 @@ U_{N,new}
 F_{rem,N}
 -
 Loss_N
-$
+$$
 
 ### 4.17.29. Remobilization contribution
 
-$
+$$
 f_{rem,N}
 =
 \frac{N_{grain,rem}}
 {N_{grain,total}}
-$
+$$
 
 Cần isotope/tracer hoặc mass-balance đủ tốt để ước lượng đáng tin.
 
 ### 4.17.30. Harvestable fraction
 
-$
+$$
 f_h
 =
 \frac{B_{harvestable}}
 {B_{organ,econ}}
-$
+$$
 
 Cho crop thị trường tươi, \(f_h\) có thể < 1 do loại bỏ mô hỏng.
 
 ### 4.17.31. Marketable yield
 
-$
+$$
 Y_{market}
 =
 Y_{gross}
 f_{market}
-$
+$$
 
 ### 4.17.32. Marketable fraction
 
-$
+$$
 f_{market}
 =
 1
@@ -11741,7 +11741,7 @@ f_{senescent}
 f_{undersize}
 -
 f_{oversize}
-$
+$$
 
 Không nhất thiết cộng tuyến tính nếu các defect chồng lấp; đây là bookkeeping form.
 
@@ -11749,7 +11749,7 @@ Không nhất thiết cộng tuyến tính nếu các defect chồng lấp; đâ
 
 Có thể định nghĩa:
 
-$
+$$
 \mathbf Q
 =
 [
@@ -11761,13 +11761,13 @@ color,
 firmness,
 defect
 ]^T
-$
+$$
 
 ### 4.17.34. Multi-objective yield
 
 Một objective:
 
-$
+$$
 J
 =
 w_YY
@@ -11775,7 +11775,7 @@ w_YY
 w_QQ
 -
 w_CC
-$
+$$
 
 nếu tối ưu đồng thời:
 - yield;
@@ -11786,7 +11786,7 @@ nếu tối ưu đồng thời:
 
 Khái niệm:
 
-$
+$$
 Y_p
 =
 f(
@@ -11796,7 +11796,7 @@ temperature,
 CO_2,
 phenology
 )
-$
+$$
 
 trong điều kiện không bị giới hạn bởi:
 - water;
@@ -11807,7 +11807,7 @@ trong điều kiện không bị giới hạn bởi:
 
 ### 4.17.36. Water-limited yield potential
 
-$
+$$
 Y_w
 =
 f(
@@ -11816,20 +11816,20 @@ water\ supply,
 ET,
 soil
 )
-$
+$$
 
 ### 4.17.37. Nutrient-limited yield
 
 Một reduced formulation:
 
-$
+$$
 Y_n
 =
 Y_p
 F_N
 F_P
 F_K
-$
+$$
 
 chỉ dùng khi các stress chưa được mô hình hóa cơ chế.
 
@@ -11837,25 +11837,25 @@ chỉ dùng khi các stress chưa được mô hình hóa cơ chế.
 
 Một conceptual:
 
-$
+$$
 Y_a
 \le
 Y_w
 \le
 Y_p
-$
+$$
 
 nhưng định nghĩa operational phải ghi rõ context.
 
 ### 4.17.39. Yield gap
 
-$
+$$
 Y_g
 =
 Y_{benchmark}
 -
 Y_{actual}
-$
+$$
 
 Benchmark có thể là:
 - \(Y_p\);
@@ -11869,20 +11869,20 @@ Phải ghi rõ loại nào.
 
 Một state:
 
-$
+$$
 HI(t)
 =
 \frac{B_{econ}(t)}
 {B_{shoot}(t)}
-$
+$$
 
 ### 4.17.41. HI onset
 
 Trước reproductive transition:
 
-$
+$$
 HI\approx0
-$
+$$
 
 với crop lấy hạt.
 
@@ -11890,22 +11890,22 @@ với crop lấy hạt.
 
 Một reduced form:
 
-$
+$$
 \frac{dHI}{dt}
 =
 r_{HI}
 F_{stage}
 F_{sink}
 F_{resource}
-$
+$$
 
 ### 4.17.43. HI ceiling
 
-$
+$$
 HI
 \le
 HI_{max,G}
-$
+$$
 
 với \(HI_{max,G}\) genotype-specific.
 
@@ -11913,11 +11913,11 @@ với \(HI_{max,G}\) genotype-specific.
 
 Với xà lách:
 
-$
+$$
 Y_{econ}
 =
 B_{marketable\ leaf}
-$
+$$
 
 nên harvest index cần định nghĩa lại theo mục tiêu thương phẩm.
 
@@ -11925,31 +11925,31 @@ nên harvest index cần định nghĩa lại theo mục tiêu thương phẩm.
 
 Một reproductive success fraction:
 
-$
+$$
 f_{fert}
 =
 \frac{N_{fertilized}}
 {N_{potential}}
-$
+$$
 
 ### 4.17.46. Abortion fraction
 
-$
+$$
 f_{abort}
 =
 \frac{N_{aborted}}
 {N_{set}}
-$
+$$
 
 ### 4.17.47. Final sink number
 
-$
+$$
 N_{final}
 =
 N_{potential}
 f_{fert}
 (1-f_{abort})
-$
+$$
 
 ### 4.17.48. Stress sensitivity windows
 
@@ -11965,13 +11965,13 @@ Cần phân biệt:
 
 Một reduced cumulative stress:
 
-$
+$$
 S_{cum}
 =
 \int
 w_{stage}(t)
 S(t)\,dt
-$
+$$
 
 Trong đó \(w_{stage}\) phải calibration theo crop/process.
 
@@ -12001,13 +12001,13 @@ Sau flowering, stress thường tác động mạnh lên:
 
 ### 4.17.53. Density effect on yield components
 
-$
+$$
 Y_{area}
 =
 D
 \times
 Y_{plant}
-$
+$$
 
 Khi density tăng:
 - sink number per area có thể tăng;
@@ -12018,11 +12018,11 @@ Khi density tăng:
 
 Một empirical relationship:
 
-$
+$$
 W_{unit}
 =
 f(N_{unit})
-$
+$$
 
 thường có negative compensation.
 
@@ -12032,17 +12032,17 @@ Không chỉ xét mean yield.
 
 Có thể dùng:
 
-$
+$$
 CV_Y
 =
 \frac{\sigma_Y}{\mu_Y}
-$
+$$
 
 ### 4.17.56. Environment sensitivity
 
 Một genotype response:
 
-$
+$$
 Y_{g,e}
 =
 \mu
@@ -12054,7 +12054,7 @@ E_e
 (G\times E)_{g,e}
 +
 \epsilon
-$
+$$
 
 ### 4.17.57. G×E
 
@@ -12065,7 +12065,7 @@ Genotype × environment interaction quan trọng khi chuyển parameter giữa:
 
 ### 4.17.58. Yield uncertainty
 
-$
+$$
 Y
 =
 f(
@@ -12074,18 +12074,18 @@ X,
 weather,
 management
 )
-$
+$$
 
 Nên propagate uncertainty thay vì chỉ báo một con số.
 
 ### 4.17.59. Monte Carlo yield
 
-$
+$$
 X^{(k)},
 \theta^{(k)}
 \rightarrow
 Y^{(k)}
-$
+$$
 
 Báo:
 - median;
@@ -12096,21 +12096,21 @@ khi phù hợp.
 
 ### 4.17.60. Yield sensitivity
 
-$
+$$
 S_{\theta_i}
 =
 \frac{\partial Y}
 {\partial\theta_i}
-$
+$$
 
 ### 4.17.61. Elasticity
 
-$
+$$
 E_{\theta_i}
 =
 \frac{\partial Y}{\partial\theta_i}
 \frac{\theta_i}{Y}
-$
+$$
 
 giúp so sánh parameter khác đơn vị.
 
@@ -12118,13 +12118,13 @@ giúp so sánh parameter khác đơn vị.
 
 Một diagnostic:
 
-$
+$$
 \Delta Y_{stress}
 =
 Y_{without\ stress}
 -
 Y_{actual}
-$
+$$
 
 Chỉ có ý nghĩa nếu model causal đủ đáng tin.
 
@@ -12144,7 +12144,7 @@ Yield marketable phụ thuộc thời điểm thu hoạch.
 
 Một objective:
 
-$
+$$
 t_h^*
 =
 \arg\max_t
@@ -12155,7 +12155,7 @@ Price(t)
 -
 Loss(t)
 ]
-$
+$$
 
 ### 4.17.65. Overmaturity
 
@@ -12176,44 +12176,44 @@ Thu hoạch sớm có thể:
 
 ### 4.17.67. Economic yield
 
-$
+$$
 Revenue
 =
 Y_{market}
 P_y
-$
+$$
 
 ### 4.17.68. Gross margin
 
-$
+$$
 GM
 =
 Revenue
 -
 Variable\ Costs
-$
+$$
 
 Không tối ưu input chỉ theo biological yield nếu mục tiêu sản xuất là lợi nhuận.
 
 ### 4.17.69. Marginal response
 
-$
+$$
 MR_i
 =
 \frac{\partial Y}
 {\partial u_i}
-$
+$$
 
 với \(u_i\) là irrigation/fertilizer/density.
 
 ### 4.17.70. Economic optimum
 
-$
+$$
 P_Y
 \frac{\partial Y}{\partial u_i}
 =
 \frac{\partial C}{\partial u_i}
-$
+$$
 
 trong mô hình đơn biến lý tưởng.
 
@@ -12221,7 +12221,7 @@ trong mô hình đơn biến lý tưởng.
 
 Một decomposition:
 
-$
+$$
 Y_{rice}
 =
 Panicles\ m^{-2}
@@ -12231,17 +12231,17 @@ Spikelets\ panicle^{-1}
 Filled\ fraction
 \times
 Grain\ weight
-$
+$$
 
 cần scale factor đơn vị phù hợp.
 
 ### 4.17.72. Lúa: panicle number
 
-$
+$$
 N_{panicle}
 \le
 N_{tiller}
-$
+$$
 
 do không phải mọi tiller đều hữu hiệu.
 
@@ -12256,18 +12256,18 @@ Phụ thuộc:
 
 ### 4.17.74. Lúa: filled-grain fraction
 
-$
+$$
 f_{filled}
 =
 \frac{N_{filled}}
 {N_{spikelet}}
-$
+$$
 
 ### 4.17.75. Lúa: grain filling
 
 Một grain balance:
 
-$
+$$
 \frac{dM_{grain}}{dt}
 =
 F_{photo}
@@ -12275,7 +12275,7 @@ F_{photo}
 F_{stem\ rem}
 -
 R_{grain}
-$
+$$
 
 ### 4.17.76. Lúa: stem NSC
 
@@ -12287,24 +12287,24 @@ Không dùng một tỷ lệ cố định cho mọi giống/mùa vụ.
 
 Heat/cold quanh flowering có thể làm:
 
-$
+$$
 f_{fert}\downarrow
-$
+$$
 
 và giảm sink number trước khi grain filling bắt đầu.
 
 ### 4.17.78. Lúa: Harvest Index
 
-$
+$$
 HI_{rice}
 =
 \frac{Grain\ dry\ mass}
 {Aboveground\ dry\ biomass}
-$
+$$
 
 ### 4.17.79. Ngô: cấu trúc năng suất
 
-$
+$$
 Y_{maize}
 =
 Ears\ m^{-2}
@@ -12312,17 +12312,17 @@ Ears\ m^{-2}
 Kernels\ ear^{-1}
 \times
 Kernel\ weight
-$
+$$
 
 ### 4.17.80. Ngô: ear number
 
-$
+$$
 N_{ear}
 \le
 N_{plant}
 \times
 Ears\ plant^{-1}
-$
+$$
 
 ### 4.17.81. Ngô: kernel set
 
@@ -12334,26 +12334,26 @@ Kernel number phụ thuộc mạnh:
 
 ### 4.17.82. Ngô: ASI
 
-$
+$$
 ASI
 =
 t_{silking}
 -
 t_{anthesis}
-$
+$$
 
 ASI tăng thường là dấu hiệu reproductive stress trong nhiều bối cảnh.
 
 ### 4.17.83. Ngô: kernel growth
 
-$
+$$
 \frac{dm_k}{dt}
 =
 r_{kernel}
 F_T
 F_C
 F_N
-$
+$$
 
 ### 4.17.84. Ngô: post-silking source
 
@@ -12365,13 +12365,13 @@ Nguồn carbon gồm:
 
 Grain N:
 
-$
+$$
 N_{grain}
 =
 N_{post\ uptake}
 +
 N_{remobilized}
-$
+$$
 
 ### 4.17.86. Ngô: stay-green tradeoff
 
@@ -12381,28 +12381,28 @@ Stay-green có thể tăng source duration nhưng nếu remobilization bị hạ
 
 Với xà lách:
 
-$
+$$
 Y_{lettuce}
 =
 Fresh\ marketable\ leaf\ biomass
-$
+$$
 
 thường phù hợp hơn grain-style HI.
 
 ### 4.17.88. Xà lách: fresh mass
 
-$
+$$
 Fresh\ mass
 =
 \frac{Dry\ mass}
 {DMF}
-$
+$$
 
 nếu dry matter fraction được đo phù hợp.
 
 ### 4.17.89. Xà lách: marketable fraction
 
-$
+$$
 f_{market}
 =
 f(
@@ -12413,17 +12413,17 @@ size,
 shape,
 bolting
 )
-$
+$$
 
 ### 4.17.90. Xà lách: leaf number
 
-$
+$$
 Y_{market}
 \approx
 N_{leaf,market}
 \times
 W_{leaf}
-$
+$$
 
 chỉ là decomposition.
 
@@ -12431,9 +12431,9 @@ chỉ là decomposition.
 
 Tipburn làm giảm:
 
-$
+$$
 f_{market}
-$
+$$
 
 dù total biomass có thể cao.
 
@@ -12454,7 +12454,7 @@ Không dùng fresh yield để suy trực tiếp carbon gain.
 
 VECrop nên giữ framework chung:
 
-$
+$$
 Y
 =
 Number
@@ -12462,13 +12462,13 @@ Number
 Unit\ size
 \times
 Marketable\ fraction
-$
+$$
 
 nhưng mapping sinh lý phải crop-specific.
 
 ### 4.17.95. Yield-state vector
 
-$
+$$
 \mathbf Y
 =
 [
@@ -12481,11 +12481,11 @@ Y_{gross},
 f_{market},
 Y_{market}
 ]^T
-$
+$$
 
 ### 4.17.96. Yield dynamics
 
-$
+$$
 \frac{d\mathbf Y}{dt}
 =
 \mathbf f_Y
@@ -12499,7 +12499,7 @@ Temperature,
 Hormone,
 Senescence
 )
-$
+$$
 
 ### 4.17.97. Coupling với 4.5
 
@@ -12589,24 +12589,24 @@ có thể có cơ chế hoàn toàn khác nhau.
 
 Phải kiểm:
 
-$
+$$
 Y_{calc}
 \approx
 N_{unit}
 W_{unit}
-$
+$$
 
 sau quy đổi đơn vị.
 
 ### 4.17.110. Biomass-to-yield balance
 
-$
+$$
 Y_{econ}
 \le
 B_{harvestable}
 \le
 B_{total}
-$
+$$
 
 trừ khi hệ quy đổi fresh/dry mass khác nhau và đã được giải thích.
 
@@ -12620,9 +12620,9 @@ Không được tạo thêm biomass chỉ bằng tăng HI mà không giảm biom
 
 Nếu grain N tăng:
 
-$
+$$
 \Delta N_{grain}
-$
+$$
 
 phải đến từ:
 - new uptake;
@@ -12643,17 +12643,17 @@ Ví dụ drought → low yield phải đi qua:
 
 Có thể tính:
 
-$
+$$
 \Delta Y_{N_{sink}}
 =
 Y(N_{sink}^{ref})-Y(actual)
-$
+$$
 
 và tương tự cho unit weight, nhưng chỉ dùng như diagnostic.
 
 ### 4.17.115. Uncertainty decomposition
 
-$
+$$
 Var(Y)
 =
 Var_{weather}
@@ -12665,7 +12665,7 @@ Var_{measurement}
 Var_{structure}
 +
 Interactions
-$
+$$
 
 ở mức conceptual.
 
@@ -12682,23 +12682,23 @@ $
 
 Không báo:
 
-$
+$$
 Y=8.2\ t\ ha^{-1}
-$
+$$
 
 mà không uncertainty nếu dữ liệu đầu vào bất định.
 
 Nên báo:
 
-$
+$$
 Y_{P50}
-$
+$$
 
 kèm:
 
-$
+$$
 [P10,P90]
-$
+$$
 
 khi phù hợp.
 
@@ -12716,9 +12716,9 @@ Cần phân biệt:
 
 Khi có dữ liệu mới:
 
-$
+$$
 P(Y|\mathcal D_{new})
-$
+$$
 
 nên được cập nhật bằng data assimilation/Bayesian update nếu model hỗ trợ.
 
@@ -12726,27 +12726,27 @@ nên được cập nhật bằng data assimilation/Bayesian update nếu model 
 
 Mô hình không nên cho:
 
-$
+$$
 Y_{econ}
 >
 Cap_{sink}
-$
+$$
 
 hoặc:
 
-$
+$$
 Y_{econ}
 >
 C_{available}\times conversion
-$
+$$
 
 ### 4.17.121. Harvest Index warning
 
 Nếu:
 
-$
+$$
 HI>1
-$
+$$
 
 trong dry-matter definition thông thường, model sai về balance.
 
@@ -12754,9 +12754,9 @@ trong dry-matter definition thông thường, model sai về balance.
 
 Với xà lách:
 
-$
+$$
 HI_{fresh}
-$
+$$
 
 có thể gây hiểu nhầm vì water content chi phối mạnh.
 
@@ -12778,7 +12778,7 @@ Không tối ưu một chỉ tiêu duy nhất nếu mục tiêu thương mại �
 
 Một gross-to-net relation:
 
-$
+$$
 Y_{net}
 =
 Y_{gross}
@@ -12790,7 +12790,7 @@ L_{shatter}
 L_{disease}
 -
 L_{quality}
-$
+$$
 
 ### 4.17.125. Lodging
 
@@ -12804,7 +12804,7 @@ $
 
 Ở cereal:
 
-$
+$$
 Loss_{shatter}
 =
 f(
@@ -12813,25 +12813,25 @@ maturity,
 weather,
 harvest\ delay
 )
-$
+$$
 
 ### 4.17.127. Harvest efficiency
 
-$
+$$
 \eta_h
 =
 \frac{Yield_{collected}}
 {Yield_{standing}}
-$
+$$
 
 ### 4.17.128. Final collected yield
 
-$
+$$
 Y_{collected}
 =
 Y_{standing}
 \eta_h
-$
+$$
 
 ### 4.17.129. Economic yield chain
 
@@ -12853,7 +12853,7 @@ Nếu senescence đã giảm GLAI và source supply, không phạt yield thêm b
 
 4.17 biến trạng thái sinh khối thành năng suất kinh tế:
 
-$
+$$
 Biomass
 \rightarrow
 Yield\ components
@@ -12863,7 +12863,7 @@ Sink\ filling
 Harvest\ index
 \rightarrow
 Marketable\ yield
-$
+$$
 
 ### 4.17.132. Kết luận 4.17
 
@@ -12871,7 +12871,7 @@ VECrop không nên dự báo năng suất bằng một hệ số cuối cùng du
 
 Cấu trúc phù hợp hơn là:
 
-$
+$$
 Yield
 =
 f(
@@ -12884,7 +12884,7 @@ Remobilization,
 Stress\ timing,
 Harvestability
 )
-$
+$$
 
 và mọi thành phần phải liên kết ngược với:
 - phenology;
@@ -12910,7 +12910,7 @@ và mọi thành phần phải liên kết ngược với:
 </div>
 
 ### 4.18.2. State vector toàn cây
-$
+$$
 \mathbf X=
 [\mathbf X_{soil},
 \mathbf X_{root},
@@ -12921,27 +12921,27 @@ $
 \mathbf X_{dev},
 \mathbf X_{biomass},
 \mathbf X_{yield}]^T
-$
+$$
 
 ### 4.18.3. Input vector
-$
+$$
 \mathbf U=
 [Weather,Irrigation,Fertilizer,CO_2,Density,Management]^T
-$
+$$
 
 ### 4.18.4. Phương trình động tổng quát
-$
+$$
 \frac{d\mathbf X}{dt}
 =
 \mathbf F(\mathbf X,\mathbf U,\boldsymbol\theta,t)
-$
+$$
 
 ### 4.18.5. Observation model
-$
+$$
 \mathbf Y_{obs}
 =
 \mathbf H(\mathbf X)+\boldsymbol\epsilon
-$
+$$
 
 ### 4.18.6. Các module lõi
 VECrop whole-plant gồm:
@@ -12961,23 +12961,23 @@ VECrop whole-plant gồm:
 
 ### 4.18.7. Coupling có hướng
 Ví dụ:
-$
+$$
 Soil\ water\rightarrow Root\ uptake\rightarrow\Psi_L\rightarrow g_s\rightarrow A_n
-$
+$$
 
 và:
-$
+$$
 A_n\rightarrow Sucrose\rightarrow Phloem\rightarrow Sink\rightarrow Biomass
-$
+$$
 
 ### 4.18.8. Feedback loop
 Ví dụ:
-$
+$$
 LAI\rightarrow A_{can}\rightarrow Carbon\rightarrow Leaf\ growth\rightarrow LAI
-$
+$$
 
 ### 4.18.9. Root–shoot feedback
-$
+$$
 Root\ growth
 \rightarrow
 Water/Nutrient\ uptake
@@ -12987,10 +12987,10 @@ Shoot\ growth
 Carbon\ supply
 \rightarrow
 Root\ growth
-$
+$$
 
 ### 4.18.10. Source–sink feedback
-$
+$$
 Sink\ demand
 \rightarrow
 Phloem\ export
@@ -12998,72 +12998,72 @@ Phloem\ export
 Leaf\ sugar
 \rightarrow
 Photosynthetic\ regulation
-$
+$$
 
 ### 4.18.11. Water balance vùng rễ
-$
+$$
 P+I-ET-R-D-\Delta S_w=\varepsilon_w
-$
+$$
 
 ### 4.18.12. Plant water balance
-$
+$$
 U_w-E-\frac{dS_{plant}}{dt}
 =
 \varepsilon_{plant,w}
-$
+$$
 
 ### 4.18.13. Water balance error
-$
+$$
 BE_w=
 \frac{|\varepsilon_w|}
 {\max(P+I,\varepsilon)}
-$
+$$
 
 ### 4.18.14. Carbon balance
-$
+$$
 A_C-R_C-L_C-\frac{dM_C}{dt}
 =
 \varepsilon_C
-$
+$$
 
 ### 4.18.15. Carbon closure
-$
+$$
 BE_C=
 \frac{|\varepsilon_C|}
 {\max(A_C,\varepsilon)}
-$
+$$
 
 ### 4.18.16. Nitrogen balance
-$
+$$
 N_{input}+N_{fix}-N_{loss}-N_{harvest}-\Delta N_{system}
 =
 \varepsilon_N
-$
+$$
 
 ### 4.18.17. Phosphorus balance
-$
+$$
 P_{input}-P_{loss}-P_{harvest}-\Delta P_{system}
 =
 \varepsilon_P
-$
+$$
 
 ### 4.18.18. Potassium balance
-$
+$$
 K_{input}-K_{loss}-K_{harvest}-\Delta K_{system}
 =
 \varepsilon_K
-$
+$$
 
 ### 4.18.19. Internal transfer phải triệt tiêu
 Với flux:
-$
+$$
 F_{i\rightarrow j}
-$
+$$
 
 thì trong total-system balance:
-$
+$$
 -F_{i\rightarrow j}+F_{i\rightarrow j}=0
-$
+$$
 
 Remobilization không tạo vật chất mới.
 
@@ -13077,15 +13077,15 @@ Mỗi biến phải có đơn vị chuẩn, ví dụ:
 
 ### 4.18.21. Unit conversion
 Ví dụ:
-$
+$$
 1\ t\ ha^{-1}=0.1\ kg\ m^{-2}
-$
+$$
 
 ### 4.18.22. Dry/fresh mass
 Không trộn:
-$
+$$
 Fresh\ mass\neq Dry\ mass
-$
+$$
 nếu chưa dùng dry-matter fraction.
 
 ### 4.18.23. Timescale hierarchy
@@ -13096,21 +13096,21 @@ nếu chưa dùng dry-matter fraction.
 - phenology: ngày–tuần.
 
 ### 4.18.24. Multi-rate integration
-$
+$$
 \Delta t_{signal}
 <
 \Delta t_{hyd}
 <
 \Delta t_{growth}
-$
+$$
 
 ### 4.18.25. Daily carbon integration
-$
+$$
 A_{day}
 =
 \int_{sunrise}^{sunset}
 A_{can}(t)\,dt
-$
+$$
 
 ### 4.18.26. Solver order
 Một thứ tự thực thi hợp lý:
@@ -13137,35 +13137,35 @@ Nếu coupling mạnh, sequential update có thể sai. Khi đó dùng:
 - operator splitting.
 
 ### 4.18.28. Fixed-point iteration
-$
+$$
 X^{k+1}=F(X^k)
-$
+$$
 
 Dừng khi:
-$
+$$
 \|X^{k+1}-X^k\|<\epsilon
-$
+$$
 
 ### 4.18.29. Relaxation
-$
+$$
 X^{k+1}
 =
 (1-\lambda)X^k+\lambda F(X^k)
-$
+$$
 
 với:
-$
+$$
 0<\lambda\le1
-$
+$$
 
 ### 4.18.30. Positivity
 Bắt buộc:
-$
+$$
 M_i\ge0,\quad B_o\ge0,\quad C_i\ge0,\quad LAI\ge0
-$
+$$
 
 ### 4.18.31. Flux limiter
-$
+$$
 F_{out}^{eff}
 =
 \min
@@ -13173,7 +13173,7 @@ F_{out}^{eff}
 F_{out},
 \frac{M_i}{\Delta t}
 \right)
-$
+$$
 
 để không rút vượt pool.
 
@@ -13200,30 +13200,30 @@ Mỗi module phải khai báo:
 Một state chỉ có một owner.
 
 Ví dụ:
-$
+$$
 LAI
-$
+$$
 chỉ được growth/canopy state quản lý, không có hai giá trị song song.
 
 ### 4.18.35. Algebraic loop
 Ví dụ:
-$
+$$
 g_s\rightarrow E\rightarrow\Psi_L\rightarrow g_s
-$
+$$
 
 phải giải bằng iteration hoặc dynamic coupling.
 
 ### 4.18.36. Carbon–stomatal loop
-$
+$$
 A_n\rightarrow g_s
-$
+$$
 và:
-$
+$$
 g_s\rightarrow C_i\rightarrow A_n
-$
+$$
 
 ### 4.18.37. Nutrient–growth loop
-$
+$$
 Growth
 \rightarrow
 N\ demand
@@ -13233,18 +13233,18 @@ N\ uptake
 N\ status
 \rightarrow
 Growth
-$
+$$
 
 ### 4.18.38. Double-counting audit
 Ví dụ drought đã tác động qua:
-$
+$$
 \Psi\rightarrow g_s\rightarrow A_n
-$
+$$
 
 thì không nhân thêm:
-$
+$$
 Y\times F_{drought}
-$
+$$
 nếu cùng cơ chế đã được tính.
 
 ### 4.18.39. Diagnostic layer
@@ -13276,9 +13276,9 @@ Không gọi:
 là universal constants.
 
 ### 4.18.43. Initial conditions
-$
+$$
 \mathbf X(t_0)=\mathbf X_0
-$
+$$
 
 phải gồm ít nhất:
 - soil water;
@@ -13303,20 +13303,20 @@ Phải xác định rõ:
 - canopy layer.
 
 ### 4.18.46. Per-plant vs per-area
-$
+$$
 B_{area}=D\,B_{plant}
-$
+$$
 
 ### 4.18.47. Layer aggregation
 Soil:
-$
+$$
 U_w=\sum_{k=1}^{n}U_{w,k}
-$
+$$
 
 Canopy:
-$
+$$
 A_{can}=\sum_lA_l
-$
+$$
 
 ### 4.18.48. Numerical residuals
 Mỗi timestep nên lưu:
@@ -13327,9 +13327,9 @@ Mỗi timestep nên lưu:
 - K residual.
 
 ### 4.18.49. Cumulative residual
-$
+$$
 R_{cum}=\sum_t\varepsilon(t)
-$
+$$
 
 ### 4.18.50. Conservation unit tests
 Cần test:
@@ -13349,16 +13349,16 @@ Cần test:
 
 ### 4.18.52. Zero-light test
 Nếu:
-$
+$$
 I=0
-$
+$$
 thì net photosynthetic C gain không được dương sau respiration.
 
 ### 4.18.53. Zero-root test
 Nếu:
-$
+$$
 A_{root}=0
-$
+$$
 thì root uptake phải gần 0.
 
 ### 4.18.54. No-sink test
@@ -13368,19 +13368,19 @@ Nếu sink demand = 0:
 
 ### 4.18.55. Carbon sanity check
 Không cho:
-$
+$$
 Growth+Respiration
 >
 Assimilation+Reserve\ mobilization
-$
+$$
 
 nếu không có nguồn C khác.
 
 ### 4.18.56. Yield sanity check
 Không cho:
-$
+$$
 Y_{dry}>B_{total,dry}
-$
+$$
 
 ### 4.18.57. Mechanistic–reduced–diagnostic hierarchy
 Ba cấp:
@@ -13397,7 +13397,7 @@ Core chung, config riêng cho:
 - lettuce.
 
 ### 4.18.59. Rice coupling
-$
+$$
 Flooding/AWD
 \rightarrow
 Eh/O_2
@@ -13411,10 +13411,10 @@ Tillering
 Panicle
 \rightarrow
 Grain
-$
+$$
 
 ### 4.18.60. Maize coupling
-$
+$$
 Soil\ water
 \rightarrow
 Root
@@ -13426,10 +13426,10 @@ C4\ photosynthesis
 ASI/Kernel\ set
 \rightarrow
 Yield
-$
+$$
 
 ### 4.18.61. Lettuce coupling
-$
+$$
 Rootzone\ EC/pH/T/O_2
 \rightarrow
 Root
@@ -13441,7 +13441,7 @@ Leaf\ expansion
 Tipburn/Marketability
 \rightarrow
 Fresh\ yield
-$
+$$
 
 ### 4.18.62. Balance table
 Mỗi run nên báo:
@@ -13456,16 +13456,16 @@ Mỗi run nên báo:
 
 ### 4.18.63. Model-close condition
 Simulation chỉ được xem là “đóng” khi:
-$
+$$
 |BE_w|,\ |BE_C|,\ |BE_N|,\ |BE_P|,\ |BE_K|
-$
+$$
 đều trong tolerance đã định nghĩa.
 
 ### 4.18.64. Conservation-first principle
 Trong VECrop:
-$
+$$
 Conservation > Fit\ đẹp
-$
+$$
 
 Một model fit yield tốt nhưng vi phạm mass balance không đạt chuẩn cơ chế.
 
@@ -13498,7 +13498,7 @@ Calibration dataset và validation dataset phải tách.
 
 ### 4.18.69. Data assimilation
 Một Kalman-type update:
-$
+$$
 X_t^{post}
 =
 X_t^{prior}
@@ -13507,13 +13507,13 @@ K_t
 (
 Y_t-HX_t^{prior}
 )
-$
+$$
 
 ### 4.18.70. Proxy caution
 Ví dụ:
-$
+$$
 SPAD\neq Leaf\ N
-$
+$$
 dù có correlation.
 
 ### 4.18.71. Structural uncertainty
@@ -13524,7 +13524,7 @@ Sai số có thể đến từ:
 - parameter uncertainty.
 
 ### 4.18.72. Model discrepancy
-$
+$$
 Y_{obs}
 =
 Y_{model}
@@ -13532,25 +13532,25 @@ Y_{model}
 \delta_{model}
 +
 \epsilon
-$
+$$
 
 ### 4.18.73. Ablation test
 Bỏ module \(k\):
-$
+$$
 \Delta E_k
 =
 E_{without\ k}
 -
 E_{full}
-$
+$$
 
 ### 4.18.74. Equifinality
 Có thể:
-$
+$$
 F(\theta^{(1)})
 \approx
 F(\theta^{(2)})
-$
+$$
 dù internal states khác nhau.
 
 ### 4.18.75. Multi-variable calibration
@@ -13570,18 +13570,18 @@ Cần kiểm:
 
 ### 4.18.77. Non-additive stress
 Không mặc định:
-$
+$$
 Effect_{A+B}
 =
 Effect_A+Effect_B
-$
+$$
 
 ### 4.18.78. Recovery và hysteresis
-$
+$$
 Response_{stress}
 \neq
 Response_{recovery}
-$
+$$
 tại cùng environmental state.
 
 ### 4.18.79. Domain of validity
@@ -13634,7 +13634,7 @@ VECrop nên cho phép core nhẹ:
 - module bật/tắt theo dữ liệu.
 
 ### 4.18.85. Final whole-plant formulation
-$
+$$
 \boxed{
 \frac{d\mathbf X}{dt}
 =
@@ -13644,27 +13644,27 @@ $
 \boldsymbol\theta
 )
 }
-$
+$$
 
 subject to:
-$
+$$
 \boxed{Mass\ conservation}
-$
-$
+$$
+$$
 \boxed{Dimensional\ consistency}
-$
-$
+$$
+$$
 \boxed{Biological\ bounds}
-$
-$
+$$
+$$
 \boxed{Validated\ coupling}
-$
+$$
 
 ### 4.18.86. Kết luận 4.18
 4.18 biến VECrop từ một tập phương trình thành **một hệ mô hình whole-plant tích hợp**.
 
 Chuỗi cuối phải giữ:
-$
+$$
 Environment
 \rightarrow
 Fluxes
@@ -13674,7 +13674,7 @@ States
 Growth
 \rightarrow
 Yield
-$
+$$
 
 và mọi feedback phải được giải có kiểm soát.
 
@@ -13701,41 +13701,41 @@ Sau khi VECrop đã được đóng vòng ở 4.18, bước tiếp theo là xác
 
 ### 4.19.2. Phân biệt sensitivity và uncertainty
 Sensitivity hỏi:
-$
+$$
 Output\ thay\ đổi\ bao\ nhiêu\ khi\ input/parameter\ thay\ đổi?
-$
+$$
 
 Uncertainty hỏi:
-$
+$$
 Output\ bất\ định\ bao\ nhiêu\ khi\ input/parameter/model\ bất\ định?
-$
+$$
 
 ### 4.19.3. Local sensitivity
 Một local sensitivity:
-$
+$$
 S_i
 =
 \frac{\partial Y}
 {\partial \theta_i}
-$
+$$
 
 ### 4.19.4. Normalized sensitivity
-$
+$$
 S_i^*
 =
 \frac{\theta_i}{Y}
 \frac{\partial Y}{\partial\theta_i}
-$
+$$
 
 Giúp so sánh parameter khác đơn vị.
 
 ### 4.19.5. Finite-difference sensitivity
-$
+$$
 S_i
 \approx
 \frac{Y(\theta_i+\Delta\theta_i)-Y(\theta_i-\Delta\theta_i)}
 {2\Delta\theta_i}
-$
+$$
 
 ### 4.19.6. Step-size caution
 Nếu \(\Delta\theta_i\) quá nhỏ:
@@ -13760,12 +13760,12 @@ Morris phù hợp để:
 - giảm chiều trước Sobol/calibration.
 
 ### 4.19.9. Elementary effect
-$
+$$
 EE_i
 =
 \frac{Y(\boldsymbol\theta+\Delta e_i)-Y(\boldsymbol\theta)}
 {\Delta}
-$
+$$
 
 ### 4.19.10. Morris statistics
 Hai chỉ số thường dùng:
@@ -13773,7 +13773,7 @@ Hai chỉ số thường dùng:
 - \(\sigma\): nonlinear/interactions.
 
 ### 4.19.11. Sobol decomposition
-$
+$$
 Var(Y)
 =
 \sum_iV_i
@@ -13781,29 +13781,29 @@ Var(Y)
 \sum_{i<j}V_{ij}
 +
 \cdots
-$
+$$
 
 ### 4.19.12. First-order Sobol index
-$
+$$
 S_i
 =
 \frac{V_i}{Var(Y)}
-$
+$$
 
 ### 4.19.13. Total Sobol index
-$
+$$
 S_{T_i}
 =
 1-
 \frac{Var_{\theta_{\sim i}}[E(Y|\theta_{\sim i})]}
 {Var(Y)}
-$
+$$
 
 ### 4.19.14. Interaction importance
 Nếu:
-$
+$$
 S_{T_i}\gg S_i
-$
+$$
 
 thì parameter \(i\) có interaction đáng kể với parameter khác.
 
@@ -13816,9 +13816,9 @@ Một parameter có thể:
 Do đó sensitivity phải output-specific.
 
 ### 4.19.16. Sensitivity theo stage
-$
+$$
 S_i=S_i(t)
-$
+$$
 
 Parameter có thể quan trọng ở:
 - vegetative stage;
@@ -13829,9 +13829,9 @@ khác nhau.
 
 ### 4.19.17. Sensitivity map
 VECrop nên có:
-$
+$$
 S_{i,j}(t)
-$
+$$
 
 với:
 - \(i\): parameter;
@@ -13850,22 +13850,22 @@ với dữ liệu lý tưởng, parameter có thể xác định duy nhất hay 
 
 ### 4.19.20. Parameter correlation
 Nếu:
-$
+$$
 Corr(\theta_i,\theta_j)\approx\pm1
-$
+$$
 
 thì hai parameter có thể bù trừ nhau.
 
 ### 4.19.21. Equifinality
 Nhiều parameter set:
-$
+$$
 \theta^{(1)},\theta^{(2)},\ldots
-$
+$$
 
 có thể cho:
-$
+$$
 Y^{(1)}\approx Y^{(2)}
-$
+$$
 
 nhưng internal states khác.
 
@@ -13879,31 +13879,31 @@ Một cách kiểm identifiability:
 Profile likelihood phẳng cho thấy parameter yếu nhận dạng.
 
 ### 4.19.24. Fisher information
-$
+$$
 F
 =
 J^TWJ
-$
+$$
 
 với \(J\) là sensitivity/Jacobian matrix.
 
 ### 4.19.25. Ill-conditioning
 Nếu:
-$
+$$
 cond(F)\gg1
-$
+$$
 
 thì hệ parameter có thể poorly identifiable.
 
 ### 4.19.26. Parameter scaling
 Trước optimization nên scale parameter:
 
-$
+$$
 \theta_i^*
 =
 \frac{\theta_i-\theta_{min}}
 {\theta_{max}-\theta_{min}}
-$
+$$
 
 ### 4.19.27. Parameter bounds
 Bounds phải đến từ:
@@ -13916,58 +13916,58 @@ Không dùng bounds tùy ý chỉ để optimizer hội tụ.
 
 ### 4.19.28. Prior distribution
 Trong Bayesian calibration:
-$
+$$
 \theta_i\sim p(\theta_i)
-$
+$$
 
 Prior phải có provenance.
 
 ### 4.19.29. Likelihood
-$
+$$
 p(D|\theta)
-$
+$$
 
 phản ánh xác suất dữ liệu quan sát khi biết parameter.
 
 ### 4.19.30. Posterior
-$
+$$
 p(\theta|D)
 \propto
 p(D|\theta)p(\theta)
-$
+$$
 
 ### 4.19.31. Posterior predictive
-$
+$$
 p(Y_{new}|D)
 =
 \int
 p(Y_{new}|\theta)
 p(\theta|D)
 \,d\theta
-$
+$$
 
 ### 4.19.32. Measurement error
 Observation model:
-$
+$$
 Y_{obs}
 =
 Y_{true}
 +
 \epsilon_{meas}
-$
+$$
 
 ### 4.19.33. Process noise
 Dynamic model:
-$
+$$
 X_{t+1}
 =
 f(X_t,U_t,\theta)
 +
 \omega_t
-$
+$$
 
 ### 4.19.34. Model structural error
-$
+$$
 Y_{obs}
 =
 Y_{model}
@@ -13975,7 +13975,7 @@ Y_{model}
 \delta_{structure}
 +
 \epsilon
-$
+$$
 
 ### 4.19.35. Ba nguồn bất định chính
 Cần tách:
@@ -14007,11 +14007,11 @@ Ví dụ:
 - root uptake function khác nhau.
 
 ### 4.19.39. Monte Carlo propagation
-$
+$$
 \theta^{(k)},U^{(k)}
 \rightarrow
 Y^{(k)}
-$
+$$
 
 ### 4.19.40. Output distribution
 Báo:
@@ -14022,9 +14022,9 @@ Báo:
 
 ### 4.19.41. P10–P50–P90
 Một forecast nên có:
-$
+$$
 P10,\ P50,\ P90
-$
+$$
 
 khi uncertainty đáng kể.
 
@@ -14035,7 +14035,7 @@ Không dùng lẫn thuật ngữ.
 
 ### 4.19.43. Calibration objective
 Một weighted loss:
-$
+$$
 J(\theta)
 =
 \sum_j
@@ -14044,7 +14044,7 @@ w_j
 \left[
 Y_{j,obs}(t)-Y_{j,sim}(t)
 \right]^2
-$
+$$
 
 ### 4.19.44. Multi-variable calibration
 Nên fit đồng thời:
@@ -14063,12 +14063,12 @@ Final yield không đủ để nhận dạng:
 - nutrient uptake.
 
 ### 4.19.46. Weighted residual
-$
+$$
 r_{j,t}
 =
 \frac{Y_{obs}-Y_{sim}}
 {\sigma_{j,t}}
-$
+$$
 
 ### 4.19.47. Heteroscedasticity
 Nếu measurement error tăng theo magnitude, không nên dùng cùng variance cho mọi điểm.
@@ -14102,9 +14102,9 @@ Parameter cultivar-specific phải được kiểm riêng.
 
 ### 4.19.54. Extrapolation test
 Nếu model ra ngoài:
-$
+$$
 \mathcal D_{cal}
-$
+$$
 
 thì cần flag extrapolation.
 
@@ -14119,7 +14119,7 @@ Có thể dùng:
 - NSE khi phù hợp.
 
 ### 4.19.56. RMSE
-$
+$$
 RMSE
 =
 \sqrt{
@@ -14127,25 +14127,25 @@ RMSE
 \sum_i
 (Y_i-\hat Y_i)^2
 }
-$
+$$
 
 ### 4.19.57. MAE
-$
+$$
 MAE
 =
 \frac1n
 \sum_i
 |Y_i-\hat Y_i|
-$
+$$
 
 ### 4.19.58. Bias
-$
+$$
 Bias
 =
 \frac1n
 \sum_i
 (\hat Y_i-Y_i)
-$
+$$
 
 ### 4.19.59. R² caution
 High \(R^2\) không đảm bảo:
@@ -14179,7 +14179,7 @@ Có thể tách:
 ### 4.19.64. Balance-aware calibration
 Loss nên phạt vi phạm conservation:
 
-$
+$$
 J_{total}
 =
 J_{data}
@@ -14189,17 +14189,17 @@ J_{data}
 \lambda_CBE_C^2
 +
 \lambda_NBE_N^2
-$
+$$
 
 ### 4.19.65. Không “fit đẹp” bằng phá conservation
 Nếu tăng fit nhưng mass balance xấu hơn, model không đạt chuẩn VECrop.
 
 ### 4.19.66. Regularization
-$
+$$
 J_{reg}
 =
 J+\lambda\|\theta\|_2^2
-$
+$$
 
 hoặc sparsity penalty nếu phù hợp.
 
@@ -14228,13 +14228,13 @@ Một module mới nhưng không làm giảm error hoặc tăng hiểu biết c�
 
 ### 4.19.72. Ablation
 Bỏ module \(k\):
-$
+$$
 \Delta E_k
 =
 E_{without\ k}
 -
 E_{full}
-$
+$$
 
 ### 4.19.73. Module identifiability
 Một module có thể đúng về sinh học nhưng không nhận dạng được từ dataset hiện tại.
@@ -14250,9 +14250,9 @@ Sensitivity/identifiability nên hướng dẫn thiết kế thí nghiệm.
 
 ### 4.19.77. Optimal measurement timing
 Đo vào thời điểm:
-$
+$$
 |S_i(t)|
-$
+$$
 cao có thể tăng khả năng nhận dạng.
 
 ### 4.19.78. Optimal variable choice
@@ -14311,14 +14311,14 @@ Có thể tách:
 - site parameters.
 
 ### 4.19.86. Hierarchical Bayesian form
-$
+$$
 \theta_{cultivar}
 \sim
 \mathcal N(
 \mu_{crop},
 \sigma_{crop}^2
 )
-$
+$$
 
 ### 4.19.87. Partial pooling
 Giúp tránh:
@@ -14332,7 +14332,7 @@ Posterior correlation cao là dấu hiệu:
 
 ### 4.19.89. Prediction interval decomposition
 Có thể tách:
-$
+$$
 Var(Y)
 =
 Var_{input}
@@ -14344,7 +14344,7 @@ Var_{structure}
 Var_{noise}
 +
 Interactions
-$
+$$
 
 ### 4.19.90. Scenario uncertainty
 Scenario management nên báo cả:
@@ -14359,19 +14359,19 @@ Một management option tốt không chỉ có mean yield cao mà còn:
 - ổn định qua weather scenarios.
 
 ### 4.19.92. Robust objective
-$
+$$
 J_{robust}
 =
 E[Y]
 -
 \lambda Var(Y)
-$
+$$
 
 ### 4.19.93. Probabilistic threshold
 Ví dụ:
-$
+$$
 P(Y>Y_{target})
-$
+$$
 
 hữu ích hơn chỉ báo mean yield.
 
@@ -14395,9 +14395,9 @@ Cùng input + parameter + version phải tái tạo cùng output trong determini
 
 ### 4.19.97. Stochastic reproducibility
 Nếu có stochastic component phải lưu:
-$
+$$
 Random\ seed
-$
+$$
 
 ### 4.19.98. Version lock
 Khi so model:
@@ -14426,21 +14426,21 @@ Parameter cần nằm trong miền phù hợp loài/organ/stage.
 
 ### 4.19.103. Constraint optimization
 Có thể dùng:
-$
+$$
 \theta_{min}
 \le
 \theta
 \le
 \theta_{max}
-$
+$$
 
 và thêm conservation constraints.
 
 ### 4.19.104. Multi-objective calibration
 Có thể tối ưu:
-$
+$$
 [J_{water},J_{biomass},J_{yield},J_{nutrient}]
-$
+$$
 
 thay vì gộp sớm thành một scalar.
 
@@ -14470,7 +14470,7 @@ Observation bất thường cần:
 
 ### 4.19.110. Uncertainty map
 Output cuối có thể gồm:
-$
+$$
 \mathbf U_Y(t)
 =
 [
@@ -14478,11 +14478,11 @@ P10(t),
 P50(t),
 P90(t)
 ]
-$
+$$
 
 ### 4.19.111. Confidence map
 Một diagnostic:
-$
+$$
 C(t)
 =
 f(
@@ -14491,7 +14491,7 @@ distance\ to\ calibration\ domain,
 residual,
 balance\ quality
 )
-$
+$$
 
 ### 4.19.112. Confidence không phải probability đúng
 Confidence score là diagnostic nội bộ, không được diễn giải như xác suất mô hình đúng nếu không có nền tảng thống kê tương ứng.
@@ -14544,19 +14544,19 @@ Không đồng nhất hai khái niệm.
 
 ### 4.19.121. Online updating
 Có thể:
-$
+$$
 X_t^{post}
 =
 Update(X_t^{prior},Y_t)
-$
+$$
 
 trong mùa vụ.
 
 ### 4.19.122. Parameter drift
 Nếu parameter thay đổi thật theo stage:
-$
+$$
 \theta=\theta(t)
-$
+$$
 thì không nên ép constant rồi giải thích bằng noise.
 
 ### 4.19.123. Time-varying parameter caution
@@ -14573,9 +14573,9 @@ AIC/BIC hữu ích cho model thống kê phù hợp điều kiện, nhưng khôn
 
 ### 4.19.126. Predictive validation
 Ưu tiên:
-$
+$$
 Performance_{unseen\ data}
-$
+$$
 
 hơn fit trên calibration data.
 
@@ -14600,12 +14600,12 @@ Cần re-check toàn hệ sau khi ghép.
 
 ### 4.19.130. Joint calibration
 Joint calibration:
-$
+$$
 \hat\theta
 =
 \arg\min_\theta
 J_{whole-system}
-$
+$$
 
 có thể tốt hơn nhưng đòi hỏi dữ liệu và computation lớn hơn.
 
@@ -14637,18 +14637,18 @@ Lưu:
 
 ### 4.19.136. Log-scale parameter
 Parameter trải nhiều bậc độ lớn nên sampling theo:
-$
+$$
 \log\theta
-$
+$$
 có thể phù hợp hơn linear scale.
 
 ### 4.19.137. Parameter transformation
 Ví dụ positivity:
-$
+$$
 \theta
 =
 e^\eta
-$
+$$
 
 giúp optimizer không tạo parameter âm.
 
@@ -14656,13 +14656,13 @@ giúp optimizer không tạo parameter âm.
 Không chỉ parameter.
 
 Ví dụ:
-$
+$$
 \theta_{soil,0}
-$
+$$
 và:
-$
+$$
 B_0
-$
+$$
 cũng có bất định.
 
 ### 4.19.139. Weather uncertainty
@@ -14689,7 +14689,7 @@ Chỉ dùng khi likelihood/model setup phù hợp.
 
 ### 4.19.145. Diagnostic outputs
 4.19 nên xuất:
-$
+$$
 \mathbf D_{unc}
 =
 [
@@ -14699,7 +14699,7 @@ Parameter\ uncertainty,
 Prediction\ interval,
 Extrapolation\ flag
 ]^T
-$
+$$
 
 ### 4.19.146. Parameter report
 Mỗi parameter cuối cần:
@@ -14763,9 +14763,9 @@ Calibration nên giữ:
 
 ### 4.19.155. Uncertainty-aware decision
 Một recommendation chỉ nên phát nếu:
-$
+$$
 P(Benefit>0)
-$
+$$
 đủ cao theo threshold đã định trước.
 
 ### 4.19.156. Risk-aware recommendation
@@ -14836,26 +14836,26 @@ Nếu uncertainty lớn:
 
 ### 4.19.165. Precision reporting
 Không báo:
-$
+$$
 Y=8.23741\ t\ ha^{-1}
-$
+$$
 nếu uncertainty ±1 t ha\(^{-1}\).
 
 ### 4.19.166. Final uncertainty principle
 Một dự báo:
-$
+$$
 \hat Y
-$
+$$
 không đầy đủ nếu thiếu:
-$
+$$
 Uncertainty(\hat Y)
-$
+$$
 
 ### 4.19.167. Final identifiability principle
 Một parameter:
-$
+$$
 \hat\theta
-$
+$$
 không nên công bố như “đã xác định” nếu profile/posterior còn rộng.
 
 ### 4.19.168. Final validation principle
@@ -14878,7 +14878,7 @@ Một mô hình whole-plant chỉ đáng tin khi không chỉ fit tốt mà còn
 - extrapolation được flag.
 
 VECrop vì vậy phải coi:
-$
+$$
 Prediction
 =
 Estimate
@@ -14886,7 +14886,7 @@ Estimate
 Uncertainty
 +
 Validity\ domain
-$
+$$
 
 chứ không chỉ là một giá trị điểm.
 
@@ -14903,7 +14903,7 @@ VECrop không nên tạo một “siêu cây trồng trung bình”.
 
 Thay vào đó:
 
-$
+$$
 Core\ engine
 +
 Crop\ configuration
@@ -14913,7 +14913,7 @@ Cultivar\ parameters
 Management
 =
 Simulation
-$
+$$
 
 ### 4.20.2. Phân nhóm theo kiến trúc sinh lý và cơ quan thu hoạch
 
@@ -14951,7 +14951,7 @@ Mỗi crop configuration tối thiểu phải qua:
 
 ### 4.20.4. Bộ biến tối thiểu
 
-$
+$$
 \mathbf Z_{min}
 =
 [
@@ -14963,11 +14963,11 @@ Water,
 N,
 Yield
 ]^T
-$
+$$
 
 ### 4.20.5. Bộ biến nâng cao
 
-$
+$$
 \mathbf Z_{adv}
 =
 [
@@ -14983,7 +14983,7 @@ Hormone,
 Senescence,
 Quality
 ]^T
-$
+$$
 
 ### 4.20.6. Chuẩn dữ liệu cây trồng
 
@@ -15016,13 +15016,13 @@ Không dùng FvCB C3 nguyên xi cho C4.
 
 ### 4.20.9. Cấu hình cơ quan kinh tế
 
-$
+$$
 Harvest\ organ
 \in
 \{
 grain,leaf,fruit,root,tuber,stem,fiber,seed,flower,latex,biomass
 \}
-$
+$$
 
 ### 4.20.10. Cấu hình vòng đời
 
@@ -15082,7 +15082,7 @@ Bao gồm điển hình:
 
 ### 4.20.16. Ngũ cốc – yield identity
 
-$
+$$
 Y
 =
 Heads/Panicles/Ears\ area^{-1}
@@ -15090,7 +15090,7 @@ Heads/Panicles/Ears\ area^{-1}
 Grains\ unit^{-1}
 \times
 Grain\ weight
-$
+$$
 
 ### 4.20.17. Ngũ cốc – test bắt buộc
 
@@ -15185,7 +15185,7 @@ Bao gồm:
 
 Cần thêm biological N fixation:
 
-$
+$$
 N_{fix}
 =
 f(
@@ -15196,15 +15196,15 @@ N_{soil},
 T,
 Water
 )
-$
+$$
 
 ### 4.20.27. Carbon cost của fixation
 
-$
+$$
 C_{fix}
 >
 0
-$
+$$
 
 Không coi N fixation là miễn phí.
 
@@ -15255,13 +15255,13 @@ Bao gồm:
 
 ### 4.20.33. Oil yield
 
-$
+$$
 Oil\ yield
 =
 Seed/Fruit\ yield
 \times
 Oil\ fraction
-$
+$$
 
 ### 4.20.34. Sunflower
 
@@ -15312,7 +15312,7 @@ Bao gồm:
 
 ### 4.20.39. Storage-organ allocation
 
-$
+$$
 a_{storage}
 =
 f(
@@ -15322,7 +15322,7 @@ Carbon,
 Hormone,
 Temperature
 )
-$
+$$
 
 ### 4.20.40. Potato
 
@@ -15380,11 +15380,11 @@ Bao gồm:
 
 ### 4.20.46. Rau lá – yield definition
 
-$
+$$
 Y_{market}
 =
 Fresh\ marketable\ shoot
-$
+$$
 
 ### 4.20.47. Rau lá – quality constraints
 
@@ -15444,7 +15444,7 @@ Bao gồm:
 
 ### 4.20.53. Fruit-crop yield identity
 
-$
+$$
 Y
 =
 Fruit\ number
@@ -15452,7 +15452,7 @@ Fruit\ number
 Mean\ fruit\ weight
 \times
 Marketable\ fraction
-$
+$$
 
 ### 4.20.54. Tomato
 
@@ -15530,32 +15530,32 @@ Bao gồm:
 
 Với cây lâu năm:
 
-$
+$$
 X_{year+1,0}
 =
 f(X_{year,end})
-$
+$$
 
 Không reset biomass về 0 mỗi vụ.
 
 ### 4.20.62. Reserve carryover
 
-$
+$$
 Reserve_{next}
 =
 Reserve_{end}
 -
 Dormancy/maintenance\ cost
-$
+$$
 
 ### 4.20.63. Alternate bearing
 
 Một số cây có:
-$
+$$
 Yield_t
 \leftrightarrow
 Flower\ induction_{t+1}
-$
+$$
 
 cần memory qua năm.
 
@@ -15662,13 +15662,13 @@ Bao gồm:
 
 ### 4.20.75. Sugar yield
 
-$
+$$
 Sugar\ yield
 =
 Biomass_{harvest}
 \times
 Sugar\ concentration
-$
+$$
 
 ### 4.20.76. Sugarcane
 
@@ -15698,7 +15698,7 @@ Bao gồm:
 
 ### 4.20.79. Fiber yield
 
-$
+$$
 Fiber\ yield
 =
 Harvested\ biomass
@@ -15706,7 +15706,7 @@ Harvested\ biomass
 Fiber\ fraction
 \times
 Quality\ factor
-$
+$$
 
 ### 4.20.80. Cotton
 
@@ -15812,11 +15812,11 @@ Bao gồm:
 
 ### 4.20.91. Forage yield
 
-$
+$$
 Y_{forage}
 =
 Harvestable\ biomass
-$
+$$
 
 nhưng quality cần:
 - crude protein;
@@ -15828,13 +15828,13 @@ nhưng quality cần:
 
 Sau mỗi cắt:
 
-$
+$$
 B_{shoot}^{+}
 =
 B_{shoot}^{-}
 -
 Harvest
-$
+$$
 
 và regrowth dùng reserve/root state còn lại.
 
@@ -15930,13 +15930,13 @@ Bao gồm:
 ### 4.20.102. Flower marketable yield
 
 Có thể là:
-$
+$$
 Y_{flower}
 =
 Number_{marketable\ stems}
 \times
 Quality
-$
+$$
 
 ### 4.20.103. Flower quality
 
@@ -15961,13 +15961,13 @@ Bao gồm:
 
 ### 4.20.106. Biomass objective
 
-$
+$$
 Y_{bioenergy}
 =
 Dry\ biomass
 \times
 Energy/Conversion\ quality
-$
+$$
 
 ### 4.20.107. Nhà kính
 
@@ -15982,15 +15982,15 @@ Cần thêm:
 ### 4.20.108. Hydroponics
 
 State vùng rễ:
-$
+$$
 [
 EC,pH,T_{solution},DO,N,P,K,Ca,Mg,Na,Cl
 ]
-$
+$$
 
 ### 4.20.109. Nutrient solution balance
 
-$
+$$
 \frac{dM_{i,tank}}{dt}
 =
 Input_i
@@ -16000,7 +16000,7 @@ Uptake_i
 Drain_i
 +
 Return_i
-$
+$$
 
 ### 4.20.110. Greenhouse fruit crops
 
@@ -16053,9 +16053,9 @@ Cần:
 Ngoài rubber có thể có crop sản xuất latex/resin.
 
 Output phải là:
-$
+$$
 Flow_{latex/resin}
-$
+$$
 chứ không chỉ biomass.
 
 ### 4.20.116. Cây gia vị lấy hạt/quả
@@ -16074,7 +16074,7 @@ Objective có thể gồm:
 ### 4.20.117. Crop quality module
 
 Quality state tổng quát:
-$
+$$
 \mathbf Q_c
 =
 [
@@ -16088,16 +16088,16 @@ Color,
 Firmness,
 Defect
 ]^T
-$
+$$
 
 ### 4.20.118. Marketability module
 
-$
+$$
 Y_{market}
 =
 Y_{gross}
 f_{market}
-$
+$$
 
 ### 4.20.119. Marketability không phổ quát
 
@@ -16110,21 +16110,21 @@ Tiêu chí khác nhau theo:
 ### 4.20.120. Multi-harvest crops
 
 Với tomato, cucumber, pepper, tea, coffee:
-$
+$$
 Y_{season}
 =
 \sum_{h=1}^{n}
 Y_h
-$
+$$
 
 ### 4.20.121. Perennial harvest cycles
 
 Cây lâu năm cần:
-$
+$$
 State_{cycle+1}
 =
 f(State_{cycle},Harvest,Stress)
-$
+$$
 
 ### 4.20.122. Ratoon crops
 
@@ -16143,13 +16143,13 @@ phải có parameter tương tác riêng nếu mô hình sâu.
 
 ### 4.20.124. Rootstock–scion coupling
 
-$
+$$
 Hydraulics_{rootstock}
 \rightarrow
 Scion\ water/nutrient
 \rightarrow
 Growth/Yield
-$
+$$
 
 ### 4.20.125. Pollination module
 
@@ -16160,7 +16160,7 @@ Cần cho:
 
 ### 4.20.126. Pollination success
 
-$
+$$
 f_{poll}
 =
 f(
@@ -16170,29 +16170,29 @@ Humidity,
 Pollinator,
 Wind
 )
-$
+$$
 
 ### 4.20.127. Fruit set
 
-$
+$$
 N_{fruit,set}
 =
 N_{flower}
 f_{poll}
 f_{fert}
 (1-f_{abort})
-$
+$$
 
 ### 4.20.128. Thinning
 
 Management:
-$
+$$
 N_{fruit}^{+}
 =
 N_{fruit}^{-}
 -
 N_{thinned}
-$
+$$
 
 ### 4.20.129. Pruning
 
@@ -16214,13 +16214,13 @@ Cần ảnh hưởng tới light interception.
 
 ### 4.20.131. Planting density
 
-$
+$$
 Y_{area}
 =
 Density
 \times
 Y_{plant}
-$
+$$
 
 nhưng competition phải được mô hình hóa.
 
@@ -16237,7 +16237,7 @@ Cần:
 
 ### 4.20.133. Mixed canopy radiation
 
-$
+$$
 I_k
 =
 f(
@@ -16247,7 +16247,7 @@ height_A,
 height_B,
 leaf\ angle
 )
-$
+$$
 
 ### 4.20.134. Agroforestry
 
@@ -16340,18 +16340,18 @@ Không coi là essential nutrient universal cho mọi crop.
 ### 4.20.146. Quality vs quantity
 
 Một crop model thương mại cần:
-$
+$$
 Objective
 =
 f(Yield,Quality,Marketability)
-$
+$$
 
 ### 4.20.147. Disease/pest placeholder
 
 Chương 4 chỉ nên để interface:
-$
+$$
 Damage_{biotic}(t)
-$
+$$
 
 không giả mô hình sâu nếu chưa có epidemiology module.
 
@@ -16414,7 +16414,7 @@ Postharvest physiology chỉ nối qua output:
 ### 4.20.155. Crop configuration schema
 
 Mỗi crop cần:
-$
+$$
 Config=
 \{
 Photosynthesis,
@@ -16425,21 +16425,21 @@ Harvest,
 Quality,
 Stress
 \}
-$
+$$
 
 ### 4.20.156. Cultivar overrides
 
-$
+$$
 \theta_{cultivar}
 =
 \theta_{crop}
 +
 \Delta\theta_{cultivar}
-$
+$$
 
 ### 4.20.157. Site overrides
 
-$
+$$
 \theta_{site}
 =
 [
@@ -16447,7 +16447,7 @@ soil,
 weather,
 management
 ]
-$
+$$
 
 ### 4.20.158. Validation hierarchy đa cây
 
@@ -16582,19 +16582,19 @@ Ví dụ:
 Mỗi crop phải có identity phù hợp.
 
 Ví dụ cereal:
-$
+$$
 Y=N_{grain}W_{grain}
-$
+$$
 
 fruit crop:
-$
+$$
 Y=N_{fruit}W_{fruit}
-$
+$$
 
 leaf crop:
-$
+$$
 Y=B_{marketable\ leaf}
-$
+$$
 
 ### 4.20.174. Harvest index test
 
@@ -16610,20 +16610,20 @@ Quality output phải nhất quán với:
 ### 4.20.176. Economic consistency test
 
 Nếu model dùng recommendation:
-$
+$$
 Profit
 =
 Revenue-Cost
-$
+$$
 
 không chỉ tối đa biological yield.
 
 ### 4.20.177. Marketability consistency
 
 Một crop có total biomass cao vẫn có thể:
-$
+$$
 Y_{market}\ll Y_{gross}
-$
+$$
 
 ### 4.20.178. Perennial carryover test
 
@@ -16735,20 +16735,20 @@ Ví dụ:
 
 ### 4.20.191. Không dùng yield chung cho mọi crop
 
-$
+$$
 Yield_{crop}
 =
 f(Harvest\ organ,Market\ definition)
-$
+$$
 
 ### 4.20.192. Crop-family inheritance
 
 VECrop có thể cho config kế thừa:
-$
+$$
 CropConfig
 \leftarrow
 FamilyTemplate
-$
+$$
 
 nhưng cultivar vẫn override.
 
@@ -16838,9 +16838,9 @@ Khi thêm crop mới:
 ### 4.20.203. Không bịa tham số
 
 Nếu thiếu:
-$
+$$
 \theta_i=NA
-$
+$$
 
 tốt hơn tự gán số không có nguồn.
 
@@ -16894,7 +16894,7 @@ VECrop nên có catalog metadata:
 
 ### 4.20.213. Example catalog fields
 
-$
+$$
 [
 crop\_id,
 species,
@@ -16904,7 +16904,7 @@ C3/C4/CAM,
 harvest\_organ,
 readiness
 ]
-$
+$$
 
 ### 4.20.214. Validation summary card
 
@@ -16939,7 +16939,7 @@ Ví dụ:
 ### 4.20.217. Common engine output
 
 Mọi crop có thể xuất:
-$
+$$
 [
 Water,
 Carbon,
@@ -16949,7 +16949,7 @@ Phenology,
 Yield,
 Uncertainty
 ]
-$
+$$
 
 ### 4.20.218. Commodity-specific output
 
@@ -16965,9 +16965,9 @@ Ngoài core:
 ### 4.20.219. Final cross-crop conservation test
 
 Mọi crop phải thỏa:
-$
+$$
 Input-Output-\Delta Storage\approx0
-$
+$$
 
 cho các pool chính.
 
@@ -16981,7 +16981,7 @@ Không chấp nhận config có:
 ### 4.20.221. Final cross-crop phenology test
 
 Phải kiểm stage sequence không đảo:
-$
+$$
 Emergence
 \rightarrow
 Vegetative
@@ -16989,7 +16989,7 @@ Vegetative
 Reproductive
 \rightarrow
 Maturity
-$
+$$
 
 hoặc sequence crop-specific tương đương.
 
@@ -17021,11 +17021,11 @@ Không có parameter quan trọng nào thiếu:
 Mỗi stress phải audit pathway.
 
 Không được:
-$
+$$
 Mechanistic\ stress
 +
 Empirical\ penalty
-$
+$$
 cho cùng effect nếu chưa chứng minh cần cả hai.
 
 ### 4.20.226. Final cross-crop validation principle
@@ -17033,7 +17033,7 @@ cho cùng effect nếu chưa chứng minh cần cả hai.
 Một crop mới không được coi là “đã có trong VECrop” chỉ vì có tên.
 
 Nó chỉ thực sự được hỗ trợ khi:
-$
+$$
 Config
 +
 Parameters
@@ -17041,7 +17041,7 @@ Parameters
 Calibration
 +
 Validation
-$
+$$
 đều tồn tại.
 
 ### 4.20.227. Khung kết thúc Chương 4
@@ -17054,19 +17054,19 @@ $
 
 Chương 4 kết thúc bằng nguyên tắc:
 
-$
+$$
 One\ core
 \neq
 One\ crop
-$
+$$
 
 Đúng hơn:
 
-$
+$$
 One\ mechanistic\ core
 +
 Many\ crop\ configurations
-$
+$$
 
 VECrop có thể mở rộng tới rất nhiều cây trồng thương mại nếu:
 1. giữ chung các định luật vật lý và mass balance;
