@@ -173,6 +173,10 @@ Dữ liệu thiếu **không được tự động bịa hoặc suy ra**. Worksp
 
 **Hướng dẫn từng bước cho người sử dụng:** [Mở file HƯỚNG DẪN SỬ DỤNG THỰC NGHIỆM](docs/HUONG-DAN-SU-DUNG-THUC-NGHIEM.md) — gồm quy trình 11 bước, đơn vị, nghiệm thức/lặp, nhập/xuất JSON–CSV, lỗi thường gặp, tìm DOI, sao lưu và kiểm tra Python.
 
+### Hiệu ứng giao diện 3D
+
+Phòng thực nghiệm trong trang chính có giao diện không gian 3D bằng **CSS 3D và JavaScript thuần**, không dùng Three.js/WebGL hay mô hình nặng. Khu minh họa mô tả cây/vùng rễ/cảm biến/luồng QC theo lớp, **không hiển thị số đo thật**. Các chỉ số, thanh bước và báo cáo DOI có bóng chiều sâu nhẹ; bảng số liệu và ô nhập luôn giữ nguyên vị trí để tránh nhập sai. Nút **◈ 3D: Bật/Tắt** lưu lựa chọn trong localStorage. Hiệu ứng tự giảm hoặc tắt trên thiết bị cảm ứng, khi người dùng bật **Reduce Motion**, hoặc khi tab ở nền. Chế độ tối cũng được hỗ trợ.
+
 ### Workspace thực nghiệm nâng cao
 
 - Điều hướng theo 11 bước, không tải phần thực nghiệm cho đến khi được mở.

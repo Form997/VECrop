@@ -1,0 +1,161 @@
+/* VECrop Experiment Spatial UI V1 - progressive 3D, no WebGL/dependencies */
+#experimentView { --exp-depth-shadow:0 10px 15px rgba(12,67,45,.055),0 22px 48px rgba(13,72,53,.075),inset 0 1px 0 rgba(255,255,255,.8); }
+#experimentView .exp-hero-3d{
+ position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.95fr);
+ gap:22px;align-items:center;min-height:340px;overflow:hidden;
+ background:radial-gradient(ellipse at 78% 44%,rgba(75,204,162,.18),transparent 49%),
+ linear-gradient(125deg,#e6f8ec 0%,#f3fbf7 43%,#e5f4fa 100%);
+ border:1px solid #bfe0d0;border-left:5px solid #0e9b69;
+ box-shadow:0 3px 0 rgba(11,105,73,.08),0 24px 46px rgba(22,102,83,.10);
+ perspective:1200px;
+}
+#experimentView .exp-hero-3d:before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background-image:linear-gradient(rgba(30,121,94,.045) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(30,121,94,.045) 1px,transparent 1px);
+ background-size:26px 26px;mask-image:linear-gradient(90deg,transparent 20%,#000 100%);
+}
+#experimentView .exp-hero-copy{position:relative;z-index:4;padding:8px 0}
+#experimentView .exp-hero-kicker{font-size:.72rem;letter-spacing:.16em;font-weight:800;color:#247b73;margin-bottom:10px}
+#experimentView .exp-hero-3d h1{font-size:clamp(1.65rem,2.9vw,2.7rem);line-height:1.15;margin:0 0 15px;letter-spacing:-.035em}
+#experimentView .exp-hero-3d h1 span{color:#0b8758}
+#experimentView .exp-hero-3d p{max-width:50ch;font-size:1rem;line-height:1.65;margin:0 0 14px;color:#476a5a}
+#experimentView .exp-hero-tags{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
+#experimentView .exp-hero-tags span{padding:5px 10px;border:1px solid #b9e0d0;background:rgba(255,255,255,.75);border-radius:999px;font-weight:700;color:#167457;font-size:.73rem;box-shadow:0 2px 0 #c9e5d7}
+#experimentView .exp-data-notice{background:rgba(255,255,255,.62);font-size:.81rem;line-height:1.45;backdrop-filter:blur(5px)}
+/* Isometric mini-field: static descriptive model, not actual telemetry */
+#experimentView .exp-scene-wrap{height:305px;position:relative;min-width:0;user-select:none;pointer-events:none}
+#experimentView .exp-scene{width:100%;height:285px;position:relative;perspective:850px;transform-style:preserve-3d;
+ --exp-pointer-x:0deg;--exp-pointer-y:0deg;transform:rotateX(var(--exp-pointer-y)) rotateY(var(--exp-pointer-x));
+ transition:transform .35s cubic-bezier(.2,.75,.2,1);will-change:auto;
+}
+#experimentView .exp-orbit{position:absolute;left:50%;top:49%;width:280px;height:180px;border:1px dashed rgba(34,153,135,.30);border-radius:50%;transform:translate(-50%,-50%) rotate(-19deg)}
+#experimentView .exp-orbit-two{width:340px;height:224px;transform:translate(-50%,-50%) rotate(25deg);border-color:rgba(23,102,148,.2)}
+#experimentView .exp-soil-base{
+ position:absolute;left:50%;top:57%;width:214px;height:142px;transform:translate(-50%,-50%) rotate(-11deg) skewY(-4deg);
+ filter:drop-shadow(0 24px 11px rgba(30,79,59,.16));z-index:1;
+}
+#experimentView .exp-soil-top{position:absolute;left:0;top:0;width:100%;height:95px;border-radius:15px 15px 10px 10px;
+ background:repeating-linear-gradient(155deg,transparent 0 16px,rgba(34,119,83,.08) 16px 17px),
+ linear-gradient(145deg,#a5dcac,#55a17c 52%,#2c7561);
+ clip-path:polygon(0 26%,79% 0%,100% 39%,19% 100%);
+ border:1px solid #77ae84;
+}
+#experimentView .exp-soil-front{position:absolute;left:0;top:59px;width:214px;height:67px;background:linear-gradient(170deg,#996e51,#6a503e 80%);
+ clip-path:polygon(19% 0%,100% 0%,100% 67%,19% 100%);border-radius:0 0 12px 12px}
+#experimentView .exp-soil-right{position:absolute;right:0;top:36px;width:65px;height:82px;
+ background:linear-gradient(125deg,#775039,#4f3b33);clip-path:polygon(0 0,100% 35%,100% 100%,0 72%);opacity:.92}
+#experimentView .exp-horizon{position:absolute;z-index:2;height:2px;background:rgba(247,203,141,.55);left:49px;width:150px;transform:rotate(-6deg)}
+#experimentView .exp-horizon-one{top:96px}
+#experimentView .exp-horizon-two{top:109px;opacity:.5}
+#experimentView .exp-roots{position:absolute;z-index:3;left:105px;top:45px;width:90px;height:104px}
+#experimentView .exp-root{position:absolute;top:26px;width:2px;border-radius:6px;
+ background:linear-gradient(#e6cf9d,#e3b87f,transparent);transform-origin:top;height:57px}
+#experimentView .exp-root-one{left:0;transform:rotate(10deg)}
+#experimentView .exp-root-two{left:1px;transform:rotate(-27deg);height:48px}
+#experimentView .exp-root-three{left:0;transform:rotate(34deg);height:35px}
+#experimentView .exp-root-four{left:-3px;transform:rotate(-48deg);height:40px}
+#experimentView .exp-plant{position:absolute;z-index:3;left:50%;top:12px;width:180px;height:200px;
+ transform:translateX(-49%);filter:drop-shadow(4px 7px 5px rgba(22,83,46,.12))}
+#experimentView .exp-plant-stem{position:absolute;left:86px;top:65px;width:10px;height:151px;border-radius:20px;
+ background:linear-gradient(90deg,#1c8055,#bce87d 56%,#347d53);transform:rotate(6deg)}
+#experimentView .exp-plant-tip{position:absolute;left:83px;top:47px;width:19px;height:36px;border-radius:80% 0 80% 10%;transform:rotate(40deg);background:linear-gradient(125deg,#b7ed79,#46ad57)}
+#experimentView .exp-leaf{position:absolute;width:74px;height:37px;border-radius:78% 8% 73% 6%;transform-origin:right center;
+ background:linear-gradient(125deg,#b5ea71 0%,#65c368 49%,#208454 100%);
+ box-shadow:inset 1px 3px 7px rgba(255,255,255,.32),0 5px 6px rgba(23,85,42,.08);
+ border:1px solid rgba(24,107,59,.18)}
+#experimentView .exp-leaf:after{content:"";position:absolute;left:10%;top:50%;width:83%;height:1px;background:rgba(229,255,188,.7);transform:rotate(-11deg)}
+#experimentView .exp-leaf-one{left:12px;top:84px;transform:rotate(24deg)}
+#experimentView .exp-leaf-two{left:96px;top:87px;transform:rotate(151deg) scale(.96)}
+#experimentView .exp-leaf-three{left:27px;top:118px;transform:rotate(-17deg) scale(.88)}
+#experimentView .exp-leaf-four{left:105px;top:118px;transform:rotate(177deg) scale(.85)}
+#experimentView .exp-leaf-five{left:28px;top:52px;transform:rotate(48deg) scale(.72)}
+#experimentView .exp-leaf-six{left:98px;top:49px;transform:rotate(140deg) scale(.68)}
+#experimentView .exp-sensor{position:absolute;z-index:3;left:74%;top:39%;width:22px;height:100px;transform:rotate(-12deg)}
+#experimentView .exp-sensor-head{position:absolute;width:26px;height:35px;border-radius:7px;background:linear-gradient(125deg,#e6f8fe,#8ccdd0);border:2px solid #459da0;box-shadow:0 5px 0 #2d808b}
+#experimentView .exp-sensor-stalk{position:absolute;left:10px;top:36px;width:6px;height:66px;background:linear-gradient(90deg,#3c8984,#a3d4cc)}
+#experimentView .exp-sensor-light{position:absolute;left:9px;top:10px;width:8px;height:8px;border-radius:50%;background:#25c98f;box-shadow:0 0 0 4px #7ddec28a}
+#experimentView .exp-glass-chip{position:absolute;z-index:5;padding:9px 12px;min-width:102px;border-radius:13px;
+ background:rgba(255,255,255,.80);border:1px solid rgba(131,191,173,.58);
+ box-shadow:0 12px 24px rgba(25,90,71,.12),inset 0 1px 0 white;backdrop-filter:blur(8px)}
+#experimentView .exp-glass-chip small{font-size:.69rem;color:#427d73;display:block}
+#experimentView .exp-glass-chip strong{font-size:.77rem;color:#196a54;display:block;white-space:nowrap}
+#experimentView .exp-chip-air{top:8px;right:3%;transform:rotate(5deg)}
+#experimentView .exp-chip-root{bottom:25px;left:1%;transform:rotate(-6deg)}
+#experimentView .exp-chip-qc{bottom:12px;right:0;transform:rotate(4deg)}
+#experimentView .exp-scene-caption{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:.58rem;color:#458d7d;letter-spacing:.08em;font-weight:800}
+/* The entire experiment workspace retains readable, static form inputs. */
+#experimentView .exp-metrics>div{position:relative;isolation:isolate;transform-style:preserve-3d;
+ background:linear-gradient(135deg,#f8fefb,#eaf6ef);border:1px solid #d0e8db;
+ box-shadow:0 3px 0 #c7dfd2,0 13px 23px rgba(9,74,48,.045);
+ transition:transform .25s ease,box-shadow .25s ease}
+#experimentView .exp-metrics>div:nth-child(2){background:linear-gradient(130deg,#f4fbff,#ddecf7);border-color:#c5deed;box-shadow:0 3px 0 #bfdae9,0 13px 23px rgba(19,73,125,.05)}
+#experimentView .exp-metrics>div:nth-child(3){background:linear-gradient(130deg,#fffdf5,#f7efd7);border-color:#eadfba;box-shadow:0 3px 0 #e6dbbb,0 13px 23px rgba(130,92,32,.05)}
+#experimentView .exp-metrics>div:nth-child(4){background:linear-gradient(130deg,#f6f3ff,#ebe4f8);border-color:#dfd4f3;box-shadow:0 3px 0 #d8ceea,0 13px 23px rgba(82,57,127,.06)}
+#experimentView .exp-metrics>div span,#experimentView .exp-metrics>div strong{position:relative;z-index:1}
+#experimentView .exp-metrics>div:after{content:"";position:absolute;right:10px;top:10px;width:32px;height:32px;border-radius:12px;background:#ffffff80;box-shadow:inset 0 1px 0 #fff8}
+#experimentView .exp-metrics>div:nth-child(1):after{content:"◈";display:grid;place-items:center;color:#269569}
+#experimentView .exp-metrics>div:nth-child(2):after{content:"◎";display:grid;place-items:center;color:#276a97}
+#experimentView .exp-metrics>div:nth-child(3):after{content:"!";display:grid;place-items:center;color:#a77a27}
+#experimentView .exp-metrics>div:nth-child(4):after{content:"▦";display:grid;place-items:center;color:#7865ae}
+#experimentView .exp-stepper{padding:8px 5px 12px;perspective:700px;scroll-snap-type:x proximity}
+#experimentView .exp-stepper button{position:relative;scroll-snap-align:start;box-shadow:0 3px 0 #bfdcce,0 7px 14px #174f3b0a;
+ transition:transform .22s ease,box-shadow .22s ease,background .22s}
+#experimentView .exp-stepper button.active{box-shadow:0 4px 0 #0b5840,0 12px 18px rgba(6,101,71,.21);transform:translateY(-2px)}
+#experimentView .exp-stepper button.active:after{content:"";position:absolute;bottom:-9px;left:15%;right:15%;height:3px;border-radius:4px;background:#58c29c}
+#experimentView .exp-toolbar.exp-3d-card{background:linear-gradient(121deg,#e0f6e9,#f4fafb 67%,#fff9e9);box-shadow:0 4px 0 rgba(13,118,74,.08),0 20px 35px rgba(15,79,61,.09)}
+#experimentView #experimentForm>section.card{position:relative;border-color:#d4e7dc;
+ box-shadow:0 4px 0 rgba(18,114,79,.035),0 14px 35px rgba(19,84,59,.06)}
+#experimentView #experimentForm>section.card:before{content:"";position:absolute;top:0;left:23px;right:23px;height:3px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,#37b87f,#44a9bd,transparent)}
+#experimentView #experimentForm>section.card:not(.exp-hidden-step){animation:exp-section-arrive .32s ease-out both}
+@keyframes exp-section-arrive{from{opacity:.25;transform:translateY(10px) scale(.993)}to{opacity:1;transform:translateY(0) scale(1)}}
+#experimentView button:not(:disabled){transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}
+#experimentView .exp-actions button:not(.exp-secondary){box-shadow:0 4px 0 #086446,0 8px 13px rgba(10,100,63,.13)}
+#experimentView .exp-doi-audit{position:relative;background:linear-gradient(140deg,#f8fcff,#eef7f6);border-left:4px solid #19869a;box-shadow:0 4px 0 #d0e7e5,0 15px 25px rgba(17,88,97,.07)}
+#experimentView .evidence-item{box-shadow:0 4px 0 rgba(17,108,87,.06),0 10px 24px rgba(27,85,73,.045)}
+/* Enhanced mode: pointer-only tilt and deeper hover on decorative elements */
+@media(hover:hover) and (pointer:fine){
+ #experimentView:not([data-3d="off"]) .exp-metrics>div:hover{transform:translate3d(0,-5px,8px);box-shadow:0 6px 0 rgba(30,100,72,.12),0 19px 30px rgba(9,74,48,.13)}
+ #experimentView:not([data-3d="off"]) .exp-stepper button:hover{transform:translateY(-4px) rotateX(5deg);box-shadow:0 5px 0 #a6cbb6,0 15px 22px #174f3b18}
+ #experimentView:not([data-3d="off"]) .exp-stepper button.active:hover{transform:translateY(-4px)}
+ #experimentView:not([data-3d="off"]) .exp-actions button:not(:disabled):hover{transform:translateY(-2px)}
+ #experimentView:not([data-3d="off"]) .exp-actions button:not(:disabled):active{transform:translateY(2px);box-shadow:none}
+}
+#experimentView .exp-3d-toggle{white-space:nowrap}
+#experimentView .exp-3d-toggle[aria-pressed="false"]{border-color:#afbfc0;color:#455b5b}
+#experimentView[data-3d="off"] .exp-scene,#experimentView[data-3d="off"] .exp-metrics>div,
+#experimentView[data-3d="off"] .exp-stepper button,#experimentView[data-3d="off"] #experimentForm>section.card,
+#experimentView[data-3d="off"] button{transform:none!important;transition:none!important;animation:none!important}
+#experimentView[data-3d="off"] .exp-hero-3d,#experimentView[data-3d="off"] .exp-toolbar.exp-3d-card,
+#experimentView[data-3d="off"] #experimentForm>section.card,#experimentView[data-3d="off"] .exp-metrics>div{box-shadow:none!important}
+html[data-theme="dark"] #experimentView .exp-hero-3d{background:radial-gradient(ellipse at 75% 40%,rgba(49,146,108,.19),transparent 55%),linear-gradient(125deg,#153829,#142e30 75%,#172b34);border-color:#30624c}
+html[data-theme="dark"] #experimentView .exp-hero-3d p{color:#b3cbbf}
+html[data-theme="dark"] #experimentView .exp-hero-kicker,html[data-theme="dark"] #experimentView .exp-hero-3d h1 span{color:#8ae4b5}
+html[data-theme="dark"] #experimentView .exp-hero-tags span,html[data-theme="dark"] #experimentView .exp-data-notice,html[data-theme="dark"] #experimentView .exp-glass-chip{background:rgba(17,51,42,.84);color:#c0edd5;border-color:#387e67}
+html[data-theme="dark"] #experimentView .exp-glass-chip strong{color:#bbf1d7}
+html[data-theme="dark"] #experimentView .exp-glass-chip small{color:#a6d7c8}
+html[data-theme="dark"] #experimentView .exp-toolbar.exp-3d-card{background:linear-gradient(120deg,#173b2a,#1a3237)}
+html[data-theme="dark"] #experimentView .exp-metrics>div{background:linear-gradient(135deg,#214030,#172e2a)!important;border-color:#345c48!important;box-shadow:0 4px 0 #163225}
+html[data-theme="dark"] #experimentView .exp-metrics>div:nth-child(2){background:linear-gradient(130deg,#173744,#162f39)!important}
+html[data-theme="dark"] #experimentView .exp-metrics>div:nth-child(3){background:linear-gradient(130deg,#453922,#312c25)!important}
+html[data-theme="dark"] #experimentView .exp-metrics>div:nth-child(4){background:linear-gradient(130deg,#302941,#242536)!important}
+html[data-theme="dark"] #experimentView #experimentForm>section.card{border-color:#2b5140;box-shadow:0 4px 0 #10271b,0 14px 30px rgba(0,0,0,.12)}
+html[data-theme="dark"] #experimentView .exp-doi-audit{background:linear-gradient(140deg,#172e36,#192d27)}
+@media(max-width:1000px){#experimentView .exp-hero-3d{grid-template-columns:minmax(0,1fr) 360px;gap:8px}}
+@media(max-width:780px){
+ #experimentView .exp-hero-3d{grid-template-columns:1fr;gap:0}
+ #experimentView .exp-scene-wrap{height:245px;max-width:500px;width:100%;margin:0 auto}
+ #experimentView .exp-scene{transform:scale(.85)!important;transform-origin:50% 15%}
+ #experimentView .exp-hero-3d h1{font-size:1.75rem}
+}
+@media(max-width:480px){
+ #experimentView .exp-hero-3d{padding:16px 12px}
+ #experimentView .exp-scene-wrap{height:205px}
+ #experimentView .exp-scene{transform:scale(.69)!important;transform-origin:50% 0}
+ #experimentView .exp-glass-chip{min-width:80px;padding:7px 9px}
+ #experimentView .exp-chip-air{right:-8px}
+}
+@media(prefers-reduced-motion:reduce){
+ #experimentView .exp-scene,#experimentView .exp-metrics>div,#experimentView .exp-stepper button,
+ #experimentView #experimentForm>section.card,#experimentView button{transition:none!important;animation:none!important;transform:none!important}
+}

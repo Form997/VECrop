@@ -25,6 +25,7 @@
     await script('js/experiment.js');
     await script('js/experiment-pro.js');
     await script('js/evidence-autofill.js');
+    await script('js/experiment-3d.js');
   })().catch(err=>{
     modulePromise=null;
     mount.replaceChildren();

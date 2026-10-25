@@ -273,3 +273,13 @@ Dữ liệu hiện lưu trong trình duyệt của chính người nhập. **Kh�
 ---
 
 **Kết luận:** dữ liệu đo thật + thiết kế rõ ràng + đơn vị + phương pháp + nguồn gốc + nhật ký QC là điều kiện đầu tiên để dùng VECrop trong nghiên cứu. **Hồ sơ đủ trường không đồng nghĩa thí nghiệm chính xác, kết quả đáng tin hoặc mô hình đã được kiểm định.**
+
+
+## 10. Hiệu ứng giao diện 3D
+
+Mở **Phòng thực nghiệm** từ trang chính. Phần đầu hiển thị một **mô hình minh họa 3D** về cây, vùng rễ, cảm biến và luồng quan trắc → QC; **đây không phải mô phỏng sinh lý theo dữ liệu thực nghiệm**. Khu 11 bước, thẻ chỉ số và thẻ DOI sử dụng hiệu ứng nổi/chiều sâu để dễ phân biệt các vùng chức năng.
+
+- Nhấn **◈ 3D: Bật/Tắt** để chủ động giảm hoặc tắt hiệu ứng. Chế độ được ghi nhớ trên trình duyệt đang dùng.
+- Trên điện thoại và thiết bị dùng con trỏ cảm ứng, hiệu ứng xoay theo chuột tự tắt; giao diện vẫn có màu sắc/chiều sâu tĩnh.
+- Nếu hệ điều hành bật **Giảm chuyển động (Reduce Motion)**, trình duyệt không chạy hoạt ảnh 3D tương tác.
+- **Các ô dữ liệu và bảng quan trắc không xoay**. Việc bật/tắt 3D không thay đổi thí nghiệm, dữ liệu, QC, DOI hoặc phép đo.

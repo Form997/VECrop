@@ -5,6 +5,7 @@
     <span id="expSaveStatus" class="exp-save">Bản nháp lưu cục bộ</span>
   </div>
   <div class="exp-actions">
+    <button type="button" id="exp3dToggle" class="exp-secondary exp-3d-toggle" aria-pressed="true" title="Bật/tắt hiệu ứng 3D">◈ 3D: Bật</button>
     <a class="exp-help-link" id="experimentHelpLink" href="https://github.com/Form997/VECrop/blob/main/docs/HUONG-DAN-SU-DUNG-THUC-NGHIEM.md" target="_blank" rel="noopener noreferrer" title="Mở tài liệu hướng dẫn từng bước">📖 Hướng dẫn sử dụng</a>
     <button type="button" id="newBtn" class="exp-secondary">Tạo bộ mới</button>
     <button type="button" id="validateBtn">Kiểm tra dữ liệu</button>
@@ -18,11 +19,55 @@
   </div>
   <div class="exp-stepper" id="expStepper" aria-label="Các bước thực nghiệm"></div>
 </section>
-<section class="hero card">
-    <h1>Phòng thực nghiệm VECrop</h1>
-    <p>Nhập dữ liệu đồng ruộng, nhà kính, thủy canh hoặc thí nghiệm chậu. Hệ thống kiểm tra tính đầy đủ, đơn vị và provenance trước khi dữ liệu được dùng cho hiệu chuẩn hoặc kiểm định.</p>
-    <div class="notice">Dữ liệu lưu trong trình duyệt này, không tự gửi lên GitHub. Hãy xuất JSON để sao lưu. Dữ liệu tìm từ bài báo là <b>tài liệu tham khảo</b>, không phải quan trắc hiện trường.</div>
-  </section>
+<section class="hero card exp-hero-3d" id="exp3dHero">
+  <div class="exp-hero-copy">
+    <div class="exp-hero-kicker">VECrop / FIELD & LAB RESEARCH</div>
+    <h1>Phòng thực nghiệm <span>VECrop</span></h1>
+    <p>Thiết kế thí nghiệm, nhập số liệu hiện trường, kiểm tra chất lượng và phân tích DOI — cùng một quy trình khoa học.</p>
+    <div class="exp-hero-tags" aria-label="Các chức năng">
+      <span>◉ Dữ liệu thực</span><span>◇ Truy xuất DOI</span><span>▣ QC theo dòng</span>
+    </div>
+    <div class="notice exp-data-notice">Dữ liệu chỉ lưu trong trình duyệt này cho đến khi bạn xuất JSON. Minh họa 3D không biểu thị số đo thực tế và không thay thế thí nghiệm.</div>
+  </div>
+  <div class="exp-scene-wrap" aria-hidden="true">
+    <div class="exp-scene" id="exp3dScene">
+      <div class="exp-orbit exp-orbit-one"></div>
+      <div class="exp-orbit exp-orbit-two"></div>
+      <div class="exp-soil-base">
+        <div class="exp-soil-top"></div>
+        <div class="exp-soil-front"></div>
+        <div class="exp-soil-right"></div>
+        <div class="exp-roots">
+          <i class="exp-root exp-root-one"></i>
+          <i class="exp-root exp-root-two"></i>
+          <i class="exp-root exp-root-three"></i>
+          <i class="exp-root exp-root-four"></i>
+        </div>
+        <div class="exp-horizon exp-horizon-one"></div>
+        <div class="exp-horizon exp-horizon-two"></div>
+      </div>
+      <div class="exp-plant">
+        <div class="exp-plant-stem"></div>
+        <div class="exp-leaf exp-leaf-one"></div>
+        <div class="exp-leaf exp-leaf-two"></div>
+        <div class="exp-leaf exp-leaf-three"></div>
+        <div class="exp-leaf exp-leaf-four"></div>
+        <div class="exp-leaf exp-leaf-five"></div>
+        <div class="exp-leaf exp-leaf-six"></div>
+        <div class="exp-plant-tip"></div>
+      </div>
+      <div class="exp-sensor">
+        <div class="exp-sensor-head"></div>
+        <div class="exp-sensor-stalk"></div>
+        <div class="exp-sensor-light"></div>
+      </div>
+      <div class="exp-glass-chip exp-chip-air"><small>Vùng khí</small><strong>T · RH · PPFD</strong></div>
+      <div class="exp-glass-chip exp-chip-root"><small>Vùng rễ</small><strong>pH · EC · ẩm</strong></div>
+      <div class="exp-glass-chip exp-chip-qc"><small>Luồng dữ liệu</small><strong>Quan trắc → QC</strong></div>
+    </div>
+    <div class="exp-scene-caption">MÔ HÌNH 3D MINH HỌA · KHÔNG PHẢI DỮ LIỆU ĐO</div>
+  </div>
+</section>
 
   <section class="score card exp-metrics">
     <div><span>Mức đầy đủ</span><strong id="score">—</strong></div>
