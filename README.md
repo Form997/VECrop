@@ -130,6 +130,17 @@ VECrop wani buɗaɗɗen aikin bincike ne domin fahimtar yadda amfanin gona ke am
 
 ---
 
+## 🌐 Dịch thuật trên website
+
+Website VECrop có hai lớp dịch:
+
+1. **Dịch giao diện cục bộ** cho các nút, nhãn, mục lục và phần điều khiển. Các ngôn ngữ hiện được tích hợp trực tiếp gồm Việt, Anh, Trung, Tây Ban Nha, Pháp, Đức, Bồ Đào Nha, Nga, Hindi, Indonesia, Thái, Nhật, Hàn và Ả Rập.
+2. **Dịch toàn bộ trang** thông qua Google Translate Element khi dịch vụ khả dụng, cho phép dịch cả nội dung giáo trình Markdown sang nhiều ngôn ngữ hơn.
+
+> Bản dịch máy chỉ nhằm hỗ trợ tiếp cận. Với thuật ngữ sinh lý thực vật, đất–nước, dinh dưỡng, phương trình và tên biến, **nội dung khoa học gốc vẫn là bản chuẩn để đối chiếu**.
+
+---
+
 ## 1. Mục tiêu dự án
 
 VECrop hướng tới một kiến trúc có thể mô tả cây trồng theo chuỗi:
