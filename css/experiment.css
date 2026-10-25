@@ -1,0 +1,11 @@
+:root{--bg:#eef5f1;--panel:#fff;--text:#163126;--muted:#66776f;--line:#dce9e1;--accent:#0c7a4a;--soft:#edf9f2;--warn:#fff4d6;--bad:#fde9e7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 Arial,sans-serif}
+.topbar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 20px;background:#fffffff2;border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.brand{font-size:1.3rem;font-weight:800;color:var(--accent);text-decoration:none}.subtitle{margin-left:10px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}button{border:0;border-radius:9px;padding:9px 12px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer}
+.wrap{max-width:1300px;margin:20px auto 50px;padding:0 16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px;margin:14px 0;box-shadow:0 8px 24px #183a2c0c}
+.hero h1{margin-top:0}.notice{padding:10px 12px;background:var(--soft);border-radius:9px}.score{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.score div{background:var(--soft);border-radius:10px;padding:12px}.score span{display:block;color:var(--muted)}.score strong{font-size:1.4rem}
+h2{margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}label{display:block;font-weight:700;font-size:.86rem}input,select,textarea{width:100%;margin-top:5px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fbfdfc;color:var(--text);font:inherit}textarea{min-height:75px;resize:vertical}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1000px}th,td{border:1px solid var(--line);padding:6px}th{background:var(--soft);text-align:left}td input{margin:0;min-width:105px}.delete-row{background:#a63f35;padding:7px 9px}.hint{color:var(--muted);font-size:.82rem}
+.validation ul{margin:.4em 0}.ok{background:var(--soft);padding:10px;border-radius:8px}.warn{background:var(--warn);padding:10px;border-radius:8px}.bad{background:var(--bad);padding:10px;border-radius:8px}
+@media(max-width:760px){.topbar{position:relative;align-items:flex-start;flex-direction:column}.grid,.score{grid-template-columns:1fr}.wrap{padding:0 10px}}

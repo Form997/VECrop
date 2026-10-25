@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "title": "VECrop Practical Experiment Dataset",
+  "required": [
+    "experiment_id","title","start_date","site","production_system",
+    "crop_name","cultivar","design","treatment_count","replicate_count",
+    "treatments","soil_or_substrate","weather_source"
+  ],
+  "observation_required": ["datetime","treatment","replicate","variable","value","unit"],
+  "principles": [
+    "no fabricated missing values",
+    "units required for quantitative observations",
+    "fresh and dry mass must be distinguished",
+    "EC is not an individual nutrient concentration",
+    "method and instrument provenance should be retained",
+    "calibration dataset and independent validation dataset should be distinguished"
+  ]
+}

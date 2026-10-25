@@ -141,6 +141,28 @@ Website VECrop có hai lớp dịch:
 
 ---
 
+## 🧪 Thực nghiệm thực tiễn
+
+Trang `experiment.html` là workspace nhập dữ liệu thực nghiệm ngoài đồng, nhà kính, thủy canh hoặc thí nghiệm chậu.
+
+Nó hỗ trợ:
+- nhận dạng thí nghiệm, cây và giống;
+- thiết kế nghiệm thức/lặp;
+- đất hoặc giá thể ban đầu;
+- tưới, phân bón và quản lý;
+- nguồn thời tiết/môi trường;
+- bảng quan trắc theo thời gian;
+- năng suất fresh/dry và marketable yield;
+- method/instrument/provenance;
+- kiểm tra thiếu dữ liệu và đơn vị;
+- lưu bản nháp trong trình duyệt;
+- xuất JSON và CSV;
+- kiểm tra JSON bằng `python/experiment_validator.py`.
+
+Dữ liệu thiếu **không được tự động bịa hoặc suy ra**. Workspace chỉ đánh dấu thiếu và mức sẵn sàng của dataset.
+
+---
+
 ## 1. Mục tiêu dự án
 
 VECrop hướng tới một kiến trúc có thể mô tả cây trồng theo chuỗi:
