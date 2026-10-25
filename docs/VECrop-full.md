@@ -1,6 +1,6 @@
-# VECrop — Bản gộp Chương 1 đến 4.12
+# VECrop — Giáo trình tổng hợp
 
-> Tài liệu tổng hợp từ các chương hiện có trong repository. Các file chương riêng vẫn được giữ để tiện chỉnh sửa và kiểm soát phiên bản.
+> Bản làm việc tích hợp Chương 1 đến Chương 12. Các file chương riêng vẫn được duy trì để chỉnh sửa, kiểm định và theo dõi phiên bản.
 
 ---
 
@@ -10,7 +10,6 @@
 
 Chương này thiết lập nền tảng sinh lý học, vật lý và toán học cho VECrop. Mục tiêu không phải tạo ra một “định luật mới” thay thế sinh lý thực vật hiện có, mà xây dựng một **khung tích hợp có thể kiểm định** để nối các quá trình:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \text{môi trường vùng rễ}
@@ -34,7 +33,6 @@ Chương này thiết lập nền tảng sinh lý học, vật lý và toán h�
 \text{năng suất}
 }
 \]
-</div>
 
 VECrop phân biệt ba cấp:
 
@@ -44,7 +42,6 @@ VECrop phân biệt ba cấp:
 
 Nguyên tắc xuyên suốt:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \text{không bịa tham số}
@@ -54,7 +51,6 @@ Nguyên tắc xuyên suốt:
 \text{không gọi giả thuyết là định luật}
 }
 \]
-</div>
 
 ---
 
@@ -64,7 +60,6 @@ Một cây không thể được mô hình hóa độc lập với môi trườn
 
 Ta định nghĩa vector trạng thái môi trường:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \mathbf X_{env}
@@ -74,9 +69,8 @@ EC,\ pH,\ \theta,\ pF,\ \Psi_{soil},\ T,\ I,\ CO_2,\ O_2,\ Eh,\ N,\ P,\ K,\ldots
 ]^T
 }
 \]
-</div>
 
-Trong đó <span class="vecrop-math-inline">\(EC\)</span> là độ dẫn điện; <span class="vecrop-math-inline">\(pH\)</span> là trạng thái acid–base; <span class="vecrop-math-inline">\(\theta\)</span> là hàm lượng nước thể tích của đất; <span class="vecrop-math-inline">\(pF\)</span> là logarit của độ lớn cột áp nước; <span class="vecrop-math-inline">\(\Psi_{soil}\)</span> là thế nước đất; <span class="vecrop-math-inline">\(T\)</span> là nhiệt độ; <span class="vecrop-math-inline">\(I\)</span> là bức xạ/PPFD; <span class="vecrop-math-inline">\(CO_2\)</span> là CO₂; <span class="vecrop-math-inline">\(O_2\)</span> là oxy vùng rễ; <span class="vecrop-math-inline">\(Eh\)</span> là thế oxy hóa–khử.
+Trong đó \(EC\) là độ dẫn điện; \(pH\) là trạng thái acid–base; \(\theta\) là hàm lượng nước thể tích của đất; \(pF\) là logarit của độ lớn cột áp nước; \(\Psi_{soil}\) là thế nước đất; \(T\) là nhiệt độ; \(I\) là bức xạ/PPFD; \(CO_2\) là CO₂; \(O_2\) là oxy vùng rễ; \(Eh\) là thế oxy hóa–khử.
 
 Không nên dùng một biến tổng quát như “độ màu mỡ đất” nếu mục tiêu là mô hình cơ chế. Mỗi biến phải có đơn vị, phương pháp đo và miền áp dụng rõ ràng.
 
@@ -84,9 +78,8 @@ Không nên dùng một biến tổng quát như “độ màu mỡ đất” n�
 
 ## 1.3. Bảo toàn vật chất là ràng buộc cấp cao nhất
 
-Đối với một chất <span class="vecrop-math-inline">\(i\)</span> trong một thể tích kiểm soát:
+Đối với một chất \(i\) trong một thể tích kiểm soát:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \frac{\partial M_i}{\partial t}
@@ -100,13 +93,11 @@ P_i
 C_i
 }
 \]
-</div>
 
-Trong đó <span class="vecrop-math-inline">\(M_i\)</span> là lượng chất đang lưu trữ; <span class="vecrop-math-inline">\(F_{i,in}\)</span> và <span class="vecrop-math-inline">\(F_{i,out}\)</span> là các dòng vào/ra; <span class="vecrop-math-inline">\(P_i\)</span> và <span class="vecrop-math-inline">\(C_i\)</span> là sản sinh/tiêu thụ nội tại.
+Trong đó \(M_i\) là lượng chất đang lưu trữ; \(F_{i,in}\) và \(F_{i,out}\) là các dòng vào/ra; \(P_i\) và \(C_i\) là sản sinh/tiêu thụ nội tại.
 
 Đối với nguyên tố khoáng như N, P, K trong toàn cây:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \frac{dM_i}{dt}
@@ -114,21 +105,17 @@ Trong đó <span class="vecrop-math-inline">\(M_i\)</span> là lượng chất �
 U_i-L_i
 }
 \]
-</div>
 
 Tái phân bố N từ lá sang hạt không phải là mất N khỏi cây, mà chỉ là dòng nội bộ.
 
 Carbon khác N–P–K vì nguồn carbon mới chủ yếu đến từ CO₂:
 
-<div class="vecrop-math-display">
 \[
 CO_2\rightarrow photosynthesis
 \]
-</div>
 
 và:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \frac{dM_C}{dt}
@@ -136,7 +123,6 @@ và:
 A_C-R-L_C
 }
 \]
-</div>
 
 ---
 
@@ -144,35 +130,28 @@ A_C-R-L_C
 
 Lượng chất:
 
-<div class="vecrop-math-display">
 \[
 M_i
 \]
-</div>
 
 Nồng độ:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 C_i=\frac{M_i}{V}
 }
 \]
-</div>
 
 Hoạt độ:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 a_i=\gamma_iC_i
 }
 \]
-</div>
 
 Thông lượng:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 J_i
@@ -181,7 +160,6 @@ J_i
 {\text{diện tích}\times \text{thời gian}}
 }
 \]
-</div>
 
 Không được cộng trực tiếp các đại lượng có bản chất và đơn vị khác nhau.
 
@@ -191,47 +169,39 @@ Không được cộng trực tiếp các đại lượng có bản chất và �
 
 Thế nước tổng:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Psi_w=\Psi_p+\Psi_s+\Psi_m+\Psi_g
 }
 \]
-</div>
 
-Trong đó <span class="vecrop-math-inline">\(\Psi_p\)</span> là thế áp suất, <span class="vecrop-math-inline">\(\Psi_s\)</span> thế thẩm thấu, <span class="vecrop-math-inline">\(\Psi_m\)</span> thế ma trận và <span class="vecrop-math-inline">\(\Psi_g\)</span> thế trọng trường.
+Trong đó \(\Psi_p\) là thế áp suất, \(\Psi_s\) thế thẩm thấu, \(\Psi_m\) thế ma trận và \(\Psi_g\) thế trọng trường.
 
 Dòng nước:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \vec J_w=-K_h\nabla\Psi_w
 }
 \]
-</div>
 
 Ở dạng hai nút:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 Q_w=K(\Psi_1-\Psi_2)
 }
 \]
-</div>
 
 VECrop không sử dụng “lực hướng lên” tổng hợp gồm transpiration + hormone + root pressure. Hormone là biến điều hòa; dòng nước phải được mô tả bằng gradient thế nước và độ dẫn thủy lực.
 
 Trong trạng thái cây đang thoát hơi thường có:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Psi_{soil}>\Psi_{root}>\Psi_{stem}>\Psi_{leaf}
 }
 \]
-</div>
 
 theo nghĩa các giá trị trở nên âm hơn về phía lá.
 
@@ -241,19 +211,16 @@ theo nghĩa các giá trị trở nên âm hơn về phía lá.
 
 pF:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 pF=\log_{10}|h|
 }
 \]
-</div>
 
-trong đó <span class="vecrop-math-inline">\(h\)</span> là pressure head theo cm nước.
+trong đó \(h\) là pressure head theo cm nước.
 
 Một mô hình giữ nước đất kinh điển là van Genuchten:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 S_e
@@ -265,15 +232,12 @@ S_e
 \right]^{-m}
 }
 \]
-</div>
 
 thường với:
 
-<div class="vecrop-math-display">
 \[
 m=1-\frac1n
 \]
-</div>
 
 Các tham số phải được hiệu chỉnh theo đất, không dùng một bộ chung cho mọi loại đất.
 
@@ -283,7 +247,6 @@ Các tham số phải được hiệu chỉnh theo đất, không dùng một b�
 
 Tổng N, P hoặc K trong đất không đồng nghĩa với lượng cây có thể hấp thu.
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 M_{total}
@@ -295,13 +258,11 @@ M_{potential}
 M_{solution}
 }
 \]
-</div>
 
 Tính khả dụng phụ thuộc hóa học đất, pH, nước, Eh, vi sinh vật, cấu trúc rễ, exudate, khuếch tán và dòng khối.
 
 Một dạng dòng ion trong đất:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 J_i^{soil}
@@ -311,9 +272,8 @@ q_wC_i
 D_{eff,i}\nabla C_i
 }
 \]
-</div>
 
-Trong đó <span class="vecrop-math-inline">\(q_wC_i\)</span> biểu diễn mass flow và thành phần khuếch tán biểu diễn diffusion.
+Trong đó \(q_wC_i\) biểu diễn mass flow và thành phần khuếch tán biểu diễn diffusion.
 
 ---
 
@@ -321,7 +281,6 @@ Trong đó <span class="vecrop-math-inline">\(q_wC_i\)</span> biểu diễn mass
 
 Chuỗi:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 soil\ solution
@@ -335,7 +294,6 @@ plasma\ membrane
 cytosol
 }
 \]
-</div>
 
 Màng sinh chất là hàng rào chọn lọc. Ion đi qua nhờ channel, carrier, symporter, antiporter hoặc pump trực tiếp/gián tiếp.
 
@@ -343,7 +301,6 @@ Màng sinh chất là hàng rào chọn lọc. Ion đi qua nhờ channel, carrie
 
 ## 1.9. Thế điện hóa và động lực vận chuyển ion
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \widetilde\mu_i
@@ -351,11 +308,9 @@ Màng sinh chất là hàng rào chọn lọc. Ion đi qua nhờ channel, carrie
 \mu_i^0+RT\ln a_i+z_iF\psi
 }
 \]
-</div>
 
 Chênh lệch qua màng:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Delta\widetilde\mu_i
@@ -365,11 +320,9 @@ RT\ln\frac{a_{i,in}}{a_{i,out}}
 z_iF(\psi_{in}-\psi_{out})
 }
 \]
-</div>
 
 Điện thế Nernst:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 E_i
@@ -378,7 +331,6 @@ E_i
 \ln\frac{a_{i,out}}{a_{i,in}}
 }
 \]
-</div>
 
 Vì vậy dòng ion không thể được xác định chỉ bằng nồng độ ngoài rễ.
 
@@ -388,7 +340,6 @@ Vì vậy dòng ion không thể được xác định chỉ bằng nồng độ
 
 H⁺-ATPase màng sinh chất sử dụng ATP để bơm proton và tạo gradient pH, điện thế màng và proton-motive force.
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Delta p
@@ -398,17 +349,14 @@ H⁺-ATPase màng sinh chất sử dụng ATP để bơm proton và tạo gradie
 \frac{2.303RT}{F}\Delta pH
 }
 \]
-</div>
 
 Điểm bắt buộc:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 H^+\text{-ATPase không bơm nước trực tiếp}
 }
 \]
-</div>
 
 ---
 
@@ -416,7 +364,6 @@ H^+\text{-ATPase không bơm nước trực tiếp}
 
 Khi transporter có động học bão hòa:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 J_i
@@ -425,11 +372,9 @@ V_{\max,i}
 \frac{C_i}{K_{m,i}+C_i}
 }
 \]
-</div>
 
 Nhiều ion có thể có hệ hấp thu ái lực cao và thấp:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 J_i
@@ -441,74 +386,61 @@ J_{LATS,i}
 J_{efflux,i}
 }
 \]
-</div>
 
 với:
 
-<div class="vecrop-math-display">
 \[
 J_{HATS,i}
 =
 V_{\max,H}
 \frac{C_i}{K_{m,H}+C_i}
 \]
-</div>
 
 và có thể gần đúng:
 
-<div class="vecrop-math-display">
 \[
 J_{LATS,i}\approx k_LC_i
 \]
-</div>
 
 khi dữ liệu phù hợp.
 
-<span class="vecrop-math-inline">\(V_{\max}\)</span> và <span class="vecrop-math-inline">\(K_m\)</span> phụ thuộc loài, giống, tuổi rễ, vị trí rễ, tình trạng dinh dưỡng, pH, nhiệt độ, oxy và transporter.
+\(V_{\max}\) và \(K_m\) phụ thuộc loài, giống, tuổi rễ, vị trí rễ, tình trạng dinh dưỡng, pH, nhiệt độ, oxy và transporter.
 
 ---
 
 ## 1.12. Phân biệt EC và nồng độ từng ion
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 EC\neq C_N,\quad EC\neq C_P,\quad EC\neq C_K
 }
 \]
-</div>
 
 Hai dung dịch có cùng EC vẫn có thể có thành phần ion khác nhau.
 
 Trong VECrop:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 EC\rightarrow \text{trạng thái ion tổng và môi trường thẩm thấu}
 }
 \]
-</div>
 
 còn:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 C_i\rightarrow \text{uptake của ion }i
 }
 \]
-</div>
 
 Thế thẩm thấu gần đúng:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Psi_s\simeq -RT\sum_i\phi_iC_i
 }
 \]
-</div>
 
 ---
 
@@ -516,25 +448,21 @@ Thế thẩm thấu gần đúng:
 
 pH ảnh hưởng hấp thu khoáng qua thay đổi dạng hóa học, sorption/precipitation và proton gradient.
 
-Do đó không nên dùng một <span class="vecrop-math-inline">\(F_{pH}\)</span> duy nhất cho mọi nguyên tố:
+Do đó không nên dùng một \(F_{pH}\) duy nhất cho mọi nguyên tố:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 J_i=J_i(C_i)F_{pH,i}
 }
 \]
-</div>
 
 với:
 
-<div class="vecrop-math-display">
 \[
 F_{pH,N}\neq F_{pH,P}\neq F_{pH,K}
 \]
-</div>
 
-Nếu đã giải trực tiếp speciation và proton-coupled transport thì không cần nhân thêm <span class="vecrop-math-inline">\(F_{pH}\)</span> tổng quát.
+Nếu đã giải trực tiếp speciation và proton-coupled transport thì không cần nhân thêm \(F_{pH}\) tổng quát.
 
 ---
 
@@ -544,7 +472,6 @@ Nhiệt độ ảnh hưởng độ nhớt nước, khuếch tán, enzyme, respir
 
 Một dạng Arrhenius:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 k(T)=k_{ref}
@@ -556,11 +483,9 @@ k(T)=k_{ref}
 \right]
 }
 \]
-</div>
 
 Đối với maintenance respiration:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 R_M(T)
@@ -569,15 +494,13 @@ R_{M,ref}
 Q_{10}^{(T-T_{ref})/10}
 }
 \]
-</div>
 
-nhưng <span class="vecrop-math-inline">\(Q_{10}\)</span> phải được hiệu chỉnh.
+nhưng \(Q_{10}\) phải được hiệu chỉnh.
 
 ---
 
 ## 1.15. Oxy vùng rễ
 
-<div class="vecrop-math-display">
 \[
 O_2
 \rightarrow
@@ -589,11 +512,9 @@ H^+\text{-ATPase}
 \rightarrow
 ion\ uptake
 \]
-</div>
 
 Một dạng:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 R_{O_2}
@@ -602,11 +523,9 @@ R_{O_2,\max}
 \frac{C_{O_2}}{K_{O_2}+C_{O_2}}
 }
 \]
-</div>
 
 Chỉ số cung–cầu năng lượng:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 H_E
@@ -618,11 +537,9 @@ H_E
 \right]
 }
 \]
-</div>
 
 và:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 V_{\max,i}^{eff}
@@ -634,7 +551,6 @@ F_T
 F_{stage}
 }
 \]
-</div>
 
 ---
 
@@ -642,7 +558,6 @@ F_{stage}
 
 Dạng giới hạn tối giản:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 H_{Liebig}
@@ -650,11 +565,9 @@ H_{Liebig}
 \min(R_1,R_2,\ldots,R_m)
 }
 \]
-</div>
 
 Một response dạng Gaussian:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 R_j(x)
@@ -665,11 +578,9 @@ R_j(x)
 \right]
 }
 \]
-</div>
 
 Một dạng VECrop đề xuất:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 H_{env}
@@ -680,7 +591,6 @@ G_{critical}
 \right)^{1/m}
 }
 \]
-</div>
 
 Đây là cấu trúc đề xuất, không phải một định luật mới.
 
@@ -690,17 +600,14 @@ G_{critical}
 
 Không được cộng trực tiếp:
 
-<div class="vecrop-math-display">
 \[
 EC+pH+T+N
 \]
-</div>
 
 Phải chuyển thành chỉ số không thứ nguyên.
 
 Min–max:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 x^*
@@ -708,11 +615,9 @@ x^*
 \frac{x-x_{\min}}{x_{\max}-x_{\min}}
 }
 \]
-</div>
 
 Sigmoid:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 x^*
@@ -720,11 +625,9 @@ x^*
 \frac{1}{1+\exp[-k(x-x_{50})]}
 }
 \]
-</div>
 
 Optimum response:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 R(x)
@@ -735,7 +638,6 @@ R(x)
 \right]
 }
 \]
-</div>
 
 Việc chọn hàm phải dựa trên sinh lý và dữ liệu.
 
@@ -745,59 +647,47 @@ Việc chọn hàm phải dựa trên sinh lý và dữ liệu.
 
 HSY được giữ như một **khung tổng hợp trạng thái sinh học**, không phải đơn vị năng lượng, không phải lực, và không phải hệ số năng suất phổ quát.
 
-<div class="vecrop-math-display">
 \[
 \Phi_1=\text{structure / vascular integrity}
 \]
-</div>
 
-<div class="vecrop-math-display">
 \[
 \Phi_2=\text{gene–protein–enzyme–transport–energy}
 \]
-</div>
 
-<div class="vecrop-math-display">
 \[
 \Phi_3=\text{hormone–Ca–ROS–MAPK–development}
 \]
-</div>
 
 Một dạng chuẩn hóa:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 H_{cell}=w_1\Phi_1+w_2\Phi_2+w_3\Phi_3
 }
 \]
-</div>
 
 với:
 
-<div class="vecrop-math-display">
 \[
 w_i\ge0,\qquad w_1+w_2+w_3=1
 \]
-</div>
 
-và các <span class="vecrop-math-inline">\(\Phi_i\in[0,1]\)</span>.
+và các \(\Phi_i\in[0,1]\).
 
 ---
 
 ## 1.19. Quá trình 1: cấu trúc
 
-<span class="vecrop-math-inline">\(\Phi_1\)</span> có thể đại diện cellulose, hemicellulose, lignin, cấu trúc vách, độ toàn vẹn mạch, diện tích mạch, pit, mô dẫn và diện tích rễ hoạt động.
+\(\Phi_1\) có thể đại diện cellulose, hemicellulose, lignin, cấu trúc vách, độ toàn vẹn mạch, diện tích mạch, pit, mô dẫn và diện tích rễ hoạt động.
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Phi_1=\sum_k w_{1k}S_k^*
 }
 \]
-</div>
 
-Nếu mô hình đã tính trực tiếp <span class="vecrop-math-inline">\(K_x\)</span> từ giải phẫu mạch, không đưa cùng đặc tính vào <span class="vecrop-math-inline">\(\Phi_1\)</span> rồi nhân lại vào <span class="vecrop-math-inline">\(K_x\)</span>.
+Nếu mô hình đã tính trực tiếp \(K_x\) từ giải phẫu mạch, không đưa cùng đặc tính vào \(\Phi_1\) rồi nhân lại vào \(K_x\).
 
 ---
 
@@ -805,15 +695,12 @@ Nếu mô hình đã tính trực tiếp <span class="vecrop-math-inline">\(K_x\
 
 Ý tưởng ban đầu:
 
-<div class="vecrop-math-display">
 \[
 (\vec A_4+\vec B_5+\vec C_6)=s(S_4+S_5-S_6)
 \]
-</div>
 
 được chuẩn hóa:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Phi_{2,i}
@@ -825,11 +712,9 @@ s_i(Q)(S_{4,i}^*+S_{5,i}^*-S_{6,i}^*),
 ]
 }
 \]
-</div>
 
 với:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 s_i(Q)
@@ -838,11 +723,9 @@ s_i(Q)
 {1+\exp[-(\beta_{0i}+\sum_j\beta_{ji}Q_j^*)]}
 }
 \]
-</div>
 
 Một liên kết cơ chế:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 V_{\max,i}^{eff}
@@ -854,7 +737,6 @@ F_{T,i}
 F_{O_2,i}
 }
 \]
-</div>
 
 Gene không tạo “lực”; nó điều chỉnh năng lực vận chuyển và chuyển hóa.
 
@@ -864,15 +746,12 @@ Gene không tạo “lực”; nó điều chỉnh năng lực vận chuyển v�
 
 Ý tưởng ban đầu:
 
-<div class="vecrop-math-display">
 \[
 (\vec A_7+\vec B_8+\vec C_9)=y(S_7+S_8-S_9)
 \]
-</div>
 
 được chuẩn hóa:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Phi_{3,o}
@@ -885,11 +764,9 @@ y_o(Q,t)
 ]
 }
 \]
-</div>
 
 với:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 y_o(t)
@@ -902,7 +779,6 @@ y_o(t)
 \right]
 }
 \]
-</div>
 
 Không được dùng một biểu thức cố định kiểu Auxin + GA + CK − ABA − Ethylene cho mọi cơ quan/giai đoạn.
 
@@ -912,7 +788,6 @@ Không được dùng một biểu thức cố định kiểu Auxin + GA + CK �
 
 Harvest Index:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 HI_{harvest}
@@ -920,17 +795,14 @@ HI_{harvest}
 \frac{Y_{economic}}{B_{aboveground}}
 }
 \]
-</div>
 
 Nếu cần chỉ số sức khỏe, khuyến nghị:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 H_{crop}
 }
 \]
-</div>
 
 để tránh trùng ký hiệu.
 
@@ -938,33 +810,27 @@ H_{crop}
 
 ## 1.23. Không được nhân RUE × WUE × NUE trực tiếp
 
-<div class="vecrop-math-display">
 \[
 RUE,\quad WUE,\quad NUE
 \]
-</div>
 
 có đơn vị khác nhau.
 
 Vì vậy:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 RUE\times WUE\times NUE
 }
 \]
-</div>
 
 không thể tự động trở thành một chỉ số hợp lệ.
 
 Nếu muốn tích hợp, phải chuẩn hóa:
 
-<div class="vecrop-math-display">
 \[
 RUE^*,WUE^*,NUE^*\in[0,1]
 \]
-</div>
 
 và chỉ dùng nếu không đếm lặp cơ chế.
 
@@ -974,7 +840,6 @@ và chỉ dùng nếu không đếm lặp cơ chế.
 
 Mô hình cơ chế:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 Y
@@ -989,11 +854,9 @@ growth
 )
 }
 \]
-</div>
 
 Mô hình rút gọn có thể dùng:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 Y_{reduced}
@@ -1003,11 +866,9 @@ C_D(D)
 \overline{HSY}
 }
 \]
-</div>
 
 Điều bắt buộc:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 Y_{mechanistic}
@@ -1015,7 +876,6 @@ Y_{mechanistic}
 Y_{mechanistic}\times HSY_{diag}
 }
 \]
-</div>
 
 nếu HSY đã chứa các stress đã được tính trực tiếp.
 
@@ -1025,29 +885,24 @@ nếu HSY đã chứa các stress đã được tính trực tiếp.
 
 Một hàm chọn trước:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 Y(D)=\alpha D e^{-\beta D}
 }
 \]
-</div>
 
 cho:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 D_{opt}=\frac1\beta
 }
 \]
-</div>
 
 Đây chỉ là tính chất của hàm đã chọn.
 
-Nếu <span class="vecrop-math-inline">\(HSY=HSY(D)\)</span>:
+Nếu \(HSY=HSY(D)\):
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \frac{d\ln Y}{dD}
@@ -1055,7 +910,6 @@ Nếu <span class="vecrop-math-inline">\(HSY=HSY(D)\)</span>:
 \frac1D-\beta+\frac{\partial\ln HSY}{\partial D}=0
 }
 \]
-</div>
 
 ---
 
@@ -1065,43 +919,35 @@ Mọi phương trình phải thỏa dimensional consistency.
 
 Ví dụ:
 
-<div class="vecrop-math-display">
 \[
 J_w=-K_h\nabla\Psi
 \]
-</div>
 
-thì đơn vị <span class="vecrop-math-inline">\(K_h\)</span> phải làm cho vế phải có cùng đơn vị với <span class="vecrop-math-inline">\(J_w\)</span>.
+thì đơn vị \(K_h\) phải làm cho vế phải có cùng đơn vị với \(J_w\).
 
 Biểu thức:
 
-<div class="vecrop-math-display">
 \[
 v=|G|+HSY
 \]
-</div>
 
-không hợp lệ nếu <span class="vecrop-math-inline">\(v\)</span>, <span class="vecrop-math-inline">\(G\)</span> và HSY không cùng đơn vị.
+không hợp lệ nếu \(v\), \(G\) và HSY không cùng đơn vị.
 
 Nếu HSY điều chỉnh vận tốc:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 v=v_0HSY
 }
 \]
-</div>
 
 hoặc:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 J=J_0HSY
 }
 \]
-</div>
 
 với điều kiện được kiểm định.
 
@@ -1111,33 +957,27 @@ với điều kiện được kiểm định.
 
 Nếu cây được chia thành lớp rời rạc:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \sum_{i=1}^{n}F_i
 }
 \]
-</div>
 
 Nếu theo chiều cao liên tục:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \int_0^H F(z)\,dz
 }
 \]
-</div>
 
 Theo không gian và thời gian:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \int_0^T\int_0^H F(z,t)\,dz\,dt
 }
 \]
-</div>
 
 Không dùng triple integral chỉ để biểu thị “nhiều tầng” khi không có ba biến tích phân độc lập.
 
@@ -1146,43 +986,32 @@ Không dùng triple integral chỉ để biểu thị “nhiều tầng” khi k
 ## 1.28. Khung đa tầng VECrop
 
 ### Lớp 1 — môi trường/rhizosphere
-<div class="vecrop-math-display">
 \[
 \mathbf X_{env}
 \]
-</div>
 
 ### Lớp 2 — tế bào và trao đổi chất
-<div class="vecrop-math-display">
 \[
 H_{cell}
 \]
-</div>
 
 ### Lớp 3 — thủy lực và mạch dẫn
-<div class="vecrop-math-display">
 \[
 J_w,\ K_{root},K_x,\Psi
 \]
-</div>
 
 ### Lớp 4 — quần thể và mật độ
-<div class="vecrop-math-display">
 \[
 D,\ LAI,\ competition
 \]
-</div>
 
 ### Lớp 5 — quang hợp, source–sink và sinh khối
-<div class="vecrop-math-display">
 \[
 A_n,\ A_{can},F_C,B,Y
 \]
-</div>
 
 ### Lớp 6 — quản lý, năng lượng và kinh tế
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \mathbf u
@@ -1190,9 +1019,7 @@ A_n,\ A_{can},F_C,B,Y
 \{N,P,K,irrigation,D,S,light,CO_2,\ldots\}
 }
 \]
-</div>
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \Pi
@@ -1210,13 +1037,11 @@ C_{labor}
 C_{other}
 }
 \]
-</div>
 
 ---
 
 ## 1.29. Cấu trúc phương trình tổng hợp cấp cao
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \begin{aligned}
@@ -1250,7 +1075,6 @@ Y
 \end{aligned}
 }
 \]
-</div>
 
 Đây là xương sống của toàn bộ VECrop.
 
@@ -1258,7 +1082,6 @@ Y
 
 ## 1.30. HSY ở cấp chẩn đoán
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 HSY_{diag}
@@ -1275,15 +1098,12 @@ H_{sink}^{w_s}
 \right]^{1/\sum w}
 }
 \]
-</div>
 
 với:
 
-<div class="vecrop-math-display">
 \[
 0\le H_j\le1
 \]
-</div>
 
 Các trọng số phải được hiệu chỉnh hoặc ước lượng từ dữ liệu.
 
@@ -1291,7 +1111,6 @@ Các trọng số phải được hiệu chỉnh hoặc ước lượng từ d�
 
 ## 1.31. Nhận dạng tham số
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \boldsymbol\theta
@@ -1308,11 +1127,9 @@ k_{rem},
 ]^T
 }
 \]
-</div>
 
 Một bài toán hiệu chỉnh:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \hat{\boldsymbol\theta}
@@ -1324,7 +1141,6 @@ y_{obs}(t)-y_{model}(t;\boldsymbol\theta)
 ]^2
 }
 \]
-</div>
 
 Nếu nhiều tham số cho đầu ra gần như giống nhau, mô hình gặp parameter non-identifiability.
 
@@ -1332,17 +1148,14 @@ Nếu nhiều tham số cho đầu ra gần như giống nhau, mô hình gặp p
 
 ## 1.32. Độ bất định
 
-<div class="vecrop-math-display">
 \[
 Y=f(\mathbf X,\boldsymbol\theta)
 \]
-</div>
 
 Bất định đến từ cảm biến, đất, tham số, cấu trúc mô hình, giống và thời tiết.
 
 Monte Carlo:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \mathbf X^{(k)},\boldsymbol\theta^{(k)}
@@ -1350,7 +1163,6 @@ Monte Carlo:
 Y^{(k)}
 }
 \]
-</div>
 
 Nên báo cáo median, quantiles hoặc confidence/credible interval thay vì chỉ một giá trị.
 
@@ -1360,33 +1172,27 @@ Nên báo cáo median, quantiles hoặc confidence/credible interval thay vì ch
 
 Nước:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 Water_{in}-Water_{out}-\Delta Storage\approx0
 }
 \]
-</div>
 
 Nitrogen:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 N_{uptake}-N_{loss}-\Delta N_{plant}\approx0
 }
 \]
-</div>
 
 Carbon:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 C_{assimilation}-C_{respiration}-\Delta C_{biomass}\approx0
 }
 \]
-</div>
 
 Nếu sai số cân bằng lớn, không nên diễn giải đầu ra năng suất.
 
@@ -1398,10 +1204,10 @@ Nếu sai số cân bằng lớn, không nên diễn giải đầu ra năng su�
 EC, pH, soil water, leaf water potential, gas exchange, biomass, tissue N/P/K.
 
 ### Cấp B — tham số suy ra
-<span class="vecrop-math-inline">\(K_h\)</span>, <span class="vecrop-math-inline">\(V_{\max}\)</span>, <span class="vecrop-math-inline">\(K_m\)</span>, <span class="vecrop-math-inline">\(V_{cmax}\)</span>, <span class="vecrop-math-inline">\(J_{max}\)</span>.
+\(K_h\), \(V_{\max}\), \(K_m\), \(V_{cmax}\), \(J_{max}\).
 
 ### Cấp C — chỉ số tổng hợp
-<span class="vecrop-math-inline">\(H_{env}\)</span>, <span class="vecrop-math-inline">\(H_{cell}\)</span>, <span class="vecrop-math-inline">\(HSY_{diag}\)</span>.
+\(H_{env}\), \(H_{cell}\), \(HSY_{diag}\).
 
 Càng lên cấp cao, càng phải ghi rõ phương pháp suy ra và độ bất định.
 
@@ -1423,11 +1229,11 @@ Càng lên cấp cao, càng phải ghi rõ phương pháp suy ra và độ bất
 
 ### Thành phần VECrop đề xuất
 - cách tổ chức sáu lớp;
-- cấu trúc <span class="vecrop-math-inline">\(\Phi_1,\Phi_2,\Phi_3\)</span>;
-- <span class="vecrop-math-inline">\(H_{cell}=w_1\Phi_1+w_2\Phi_2+w_3\Phi_3\)</span>;
-- cách dùng <span class="vecrop-math-inline">\(HSY_{diag}\)</span>;
+- cấu trúc \(\Phi_1,\Phi_2,\Phi_3\);
+- \(H_{cell}=w_1\Phi_1+w_2\Phi_2+w_3\Phi_3\);
+- cách dùng \(HSY_{diag}\);
 - kết hợp các response factor;
-- các hàm logistic cho <span class="vecrop-math-inline">\(s_i\)</span> và <span class="vecrop-math-inline">\(y_o\)</span> khi chưa có dữ liệu trực tiếp.
+- các hàm logistic cho \(s_i\) và \(y_o\) khi chưa có dữ liệu trực tiếp.
 
 Các phần đề xuất phải được ghi rõ là **proposed framework / proposed model** cho tới khi được kiểm định.
 
@@ -1443,7 +1249,7 @@ Không nên viết:
 - “root pressure là động lực chính của ascent of sap”.
 - “EC bằng nồng độ dinh dưỡng”.
 - “pH tối ưu chung cho mọi nutrient”.
-- “N, P, K dùng chung một <span class="vecrop-math-inline">\(K_m\)</span>”.
+- “N, P, K dùng chung một \(K_m\)”.
 - “RUE × WUE × NUE là một chỉ số vật lý”.
 - “một bộ tham số lúa có thể áp cho ngô/xà lách”.
 - “giá trị từ một thí nghiệm là hằng số sinh học”.
@@ -1505,7 +1311,6 @@ Nếu một cấu trúc chỉ đúng với một hệ nhưng thất bại ở ha
 
 Chương 1 đặt nguyên tắc cốt lõi:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \text{environment}
@@ -1521,11 +1326,9 @@ Chương 1 đặt nguyên tắc cốt lõi:
 \text{yield}
 }
 \]
-</div>
 
 Mọi bước phải tuân thủ:
 
-<div class="vecrop-math-display">
 \[
 \boxed{
 \text{mass balance}
@@ -1537,7 +1340,6 @@ Mọi bước phải tuân thủ:
 \text{experimental testability}
 }
 \]
-</div>
 
 HSY không phải “lực” hoặc “năng lượng” mới. Vai trò phù hợp nhất của HSY trong VECrop là khung tích hợp trạng thái sinh học và, trong phiên bản cơ chế đầy đủ, là chỉ số chẩn đoán.
 
@@ -1745,8 +1547,582 @@ y_o=\sigma\left[\beta_{0,o,g}+\sum_i\beta_iH_i^*+\sum_{i<j}\beta_{ij}H_i^*H_j^*+
 
 ---
 
-## Ghi chú phiên bản
+# Chương 5. Cảm nhận carbon – đường – năng lượng và điều khiển sinh trưởng
 
-- Phạm vi: Chương 1 đến hết mục 4.12.
-- Trạng thái khoa học: khung/mô hình đề xuất, chưa phải định luật hay lý thuyết đã được xác nhận.
-- Nguyên tắc: không bịa tham số, không trộn đơn vị, không đếm stress hai lần, phân biệt rõ phương trình nền tảng với giả thuyết VECrop.
+## 5.1. Vai trò của sugar sensing
+Sucrose, glucose và trehalose-6-phosphate (T6P) không chỉ là chất chuyển hóa mà còn là tín hiệu trạng thái carbon.
+
+## 5.2. Trục SnRK1–TOR
+Ở trạng thái thiếu carbon/năng lượng, SnRK1 ưu tiên bảo toàn và huy động dự trữ; TOR thúc đẩy sinh tổng hợp và tăng trưởng khi carbon, dinh dưỡng và năng lượng đủ.
+
+Khung trạng thái đề xuất:
+\[
+S_C=\frac{C_{sugar}}{K_C+C_{sugar}},\qquad
+S_E=\frac{ATP}{K_E+ATP}
+\]
+
+Một biểu diễn giảm lược:
+\[
+A_{TOR}=\sigma(\beta_0+\beta_CS_C+\beta_NS_N+\beta_ES_E-\beta_SS_{stress})
+\]
+
+\[
+A_{SnRK1}=\sigma(\gamma_0-\gamma_CS_C-\gamma_ES_E+\gamma_SS_{stress})
+\]
+
+Hai phương trình trên là **mô hình VECrop đề xuất**, không phải hằng số sinh học phổ quát.
+
+## 5.3. Ghép với source–sink
+\[
+SS_o^{eff}=SS_o\,F_{sugar,o}\,F_{energy,o}\,F_{stage,o}
+\]
+
+Trong đó sink strength không chỉ phụ thuộc kích thước sink mà còn phụ thuộc khả năng sử dụng carbon.
+
+## 5.4. T6P và sucrose
+T6P thường phản ánh trạng thái sucrose và có vai trò điều phối tăng trưởng, phân bổ carbon và phát triển. VECrop nên giữ T6P như biến tín hiệu, không đồng nhất với lượng carbon dự trữ.
+
+## 5.5. Điểm tích hợp
+\[
+Carbon\ status \rightarrow T6P/SnRK1/TOR \rightarrow gene\ expression \rightarrow growth\ capacity
+\]
+
+## 5.6. Nguyên tắc mô hình hóa
+- Không nhân thêm “stress carbon” nếu carbon balance đã được giải cơ chế.
+- Tách pool sucrose, starch và structural carbon khi dữ liệu cho phép.
+- Tách tín hiệu đường khỏi flux carbon thực.
+
+---
+
+# Chương 6. Kiến trúc rễ – rhizosphere – microbiome
+
+## 6.1. Root system architecture
+Các biến cốt lõi:
+- total root length;
+- root length density;
+- branching;
+- root angle;
+- root diameter classes;
+- root hair length/density;
+- rooting depth.
+
+Một mô hình mật độ chiều sâu:
+\[
+RLD(z)=RLD_0e^{-k_z z}
+\]
+chỉ là dạng thực nghiệm, phải hiệu chỉnh theo cây và đất.
+
+## 6.2. Hấp thu theo phân bố rễ
+\[
+U_i=\int_0^{Z_r}A_r(z)\,J_i(z)\,dz
+\]
+
+## 6.3. Rhizosphere
+Vùng rễ làm thay đổi:
+- pH;
+- redox;
+- exudates;
+- enzyme;
+- microbial activity;
+- nutrient speciation.
+
+Có thể mô tả khuếch tán–phản ứng:
+\[
+\frac{\partial C_i}{\partial t}
+=
+D_{eff,i}\nabla^2C_i
+-
+R_{uptake,i}
++
+R_{min,i}
+-
+R_{immob,i}
+\]
+
+## 6.4. Exudation
+\[
+J_{exu}=f(C_{status},P_{status},root\ age,stress)
+\]
+
+Không giả định exudation luôn có lợi; nó có chi phí carbon.
+
+## 6.5. Microbiome
+Microbiome có thể ảnh hưởng:
+- mineralization;
+- biological N fixation;
+- P mobilization;
+- hormone-like signaling;
+- pathogen suppression;
+- redox chemistry.
+
+Trong mô hình cơ chế ban đầu, nên dùng module tùy chọn:
+\[
+R_{microbe,i}=k_{mic,i}M_{microbe}f(T,\theta,pH,C)
+\]
+
+## 6.6. Mycorrhiza
+Có thể biểu diễn uptake song song:
+\[
+U_P=U_{P,root}+U_{P,myc}
+\]
+
+và chi phí carbon:
+\[
+C_{cost,myc}=f(U_{P,myc},colonization)
+\]
+
+## 6.7. Khác biệt cây trồng
+- Lúa: aerenchyma, radial oxygen loss, flooded rhizosphere.
+- Ngô: deep rooting, architecture strongly linked to drought/N capture.
+- Xà lách: shallow root system, high sensitivity to root-zone oxygen and temperature.
+
+---
+
+# Chương 7. Quang hợp lá – thích nghi – bức xạ tán cây – C3/C4
+
+## 7.1. C3 photosynthesis
+Cho lúa và xà lách, dùng nền Farquhar–von Caemmerer–Berry:
+\[
+A_n=\min(A_c,A_j,A_p)-R_d
+\]
+
+\[
+A_c=V_{cmax}\frac{C_c-\Gamma^*}{C_c+K_c(1+O/K_o)}
+\]
+
+\[
+A_j=J\frac{C_c-\Gamma^*}{4(C_c+2\Gamma^*)}
+\]
+
+## 7.2. C4 photosynthesis
+Ngô phải có module riêng:
+\[
+V_p=V_{pmax}\frac{C_m}{C_m+K_p}
+\]
+
+và tách mesophyll–bundle sheath khi dùng mô hình cơ chế đầy đủ.
+
+## 7.3. Electron transport và ánh sáng
+Một dạng non-rectangular hyperbola:
+\[
+\theta J^2-(\alpha I+J_{max})J+\alpha I J_{max}=0
+\]
+
+## 7.4. Acclimation
+\(V_{cmax}\), \(J_{max}\), respiration và leaf N có thể acclimate với nhiệt độ, ánh sáng, CO₂ và tuổi lá; không nên giữ cố định cả vụ.
+
+## 7.5. Tán cây
+Beer–Lambert:
+\[
+I(L)=I_0e^{-k_LL}
+\]
+
+\[
+A_{can}=\int_0^{LAI}A_n(L)\,dL
+\]
+
+Khuyến nghị tách sunlit/shaded leaves khi cần độ chính xác cao hơn.
+
+## 7.6. Leaf nitrogen
+Leaf N quyết định mạnh năng lực quang hợp:
+\[
+V_{cmax}=f(N_{leaf},age,T)
+\]
+
+nhưng quan hệ phải hiệu chỉnh theo loài/giống.
+
+## 7.7. Photoinhibition
+Cần module bảo vệ quang hóa khi PPFD và nhiệt cao:
+\[
+D_{PSII}=f(I,T,ROS,repair)
+\]
+
+## 7.8. Khác biệt cây trồng
+- Lúa: C3, canopy erectness/LAI và N profile quan trọng.
+- Ngô: C4; không được dùng FvCB C3 nguyên xi.
+- Xà lách: C3, canopy thấp, self-shading và tipburn liên hệ mạnh với transpiration/Ca.
+
+---
+
+# Chương 8. Phenology – meristem – sinh trưởng cơ quan – sinh sản – già hóa
+
+## 8.1. Thermal time
+\[
+TT=\sum_d\max(0,T_{mean,d}-T_b)
+\]
+
+Dạng này chỉ là khung; nhiệt độ nền và ngưỡng phải theo loài/giai đoạn.
+
+## 8.2. Photoperiod và vernalization
+Có thể viết:
+\[
+D_{dev}=f(TT,Photoperiod,Vernalization,genotype)
+\]
+
+Lúa và ngô có đáp ứng quang chu kỳ theo giống; xà lách liên quan bolting và nhiệt độ.
+
+## 8.3. Meristem, cell division và expansion
+Tăng trưởng cơ quan:
+\[
+\frac{dB_o}{dt}=N_{cell,o}\,\frac{dm_{cell,o}}{dt}
++
+m_{cell,o}\,\frac{dN_{cell,o}}{dt}
+\]
+
+Đây là phân rã khái niệm giúp tách cell division khỏi cell expansion.
+
+## 8.4. Sink capacity
+\[
+SS_o=M_oq_o
+\]
+
+với \(M_o\) là sink size/capacity và \(q_o\) là sink activity.
+
+## 8.5. Reproductive development
+Cần tách:
+- floral initiation;
+- anthesis;
+- fertilization;
+- grain/seed set;
+- grain filling.
+
+## 8.6. Grain filling
+Một dạng logistic:
+\[
+W_g(t)=\frac{W_{max}}{1+\exp[-k(t-t_{50})]}
+\]
+
+hoặc dùng supply–demand balance:
+\[
+\frac{dC_g}{dt}=\min(Supply_C,Demand_C)-R_g
+\]
+
+## 8.7. Senescence
+\[
+\frac{dM_{leaf}^{green}}{dt}
+=
+Growth-Senescence
+\]
+
+Senescence chịu điều hòa bởi tuổi, N, sugar status, hormone và stress.
+
+## 8.8. Remobilization
+\[
+F_{rem,i,o}=k_{rem,i,o}(t)M_{i,o}^{mob}
+\]
+
+Phải phân biệt apparent remobilization với tracer-confirmed remobilization.
+
+## 8.9. Harvest index
+\[
+HI_{harvest}=\frac{Y_{economic}}{B_{shoot}}
+\]
+
+Không nhầm với health index.
+
+---
+
+# Chương 9. Stress đơn và stress kết hợp
+
+## 9.1. Nguyên tắc
+Cây ngoài đồng thường chịu nhiều stress đồng thời. Không giả định:
+\[
+Response(A+B)=Response(A)\times Response(B)
+\]
+
+nếu chưa kiểm định.
+
+## 9.2. Drought
+Các cơ chế:
+- \(\Psi_{soil}\downarrow\);
+- \(K_{root}\downarrow\);
+- ABA signaling;
+- stomatal closure;
+- leaf expansion reduction;
+- carbon starvation/hydraulic failure depending on severity.
+
+## 9.3. Heat
+Tác động lên:
+- membrane stability;
+- photosynthetic enzymes;
+- respiration;
+- pollen viability;
+- reproductive success.
+
+## 9.4. Cold/chilling
+Cần tách chilling và freezing; lúa/ngô/xà lách có ngưỡng và cơ chế khác nhau.
+
+## 9.5. Flooding/hypoxia
+\[
+O_2\downarrow\rightarrow ATP\downarrow\rightarrow active\ transport\downarrow
+\]
+
+Lúa có aerenchyma thích nghi tốt hơn ngô và xà lách trong nhiều bối cảnh.
+
+## 9.6. Salinity
+Cần tách:
+\[
+osmotic\ stress
+\]
+và:
+\[
+ion\ toxicity/imbalance
+\]
+
+Không dùng EC như đại diện trực tiếp cho Na⁺.
+
+## 9.7. Nutrient stress
+Thiếu N/P/K/micronutrient có pathway khác nhau; không gộp vào một NUE factor.
+
+## 9.8. Stress interaction
+Một mô hình tương tác:
+\[
+R=R_0+\beta_AA+\beta_BB+\beta_{AB}AB
+\]
+
+\(\beta_{AB}\) phải ước lượng từ dữ liệu.
+
+## 9.9. Pest/disease coupling
+VECrop chỉ nên mô hình mức physiological coupling ban đầu:
+\[
+A_{can}^{eff}=A_{can}(1-D_{leaf})
+\]
+\[
+Sink^{eff}=Sink(1-D_{organ})
+\]
+với damage fraction được đưa từ module bệnh/sâu riêng.
+
+---
+
+# Chương 10. Genotype × Environment × Management, hiệu chỉnh và bất định
+
+## 10.1. G×E×M
+\[
+Y=f(G,E,M,G\times E,G\times M,E\times M)
+\]
+
+Không chuyển tham số giữa giống nếu chưa kiểm định.
+
+## 10.2. Calibration
+\[
+\hat{\theta}
+=
+\arg\min_{\theta}
+\sum_t w_t[y_{obs}(t)-y_{sim}(t;\theta)]^2
+\]
+
+## 10.3. Identifiability
+Phân biệt:
+- structural identifiability;
+- practical identifiability;
+- parameter correlation.
+
+## 10.4. Sensitivity analysis
+Local:
+\[
+S_i=\frac{\partial Y}{\partial \theta_i}
+\]
+
+Global: Morris, Sobol hoặc phương pháp tương đương khi mô hình phức tạp.
+
+## 10.5. Validation
+Tách dữ liệu:
+- calibration;
+- validation;
+- external validation.
+
+Không đánh giá trên cùng bộ dữ liệu dùng để fit.
+
+## 10.6. Metrics
+\[
+RMSE=\sqrt{\frac1n\sum(y-\hat y)^2}
+\]
+
+\[
+MAE=\frac1n\sum|y-\hat y|
+\]
+
+Có thể bổ sung bias, \(R^2\), NSE hoặc likelihood tùy bài toán.
+
+## 10.7. Uncertainty
+\[
+p(\theta|y)\propto p(y|\theta)p(\theta)
+\]
+
+Bayesian inference hữu ích khi cần posterior uncertainty.
+
+## 10.8. Data assimilation
+State-space:
+\[
+x_{t+1}=f(x_t,u_t,\theta)+\omega_t
+\]
+
+\[
+y_t=h(x_t)+\nu_t
+\]
+
+Có thể dùng Kalman/EnKF/particle filter tùy phi tuyến và dữ liệu.
+
+## 10.9. Sensor integration
+Nguồn:
+- soil moisture;
+- EC/pH;
+- weather;
+- leaf temperature;
+- sap flow;
+- gas exchange;
+- canopy imagery;
+- remote sensing.
+
+Mỗi nguồn phải có uncertainty model và QC.
+
+---
+
+# Chương 11. Mô-đun cây trồng: lúa – ngô – xà lách
+
+## 11.1. Nguyên tắc
+Không dùng một bộ tham số chung cho ba cây.
+
+## 11.2. Lúa
+Bắt buộc xem xét:
+- C3 photosynthesis;
+- flooded/AWD hydrology;
+- rhizosphere redox;
+- aerenchyma/ROL;
+- NH₄⁺/NO₃⁻ balance;
+- tillering;
+- panicle formation;
+- grain filling;
+- harvest index.
+
+## 11.3. Ngô
+Bắt buộc:
+- C4 photosynthesis;
+- deep root architecture;
+- VPD/drought hydraulics;
+- silking/anthesis synchrony;
+- kernel number;
+- post-silking C/N dynamics;
+- lodging risk khi cần.
+
+## 11.4. Xà lách
+Bắt buộc:
+- C3;
+- shallow roots;
+- root-zone temperature;
+- hydroponic EC/pH/DO nếu dùng hệ không đất;
+- Ca transport;
+- tipburn;
+- leaf expansion;
+- marketable biomass thay cho grain yield.
+
+## 11.5. Interface thống nhất
+Mỗi crop module cần trả:
+\[
+Phenology,\ LAI,\ Root,\ Photosynthesis,\ NutrientDemand,\ SinkDemand,\ Yield
+\]
+
+với cùng interface nhưng tham số/cơ chế riêng.
+
+---
+
+# Chương 12. Thiết kế thí nghiệm, tối ưu quản lý và triển khai VECrop
+
+## 12.1. Thiết kế thí nghiệm
+Cần xác định:
+- hypothesis;
+- treatment;
+- replication;
+- blocking;
+- randomization;
+- measurement frequency;
+- destructive/non-destructive sampling.
+
+## 12.2. Thí nghiệm nhận dạng tham số
+Không phải thí nghiệm năng suất nào cũng nhận dạng được \(K_m,V_{max},K_h,V_{cmax}\). Phải thiết kế thí nghiệm theo tham số cần ước lượng.
+
+## 12.3. Multi-objective management
+\[
+\max_{\mathbf u}
+\left[
+Y,\ Profit,\ WUE,\ NUE
+\right]
+\]
+
+đồng thời:
+\[
+\min_{\mathbf u}
+\left[
+WaterUse,\ NLoss,\ Energy,\ Risk
+\right]
+\]
+
+## 12.4. Profit
+\[
+\Pi=P_YY-C_{fert}-C_{water}-C_{energy}-C_{labor}-C_{other}
+\]
+
+## 12.5. Constraints
+\[
+u_{min}\le u_t\le u_{max}
+\]
+
+và các ràng buộc sinh học/môi trường.
+
+## 12.6. Model predictive management
+Ở mức nâng cao:
+\[
+u_t^*
+=
+\arg\max_{u_{t:t+H}}
+J(x_t,u,\hat W)
+\]
+
+với forecast thời tiết và trạng thái cây cập nhật theo sensor.
+
+## 12.7. Reproducibility
+Mỗi mô phỏng cần lưu:
+- code version;
+- parameter set;
+- data version;
+- random seed;
+- configuration;
+- output;
+- provenance.
+
+## 12.8. Benchmark
+So sánh VECrop với:
+- empirical baseline;
+- reduced crop model;
+- mechanistic module baseline;
+- ablation model.
+
+## 12.9. Điều kiện đưa vào khuyến cáo sản xuất
+Không dùng VECrop cho quyết định thực địa nếu:
+- chưa external validate;
+- parameter uncertainty quá lớn;
+- dữ liệu input ngoài miền calibration;
+- balance checks thất bại.
+
+## 12.10. Lộ trình
+1. khóa cấu trúc phương trình;
+2. xây unit tests;
+3. nhập dữ liệu chuẩn;
+4. calibration từng module;
+5. coupling;
+6. validation từng cây;
+7. uncertainty;
+8. deployment.
+
+---
+
+## Phụ lục nguồn kiểm định khoảng trống học thuật
+
+Xem `references/consensus-gap-review.md` để theo dõi báo cáo rà soát bằng chứng về các phần còn thiếu và nguồn học thuật liên quan.
+
+## Trạng thái khoa học
+
+- Các phương trình vật lý/sinh lý nền tảng được dùng theo tài liệu chuyên ngành.
+- Các hàm tổng hợp, trọng số, logistic, response function và cấu trúc HSY/VECrop là **mô hình đề xuất** nếu chưa có nguồn trực tiếp hoặc chưa được hiệu chỉnh.
+- Không dùng tham số từ một nghiên cứu như hằng số phổ quát cho mọi loài/giống/môi trường.
+- Không đếm lặp cùng một stress ở nhiều tầng nếu cơ chế đã được giải trực tiếp.
