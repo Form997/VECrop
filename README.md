@@ -153,7 +153,7 @@ Các trang dùng chung thanh điều hướng, bảng màu, chế độ sáng/t�
 
 ## 🧪 Thực nghiệm thực tiễn
 
-Trang `experiment.html` là workspace nhập dữ liệu thực nghiệm ngoài đồng, nhà kính, thủy canh hoặc thí nghiệm chậu.
+Phòng thực nghiệm tích hợp ngay trên **[trang chính VECrop](https://form997.github.io/VECrop/?view=experiment)** để nhập dữ liệu thực nghiệm ngoài đồng, nhà kính, thủy canh hoặc thí nghiệm chậu. URL `experiment.html` cũ tự chuyển về giao diện hợp nhất.
 
 Nó hỗ trợ:
 - nhận dạng thí nghiệm, cây và giống;
@@ -170,6 +170,14 @@ Nó hỗ trợ:
 - kiểm tra JSON bằng `python/experiment_validator.py`.
 
 Dữ liệu thiếu **không được tự động bịa hoặc suy ra**. Workspace chỉ đánh dấu thiếu và mức sẵn sàng của dataset.
+
+### Workspace thực nghiệm nâng cao
+
+- Điều hướng theo 11 bước, không tải phần thực nghiệm cho đến khi được mở.
+- Hỗ trợ nhập/xuất JSON và CSV, kế thừa bản nháp trước đây.
+- Kiểm toán QC theo dòng: dữ liệu thiếu, sai đơn vị, giá trị không hợp lệ, trùng quan trắc, thời gian trái với vụ thí nghiệm, điều kiện biên và phương pháp đo.
+- Xuất báo cáo QC để rà soát độc lập. **Đủ cấu trúc** không có nghĩa dữ liệu hoặc mô hình đã được kiểm định khoa học.
+- Kết quả tìm DOI chỉ ghi vào provenance khi người dùng chủ động chọn; **không** được tự thêm vào cột số đo hiện trường.
 
 ### Trợ lý tìm bằng chứng
 

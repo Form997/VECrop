@@ -291,14 +291,16 @@
       main { padding-top: 10px; }
     }
   </style>
-  <link rel="stylesheet" href="css/workspace.css">\n</head>
-<body>\n<nav class="workspace-nav notranslate" aria-label="VECrop Workspace">
+  <link rel="stylesheet" href="css/workspace.css">\n  <link rel="stylesheet" href="css/experiment-embedded.css">
+</head>
+<body>
+<nav class="workspace-nav notranslate" aria-label="VECrop Workspace">
   <a class="ws-brand" href="index.html"><span class="ws-brand-mark">VE</span><span>VECrop Workspace</span></a>
   <div class="ws-nav-links">
-    <a class="ws-link active" href="index.html?chapter=1">📚 Giáo trình</a>
-    <a class="ws-link " href="experiment.html">🧪 Thực nghiệm</a>
-    <a class="ws-link " href="experiment.html#evidenceSearch">🔎 Bằng chứng</a>
-    <a class="ws-link" href="index.html#assistant">🧠 Trợ lý</a>
+    <a class="ws-link active" href="index.html?view=learn&amp;chapter=1">📚 Giáo trình</a>
+    <a class="ws-link " href="index.html?view=experiment">🧪 Thực nghiệm</a>
+    <a class="ws-link " href="index.html?view=experiment#evidenceSearch">🔎 Bằng chứng</a>
+    <a class="ws-link" href="index.html?view=learn#assistant">🧠 Trợ lý</a>
     <a class="ws-link" href="README.md">ℹ️ Dự án</a>
   </div>
   <div class="ws-controls">
@@ -306,14 +308,14 @@
     <button class="ws-icon-btn" type="button" data-ws-theme title="Sáng / tối">🌙</button>
   </div>
 </nav>\n<section class="ws-flow notranslate" aria-label="Luồng làm việc VECrop">
-  <a class="ws-step active" href="index.html?chapter=1"><b>1 · Học cơ chế</b><span>Giáo trình và công thức</span></a>
-  <a class="ws-step " href="experiment.html"><b>2 · Nhập thực nghiệm</b><span>Dữ liệu thật + QC</span></a>
-  <a class="ws-step " href="experiment.html#evidenceSearch"><b>3 · Tìm bằng chứng</b><span>Nguồn cho dữ liệu thiếu</span></a>
+  <a class="ws-step active" href="index.html?view=learn&amp;chapter=1"><b>1 · Học cơ chế</b><span>Giáo trình và công thức</span></a>
+  <a class="ws-step " href="index.html?view=experiment"><b>2 · Nhập thực nghiệm</b><span>Dữ liệu thật + QC</span></a>
+  <a class="ws-step " href="index.html?view=experiment#evidenceSearch"><b>3 · Tìm bằng chứng</b><span>Nguồn cho dữ liệu thiếu</span></a>
   <a class="ws-step" href="experiment.html#validation"><b>4 · Kiểm định</b><span>Sẵn sàng calibration/validation</span></a>
 </section>
   <header>
     <div class="top">
-      <div class="brand"><span class="ve">VE</span>Crop Intelligence</div><a href="experiment.html" style="text-decoration:none;font-weight:700;color:var(--accent)">🧪 Thực nghiệm</a>
+      <div class="brand"><span class="ve">VE</span>Crop Intelligence</div><a href="index.html?view=experiment" class="ws-link" style="font-weight:750">🧪 Phòng thực nghiệm</a>
       <div class="toolbar">
         <div class="search-wrap" style="flex:1; min-width: 200px;">
           <input id="search" type="text" placeholder="Tìm kiếm trong giáo trình..." />
@@ -351,21 +353,23 @@
     <div class="translate-note" id="translateNote">Ngôn ngữ giao diện dùng từ điển cục bộ. Dịch toàn bộ giáo trình sử dụng dịch vụ Google Translate khi khả dụng.</div>
   </header>
 
-  <section class="chapter-nav" id="chapterNav">
+  <section id="experimentView" hidden aria-label="Phòng thực nghiệm VECrop"><div id="experimentMount"></div></section>
+
+  <section class="chapter-nav learning-only" id="chapterNav">
     <div class="chapter-card" data-chapter="1"><b>Chương 1</b><span>Nền tảng sinh lý – vật lý – toán học</span></div>
     <div class="chapter-card" data-chapter="2"><b>Chương 2</b><span>Môi trường vùng rễ</span></div>
     <div class="chapter-card" data-chapter="3"><b>Chương 3</b><span>HSY cấp tế bào</span></div>
     <div class="chapter-card" data-chapter="4"><b>Chương 4</b><span>Thủy lực – whole plant – yield</span></div>
   </section>
 
-  <section class="stats">
+  <section class="stats learning-only">
     <div class="stat"><b id="chaptersCount">1/4</b><span>Chỉ tải chương đang chọn</span></div>
     <div class="stat"><b id="cropCount">—</b><span>Hồ sơ cây từ Python</span></div>
     <div class="stat"><b id="topicCount">—</b><span>Chủ đề AI gợi ý</span></div>
     <div class="stat"><b id="modeStatus">Web</b><span>Trạng thái hệ thống</span></div>
   </section>
 
-  <div class="layout">
+  <div class="layout learning-only">
     <aside class="panel">
       <strong id="tocTitle">Mục lục động</strong>
       <nav id="toc"></nav>
@@ -629,7 +633,7 @@
         resultsBox.style.display = 'none';
         return;
       }
-      const nodes = [...document.querySelectorAll('h1, h2, h3, p, li')].map(n => ({
+      const nodes = [...content.querySelectorAll('h1, h2, h3, p, li')].map(n => ({
         text: n.textContent.trim(),
         el: n
       }));
@@ -716,8 +720,11 @@
 
     const initialChapter=new URLSearchParams(location.search).get('chapter');
     chapterSelect.value=['1','2','3','4'].includes(initialChapter)?initialChapter:'1';
-    updateChapterState(chapterSelect.value);
-    Promise.all([loadKnowledge(), render()]);
+    if(new URLSearchParams(location.search).get("view")!=="experiment") updateChapterState(chapterSelect.value);
+    loadKnowledge();
   </script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>\n  <script src="js/workspace.js"></script>\n</body>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="js/workspace.js"></script>
+  <script src="js/app-router.js"></script>
+</body>
 </html>

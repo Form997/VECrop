@@ -1,0 +1,73 @@
+/* Embedded VECrop Experiment Workspace: all styles scoped to module. */
+#experimentView { --xp:#ffffff;--xink:#17392a;--xmuted:#61786b;--xline:#dae8df;--xgreen:#0b7b4d;--xblue:#136e88;--xsoft:#f3faf6;--xwarn:#fff6df;--xerr:#fff0ee;max-width:1540px;margin:0 auto;padding:18px 20px 60px;color:var(--xink);font:15px/1.55 system-ui,Arial,sans-serif }
+#experimentView[hidden]{display:none!important}
+#experimentView .exp-wrap{margin:0 auto;max-width:1380px;padding:0}
+#experimentView .card{background:var(--xp);color:var(--xink);border:1px solid var(--xline);box-shadow:0 10px 32px rgba(20,65,45,.06);border-radius:18px;padding:22px;margin:12px 0}
+#experimentView .exp-toolbar{position:relative;background:linear-gradient(117deg,#e6f7ee 0%,#f7fbff 68%,#fffbeb 100%);border-color:#cce9d8}
+#experimentView .exp-toolbar-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#experimentView .exp-toolbar-head strong{display:block;font-size:1.16rem}
+#experimentView .exp-eyebrow{display:block;color:#20795d;font-size:.7rem;font-weight:800;letter-spacing:.12em}
+#experimentView .exp-save{font-size:.8rem;color:#206e52;background:#fff;border:1px solid #cce8d8;border-radius:18px;padding:5px 10px;align-self:flex-start}
+#experimentView .exp-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+#experimentView button{border-radius:10px;padding:9px 13px;font-weight:750;color:#fff;background:#0b7950;border:1px solid #0b7950;cursor:pointer}
+#experimentView button:hover{filter:brightness(.96)}
+#experimentView button:focus-visible,#experimentView input:focus-visible,#experimentView textarea:focus-visible,#experimentView select:focus-visible{outline:3px solid #72c3a8;outline-offset:2px}
+#experimentView button.exp-secondary{background:#fff;color:#146746;border-color:#c6e4d2}
+#experimentView button:disabled{opacity:.5;cursor:not-allowed}
+#experimentView .exp-stepper{display:flex;gap:7px;overflow:auto;padding:5px 0;scrollbar-width:thin}
+#experimentView .exp-stepper button{background:#fff;color:#537365;border:1px solid #d7e7dd;white-space:nowrap;font-size:.84rem;padding:7px 11px}
+#experimentView .exp-stepper button.active{background:#0b7950;color:#fff;border-color:#0b7950}
+#experimentView .hero{border-left:5px solid var(--xgreen)}
+#experimentView .hero h1{margin:0 0 4px;font-size:1.65rem}
+#experimentView .hero p{margin:6px 0;color:var(--xmuted)}
+#experimentView .notice{background:#edf8f2;border:1px solid #d5ecdf;border-radius:12px;padding:12px;margin-top:10px}
+#experimentView .score{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+#experimentView .score div{background:#edf8f3;border-radius:12px;padding:12px}
+#experimentView .score span{display:block;font-size:.78rem;color:var(--xmuted)}
+#experimentView .score strong{display:block;font-size:1.3rem;color:#096c43}
+#experimentView .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+#experimentView h2{font-size:1.23rem;margin:0 0 14px;letter-spacing:-.01em}
+#experimentView label{display:block;font-size:.88rem;font-weight:700}
+#experimentView input:not([type=file]),#experimentView textarea,#experimentView select{display:block;width:100%;background:#fbfdfb;color:#143626;border:1px solid #cfded5;border-radius:10px;padding:10px;margin-top:5px;font:inherit;min-width:0}
+#experimentView textarea{min-height:72px;resize:vertical}
+#experimentView .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#experimentView .table-wrap{width:100%;overflow:auto}
+#experimentView table{min-width:960px;border-collapse:collapse;width:100%;font-size:.82rem}
+#experimentView td,#experimentView th{border:1px solid #d9e7de;padding:6px;text-align:left}
+#experimentView th{background:#eaf5ee;white-space:nowrap}
+#experimentView td input{min-width:110px;margin:0!important;padding:8px!important}
+#experimentView .delete-row{background:#ac3c38;border-color:#ac3c38;padding:5px 9px}
+#experimentView .hint{font-size:.82rem;color:var(--xmuted)}
+#experimentView .evidence-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+#experimentView .evidence-results{display:grid;gap:10px;margin:12px 0}
+#experimentView .evidence-item{border:1px solid var(--xline);border-radius:11px;padding:13px;background:#fbfdfb}
+#experimentView .evidence-item h3{font-size:.99rem;margin:0 0 7px}
+#experimentView .evidence-item a{color:var(--xblue)}
+#experimentView .evidence-meta{color:var(--xmuted);font-size:.8rem}
+#experimentView .evidence-item .score{background:#f1f6ee;border-radius:12px;padding:3px 7px;display:inline-block}
+#experimentView .bad,#experimentView .warn,#experimentView .ok,#experimentView .exp-qc-item{border-radius:12px;padding:12px;margin-top:10px}
+#experimentView .bad{background:var(--xerr);color:#8c2e28}
+#experimentView .warn{background:var(--xwarn);color:#765000}
+#experimentView .ok{background:#ecf8f0;color:#1b6e45}
+#experimentView .validation ul{padding-left:20px}
+#experimentView .exp-qc-item{border:1px solid #d9e9df;background:#f7fbf8}
+#experimentView .exp-qc-item ul{margin:8px 0;padding-left:21px}
+#experimentView .exp-hidden-step{display:none!important}
+#experimentView .exp-footer-nav{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:14px 0}
+#experimentView .exp-footer-nav button{min-width:110px}
+#experimentView .exp-meta-warning{font-size:.83rem;color:#80590f}
+#experimentView .exp-import-hint{font-size:.8rem;color:var(--xmuted)}
+html[data-theme=dark] #experimentView{--xp:#14251d;--xink:#e7f4ed;--xmuted:#adc6b7;--xline:#2c4a3a;--xgreen:#62d9a0;--xsoft:#1d3428;--xwarn:#4b391c;--xerr:#4e2725}
+html[data-theme=dark] #experimentView .card,html[data-theme=dark] #experimentView .evidence-item{background:var(--xp)}
+html[data-theme=dark] #experimentView .exp-toolbar{background:linear-gradient(117deg,#163d2a,#1c333a)}
+html[data-theme=dark] #experimentView .notice,html[data-theme=dark] #experimentView .score div{background:#203a2c;border-color:#325c43}
+html[data-theme=dark] #experimentView .score strong,html[data-theme=dark] #experimentView .exp-eyebrow{color:#7ce6ae}
+html[data-theme=dark] #experimentView input:not([type=file]),html[data-theme=dark] #experimentView textarea,html[data-theme=dark] #experimentView select{background:#10231a;color:#e7f4ed;border-color:#3e5a4a}
+html[data-theme=dark] #experimentView .exp-stepper button,html[data-theme=dark] #experimentView button.exp-secondary{background:#263c30;color:#b7f2d1}
+html[data-theme=dark] #experimentView th{background:#233e2e}
+html[data-theme=dark] #experimentView .bad{background:#4e2725;color:#ffd0cb}
+html[data-theme=dark] #experimentView .warn{background:#4b391c;color:#ffdf92}
+html[data-theme=dark] #experimentView .ok{background:#1b3c2d;color:#b8f3cf}
+html[data-theme=dark] #experimentView .exp-qc-item{background:#1e3427;border-color:#3e5a4a}
+@media(max-width:800px){#experimentView{padding:10px 8px 48px}#experimentView .card{padding:14px}#experimentView .grid,#experimentView .score{grid-template-columns:repeat(2,minmax(0,1fr))}#experimentView .exp-actions button{flex:1 1 130px}}
+@media(max-width:520px){#experimentView .grid{grid-template-columns:1fr}#experimentView .score{grid-template-columns:repeat(2,minmax(0,1fr))}}
