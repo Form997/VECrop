@@ -17,7 +17,10 @@ const CROPS={
  'khoai tay':['Solanum tuberosum','potato'],'potato':['Solanum tuberosum','potato'],
  'khoai lang':['Ipomoea batatas','sweet potato'],
  'dua chuot':['Cucumis sativus','cucumber'],'dua leo':['Cucumis sativus','cucumber'],
- 'lac':['Arachis hypogaea','peanut','groundnut'],'dau phong':['Arachis hypogaea','peanut','groundnut']
+ 'lac':['Arachis hypogaea','peanut','groundnut'],'dau phong':['Arachis hypogaea','peanut','groundnut'],
+ 'dua hau':['Citrullus lanatus','watermelon'],'watermelon':['Citrullus lanatus','watermelon'],
+ 'keo':['acacia','Acacia mangium','Acacia auriculiformis'],
+ 'tre':['bamboo','Bambusoideae'],'ca phe':['coffee','Coffea arabica','Coffea canephora']
 };
 const norm=x=>String(x||'').normalize('NFD').replace(CLEAN,'').toLowerCase().replace(/đ/g,'d').replace(/[^a-z0-9]+/g,' ').trim();
 function cropInfo(){
@@ -60,11 +63,30 @@ async function api(url,timeout=12000){
  finally{clearTimeout(tid)}
 }
 async function lookup(crop,topic,tier){
- const query=[crop.primary,topic,tier==='VN'?'Vietnam':''].filter(Boolean).join(' ');
+ // VN first: exact crop + topic, then less restrictive crop + Vietnam.
+ // Worldwide is attempted only after VN searches find no evidence with explicit VN title.
+ const queries=tier==='VN'?
+  [[crop.primary,topic,'Vietnam'],[crop.primary,'Vietnam']]:
+  [[crop.primary,topic],[crop.primary]];
  const base='https://api.crossref.org/works?rows=12&select=DOI,title,type,container-title,published,published-online,published-print&query.bibliographic=';
- const data=await api(base+encodeURIComponent(query));
- return (data.message?.items||[]).map(x=>selectPaper(x,crop,tier))
-  .filter(Boolean).sort((a,b)=>b.rank-a.rank).slice(0,3);
+ const found=new Map();
+ for(const words of queries){
+  const q=words.filter(Boolean).join(' ');
+  let data;
+  try{data=await api(base+encodeURIComponent(q))}
+  catch(err){
+   if(found.size)break;
+   // Try the broader fallback query before declaring a service failure.
+   if(words===queries[queries.length-1])throw err;
+   continue;
+  }
+  for(const it of data.message?.items||[]){
+   const source=selectPaper(it,crop,tier);
+   if(source&&!found.has(source.doi.toLowerCase()))found.set(source.doi.toLowerCase(),source);
+  }
+  if(found.size)break;
+ }
+ return [...found.values()].sort((a,b)=>b.rank-a.rank).slice(0,3);
 }
 function readLog(){
  try{const d=JSON.parse(F.elements.evidence_sources_json?.value||'[]');
