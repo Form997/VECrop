@@ -4,6 +4,7 @@ from __future__ import annotations
 import functools
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
+import shutil
 import os
 from pathlib import Path
 import secrets
@@ -15,8 +16,10 @@ import webbrowser
 
 try:
     from updates import Updater, appdata_root
+    from data_store import DataStore, DataError, RevisionConflict
 except ImportError:
     from desktop.updates import Updater, appdata_root
+    from desktop.data_store import DataStore, DataError, RevisionConflict
 
 PORT = 47852
 HEALTH = b"VECropDesktop/v2"
@@ -89,7 +92,35 @@ class Handler(SimpleHTTPRequestHandler):
         if path == "/__vecrop_status":
             state = self.server.updater.summary()
             state["token"] = self.server.action_token
+            state["data"] = self.server.data_store.counts()
             return self.json_response(state)
+        if path == "/__vecrop_data":
+            from urllib.parse import parse_qs
+            args = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            identifier = args.get("id", [""])[0]
+            try:
+                if identifier:
+                    if "revision" in args:
+                        revision = int(args["revision"][0])
+                        return self.json_response(
+                            self.server.data_store.get_revision(identifier, revision))
+                    return self.json_response(
+                        self.server.data_store.get_experiment(identifier))
+                return self.json_response({
+                    "items": self.server.data_store.list_experiments(),
+                    "counts": self.server.data_store.counts()
+                })
+            except (DataError, ValueError) as exc:
+                return self.json_response({"error": str(exc)}, 400)
+        if path == "/__vecrop_data_history":
+            from urllib.parse import parse_qs
+            args = parse_qs(urlsplit(self.path).query)
+            identifier = args.get("id", [""])[0]
+            if not identifier:
+                return self.json_response({"error": "Missing experiment ID"}, 400)
+            return self.json_response({
+                "items": self.server.data_store.list_revisions(identifier)
+            })
         rel = path.lstrip("/") or "index.html"
         if any(part.startswith(".") for part in rel.split("/")):
             self.send_error(403)
@@ -108,10 +139,42 @@ class Handler(SimpleHTTPRequestHandler):
         } or self.headers.get("X-VECrop-Token") != self.server.action_token:
             self.send_error(403)
             return
+        path = urlsplit(self.path).path
+        if path == "/__vecrop_data_save":
+            try:
+                length = int(self.headers.get("Content-Length", "-1"))
+            except ValueError:
+                return self.json_response({"error": "Invalid Content-Length"}, 400)
+            if length < 2 or length > 4_400_000:
+                return self.json_response({"error": "Hồ sơ không hợp lệ hoặc vượt 4 MB"}, 413)
+            try:
+                raw = self.rfile.read(length)
+                data = json.loads(raw.decode("utf-8"))
+                if not isinstance(data, dict):
+                    raise DataError("Request body must be an object")
+                result = self.server.data_store.save_experiment(
+                    data.get("payload"), data.get("expected_revision"))
+                return self.json_response(result)
+            except RevisionConflict as exc:
+                return self.json_response({"error": str(exc), "conflict": True}, 409)
+            except (DataError, UnicodeError, ValueError, TypeError) as exc:
+                return self.json_response({"error": str(exc)}, 400)
+        if path == "/__vecrop_data_backup":
+            if self.headers.get("Content-Length", "0") not in ("0", ""):
+                return self.json_response({"error": "Body not allowed"}, 413)
+            backup = self.server.data_store.backup()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/vnd.sqlite3")
+            self.send_header("Content-Disposition",
+                             f'attachment; filename="{backup.name}"')
+            self.send_header("Content-Length", str(backup.stat().st_size))
+            self.end_headers()
+            with backup.open("rb") as src:
+                shutil.copyfileobj(src, self.wfile, length=1024*1024)
+            return
         if self.headers.get("Content-Length", "0") not in ("0", ""):
             self.send_error(413)
             return
-        path = urlsplit(self.path).path
         if path == "/__vecrop_sync":
             started = self.server.updater.start_sync()
             return self.json_response({"started": started})
@@ -177,6 +240,7 @@ def main() -> int:
         return 0
 
     updater = Updater(root, appdata_root())
+    data_store = DataStore(appdata_root())
     handler = functools.partial(Handler, directory=str(root))
     try:
         server = ThreadingHTTPServer(("127.0.0.1", PORT), handler)
@@ -187,6 +251,7 @@ def main() -> int:
         return 3
 
     server.updater = updater
+    server.data_store = data_store
     server.action_token = secrets.token_urlsafe(32)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
