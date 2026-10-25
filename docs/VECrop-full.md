@@ -1,6 +1,6 @@
 # VECrop — Giáo trình tổng hợp
 
-> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.18**.
+> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.19**.
 
 ---
 
@@ -13689,13 +13689,1216 @@ Một run chỉ được tin cậy khi:
 
 ---
 
+
+## 4.19. Độ nhạy – bất định – nhận dạng tham số – hiệu chuẩn và kiểm định cấp whole-plant
+
+### 4.19.1. Vai trò của 4.19
+Sau khi VECrop đã được đóng vòng ở 4.18, bước tiếp theo là xác định:
+- tham số nào thực sự ảnh hưởng mạnh tới output;
+- tham số nào có thể nhận dạng từ dữ liệu;
+- bất định nào đến từ dữ liệu, tham số hay cấu trúc;
+- mô hình có dự báo tốt ngoài tập hiệu chuẩn hay không.
+
+### 4.19.2. Phân biệt sensitivity và uncertainty
+Sensitivity hỏi:
+$
+Output\ thay\ đổi\ bao\ nhiêu\ khi\ input/parameter\ thay\ đổi?
+$
+
+Uncertainty hỏi:
+$
+Output\ bất\ định\ bao\ nhiêu\ khi\ input/parameter/model\ bất\ định?
+$
+
+### 4.19.3. Local sensitivity
+Một local sensitivity:
+$
+S_i
+=
+\frac{\partial Y}
+{\partial \theta_i}
+$
+
+### 4.19.4. Normalized sensitivity
+$
+S_i^*
+=
+\frac{\theta_i}{Y}
+\frac{\partial Y}{\partial\theta_i}
+$
+
+Giúp so sánh parameter khác đơn vị.
+
+### 4.19.5. Finite-difference sensitivity
+$
+S_i
+\approx
+\frac{Y(\theta_i+\Delta\theta_i)-Y(\theta_i-\Delta\theta_i)}
+{2\Delta\theta_i}
+$
+
+### 4.19.6. Step-size caution
+Nếu \(\Delta\theta_i\) quá nhỏ:
+- numerical noise tăng.
+
+Nếu quá lớn:
+- mất ý nghĩa local.
+
+### 4.19.7. Global sensitivity
+Global sensitivity xét toàn bộ miền parameter.
+
+Có thể dùng:
+- Morris;
+- Sobol;
+- FAST;
+- variance-based methods.
+
+### 4.19.8. Morris screening
+Morris phù hợp để:
+- screening parameter nhiều;
+- tìm parameter ít ảnh hưởng;
+- giảm chiều trước Sobol/calibration.
+
+### 4.19.9. Elementary effect
+$
+EE_i
+=
+\frac{Y(\boldsymbol\theta+\Delta e_i)-Y(\boldsymbol\theta)}
+{\Delta}
+$
+
+### 4.19.10. Morris statistics
+Hai chỉ số thường dùng:
+- \(\mu^*\): độ lớn ảnh hưởng;
+- \(\sigma\): nonlinear/interactions.
+
+### 4.19.11. Sobol decomposition
+$
+Var(Y)
+=
+\sum_iV_i
++
+\sum_{i<j}V_{ij}
++
+\cdots
+$
+
+### 4.19.12. First-order Sobol index
+$
+S_i
+=
+\frac{V_i}{Var(Y)}
+$
+
+### 4.19.13. Total Sobol index
+$
+S_{T_i}
+=
+1-
+\frac{Var_{\theta_{\sim i}}[E(Y|\theta_{\sim i})]}
+{Var(Y)}
+$
+
+### 4.19.14. Interaction importance
+Nếu:
+$
+S_{T_i}\gg S_i
+$
+
+thì parameter \(i\) có interaction đáng kể với parameter khác.
+
+### 4.19.15. Sensitivity theo output
+Một parameter có thể:
+- nhạy với LAI;
+- ít nhạy với yield;
+- rất nhạy với water use.
+
+Do đó sensitivity phải output-specific.
+
+### 4.19.16. Sensitivity theo stage
+$
+S_i=S_i(t)
+$
+
+Parameter có thể quan trọng ở:
+- vegetative stage;
+- flowering;
+- filling;
+- senescence
+khác nhau.
+
+### 4.19.17. Sensitivity map
+VECrop nên có:
+$
+S_{i,j}(t)
+$
+
+với:
+- \(i\): parameter;
+- \(j\): output/state.
+
+### 4.19.18. Practical identifiability
+Parameter có thể lý thuyết nhận dạng được nhưng thực tế không nhận dạng được do:
+- ít dữ liệu;
+- noise lớn;
+- parameter correlation;
+- sampling không đúng giai đoạn.
+
+### 4.19.19. Structural identifiability
+Structural identifiability hỏi:
+với dữ liệu lý tưởng, parameter có thể xác định duy nhất hay không.
+
+### 4.19.20. Parameter correlation
+Nếu:
+$
+Corr(\theta_i,\theta_j)\approx\pm1
+$
+
+thì hai parameter có thể bù trừ nhau.
+
+### 4.19.21. Equifinality
+Nhiều parameter set:
+$
+\theta^{(1)},\theta^{(2)},\ldots
+$
+
+có thể cho:
+$
+Y^{(1)}\approx Y^{(2)}
+$
+
+nhưng internal states khác.
+
+### 4.19.22. Profile likelihood
+Một cách kiểm identifiability:
+- cố định \(\theta_i\);
+- tối ưu các parameter còn lại;
+- theo dõi loss.
+
+### 4.19.23. Flat profile
+Profile likelihood phẳng cho thấy parameter yếu nhận dạng.
+
+### 4.19.24. Fisher information
+$
+F
+=
+J^TWJ
+$
+
+với \(J\) là sensitivity/Jacobian matrix.
+
+### 4.19.25. Ill-conditioning
+Nếu:
+$
+cond(F)\gg1
+$
+
+thì hệ parameter có thể poorly identifiable.
+
+### 4.19.26. Parameter scaling
+Trước optimization nên scale parameter:
+
+$
+\theta_i^*
+=
+\frac{\theta_i-\theta_{min}}
+{\theta_{max}-\theta_{min}}
+$
+
+### 4.19.27. Parameter bounds
+Bounds phải đến từ:
+- vật lý;
+- sinh học;
+- literature;
+- experimental design.
+
+Không dùng bounds tùy ý chỉ để optimizer hội tụ.
+
+### 4.19.28. Prior distribution
+Trong Bayesian calibration:
+$
+\theta_i\sim p(\theta_i)
+$
+
+Prior phải có provenance.
+
+### 4.19.29. Likelihood
+$
+p(D|\theta)
+$
+
+phản ánh xác suất dữ liệu quan sát khi biết parameter.
+
+### 4.19.30. Posterior
+$
+p(\theta|D)
+\propto
+p(D|\theta)p(\theta)
+$
+
+### 4.19.31. Posterior predictive
+$
+p(Y_{new}|D)
+=
+\int
+p(Y_{new}|\theta)
+p(\theta|D)
+\,d\theta
+$
+
+### 4.19.32. Measurement error
+Observation model:
+$
+Y_{obs}
+=
+Y_{true}
++
+\epsilon_{meas}
+$
+
+### 4.19.33. Process noise
+Dynamic model:
+$
+X_{t+1}
+=
+f(X_t,U_t,\theta)
++
+\omega_t
+$
+
+### 4.19.34. Model structural error
+$
+Y_{obs}
+=
+Y_{model}
++
+\delta_{structure}
++
+\epsilon
+$
+
+### 4.19.35. Ba nguồn bất định chính
+Cần tách:
+1. input uncertainty;
+2. parameter uncertainty;
+3. structural/model-form uncertainty.
+
+### 4.19.36. Input uncertainty
+Ví dụ:
+- weather sensor;
+- irrigation amount;
+- fertilizer rate;
+- initial soil water;
+- initial nutrient pools.
+
+### 4.19.37. Parameter uncertainty
+Ví dụ:
+- \(V_{cmax}\);
+- \(g_1\);
+- \(P_{50}\);
+- \(K_m\);
+- phyllochron;
+- remobilization rates.
+
+### 4.19.38. Structural uncertainty
+Ví dụ:
+- chọn FvCB hay reduced RUE;
+- allocation theo sink hay partition coefficients;
+- root uptake function khác nhau.
+
+### 4.19.39. Monte Carlo propagation
+$
+\theta^{(k)},U^{(k)}
+\rightarrow
+Y^{(k)}
+$
+
+### 4.19.40. Output distribution
+Báo:
+- median;
+- mean;
+- standard deviation;
+- quantiles.
+
+### 4.19.41. P10–P50–P90
+Một forecast nên có:
+$
+P10,\ P50,\ P90
+$
+
+khi uncertainty đáng kể.
+
+### 4.19.42. Confidence vs credible interval
+Frequentist confidence interval khác Bayesian credible interval.
+
+Không dùng lẫn thuật ngữ.
+
+### 4.19.43. Calibration objective
+Một weighted loss:
+$
+J(\theta)
+=
+\sum_j
+w_j
+\sum_t
+\left[
+Y_{j,obs}(t)-Y_{j,sim}(t)
+\right]^2
+$
+
+### 4.19.44. Multi-variable calibration
+Nên fit đồng thời:
+- soil water;
+- LAI;
+- biomass;
+- nutrient concentration;
+- yield.
+
+### 4.19.45. Không fit bằng yield duy nhất
+Final yield không đủ để nhận dạng:
+- root hydraulics;
+- photosynthetic parameters;
+- allocation;
+- senescence;
+- nutrient uptake.
+
+### 4.19.46. Weighted residual
+$
+r_{j,t}
+=
+\frac{Y_{obs}-Y_{sim}}
+{\sigma_{j,t}}
+$
+
+### 4.19.47. Heteroscedasticity
+Nếu measurement error tăng theo magnitude, không nên dùng cùng variance cho mọi điểm.
+
+### 4.19.48. Robust loss
+Có thể dùng:
+- Huber;
+- Student-t likelihood
+khi outlier hiện diện.
+
+### 4.19.49. Train/validation split
+Tối thiểu:
+- calibration dataset;
+- independent validation dataset.
+
+### 4.19.50. Cross-validation
+Khi dữ liệu hạn chế:
+- leave-one-season-out;
+- leave-one-site-out;
+- leave-one-cultivar-out
+có thể hữu ích.
+
+### 4.19.51. Temporal validation
+Calibration trên một giai đoạn, kiểm định ở thời gian khác.
+
+### 4.19.52. Spatial validation
+Calibration ở một site, kiểm định site khác.
+
+### 4.19.53. Cultivar validation
+Parameter cultivar-specific phải được kiểm riêng.
+
+### 4.19.54. Extrapolation test
+Nếu model ra ngoài:
+$
+\mathcal D_{cal}
+$
+
+thì cần flag extrapolation.
+
+### 4.19.55. Performance metrics
+Không dùng một metric duy nhất.
+
+Có thể dùng:
+- RMSE;
+- MAE;
+- bias;
+- \(R^2\);
+- NSE khi phù hợp.
+
+### 4.19.56. RMSE
+$
+RMSE
+=
+\sqrt{
+\frac1n
+\sum_i
+(Y_i-\hat Y_i)^2
+}
+$
+
+### 4.19.57. MAE
+$
+MAE
+=
+\frac1n
+\sum_i
+|Y_i-\hat Y_i|
+$
+
+### 4.19.58. Bias
+$
+Bias
+=
+\frac1n
+\sum_i
+(\hat Y_i-Y_i)
+$
+
+### 4.19.59. R² caution
+High \(R^2\) không đảm bảo:
+- bias nhỏ;
+- conservation đúng;
+- cơ chế đúng.
+
+### 4.19.60. NSE caution
+NSE nhạy với variance và scale.
+
+Không dùng như chỉ số duy nhất.
+
+### 4.19.61. Residual analysis
+Residual nên kiểm:
+- trend theo time;
+- trend theo magnitude;
+- autocorrelation;
+- stage-specific bias.
+
+### 4.19.62. Autocorrelation
+Nếu residual có autocorrelation mạnh, error model độc lập có thể sai.
+
+### 4.19.63. Stage-wise error
+Có thể tách:
+- establishment;
+- vegetative;
+- flowering;
+- filling;
+- maturity.
+
+### 4.19.64. Balance-aware calibration
+Loss nên phạt vi phạm conservation:
+
+$
+J_{total}
+=
+J_{data}
++
+\lambda_wBE_w^2
++
+\lambda_CBE_C^2
++
+\lambda_NBE_N^2
+$
+
+### 4.19.65. Không “fit đẹp” bằng phá conservation
+Nếu tăng fit nhưng mass balance xấu hơn, model không đạt chuẩn VECrop.
+
+### 4.19.66. Regularization
+$
+J_{reg}
+=
+J+\lambda\|\theta\|_2^2
+$
+
+hoặc sparsity penalty nếu phù hợp.
+
+### 4.19.67. Prior-based regularization
+Bayesian prior cũng đóng vai trò regularization.
+
+### 4.19.68. Overfitting
+Dấu hiệu:
+- calibration error rất thấp;
+- validation error cao.
+
+### 4.19.69. Underfitting
+Dấu hiệu:
+- cả calibration và validation đều kém;
+- residual có structure rõ.
+
+### 4.19.70. Model complexity
+Thêm module chỉ khi cải thiện:
+- prediction;
+- mechanism;
+- extrapolation;
+- interpretability.
+
+### 4.19.71. Complexity penalty
+Một module mới nhưng không làm giảm error hoặc tăng hiểu biết có thể không đáng giữ.
+
+### 4.19.72. Ablation
+Bỏ module \(k\):
+$
+\Delta E_k
+=
+E_{without\ k}
+-
+E_{full}
+$
+
+### 4.19.73. Module identifiability
+Một module có thể đúng về sinh học nhưng không nhận dạng được từ dataset hiện tại.
+
+### 4.19.74. Observability
+State \(X_i\) có thể không đo trực tiếp nhưng suy được qua observation operator.
+
+### 4.19.75. Poor observability
+Nếu nhiều state tạo cùng observation, model khó nhận dạng.
+
+### 4.19.76. Experimental design
+Sensitivity/identifiability nên hướng dẫn thiết kế thí nghiệm.
+
+### 4.19.77. Optimal measurement timing
+Đo vào thời điểm:
+$
+|S_i(t)|
+$
+cao có thể tăng khả năng nhận dạng.
+
+### 4.19.78. Optimal variable choice
+Để nhận dạng root hydraulic parameter, đo:
+- \(\Psi_{leaf}\);
+- transpiration;
+- soil water
+tốt hơn chỉ đo final yield.
+
+### 4.19.79. Multi-scale observations
+Nên kết hợp:
+- sensor;
+- destructive sampling;
+- canopy measurements;
+- yield;
+- nutrient analysis.
+
+### 4.19.80. Rice calibration priorities
+Lúa:
+- phenology;
+- tiller/panicle number;
+- LAI;
+- soil redox/O₂ nếu ngập;
+- grain filling;
+- HI.
+
+### 4.19.81. Maize calibration priorities
+Ngô:
+- root depth;
+- C4 photosynthesis;
+- ASI;
+- kernel number;
+- kernel weight;
+- post-silking biomass.
+
+### 4.19.82. Lettuce calibration priorities
+Xà lách:
+- root-zone EC/pH/T/O₂;
+- leaf number;
+- LAI;
+- fresh/dry mass;
+- tipburn/marketability;
+- bolting timing.
+
+### 4.19.83. Parameter transfer
+Không chuyển parameter giữa crop nếu chỉ giống tên process.
+
+### 4.19.84. Site parameter transfer
+Soil hydraulic parameter phải site/soil-specific nếu dữ liệu cho thấy khác.
+
+### 4.19.85. Hierarchical calibration
+Có thể tách:
+- global parameters;
+- crop parameters;
+- cultivar parameters;
+- site parameters.
+
+### 4.19.86. Hierarchical Bayesian form
+$
+\theta_{cultivar}
+\sim
+\mathcal N(
+\mu_{crop},
+\sigma_{crop}^2
+)
+$
+
+### 4.19.87. Partial pooling
+Giúp tránh:
+- overfit từng cultivar;
+- ép mọi cultivar cùng parameter.
+
+### 4.19.88. Posterior correlation
+Posterior correlation cao là dấu hiệu:
+- equifinality;
+- thiếu observation discriminating.
+
+### 4.19.89. Prediction interval decomposition
+Có thể tách:
+$
+Var(Y)
+=
+Var_{input}
++
+Var_{parameter}
++
+Var_{structure}
++
+Var_{noise}
++
+Interactions
+$
+
+### 4.19.90. Scenario uncertainty
+Scenario management nên báo cả:
+- expected gain;
+- uncertainty;
+- downside risk.
+
+### 4.19.91. Decision robustness
+Một management option tốt không chỉ có mean yield cao mà còn:
+- variance thấp;
+- downside risk thấp;
+- ổn định qua weather scenarios.
+
+### 4.19.92. Robust objective
+$
+J_{robust}
+=
+E[Y]
+-
+\lambda Var(Y)
+$
+
+### 4.19.93. Probabilistic threshold
+Ví dụ:
+$
+P(Y>Y_{target})
+$
+
+hữu ích hơn chỉ báo mean yield.
+
+### 4.19.94. Reliability
+Một model forecast nên có:
+- expected value;
+- interval;
+- confidence/extrapolation flag.
+
+### 4.19.95. Calibration trace
+Mỗi lần calibration cần lưu:
+- dataset version;
+- parameter bounds;
+- optimizer;
+- seed;
+- objective;
+- final parameter set.
+
+### 4.19.96. Reproducibility
+Cùng input + parameter + version phải tái tạo cùng output trong deterministic mode.
+
+### 4.19.97. Stochastic reproducibility
+Nếu có stochastic component phải lưu:
+$
+Random\ seed
+$
+
+### 4.19.98. Version lock
+Khi so model:
+- giữ cùng code version;
+- chỉ thay đúng parameter/module cần test.
+
+### 4.19.99. Benchmark hierarchy
+So VECrop với:
+1. naive baseline;
+2. simple empirical model;
+3. reduced crop model;
+4. mechanistic full model.
+
+### 4.19.100. Baseline importance
+Nếu full model không vượt baseline đơn giản, complexity cần xem lại.
+
+### 4.19.101. Physical plausibility
+Một parameter set fit tốt nhưng tạo:
+- negative pool;
+- impossible HI;
+- unrealistic flux
+phải bị loại.
+
+### 4.19.102. Biological plausibility
+Parameter cần nằm trong miền phù hợp loài/organ/stage.
+
+### 4.19.103. Constraint optimization
+Có thể dùng:
+$
+\theta_{min}
+\le
+\theta
+\le
+\theta_{max}
+$
+
+và thêm conservation constraints.
+
+### 4.19.104. Multi-objective calibration
+Có thể tối ưu:
+$
+[J_{water},J_{biomass},J_{yield},J_{nutrient}]
+$
+
+thay vì gộp sớm thành một scalar.
+
+### 4.19.105. Pareto front
+Một parameter set có thể:
+- fit water tốt;
+- fit yield kém
+và ngược lại.
+
+Pareto analysis giúp thấy tradeoff.
+
+### 4.19.106. Error covariance
+Nếu observations correlated, likelihood nên phản ánh covariance.
+
+### 4.19.107. Data weighting
+Không nên để dataset có nhiều điểm tự động thống trị chỉ vì có nhiều mẫu.
+
+### 4.19.108. Missing-data calibration
+Missing values không nên tự điền bằng 0.
+
+### 4.19.109. Out-of-range observation
+Observation bất thường cần:
+- kiểm sensor;
+- kiểm unit;
+- kiểm timestamp;
+- không tự xóa.
+
+### 4.19.110. Uncertainty map
+Output cuối có thể gồm:
+$
+\mathbf U_Y(t)
+=
+[
+P10(t),
+P50(t),
+P90(t)
+]
+$
+
+### 4.19.111. Confidence map
+Một diagnostic:
+$
+C(t)
+=
+f(
+coverage,
+distance\ to\ calibration\ domain,
+residual,
+balance\ quality
+)
+$
+
+### 4.19.112. Confidence không phải probability đúng
+Confidence score là diagnostic nội bộ, không được diễn giải như xác suất mô hình đúng nếu không có nền tảng thống kê tương ứng.
+
+### 4.19.113. Validation gate
+Một model chỉ được promote khi đạt:
+- balance checks;
+- validation error threshold;
+- no critical failure flag;
+- acceptable uncertainty.
+
+### 4.19.114. Crop-specific acceptance
+Ngưỡng chấp nhận có thể khác:
+- rice;
+- maize;
+- lettuce
+do biến mục tiêu khác nhau.
+
+### 4.19.115. Yield-validation gate
+Không chỉ final yield.
+
+Phải đạt đồng thời:
+- phenology;
+- biomass;
+- yield components;
+- final yield.
+
+### 4.19.116. Stress-validation gate
+Stress module chỉ được giữ nếu tái hiện đúng:
+- intermediate states;
+- final response.
+
+### 4.19.117. Cross-season validation
+Một parameter set tốt phải kiểm qua nhiều vụ nếu muốn dùng ngoài một thí nghiệm.
+
+### 4.19.118. Cross-site validation
+Nếu dùng cho vùng rộng, phải kiểm nhiều site.
+
+### 4.19.119. Transfer-learning caution
+Không gọi việc đổi parameter vài hệ số là transfer learning nếu không có mô hình học máy tương ứng.
+
+### 4.19.120. Data assimilation vs calibration
+Calibration:
+- cập nhật parameter.
+
+Data assimilation:
+- cập nhật state theo observation.
+
+Không đồng nhất hai khái niệm.
+
+### 4.19.121. Online updating
+Có thể:
+$
+X_t^{post}
+=
+Update(X_t^{prior},Y_t)
+$
+
+trong mùa vụ.
+
+### 4.19.122. Parameter drift
+Nếu parameter thay đổi thật theo stage:
+$
+\theta=\theta(t)
+$
+thì không nên ép constant rồi giải thích bằng noise.
+
+### 4.19.123. Time-varying parameter caution
+Không cho mọi parameter thay đổi theo thời gian vì sẽ làm mất identifiability.
+
+### 4.19.124. Structural model selection
+Có thể so:
+- hydraulic model A/B;
+- allocation model A/B;
+- senescence model A/B.
+
+### 4.19.125. Information criteria caution
+AIC/BIC hữu ích cho model thống kê phù hợp điều kiện, nhưng không phải tiêu chuẩn duy nhất cho mechanistic ODE.
+
+### 4.19.126. Predictive validation
+Ưu tiên:
+$
+Performance_{unseen\ data}
+$
+
+hơn fit trên calibration data.
+
+### 4.19.127. Calibration hierarchy cho VECrop
+Nên đi theo thứ tự:
+1. physical/soil;
+2. hydraulics;
+3. gas exchange;
+4. phenology;
+5. nutrient uptake;
+6. biomass allocation;
+7. senescence;
+8. yield.
+
+### 4.19.128. Không fit downstream trước upstream
+Nếu water module sai mà vẫn fit yield bằng allocation parameter, parameter sẽ mất ý nghĩa sinh học.
+
+### 4.19.129. Sequential calibration caution
+Sequential calibration tiện nhưng có thể khóa sai parameter upstream.
+
+Cần re-check toàn hệ sau khi ghép.
+
+### 4.19.130. Joint calibration
+Joint calibration:
+$
+\hat\theta
+=
+\arg\min_\theta
+J_{whole-system}
+$
+
+có thể tốt hơn nhưng đòi hỏi dữ liệu và computation lớn hơn.
+
+### 4.19.131. Emulator
+Khi full model chậm, có thể xây surrogate/emulator cho:
+- sensitivity;
+- uncertainty;
+- optimization.
+
+### 4.19.132. Emulator validation
+Surrogate phải được kiểm trên domain dùng, không thay thế full model vô điều kiện.
+
+### 4.19.133. Lightweight strategy
+Với máy cấu hình nhẹ:
+- Morris screening trước;
+- giảm parameter;
+- dùng Latin hypercube vừa phải;
+- tránh MCMC cực lớn nếu không cần.
+
+### 4.19.134. Latin Hypercube Sampling
+LHS giúp phủ parameter space hiệu quả hơn random sampling thô trong nhiều bài toán.
+
+### 4.19.135. Sampling reproducibility
+Lưu:
+- seed;
+- sample count;
+- parameter bounds;
+- transform.
+
+### 4.19.136. Log-scale parameter
+Parameter trải nhiều bậc độ lớn nên sampling theo:
+$
+\log\theta
+$
+có thể phù hợp hơn linear scale.
+
+### 4.19.137. Parameter transformation
+Ví dụ positivity:
+$
+\theta
+=
+e^\eta
+$
+
+giúp optimizer không tạo parameter âm.
+
+### 4.19.138. Uncertainty in initial state
+Không chỉ parameter.
+
+Ví dụ:
+$
+\theta_{soil,0}
+$
+và:
+$
+B_0
+$
+cũng có bất định.
+
+### 4.19.139. Weather uncertainty
+Forecast weather uncertainty nên propagate vào yield forecast.
+
+### 4.19.140. Management uncertainty
+Sai số:
+- irrigation amount;
+- fertilizer timing;
+- plant density
+cũng cần xét.
+
+### 4.19.141. Observation uncertainty
+Sensor và destructive sampling đều có error.
+
+### 4.19.142. Model-form ensemble
+Có thể dùng ensemble nhiều cấu trúc để ước lượng structural uncertainty.
+
+### 4.19.143. Ensemble weighting
+Không mặc định trọng số bằng nhau nếu có validation evidence khác nhau.
+
+### 4.19.144. Bayesian model averaging caution
+Chỉ dùng khi likelihood/model setup phù hợp.
+
+### 4.19.145. Diagnostic outputs
+4.19 nên xuất:
+$
+\mathbf D_{unc}
+=
+[
+Sensitivity,
+Identifiability,
+Parameter\ uncertainty,
+Prediction\ interval,
+Extrapolation\ flag
+]^T
+$
+
+### 4.19.146. Parameter report
+Mỗi parameter cuối cần:
+- estimate;
+- interval;
+- provenance;
+- sensitivity;
+- identifiability status.
+
+### 4.19.147. Output report
+Mỗi output chính cần:
+- observed;
+- simulated;
+- residual;
+- interval;
+- stage;
+- data quality flag.
+
+### 4.19.148. Failure report
+Nếu calibration thất bại:
+- không tự chọn parameter cuối;
+- lưu failure reason;
+- không phát hành model như validated.
+
+### 4.19.149. Recalibration trigger
+Recalibration khi:
+- cultivar mới;
+- soil mới;
+- climate domain mới;
+- sensor system đổi;
+- model structure đổi.
+
+### 4.19.150. No-recalibration case
+Không cần recalibrate chỉ vì thêm observation mới nếu state assimilation đã đủ và parameter domain không đổi.
+
+### 4.19.151. Validation-first release
+Một release VECrop nên có:
+- calibration report;
+- independent validation report;
+- uncertainty report;
+- balance audit.
+
+### 4.19.152. Minimum acceptance package
+Tối thiểu:
+1. parameter table;
+2. sensitivity ranking;
+3. identifiability check;
+4. validation metrics;
+5. prediction intervals;
+6. conservation audit.
+
+### 4.19.153. Causal parameter interpretation
+Không diễn giải một fitted coefficient như cơ chế sinh học nếu nó chỉ là statistical compensation.
+
+### 4.19.154. Mechanism-preserving calibration
+Calibration nên giữ:
+- signs;
+- bounds;
+- conservation;
+- physiological plausibility.
+
+### 4.19.155. Uncertainty-aware decision
+Một recommendation chỉ nên phát nếu:
+$
+P(Benefit>0)
+$
+đủ cao theo threshold đã định trước.
+
+### 4.19.156. Risk-aware recommendation
+Có thể báo:
+- expected benefit;
+- downside probability;
+- worst plausible case.
+
+### 4.19.157. Rice uncertainty focus
+Lúa cần chú ý uncertainty ở:
+- tiller survival;
+- fertility;
+- stem NSC remobilization;
+- flooded-soil N dynamics.
+
+### 4.19.158. Maize uncertainty focus
+Ngô:
+- root depth;
+- ASI;
+- kernel set;
+- post-silking source;
+- kernel weight.
+
+### 4.19.159. Lettuce uncertainty focus
+Xà lách:
+- marketable fraction;
+- DMF;
+- tipburn risk;
+- bolting timing;
+- root-zone EC/O₂.
+
+### 4.19.160. Cross-crop parameter sharing
+Chỉ chia sẻ:
+- physical constants;
+- generic numerical settings
+khi phù hợp.
+
+Biological parameters phải kiểm riêng.
+
+### 4.19.161. Calibration database
+VECrop nên lưu lịch sử calibration theo:
+- crop;
+- cultivar;
+- site;
+- year;
+- treatment;
+- parameter version.
+
+### 4.19.162. Provenance link
+Mỗi parameter set phải truy được về:
+- dataset;
+- paper;
+- experiment;
+- calibration run.
+
+### 4.19.163. Auditability
+Người dùng phải biết:
+- parameter nào lấy từ literature;
+- parameter nào fit;
+- parameter nào assumed;
+- parameter nào proposed.
+
+### 4.19.164. Không che uncertainty
+Nếu uncertainty lớn:
+- báo lớn;
+- không làm tròn quá mức;
+- không đưa một con số giả chính xác.
+
+### 4.19.165. Precision reporting
+Không báo:
+$
+Y=8.23741\ t\ ha^{-1}
+$
+nếu uncertainty ±1 t ha\(^{-1}\).
+
+### 4.19.166. Final uncertainty principle
+Một dự báo:
+$
+\hat Y
+$
+không đầy đủ nếu thiếu:
+$
+Uncertainty(\hat Y)
+$
+
+### 4.19.167. Final identifiability principle
+Một parameter:
+$
+\hat\theta
+$
+không nên công bố như “đã xác định” nếu profile/posterior còn rộng.
+
+### 4.19.168. Final validation principle
+Fit tốt trên calibration set không đồng nghĩa model đúng.
+
+### 4.19.169. Vai trò của 4.19 trong VECrop
+4.19 tạo lớp kiểm định:
+
+<div class="flow-chain">
+<strong>Parameter</strong> → <strong>Sensitivity</strong> → <strong>Identifiability</strong> → <strong>Calibration</strong> → <strong>Validation</strong> → <strong>Uncertainty</strong> → <strong>Decision confidence</strong>
+</div>
+
+### 4.19.170. Kết luận 4.19
+Một mô hình whole-plant chỉ đáng tin khi không chỉ fit tốt mà còn:
+- parameter có thể nhận dạng;
+- uncertainty được lượng hóa;
+- validation độc lập;
+- conservation đạt;
+- prediction interval hợp lý;
+- extrapolation được flag.
+
+VECrop vì vậy phải coi:
+$
+Prediction
+=
+Estimate
++
+Uncertainty
++
+Validity\ domain
+$
+
+chứ không chỉ là một giá trị điểm.
+
+---
+
 # Chuỗi tích hợp cuối Chương 4
 
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
 
-**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.18.**
+**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.19.**
 
 ---
 
@@ -13729,10 +14932,12 @@ Một run chỉ được tin cậy khi:
 26. Literature on yield potential, yield gaps, reproductive stress windows and marketable yield formation in rice, maize and leafy vegetables.
 27. Reviews on whole-plant systems modeling, structural–functional integration and conservation-based crop simulation.
 28. Reviews on coupled water–carbon–nitrogen modeling and integrated crop systems.
+29. Literature on global sensitivity analysis, identifiability, uncertainty quantification and Bayesian calibration for dynamic crop and environmental models.
+30. Literature on model evaluation, cross-validation, data assimilation and uncertainty-aware decision support in agricultural systems.
 
 > **Quy tắc VECrop:** mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.
 
 
 ---
 
-> **Điểm dừng hiện tại:** 4.18. Chưa có nội dung sau 4.18.
+> **Điểm dừng hiện tại:** 4.19. Chưa có nội dung sau 4.19.
