@@ -69,6 +69,26 @@ function matchingTopic(text,topic){
  const terms=topicAliases[norm(topic)]||[topic];
  return terms.some(t=>norm(t).length>=2&&(' '+norm(text)+' ').includes(' '+norm(t)+' '));
 }
+const productionModes={
+ field:['field trial','open field','field experiment','outdoor'],
+ greenhouse:['greenhouse','glasshouse','controlled environment','protected cultivation'],
+ hydroponic:['hydroponic','soilless','nutrient solution'],
+ net_house:['net house','nethouse','shade house','shade net'],
+ pot:['pot experiment','pot study','potted','pot trial'],
+ vertical_farm:['vertical farming','vertical farm','indoor vertical']
+};
+function productionMatch(text){
+ const chosen=String(F.elements.production_system?.value||'').trim();
+ const known=productionModes[chosen];
+ if(!known)return {matching:null,problem:''};
+ const matched=known.some(term=>containsPlace(text,[term]));
+ const elsewhere=Object.entries(productionModes)
+  .filter(([key])=>key!==chosen)
+  .some(([,list])=>list.some(term=>containsPlace(text,[term])));
+ if(!matched&&elsewhere)return {matching:false,problem:'Metadata có hệ thống canh tác khác hệ đã khai báo'};
+ if(!matched)return {matching:null,problem:'Chưa tìm thấy hệ thống canh tác trong tiêu đề/abstract'};
+ return {matching:true,problem:''};
+}
 function doiAlerts(it){
  const warnings=[],updates=Array.isArray(it['update-to'])?it['update-to']:[];
  let blocked=false;
@@ -121,10 +141,12 @@ function selectPaper(it,crop,tier,topic='',allowUnrelated=false){
  const journal=String(it['container-title']?.[0]||'').slice(0,240);
  const flags=doiAlerts(it);
  const topicMatch=matchingTopic(text,topic);
+ const systemMatch=productionMatch(text);
  const cultivarMatch=!loc.cultivar||(' '+norm(text)+' ').includes(' '+norm(loc.cultivar)+' ');
  const issues=[];
  if(!correctCrop)issues.push('Không khớp tên cây trong tiêu đề: KHÔNG dùng tự động');
  if(!supported)issues.push('Không phải journal/proceedings article, cần xem loại công bố');
+ if(systemMatch.problem)issues.push(systemMatch.problem);
  if(!abstract)issues.push('Thiếu abstract trong metadata Crossref');
  if(!topicMatch)issues.push('Chưa rõ biến/chủ đề trong metadata');
  if(!cultivarMatch)issues.push('Không thấy cultivar đang nghiên cứu trong metadata');
@@ -143,6 +165,7 @@ function selectPaper(it,crop,tier,topic='',allowUnrelated=false){
   reference_count:Number(it['references-count'])||0,
   cited_by_count:Number(it['is-referenced-by-count'])||0,
   abstract_available:!!abstract,topic_match:topicMatch,cultivar_match:cultivarMatch,
+  production_match:systemMatch.matching,
   issues,retraction_alert:flags.blocked,
   doi_status:flags.blocked?'RETRACTION_FLAG_REVIEW':'METADATA_REGISTERED_NOT_VALIDATED',
   search_rank:geographicLevel*6+(topicMatch?5:0)+(cultivarMatch?3:0)+
@@ -208,6 +231,7 @@ function displayDOI(p,clear=true){
   ['Phù hợp địa điểm',p.geographic_evidence],
   ['Chủ đề',p.topic_match?'Có dấu hiệu phù hợp':'Chưa có bằng chứng khớp'],
   ['Giống',p.cultivar_match?'Có nhắc hoặc chưa khai báo':'Chưa thấy trong metadata'],
+  ['Hệ canh tác',p.production_match===true?'Có dấu hiệu trùng':p.production_match===false?'Có dấu hiệu không khớp':'Chưa xác định'],
   ['Cảnh báo',p.issues.join('; ')||'Không có cảnh báo từ metadata đã trả về; chưa kiểm tra toàn văn'],
   ['Kết luận','DOI hợp lệ chỉ xác nhận metadata đăng ký, không xác nhận nguồn đúng thực địa']
  ];
@@ -310,9 +334,10 @@ window.VECropSmartAutoFill=async function(){
  if(loc.province)plan.push('PROVINCE');
  if(loc.agroZone)plan.push('AGRO_ZONE');
  plan.push('VN','WORLD');
- let chosen=null,region='Không xác định',candidates=[];
+ let chosen=null,region='Không xác định',candidates=[],attempted=[];
  try{
   for(const tier of plan){
+   attempted.push(tier);
    E('evidenceStatus').textContent='Đang tìm mức '+tier+' cho cây '+crop.crop+'...';
    let papers=[];
    try{papers=await lookup(crop,topic,tier)}
@@ -362,7 +387,7 @@ window.VECropSmartAutoFill=async function(){
   panel('Không thay dữ liệu đo ngoài đồng',
    'Giữ nguyên các ô pH, EC, thời tiết thực đo, nghiệm thức, giống, năng suất và quan trắc; tài liệu tham khảo không thay các phép đo.',null,true);
   warnings.forEach(x=>panel('Cảnh báo kết nối/DOI',x,null,true));
-  E('evidenceStatus').textContent='Đã tìm theo thứ tự: '+plan.join(' → ')+
+  E('evidenceStatus').textContent='Đã thực hiện: '+attempted.join(' → ')+
    '. '+(chosen?'Đã ghi nguồn tham khảo '+region:'Chưa có nguồn đủ điều kiện')+
    '. Điểm phù hợp địa điểm chỉ dựa trên metadata, không thay thẩm định toàn văn.';
   showValidation(validate(formObject()));
