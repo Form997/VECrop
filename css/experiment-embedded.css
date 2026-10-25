@@ -89,3 +89,12 @@ body[data-vecrop-view="learn"] header.learning-only{top:58px}
 #experimentView .exp-autofill-warning{border-color:#e9d3a3;background:#fff8eb}
 html[data-theme="dark"] #experimentView .exp-autofill-row{background:#1b3b2a;border-color:#3f6349}
 html[data-theme="dark"] #experimentView .exp-autofill-warning{background:#443822;border-color:#8e733b}
+
+#experimentView .exp-doi-audit{margin:12px 0;padding:16px;border-radius:14px;border:1px solid #bfdad3;background:#f5fbf8}
+#experimentView .exp-doi-audit h3{margin:0 0 10px;font-size:1.08rem;overflow-wrap:anywhere}
+#experimentView .exp-doi-audit dl{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:6px 12px}
+#experimentView .exp-doi-audit dt{font-weight:750}
+#experimentView .exp-doi-audit dd{margin:0;overflow-wrap:anywhere}
+#experimentView .exp-doi-audit a{color:#116981}
+html[data-theme="dark"] #experimentView .exp-doi-audit{background:#1c3028;border-color:#37564a}
+@media(max-width:600px){#experimentView .exp-doi-audit dl{grid-template-columns:1fr}}

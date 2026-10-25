@@ -896,3 +896,11 @@ Sinh lý cây
 với nguyên tắc:
 
 > **Một lõi cơ chế — nhiều cấu hình cây trồng — không bịa tham số — không bỏ qua bảo toàn — không overclaim mức kiểm định.**
+
+
+### Trợ lý nguồn theo địa điểm làm việc (DOI V2)
+
+Người dùng có thể nhập **tỉnh/thành trồng** và **vùng sinh thái nông nghiệp** trong Bước 1. Tìm theo mức tỉnh/thành → vùng sinh thái → Việt Nam → thế giới. Chỉ dùng thông tin tỉnh/vùng đã chủ động nhập, không gửi địa chỉ ô/vị trí GPS/người vận hành lên Crossref. Địa điểm chỉ được xác nhận ở mức **được nhắc trong tiêu đề/abstract**; không tự coi đó là nơi đo thực địa.
+
+Bước 10 cho phép **phân tích DOI riêng** qua endpoint Crossref, xem tạp chí, nhà xuất bản, năm, ISSN, số tác giả, tài liệu tham khảo, số lần trích dẫn (không phải thước đo chất lượng), tính đầy đủ abstract, mức trùng chủ đề, giống, địa phương và các chỉ báo cập nhật/đính chính/thu hồi **nếu có metadata**. DOI không phải chứng nhận phản biện hay tính đúng đắn; cảnh báo vắng mặt không khẳng định bài chưa bị thu hồi. Không tự điền số đo thực địa.
+

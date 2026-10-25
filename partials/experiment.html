@@ -40,7 +40,13 @@
         <label>Đơn vị/nhóm nghiên cứu<input name="organization"></label>
         <label>Ngày bắt đầu *<input type="date" name="start_date" required></label>
         <label>Ngày kết thúc<input type="date" name="end_date"></label>
-        <label>Địa điểm *<input name="site" required placeholder="Xã/phường, tỉnh/thành"></label>
+        <label>Địa điểm làm việc *<input name="site" required placeholder="Địa điểm/sổ nhật ký của bạn — không gửi ra API"></label>
+        <label>Tỉnh/thành trồng (dùng để tìm nguồn)
+          <input name="site_province" placeholder="Ví dụ: Huế, Thanh Hóa, Quảng Trị">
+        </label>
+        <label>Vùng sinh thái nông nghiệp (nếu biết)
+          <input name="agro_zone" placeholder="Ví dụ: Bắc Trung Bộ, Tây Nguyên">
+        </label>
         <label>Hệ thống sản xuất *
           <select name="production_system" required>
             <option value="">-- chọn --</option>
@@ -180,7 +186,7 @@
       <div class="section-head">
         <div>
           <h2>10. Trợ lý tìm bằng chứng cho dữ liệu thiếu</h2>
-          <p class="hint">Tìm bài báo và nguồn tham khảo theo cây + giống + địa điểm + biến còn thiếu. Tự ghi DOI và nguồn tham khảo đã sàng lọc vào hồ sơ; đối chiếu tên khoa học bằng GBIF. Không sao chép số đo thực địa từ công trình khác.</p>
+          <p class="hint">Tìm bài báo và nguồn tham khảo theo cây + giống + địa điểm + biến còn thiếu. Ưu tiên tỉnh/thành đang trồng → vùng sinh thái → Việt Nam → quốc tế, phân tích DOI kèm tình trạng metadata và cảnh báo. Chỉ tự ghi nguồn khi phù hợp cây, chủ đề, giống (nếu khai báo) và có dấu hiệu địa lý; đối chiếu tên khoa học bằng GBIF. Không sao chép số đo thực địa từ công trình khác.</p>
         </div>
         <button id="searchMissingBtn" type="button">🔎 Tự tìm và điền nguồn · Việt Nam → Thế giới</button>
       </div>
@@ -192,6 +198,13 @@
           <input id="evidenceContext" placeholder="VD: Huế, Việt Nam, nhà kính, giống cụ thể...">
         </label>
       </div>
+      <div class="grid">
+        <label>Phân tích một DOI cụ thể
+          <input id="doiToAnalyze" placeholder="10.xxxx/xxxxx hoặc https://doi.org/...">
+        </label>
+        <div style="align-self:end"><button id="analyzeDoiBtn" type="button">Phân tích DOI và cảnh báo</button></div>
+      </div>
+      <div id="doiAnalysisResult" aria-live="polite"></div>
       <div class="actions evidence-actions">
         <button id="searchEvidenceBtn" type="button">Tìm Crossref</button>
         <button id="openScholarBtn" type="button">Mở Google Scholar</button>
