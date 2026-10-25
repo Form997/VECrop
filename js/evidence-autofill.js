@@ -97,17 +97,18 @@ function cropMatch(it,crop){
  return Boolean(title && crop.crop && crop.terms.some(t=>
   t.length>=3 && (' '+title+' ').includes(' '+t+' ')));
 }
-function selectPaper(it,crop,tier,topic=''){
+function selectPaper(it,crop,tier,topic='',allowUnrelated=false){
  const doi=String(it?.DOI||'').trim();
  if(!/^10\.\d{4,9}\/[-._;()/:a-z0-9]+$/i.test(doi))return null;
- if(!['journal-article','proceedings-article'].includes(it.type))return null;
- if(!cropMatch(it,crop))return null;
+ const supported=['journal-article','proceedings-article'].includes(it.type);
+ const correctCrop=cropMatch(it,crop);
+ if(!allowUnrelated&&(!supported||!correctCrop))return null;
  const title=String(it.title[0]||'').replace(/\s+/g,' ').trim().slice(0,480);
  const abstract=cleanAbstract(it.abstract), text=title+' '+abstract;
  const loc=locality();
  const province=containsPlace(title,loc.provinceAliases)||containsPlace(abstract,loc.provinceAliases);
  const region=containsPlace(title,loc.regionAliases)||containsPlace(abstract,loc.regionAliases);
- const vietnam=vnRx.test(title)||vnRx.test(abstract);
+ const vietnam=vnRx.test(norm(title))||vnRx.test(norm(abstract));
  const geographicLevel=province?4:region?3:vietnam?2:1;
  const geographicEvidence=province?'Địa danh tỉnh trong title/abstract':
   region?'Tên vùng trong title/abstract':vietnam?'Việt Nam trong title/abstract':
@@ -122,6 +123,8 @@ function selectPaper(it,crop,tier,topic=''){
  const topicMatch=matchingTopic(text,topic);
  const cultivarMatch=!loc.cultivar||(' '+norm(text)+' ').includes(' '+norm(loc.cultivar)+' ');
  const issues=[];
+ if(!correctCrop)issues.push('Không khớp tên cây trong tiêu đề: KHÔNG dùng tự động');
+ if(!supported)issues.push('Không phải journal/proceedings article, cần xem loại công bố');
  if(!abstract)issues.push('Thiếu abstract trong metadata Crossref');
  if(!topicMatch)issues.push('Chưa rõ biến/chủ đề trong metadata');
  if(!cultivarMatch)issues.push('Không thấy cultivar đang nghiên cứu trong metadata');
@@ -146,7 +149,13 @@ function selectPaper(it,crop,tier,topic=''){
     (abstract?1:0)+(it.ISSN?.length?1:0),
   checked_at:new Date().toISOString(),
   verification:'DOI registry metadata only; actual trial site, methods, observations, external validity NOT verified'};
- record.auto_citation=!flags.blocked&&topicMatch&&cultivarMatch&&geographicLevel>=2;
+ record.crop_match=correctCrop;
+ record.publication_type_supported=supported;
+ record.auto_citation=!flags.blocked&&correctCrop&&supported&&topicMatch&&cultivarMatch&&
+    (geographicLevel>=2||(tier==='WORLD'&&Boolean(abstract)));
+ if(record.auto_citation&&geographicLevel===1){
+  record.issues.push('Nguồn quốc tế chỉ được tự ghi như TRÍCH DẪN THAM KHẢO; chưa có bằng chứng địa điểm nghiên cứu');
+ }
  return record;
 }
 async function api(url,timeout=12000){
@@ -190,7 +199,7 @@ function displayDOI(p,clear=true){
  const h=document.createElement('h3');h.textContent='DOI: '+p.doi+' · '+p.doi_status;
  const dl=document.createElement('dl');
  const facts=[
-  ['Tên bài',p.title],['Tạp chí',p.journal||'Chưa có thông tin'],
+  ['Tên bài',p.title],['Khớp tên cây',p.crop_match?'Có trong tiêu đề':'KHÔNG khớp — không tự điền'],['Tạp chí',p.journal||'Chưa có thông tin'],
   ['Nhà xuất bản',p.publisher||'Chưa có thông tin'],
   ['Năm',p.year||'Chưa có thông tin'],['ISSN',p.issn.join(', ')||'Chưa có'],
   ['Số tác giả',p.author_count],['Số tham chiếu',p.reference_count],
@@ -223,7 +232,7 @@ async function analyzeDOI(){
   const data=await api('https://api.crossref.org/works/'+encodeURIComponent(raw));
   const m=data.message;
   if(!m||String(m.DOI||'').toLowerCase()!==raw.toLowerCase())throw Error('Crossref không trả bản ghi đúng DOI');
-  const info=selectPaper(m,cropInfo(),'MANUAL',String(E('evidenceTopic')?.value||'').trim());
+  const info=selectPaper(m,cropInfo(),'MANUAL',String(E('evidenceTopic')?.value||'').trim(),true);
   if(info)displayDOI(info);
   else{
    const p=document.createElement('p');p.textContent='Crossref nhận DOI nhưng bài không khớp tên cây hoặc loại công bố nghiên cứu của hồ sơ. Không tự ghi vào dữ liệu.';
