@@ -910,6 +910,17 @@ Bước 10 cho phép **phân tích DOI riêng** qua endpoint Crossref, xem tạp
 
 
 
+
+## 📗 Chương 5 — Dữ liệu thực nghiệm, thiết kế nghiên cứu và kiểm định mô hình
+
+Đã bắt đầu **mục 5.1: Nền tảng dữ liệu thực nghiệm có khả năng truy xuất và kiểm định**. Bao gồm đơn vị thí nghiệm độc lập, metadata phù hợp MIAPPE/BrAPI, biến đo và sai số, provenance W3C PROV, dữ liệu thiếu, QC theo nhiều lớp, tách hiệu chuẩn–kiểm định, và đối chiếu với DATA SQLite VECrop. **Chưa viết 5.2 trở đi**.
+
+- [Đọc chương 5.1](docs/05-chapter-5.md).
+- [Mở Chương 5 trên web](https://form997.github.io/VECrop/?view=learn&chapter=5).
+
+Nội dung hướng dẫn gắn DOI chính thức cho nguồn chính; lược đồ và rubric riêng của VECrop được đánh dấu là đề xuất, **không giả là chuẩn quốc tế**.
+
+
 ## Ứng dụng Windows
 
 Có phiên bản desktop xây dựng qua GitHub Actions ở [Hướng dẫn Windows EXE](desktop/README.md). Phiên bản EXE đóng gói tài nguyên web để đọc offline; tính năng DOI/GBIF cần Internet. Dữ liệu bản nháp trên GitHub Pages và trong ứng dụng EXE không tự đồng bộ, dùng Xuất/Nhập JSON để chuyển.

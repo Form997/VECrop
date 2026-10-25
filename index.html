@@ -272,7 +272,7 @@
     .goog-logo-link,.goog-te-gadget span { display:none !important; }
     .goog-te-gadget { font-size:0 !important; color:transparent !important; }
     .translate-note { max-width:1500px; margin:0 auto; padding:0 18px 8px; color:var(--muted); font-size:.78rem; }
-    .chapter-nav { max-width:1500px; margin:12px auto 0; padding:0 18px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .chapter-nav { max-width:1500px; margin:12px auto 0; padding:0 18px; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
     .chapter-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px 14px; cursor:pointer; box-shadow:var(--shadow); }
     .chapter-card:hover,.chapter-card.active { border-color:var(--accent); background:var(--success); }
     .chapter-card b { display:block; color:var(--accent); }
@@ -327,6 +327,7 @@
           <option value="2">Chương 2</option>
           <option value="3">Chương 3</option>
           <option value="4">Chương 4</option>
+          <option value="5">Chương 5</option>
         </select>
         <button id="retryMath" type="button" title="Dựng lại công thức">∑ Công thức</button>
         <div class="lang-box">
@@ -361,10 +362,11 @@
     <div class="chapter-card" data-chapter="2"><b>Chương 2</b><span>Môi trường vùng rễ</span></div>
     <div class="chapter-card" data-chapter="3"><b>Chương 3</b><span>HSY cấp tế bào</span></div>
     <div class="chapter-card" data-chapter="4"><b>Chương 4</b><span>Thủy lực – whole plant – yield</span></div>
+    <div class="chapter-card" data-chapter="5"><b>Chương 5</b><span>Thực nghiệm · DATA · kiểm định (đến 5.1)</span></div>
   </section>
 
   <section class="stats learning-only">
-    <div class="stat"><b id="chaptersCount">1/4</b><span>Chỉ tải chương đang chọn</span></div>
+    <div class="stat"><b id="chaptersCount">1/5</b><span>Chỉ tải chương đang chọn</span></div>
     <div class="stat"><b id="cropCount">—</b><span>Hồ sơ cây từ Python</span></div>
     <div class="stat"><b id="topicCount">—</b><span>Chủ đề AI gợi ý</span></div>
     <div class="stat"><b id="modeStatus">Web</b><span>Trạng thái hệ thống</span></div>
@@ -461,7 +463,8 @@
       1: 'docs/01-chapter-1.md',
       2: 'docs/02-chapter-2.md',
       3: 'docs/03-chapter-3.md',
-      4: 'docs/04-chapter-4.md'
+      4: 'docs/04-chapter-4.md',
+      5: 'docs/05-chapter-5.md'
     };
 
     const content = document.getElementById('content');
@@ -681,16 +684,16 @@
       });
       const n=Number(id);
       document.getElementById('prevChapter').disabled=n<=1;
-      document.getElementById('nextChapter').disabled=n>=4;
+      document.getElementById('nextChapter').disabled=n>=5;
       const url=new URL(window.location.href);
       url.searchParams.set('chapter',id);
       history.replaceState(null,'',url);
       document.title='VECrop — Chương '+id;
-      document.getElementById('chaptersCount').textContent=id+'/4';
+      document.getElementById('chaptersCount').textContent=id+'/5';
     }
 
     function goChapter(id){
-      const n=Math.max(1,Math.min(4,Number(id)||1));
+      const n=Math.max(1,Math.min(5,Number(id)||1));
       chapterSelect.value=String(n);
       render();
     }
@@ -736,7 +739,7 @@
     uiLanguage.addEventListener('change',()=>applyUiLanguage(uiLanguage.value));
 
     const initialChapter=new URLSearchParams(location.search).get('chapter');
-    chapterSelect.value=['1','2','3','4'].includes(initialChapter)?initialChapter:'1';
+    chapterSelect.value=['1','2','3','4','5'].includes(initialChapter)?initialChapter:'1';
     if(new URLSearchParams(location.search).get("view")!=="experiment") updateChapterState(chapterSelect.value);
     loadKnowledge();
   </script>
