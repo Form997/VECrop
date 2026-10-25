@@ -1,47 +1,22 @@
-<!doctype html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VECrop — Chương 1</title>
-<meta name="description" content="VECrop — Chương 1: Cơ sở sinh lý – vật lý – toán học của hấp thu dinh dưỡng">
-<script>
-window.MathJax={
-  tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],processEscapes:true},
-  svg:{fontCache:'global'}
-};
-</script>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VECrop — Chương 1 và 2</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],processEscapes:true},svg:{fontCache:'global'}};</script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <style>
 :root{--bg:#f5f7fa;--panel:#fff;--text:#17202a;--muted:#667085;--line:#e4e7ec;--accent:#176b44}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.68 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
-.top{max-width:1440px;margin:auto;display:flex;gap:14px;align-items:center;padding:12px 18px}
-.brand{font-size:20px;font-weight:800;white-space:nowrap}.brand span{color:var(--accent)}
-#search{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:9px}
-.layout{max-width:1440px;margin:auto;display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;padding:18px}
-aside{position:sticky;top:72px;height:calc(100vh - 92px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px}
-aside strong{display:block;margin-bottom:8px}
-aside a{display:block;color:var(--muted);text-decoration:none;padding:5px 7px;border-radius:7px;font-size:14px}
-aside a:hover{background:#edf7f1;color:var(--accent)}
-main{background:#fff;border:1px solid var(--line);border-radius:12px;padding:34px 42px;min-width:0}
-article{max-width:980px;margin:auto}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.68 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}.top{max-width:1440px;margin:auto;display:flex;gap:14px;align-items:center;padding:12px 18px}
+.brand{font-size:20px;font-weight:800;white-space:nowrap}.brand span{color:var(--accent)}#search{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:9px}
+.layout{max-width:1440px;margin:auto;display:grid;grid-template-columns:310px minmax(0,1fr);gap:22px;padding:18px}aside{position:sticky;top:72px;height:calc(100vh - 92px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px}
+aside a{display:block;color:var(--muted);text-decoration:none;padding:5px 7px;border-radius:7px;font-size:14px}aside a:hover{background:#edf7f1;color:var(--accent)}
+main{background:#fff;border:1px solid var(--line);border-radius:12px;padding:34px 42px;min-width:0}article{max-width:980px;margin:auto}
 h1,h2,h3{line-height:1.25;scroll-margin-top:86px}h1{font-size:2.15rem}h2{margin-top:2.1em;border-bottom:1px solid var(--line);padding-bottom:.35em}h3{margin-top:1.5em}
-code{background:#eef1f4;padding:.15em .35em;border-radius:5px}
-blockquote{border-left:4px solid var(--accent);background:#f2f8f4;margin:1em 0;padding:.7em 1em}
-.math-block{overflow-x:auto;text-align:center;margin:1.15em 0}
-.flow-chain{padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:#f1f8f4;line-height:2;overflow-x:auto}
-table{border-collapse:collapse;width:100%;display:block;overflow:auto;margin:1em 0}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{background:#f7f9fb}
-hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
+code{background:#eef1f4;padding:.15em .35em;border-radius:5px}blockquote{border-left:4px solid var(--accent);background:#f2f8f4;margin:1em 0;padding:.7em 1em}
+.math-block{overflow-x:auto;text-align:center;margin:1.15em 0}.flow-chain{padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:#f1f8f4;line-height:2;overflow-x:auto}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto;margin:1em 0}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{background:#f7f9fb}hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
 @media(max-width:900px){.layout{display:block;padding:10px}aside{display:none}main{padding:20px 14px}.top{flex-wrap:wrap}#search{flex-basis:100%}}
-</style>
-</head>
-<body>
-<header><div class="top"><div class="brand"><span>VE</span>Crop — Chương 1</div><input id="search" placeholder="Tìm trong Chương 1…"></div></header>
-<div class="layout">
-<aside><strong>Mục lục Chương 1</strong><nav id="toc"></nav></aside>
-<main><article id="content"><h1>Chương 1. Cơ sở sinh lý – vật lý – toán học của hấp thu dinh dưỡng trong VECrop</h1>
+</style></head><body>
+<header><div class="top"><div class="brand"><span>VE</span>Crop — Chương 1 + 2</div><input id="search" placeholder="Tìm trong giáo trình…"></div></header>
+<div class="layout"><aside><strong>Mục lục</strong><nav id="toc"></nav></aside><main><article id="content"><h1>Chương 1. Cơ sở sinh lý – vật lý – toán học của hấp thu dinh dưỡng trong VECrop</h1>
 <blockquote><strong>Trạng thái học thuật:</strong> Chương này tổng hợp kiến thức nền đã được thiết lập trong sinh lý thực vật, dinh dưỡng cây trồng, vật lý đất–nước và nhiệt động học. Các cấu trúc mang tên <strong>VECrop</strong> hoặc <strong>HSY</strong> được ghi rõ là *mô hình/khung đề xuất* và không được xem là định luật sinh học cho đến khi được hiệu chỉnh và kiểm định.</blockquote>
 <hr>
 <h2>1.1. Mục tiêu của Chương 1</h2>
@@ -914,21 +889,911 @@ C_{respiration}
 <li>Taiz L. et al. <strong>Plant Physiology and Development.</strong> Oxford University Press/Sinauer.</li>
 </ol>
 <blockquote><strong>Quy tắc nguồn của VECrop:</strong> mọi tham số số học đưa vào mô hình phải có provenance theo species/cultivar/organ/stage/environment/method/unit; nếu chưa có nguồn hoặc chưa hiệu chỉnh phải ghi rõ là *example*, *study-specific*, *calibration parameter* hoặc *proposed*.</blockquote>
-</article></main>
+
+<hr>
+<h1>Chương 2. Môi trường vùng rễ và điều kiện biên của VECrop</h1>
+<blockquote><strong>Mục tiêu:</strong> Chương 2 mô tả các biến vật lý, hóa học và sinh học của vùng rễ tạo nên điều kiện biên cho hấp thu nước, ion, hô hấp rễ và trao đổi chất. Các đại lượng môi trường được giữ riêng theo cơ chế; chỉ số tổng hợp chỉ dùng trong mô hình rút gọn.</blockquote>
+<hr>
+<h2>2.1. Khái niệm vùng rễ trong VECrop</h2>
+<p>Vùng rễ không chỉ là “đất quanh rễ”. Trong VECrop, vùng rễ gồm:</p>
+<ul>
+<li>đất hoặc giá thể;</li>
+<li>dung dịch đất/dung dịch dinh dưỡng;</li>
+<li>rhizosphere;</li>
+<li>bề mặt rễ;</li>
+<li>khí trong lỗ rỗng;</li>
+<li>vi sinh vật liên quan;</li>
+<li>nguồn nước và phân bón đi vào hệ.</li>
+</ul>
+<p>Vector trạng thái:</p>
+<div class="math-block">\[\mathbf X_{env}
+=
+[EC,pH,\theta,pF,\Psi_{soil},T_{root},O_2,Eh,OM,N,P,K,Ca,Mg,S,Na,Cl,\ldots]^T\]</div>
+<hr>
+<h2>2.2. Điều kiện biên và trạng thái</h2>
+<p>Cần phân biệt:</p>
+<ul>
+<li><strong>state variable</strong>: giá trị bên trong hệ tại một thời điểm;</li>
+<li><strong>boundary condition</strong>: tác động từ bên ngoài hệ;</li>
+<li><strong>forcing variable</strong>: đầu vào thay đổi theo thời gian.</li>
+</ul>
+<p>Ví dụ:</p>
+<div class="math-block">\[Irrigation(t)\]</div>
+<p>là forcing, còn:</p>
+<div class="math-block">\[\theta(z,t)\]</div>
+<p>là state variable.</p>
+<hr>
+<h2>2.3. Không gian và chiều sâu đất</h2>
+<p>Vùng rễ nên được mô tả theo chiều sâu:</p>
+<div class="math-block">\[z\in[0,Z_r]\]</div>
+<p>Trong đó \(Z_r\) là chiều sâu vùng rễ hiệu dụng.</p>
+<p>Một profile có thể viết:</p>
+<div class="math-block">\[X(z,t)\]</div>
+<p>với \(X\) là nước, nhiệt độ, nồng độ ion hoặc O₂.</p>
+<hr>
+<h2>2.4. Hàm lượng nước thể tích</h2>
+<p>Hàm lượng nước thể tích:</p>
+<div class="math-block">\[\theta
+=
+\frac{V_w}{V_{soil}}\]</div>
+<p>đơn vị thường:</p>
+<div class="math-block">\[m^3m^{-3}\]</div>
+<p>Không nên trộn \(\theta\) với phần trăm khối lượng nước nếu chưa chuyển đổi theo bulk density.</p>
+<hr>
+<h2>2.5. Bão hòa và độ rỗng</h2>
+<p>Porosity:</p>
+<div class="math-block">\[\phi
+=
+1-\frac{\rho_b}{\rho_s}\]</div>
+<p>Trong điều kiện bão hòa:</p>
+<div class="math-block">\[\theta_s\approx\phi\]</div>
+<p>nhưng thực tế có thể sai khác do trapped air và cấu trúc đất.</p>
+<hr>
+<h2>2.6. Thế nước đất</h2>
+<div class="math-block">\[\Psi_{soil}
+=
+\Psi_m+\Psi_s+\Psi_g+\Psi_p\]</div>
+<p>Trong đất không bão hòa, \(\Psi_m\) thường quan trọng.</p>
+<p>Trong dung dịch thủy canh không có ma trận đất, \(\Psi_m\) gần như không còn ý nghĩa tương tự đất khoáng.</p>
+<hr>
+<h2>2.7. pF</h2>
+<div class="math-block">\[pF=\log_{10}|h|\]</div>
+<p>với \(h\) là pressure head theo cm nước.</p>
+<p>pF là cách biểu diễn trạng thái giữ nước của đất và không phải humidity của không khí.</p>
+<hr>
+<h2>2.8. Quan hệ giữa pressure head và water potential</h2>
+<p>Một gần đúng:</p>
+<div class="math-block">\[\Psi
+=
+\rho_wgh\]</div>
+<p>Khi dùng MPa:</p>
+<div class="math-block">\[\Psi\approx 9.81\times10^{-6}h\]</div>
+<p>nếu \(h\) tính bằng m và \(\Psi\) bằng MPa.</p>
+<p>Cần thống nhất dấu theo quy ước sử dụng.</p>
+<hr>
+<h2>2.9. Đường cong giữ nước van Genuchten</h2>
+<div class="math-block">\[S_e
+=
+\frac{\theta-\theta_r}
+{\theta_s-\theta_r}\]</div>
+<p>và:</p>
+<div class="math-block">\[S_e
+=
+\left[
+1+(\alpha|h|)^n
+\right]^{-m}\]</div>
+<p>thường:</p>
+<div class="math-block">\[m=1-\frac1n\]</div>
+<p>Trong đó:</p>
+<ul>
+<li>\(\theta_r\): residual water content;</li>
+<li>\(\theta_s\): saturated water content;</li>
+<li>\(\alpha\): tham số scale;</li>
+<li>\(n,m\): tham số shape.</li>
+</ul>
+<hr>
+<h2>2.10. Độ dẫn thủy lực đất</h2>
+<p>Độ dẫn thủy lực phụ thuộc water content:</p>
+<div class="math-block">\[K=K(\theta)\]</div>
+<p>Một dạng van Genuchten–Mualem:</p>
+<div class="math-block">\[K(S_e)
+=
+K_s
+S_e^l
+\left[
+1-
+(1-S_e^{1/m})^m
+\right]^2\]</div>
+<p>Trong đó \(K_s\) là saturated hydraulic conductivity.</p>
+<hr>
+<h2>2.11. Darcy–Buckingham</h2>
+<p>Dòng nước:</p>
+<div class="math-block">\[\mathbf q
+=
+-K(\theta)
+\nabla
+(\Psi_m+\Psi_g)\]</div>
+<p>Dấu âm thể hiện dòng theo gradient potential.</p>
+<hr>
+<h2>2.12. Richards equation</h2>
+<p>Một dạng tổng quát:</p>
+<div class="math-block">\[\frac{\partial\theta}{\partial t}
+=
+\nabla\cdot
+[
+K(\theta)\nabla(\Psi_m+\Psi_g)
+]
+-
+S_{root}\]</div>
+<p>Trong đó \(S_{root}\) là sink do cây hút nước.</p>
+<hr>
+<h2>2.13. Root water uptake sink</h2>
+<p>Một mô hình đơn giản:</p>
+<div class="math-block">\[S_{root}(z,t)
+=
+\beta(z)
+T_p(t)
+F_{\Psi}(z,t)\]</div>
+<p>trong đó:</p>
+<ul>
+<li>\(\beta(z)\): phân bố rễ;</li>
+<li>\(T_p\): transpiration potential;</li>
+<li>\(F_{\Psi}\): stress response.</li>
+</ul>
+<p>Đây là reduced formulation.</p>
+<hr>
+<h2>2.14. Root length density</h2>
+<div class="math-block">\[RLD(z)
+=
+\frac{L_{root}(z)}
+{V_{soil}(z)}\]</div>
+<p>Một dạng profile thực nghiệm:</p>
+<div class="math-block">\[RLD(z)=RLD_0e^{-k_zz}\]</div>
+<p>không phải quy luật phổ quát; cần fit theo crop và đất.</p>
+<hr>
+<h2>2.15. Dòng khối dinh dưỡng</h2>
+<div class="math-block">\[J_{mass,i}
+=
+q_wC_i\]</div>
+<p>Mass flow phụ thuộc:</p>
+<ul>
+<li>water flux;</li>
+<li>concentration;</li>
+<li>root water uptake;</li>
+<li>transpiration.</li>
+</ul>
+<hr>
+<h2>2.16. Khuếch tán dinh dưỡng</h2>
+<p>Fick:</p>
+<div class="math-block">\[J_{diff,i}
+=
+-D_{eff,i}\nabla C_i\]</div>
+<p>Với đất:</p>
+<div class="math-block">\[D_{eff,i}
+=
+D_{0,i}
+f(\theta,\tau,sorption)\]</div>
+<p>trong đó \(\tau\) biểu thị tortuosity.</p>
+<hr>
+<h2>2.17. Tổng dòng ion tới rễ</h2>
+<div class="math-block">\[J_i^{soil}
+=
+q_wC_i
+-
+D_{eff,i}\nabla C_i\]</div>
+<p>Ở mức nâng cao có thể thêm:</p>
+<ul>
+<li>reaction;</li>
+<li>sorption;</li>
+<li>mineralization;</li>
+<li>root exudation.</li>
+</ul>
+<hr>
+<h2>2.18. Depletion zone</h2>
+<p>Hấp thu rễ tạo gradient:</p>
+<div class="math-block">\[\frac{\partial C_i}{\partial t}
+=
+D_{eff,i}\nabla^2C_i
+-
+R_{uptake,i}
++
+R_{source,i}\]</div>
+<p>Nồng độ bulk soil không nhất thiết bằng nồng độ ngay tại root surface.</p>
+<hr>
+<h2>2.19. Buffer capacity của đất</h2>
+<p>Một dạng linear buffer:</p>
+<div class="math-block">\[S_i=K_{d,i}C_i\]</div>
+<p>Tổng lượng:</p>
+<div class="math-block">\[M_i
+=
+\theta C_i+\rho_bS_i\]</div>
+<p>Với P và một số micronutrient, sorption có thể làm diffusion tới rễ trở thành giới hạn chính.</p>
+<hr>
+<h2>2.20. Sorption phi tuyến</h2>
+<p>Freundlich:</p>
+<div class="math-block">\[S_i=K_FC_i^n\]</div>
+<p>Langmuir:</p>
+<div class="math-block">\[S_i=
+\frac{Q_{max}K_LC_i}
+{1+K_LC_i}\]</div>
+<p>Chọn mô hình theo dữ liệu; không dùng một mô hình sorption cho mọi ion.</p>
+<hr>
+<h2>2.21. EC</h2>
+<p>EC là độ dẫn điện của dung dịch.</p>
+<p>EC tăng khi tổng lượng ion hòa tan tăng, nhưng:</p>
+<div class="math-block">\[EC\neq C_N\]</div>
+<div class="math-block">\[EC\neq C_P\]</div>
+<div class="math-block">\[EC\neq C_K\]</div>
+<p>Vì các ion có mobility và charge khác nhau.</p>
+<hr>
+<h2>2.22. EC và nhiệt độ</h2>
+<p>EC phụ thuộc nhiệt độ đo.</p>
+<p>Do đó cần:</p>
+<ul>
+<li>ghi nhiệt độ;</li>
+<li>dùng temperature compensation nếu thiết bị hỗ trợ;</li>
+<li>không so EC từ hai nhiệt độ khác nhau mà không hiệu chỉnh.</li>
+</ul>
+<hr>
+<h2>2.23. EC và osmotic stress</h2>
+<p>Một mô hình thẩm thấu tổng quát:</p>
+<div class="math-block">\[\Psi_s
+\approx
+-RT\sum_i\phi_iC_i\]</div>
+<p>EC có thể dùng như proxy của salinity nhưng không thay thế thành phần ion khi cần mô hình Na+, Cl−, K+ hay Ca2+.</p>
+<hr>
+<h2>2.24. pH và speciation</h2>
+<p>pH điều khiển dạng hóa học của nhiều chất.</p>
+<p>Ví dụ phosphate tồn tại theo tỷ lệ giữa:</p>
+<div class="math-block">\[H_2PO_4^-\]</div>
+<p>và:</p>
+<div class="math-block">\[HPO_4^{2-}\]</div>
+<p>tùy pH.</p>
+<p>Điều này ảnh hưởng:</p>
+<ul>
+<li>uptake;</li>
+<li>sorption;</li>
+<li>precipitation.</li>
+</ul>
+<hr>
+<h2>2.25. pH và micronutrient</h2>
+<p>Khả dụng của Fe, Mn, Zn, Cu thường thay đổi mạnh theo pH.</p>
+<p>Do đó không được dùng một “pH optimum” chung cho mọi nutrient.</p>
+<hr>
+<h2>2.26. pH vùng rễ do cây điều chỉnh</h2>
+<p>Root proton balance có thể làm thay đổi rhizosphere pH.</p>
+<p>Ví dụ uptake cation và anion không cân bằng có thể làm thay đổi H+ flux.</p>
+<p>Một biểu diễn:</p>
+<div class="math-block">\[J_H
+=
+f(
+J_{cation},
+J_{anion},
+N\ form
+)\]</div>
+<hr>
+<h2>2.27. Nitrate và ammonium</h2>
+<p>Hai dạng N chính:</p>
+<div class="math-block">\[NO_3^-\]</div>
+<p>và:</p>
+<div class="math-block">\[NH_4^+\]</div>
+<p>có:</p>
+<ul>
+<li>transporter khác nhau;</li>
+<li>yêu cầu assimilation khác nhau;</li>
+<li>tác động khác lên rhizosphere pH;</li>
+<li>ưu thế khác nhau theo redox và crop.</li>
+</ul>
+<hr>
+<h2>2.28. Mineralization của N</h2>
+<p>Một reduced first-order model:</p>
+<div class="math-block">\[\frac{dN_{org}}{dt}
+=
+-k_{min}N_{org}\]</div>
+<div class="math-block">\[R_{min,N}
+=
+k_{min}N_{org}
+f(T,\theta,pH,O_2)\]</div>
+<p>Đây là mô hình rút gọn; soil organic matter dynamics thực tế phức tạp hơn.</p>
+<hr>
+<h2>2.29. Nitrification</h2>
+<p>Sơ đồ:</p>
+<div class="math-block">\[NH_4^+
+\rightarrow
+NO_2^-
+\rightarrow
+NO_3^-\]</div>
+<p>Quá trình phụ thuộc mạnh O₂, temperature, pH và microbial activity.</p>
+<hr>
+<h2>2.30. Denitrification</h2>
+<p>Trong điều kiện thiếu O₂:</p>
+<div class="math-block">\[NO_3^-
+\rightarrow
+NO_2^-
+\rightarrow
+NO
+\rightarrow
+N_2O
+\rightarrow
+N_2\]</div>
+<p>Không dùng Eh đơn lẻ như proxy tuyệt đối cho tốc độ denitrification.</p>
+<hr>
+<h2>2.31. O₂ vùng rễ</h2>
+<p>O₂ gas trong đất và dissolved oxygen trong dung dịch ảnh hưởng respiration rễ.</p>
+<p>Một saturation function:</p>
+<div class="math-block">\[R_{O_2}
+=
+R_{O_2,\max}
+\frac{C_{O_2}}
+{K_{O_2}+C_{O_2}}\]</div>
+<hr>
+<h2>2.32. Diffusion O₂</h2>
+<div class="math-block">\[J_{O_2}
+=
+-D_{O_2,eff}\nabla C_{O_2}\]</div>
+<p>Trong đất ngập, gas diffusion giảm mạnh so với đất thoáng khí.</p>
+<hr>
+<h2>2.33. Eh</h2>
+<p>Redox potential:</p>
+<div class="math-block">\[E_h
+=
+E^0
++
+\frac{RT}{nF}
+\ln\frac{a_{Ox}}{a_{Red}}\]</div>
+<p>Eh là một chỉ báo trạng thái oxy hóa–khử nhưng không đồng nhất với:</p>
+<div class="math-block">\[C_{O_2}\]</div>
+<hr>
+<h2>2.34. Chuỗi khử trong đất ngập</h2>
+<p>Khi O₂ cạn, electron acceptor có thể chuyển dần qua:</p>
+<div class="math-block">\[O_2
+\rightarrow
+NO_3^-
+\rightarrow
+Mn(IV)
+\rightarrow
+Fe(III)
+\rightarrow
+SO_4^{2-}
+\rightarrow
+CO_2\]</div>
+<p>Thứ tự là nguyên lý tổng quát; threshold Eh cụ thể phụ thuộc hệ đất.</p>
+<hr>
+<h2>2.35. Fe và Mn trong đất ngập</h2>
+<p>Reduction có thể làm tăng tính hòa tan của Fe và Mn.</p>
+<p>Điều này đặc biệt quan trọng trong mô hình lúa vì:</p>
+<ul>
+<li>toxicity;</li>
+<li>nutrient interaction;</li>
+<li>root oxidation;</li>
+<li>iron plaque.</li>
+</ul>
+<hr>
+<h2>2.36. Radial oxygen loss</h2>
+<p>Với cây có aerenchyma:</p>
+<div class="math-block">\[J_{ROL}
+=
+P_{ROL}
+(C_{O_2,root}-C_{O_2,soil})\]</div>
+<p>ROL làm thay đổi chemistry sát bề mặt rễ.</p>
+<hr>
+<h2>2.37. Aerenchyma</h2>
+<p>Aerenchyma fraction:</p>
+<div class="math-block">\[\phi_{aer}
+=
+\frac{A_{gas}}{A_{root}}\]</div>
+<p>Đây là trait quan trọng của lúa trong đất ngập.</p>
+<hr>
+<h2>2.38. Nhiệt độ vùng rễ</h2>
+<p>Root-zone temperature khác air temperature.</p>
+<p>Nó ảnh hưởng:</p>
+<ul>
+<li>hydraulic conductivity;</li>
+<li>respiration;</li>
+<li>nutrient uptake;</li>
+<li>root growth;</li>
+<li>enzyme kinetics;</li>
+<li>microbial activity.</li>
+</ul>
+<hr>
+<h2>2.39. Arrhenius response</h2>
+<div class="math-block">\[k(T)
+=
+k_{ref}
+\exp
+\left[
+-\frac{E_a}{R}
+\left(
+\frac1T-\frac1{T_{ref}}
+\right)
+\right]\]</div>
+<p>Dạng này phù hợp trong miền nhiệt độ không gây damage mạnh.</p>
+<hr>
+<h2>2.40. Q10</h2>
+<p>Một empirical response:</p>
+<div class="math-block">\[R(T)
+=
+R_{ref}
+Q_{10}^{(T-T_{ref})/10}\]</div>
+<p>Không mặc định:</p>
+<div class="math-block">\[Q_{10}=2\]</div>
+<p>cho mọi process.</p>
+<hr>
+<h2>2.41. Chất hữu cơ</h2>
+<p>Một pool đơn giản:</p>
+<div class="math-block">\[\frac{dOM_{labile}}{dt}
+=
+Input
+-
+k_{dec}OM_{labile}\]</div>
+<p>Decomposition phụ thuộc:</p>
+<ul>
+<li>T;</li>
+<li>water;</li>
+<li>O₂;</li>
+<li>substrate quality;</li>
+<li>microbial activity.</li>
+</ul>
+<hr>
+<h2>2.42. C:N:P stoichiometry đất</h2>
+<p>Không nên mô hình mineralization mà bỏ qua tỷ lệ C:N:P.</p>
+<p>Một khung microbial demand:</p>
+<div class="math-block">\[Demand_N
+=
+\frac{C_{assimilated}}
+{CN_{microbe}}\]</div>
+<p>Nếu substrate N thấp hơn demand, immobilization có thể tăng.</p>
+<hr>
+<h2>2.43. Root exudation</h2>
+<p>Rễ giải phóng:</p>
+<ul>
+<li>sugars;</li>
+<li>amino acids;</li>
+<li>organic acids;</li>
+<li>mucilage;</li>
+<li>secondary metabolites.</li>
+</ul>
+<p>Một flux:</p>
+<div class="math-block">\[J_{exu}
+=
+f(
+C_{status},
+P_{status},
+root\ age,
+stress
+)\]</div>
+<p>Exudation có chi phí carbon.</p>
+<hr>
+<h2>2.44. Rhizosphere pH</h2>
+<p>Root exudates và proton flux có thể làm:</p>
+<div class="math-block">\[pH_{rhizo}\neq pH_{bulk}\]</div>
+<p>Do đó sampling bulk soil có thể bỏ sót trạng thái thực sát rễ.</p>
+<hr>
+<h2>2.45. Rhizosphere redox</h2>
+<p>Tương tự:</p>
+<div class="math-block">\[Eh_{rhizo}\neq Eh_{bulk}\]</div>
+<p>đặc biệt quanh rễ lúa có ROL.</p>
+<hr>
+<h2>2.46. Microbiome</h2>
+<p>Ở mức cơ chế, microbiome có thể ảnh hưởng:</p>
+<ul>
+<li>mineralization;</li>
+<li>immobilization;</li>
+<li>N fixation;</li>
+<li>P mobilization;</li>
+<li>pathogen suppression;</li>
+<li>hormone-like signaling.</li>
+</ul>
+<p>Một reduced microbial pool:</p>
+<div class="math-block">\[\frac{dM_{mic}}{dt}
+=
+Growth_{mic}
+-
+Death_{mic}\]</div>
+<hr>
+<h2>2.47. Mycorrhiza</h2>
+<p>Phosphate uptake có thể tách:</p>
+<div class="math-block">\[U_P
+=
+U_{P,root}
++
+U_{P,myc}\]</div>
+<p>Nhưng cần accounting carbon cost:</p>
+<div class="math-block">\[C_{cost,myc}
+=
+f(U_{P,myc},colonization)\]</div>
+<hr>
+<h2>2.48. Tương tác K–Na</h2>
+<p>Competition có thể mô tả bằng một interaction factor:</p>
+<div class="math-block">\[U_K^{eff}
+=
+U_KF_{K,Na}\]</div>
+<p>với:</p>
+<div class="math-block">\[0\le F_{K,Na}\le1\]</div>
+<p>nếu dữ liệu hỗ trợ.</p>
+<p>Không dùng một threshold K/Na phổ quát.</p>
+<hr>
+<h2>2.49. Tương tác Ca–Na</h2>
+<p>Na cao có thể ảnh hưởng:</p>
+<ul>
+<li>membrane integrity;</li>
+<li>Ca signaling;</li>
+<li>cell wall;</li>
+<li>selectivity.</li>
+</ul>
+<p>VECrop nên tách osmotic stress khỏi ion-specific toxicity.</p>
+<hr>
+<h2>2.50. Phosphate precipitation</h2>
+<p>P có thể bị cố định qua:</p>
+<ul>
+<li>Ca compounds ở pH cao;</li>
+<li>Fe/Al interactions ở pH thấp;</li>
+<li>sorption bề mặt khoáng.</li>
+</ul>
+<p>Do đó total P không bằng solution Pi.</p>
+<hr>
+<h2>2.51. Salinity: hai cơ chế chính</h2>
+<p>Phải tách:</p>
+<div class="math-block">\[osmotic\ stress\]</div>
+<p>và:</p>
+<div class="math-block">\[ion\ toxicity/imbalance\]</div>
+<p>Không dùng một scalar EC duy nhất nếu mục tiêu là mechanistic salinity module.</p>
+<hr>
+<h2>2.52. Na và Cl</h2>
+<p>Các ion salinity chính thường gồm:</p>
+<div class="math-block">\[Na^+,\ Cl^-\]</div>
+<p>nhưng phản ứng cây phụ thuộc:</p>
+<ul>
+<li>exclusion;</li>
+<li>sequestration;</li>
+<li>tissue tolerance;</li>
+<li>K retention;</li>
+<li>Ca status.</li>
+</ul>
+<hr>
+<h2>2.53. Bicarbonate và alkalinity</h2>
+<p>Trong thủy canh và irrigation water, bicarbonate ảnh hưởng:</p>
+<ul>
+<li>pH stability;</li>
+<li>nutrient availability;</li>
+<li>acid requirement.</li>
+</ul>
+<p>Không nên dùng EC để đại diện alkalinity.</p>
+<hr>
+<h2>2.54. Dung dịch dinh dưỡng</h2>
+<p>Một nutrient solution phải được mô tả bằng vector ion:</p>
+<div class="math-block">\[\mathbf C_{sol}
+=
+[C_{NO_3},C_{NH_4},C_{K},C_{Ca},C_{Mg},C_{P},C_{S},\ldots]^T\]</div>
+<p>EC chỉ là một observation tổng hợp.</p>
+<hr>
+<h2>2.55. Cân bằng tank thủy canh</h2>
+<p>Với ion \(i\):</p>
+<div class="math-block">\[\frac{dM_{i,tank}}{dt}
+=
+F_{i,in}
+-
+U_i
+-
+F_{i,drain}
++
+F_{i,return}\]</div>
+<p>Nếu volume thay đổi:</p>
+<div class="math-block">\[C_i=\frac{M_i}{V}\]</div>
+<p>phải cập nhật đồng thời.</p>
+<hr>
+<h2>2.56. Dissolved oxygen trong hydroponics</h2>
+<p>DO phụ thuộc:</p>
+<ul>
+<li>temperature;</li>
+<li>aeration;</li>
+<li>root respiration;</li>
+<li>microbial demand;</li>
+<li>water movement.</li>
+</ul>
+<p>Root-zone hypoxia vẫn có thể xảy ra trong hệ giàu nước.</p>
+<hr>
+<h2>2.57. Root-zone temperature trong hydroponics</h2>
+<p>Nhiệt độ dung dịch ảnh hưởng:</p>
+<ul>
+<li>DO saturation;</li>
+<li>respiration;</li>
+<li>uptake;</li>
+<li>root disease risk.</li>
+</ul>
+<p>Do đó cần đo riêng với air temperature.</p>
+<hr>
+<h2>2.58. Lúa</h2>
+<p>Trong lúa:</p>
+<ul>
+<li>flooded soil;</li>
+<li>low redox;</li>
+<li>NH4+ thường có vai trò lớn;</li>
+<li>aerenchyma và ROL quan trọng;</li>
+<li>Fe/Mn chemistry cần theo dõi;</li>
+<li>AWD tạo dao động redox.</li>
+</ul>
+<hr>
+<h2>2.59. Ngô</h2>
+<p>Trong ngô:</p>
+<ul>
+<li>root depth lớn hơn;</li>
+<li>soil drying quan trọng;</li>
+<li>nitrate transport thường đáng kể;</li>
+<li>coupling soil water–VPD mạnh;</li>
+<li>hypoxia do waterlogging gây stress rõ.</li>
+</ul>
+<hr>
+<h2>2.60. Xà lách</h2>
+<p>Trong xà lách:</p>
+<ul>
+<li>hệ rễ nông;</li>
+<li>root-zone temperature rất quan trọng;</li>
+<li>hydroponic EC/pH/DO có thể là input chính;</li>
+<li>Ca delivery liên quan mạnh tới transpiration và tipburn.</li>
+</ul>
+<hr>
+<h2>2.61. Dữ liệu tối thiểu cho đất</h2>
+<p>Nên có:</p>
+<ul>
+<li>texture;</li>
+<li>bulk density;</li>
+<li>water retention curve;</li>
+<li>saturated hydraulic conductivity;</li>
+<li>EC;</li>
+<li>pH;</li>
+<li>soil water;</li>
+<li>temperature;</li>
+<li>available N/P/K;</li>
+<li>irrigation/fertilization history.</li>
+</ul>
+<hr>
+<h2>2.62. Dữ liệu tối thiểu cho hydroponics</h2>
+<p>Nên có:</p>
+<ul>
+<li>volume tank;</li>
+<li>EC;</li>
+<li>pH;</li>
+<li>DO;</li>
+<li>root-zone temperature;</li>
+<li>ion composition nếu có;</li>
+<li>irrigation/flow rate;</li>
+<li>drainage;</li>
+<li>nutrient addition history.</li>
+</ul>
+<hr>
+<h2>2.63. Sensor QC</h2>
+<p>Mỗi sensor cần:</p>
+<ul>
+<li>calibration date;</li>
+<li>range check;</li>
+<li>drift check;</li>
+<li>missing-data flag;</li>
+<li>timestamp;</li>
+<li>spatial location/depth.</li>
+</ul>
+<hr>
+<h2>2.64. Mô hình sai số cảm biến</h2>
+<p>Một observation model:</p>
+<div class="math-block">\[y_{obs}=y_{true}+\epsilon\]</div>
+<p>Nếu giả định Gaussian phù hợp:</p>
+<div class="math-block">\[\epsilon\sim\mathcal N(0,\sigma_{sensor}^2)\]</div>
+<p>Không mặc định Gaussian nếu dữ liệu có outlier hoặc bias.</p>
+<hr>
+<h2>2.65. Spatial variability</h2>
+<p>Với đất không đồng nhất:</p>
+<div class="math-block">\[X=X(x,y,z,t)\]</div>
+<p>Không nên dùng một cảm biến duy nhất đại diện cả ruộng nếu spatial variability lớn.</p>
+<hr>
+<h2>2.66. Temporal resolution</h2>
+<p>Sampling interval phải phù hợp process.</p>
+<p>Ví dụ:</p>
+<ul>
+<li>soil water: phút–giờ;</li>
+<li>EC/pH hydroponic: phút–giờ;</li>
+<li>tissue nutrient: ngày–tuần;</li>
+<li>biomass: destructive interval.</li>
+</ul>
+<hr>
+<h2>2.67. Missing data</h2>
+<p>Không tự động nội suy dài nếu process thay đổi nhanh.</p>
+<p>Có thể dùng:</p>
+<ul>
+<li>linear interpolation cho gap ngắn;</li>
+<li>state-space filtering;</li>
+<li>model-based imputation.</li>
+</ul>
+<p>Phải giữ flag dữ liệu gốc và dữ liệu suy ra.</p>
+<hr>
+<h2>2.68. Data assimilation</h2>
+<p>Một dạng state-space:</p>
+<div class="math-block">\[x_{t+1}
+=
+f(x_t,u_t,\theta)
++
+\omega_t\]</div>
+<div class="math-block">\[y_t
+=
+h(x_t)
++
+\nu_t\]</div>
+<p>Có thể dùng Kalman/EnKF/particle filter tùy cấu trúc mô hình.</p>
+<hr>
+<h2>2.69. Boundary conditions cho VECrop</h2>
+<p>Đầu ra Chương 2 nên chuyển thành:</p>
+<div class="math-block">\[\{\Psi_{soil},C_i,T_{root},O_2,Eh\}\]</div>
+<p>để cấp cho:</p>
+<ul>
+<li>root hydraulics;</li>
+<li>nutrient uptake;</li>
+<li>respiration;</li>
+<li>ion homeostasis;</li>
+<li>redox.</li>
+</ul>
+<hr>
+<h2>2.70. H_env chỉ là reduced diagnostic</h2>
+<p>Nếu cần một index môi trường:</p>
+<div class="math-block">\[H_{env}
+=
+G_{critical}
+\left(
+\prod_{j=1}^{m}R_j
+\right)^{1/m}\]</div>
+<p>với:</p>
+<div class="math-block">\[R_j\in[0,1]\]</div>
+<p>Đây là <strong>VECrop proposed reduced formulation</strong>.</p>
+<p>Không dùng \(H_{env}\) để thay thế các module cơ chế khi đã có dữ liệu đủ.</p>
+<hr>
+<h2>2.71. Không double counting</h2>
+<p>Nếu salinity đã tác động qua:</p>
+<div class="math-block">\[\Psi_s\]</div>
+<p>và ion-specific toxicity đã tác động qua:</p>
+<div class="math-block">\[Na^+,\ Cl^-,K^+\]</div>
+<p>thì không nên nhân thêm một \(F_{EC}\) tổng quát ở cuối.</p>
+<p>Tương tự với:</p>
+<ul>
+<li>pH;</li>
+<li>temperature;</li>
+<li>O₂;</li>
+<li>water stress.</li>
+</ul>
+<hr>
+<h2>2.72. Kiểm tra dimensional consistency</h2>
+<p>Ví dụ:</p>
+<div class="math-block">\[J_i^{soil}
+=
+q_wC_i
+-
+D_{eff,i}\nabla C_i\]</div>
+<p>Hai vế phải có cùng đơn vị flux.</p>
+<p>Nếu:</p>
+<ul>
+<li>\(q_w\): m s−1;</li>
+<li>\(C_i\): mol m−3;</li>
+</ul>
+<p>thì:</p>
+<div class="math-block">\[q_wC_i\]</div>
+<p>có đơn vị:</p>
+<div class="math-block">\[mol\ m^{-2}\ s^{-1}\]</div>
+<hr>
+<h2>2.73. Kiểm tra mass balance vùng rễ</h2>
+<p>Nước:</p>
+<div class="math-block">\[Input_{water}
+-
+Output_{water}
+-
+Uptake_{water}
+-
+\Delta Storage
+\approx0\]</div>
+<p>Ion:</p>
+<div class="math-block">\[Input_i
+-
+Drain_i
+-
+Uptake_i
+-
+Loss_i
+-
+\Delta Storage_i
+\approx0\]</div>
+<hr>
+<h2>2.74. Calibration của soil/root-zone module</h2>
+<p>Ưu tiên hiệu chỉnh:</p>
+<ol>
+<li>water retention;</li>
+<li>hydraulic conductivity;</li>
+<li>root distribution;</li>
+<li>nutrient diffusion/sorption;</li>
+<li>mineralization;</li>
+<li>gas/redox parameters.</li>
+</ol>
+<p>Không fit tất cả cùng lúc chỉ bằng yield.</p>
+<hr>
+<h2>2.75. Validation</h2>
+<p>Nên dùng dữ liệu độc lập về:</p>
+<ul>
+<li>soil water profile;</li>
+<li>EC;</li>
+<li>pH;</li>
+<li>nutrient concentration;</li>
+<li>root-zone temperature;</li>
+<li>DO/O₂;</li>
+<li>drainage;</li>
+<li>uptake.</li>
+</ul>
+<hr>
+<h2>2.76. Sensitivity analysis</h2>
+<p>Một local sensitivity:</p>
+<div class="math-block">\[S_i
+=
+\frac{\partial Y}
+{\partial\theta_i}\]</div>
+<p>Global analysis có thể dùng Morris hoặc Sobol khi cần.</p>
+<hr>
+<h2>2.77. Phân biệt kiến thức nền và VECrop đề xuất</h2>
+<h3>Kiến thức nền</h3>
+<ul>
+<li>van Genuchten;</li>
+<li>Darcy–Buckingham;</li>
+<li>Richards equation;</li>
+<li>Fick diffusion;</li>
+<li>sorption;</li>
+<li>Nernst/redox;</li>
+<li>mineralization;</li>
+<li>nitrification/denitrification;</li>
+<li>root-zone oxygen processes.</li>
+</ul>
+<h3>VECrop đề xuất</h3>
+<ul>
+<li>cách chuẩn hóa \(H_{env}\);</li>
+<li>cách coupling root-zone states với HSY;</li>
+<li>lựa chọn response factors;</li>
+<li>cách đơn giản hóa module theo dữ liệu.</li>
+</ul>
+<hr>
+<h2>2.78. Các lỗi cần tránh</h2>
+<p>Không:</p>
+<ul>
+<li>dùng EC như nồng độ NPK;</li>
+<li>dùng RH thay pF;</li>
+<li>dùng một pH optimum cho mọi nutrient;</li>
+<li>dùng một Eh threshold cho mọi đất;</li>
+<li>lấy root-zone temperature bằng air temperature;</li>
+<li>dùng total nutrient như available nutrient;</li>
+<li>bỏ qua unit conversion;</li>
+<li>double count salinity/water/pH stress.</li>
+</ul>
+<hr>
+<h2>2.79. Kết luận Chương 2</h2>
+<p>Chuỗi điều kiện biên:</p>
+<div class="flow-chain">
+<strong>Nước đất / dung dịch</strong> → <strong>EC – pH – nhiệt độ – O₂ – Eh – ion</strong> → <strong>Rhizosphere</strong> → <strong>Bề mặt rễ</strong> → <strong>Điều kiện cho uptake và hydraulics</strong>
 </div>
+<p>Đầu ra chính của Chương 2:</p>
+<div class="math-block">\[\boxed{
+\mathbf B_{root}
+=
+[\Psi_{soil},C_i,T_{root},O_2,Eh,pH]^T
+}\]</div>
+<p>được dùng làm điều kiện biên cho mô hình rễ và mạch dẫn ở các chương tiếp theo.</p>
+<hr>
+<h1>Tài liệu nền tảng</h1>
+<ol>
+<li>Rengel Z., Cakmak I., White P.J. (eds.). <strong>Marschner's Mineral Nutrition of Plants. 4th ed.</strong> Academic Press, 2023.</li>
+<li>van Genuchten M.Th. (1980). <strong>A Closed-form Equation for Predicting the Hydraulic Conductivity of Unsaturated Soils.</strong> *Soil Science Society of America Journal* 44.</li>
+<li>Mualem Y. (1976). <strong>A new model for predicting the hydraulic conductivity of unsaturated porous media.</strong> *Water Resources Research* 12.</li>
+<li>Hillel D. <strong>Introduction to Environmental Soil Physics.</strong> Academic Press.</li>
+<li>Jury W.A., Horton R. <strong>Soil Physics.</strong> Wiley.</li>
+<li>Marschner P., Rengel Z. <strong>Nutrient availability in soils.</strong> In *Marschner's Mineral Nutrition of Plants*.</li>
+<li>Colmer T.D., Greenway H. Reviews on plant responses to waterlogging and root aeration.</li>
+<li>Hinsinger P. Reviews on rhizosphere processes and nutrient acquisition.</li>
+</ol>
+<blockquote><strong>Quy tắc VECrop:</strong> mọi tham số vùng rễ phải có provenance theo loại đất/giá thể, crop, cultivar, depth, temperature, treatment, measurement method và unit; các giá trị chưa kiểm định phải được đánh dấu là *study-specific* hoặc *calibration parameter*.</blockquote>
+</article></main></div>
 <script>
 const content=document.getElementById('content'),toc=document.getElementById('toc');
 const slug=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-[...content.querySelectorAll('h1,h2,h3')].forEach((h,i)=>{
- h.id=slug(h.textContent)||('s'+i);
- const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;
- a.style.paddingLeft=h.tagName==='H1'?'6px':h.tagName==='H2'?'16px':'28px';toc.appendChild(a);
-});
-document.getElementById('search').addEventListener('input',e=>{
- const q=e.target.value.trim().toLowerCase();if(!q)return;
- const hit=[...content.querySelectorAll('h1,h2,h3,p,li,td')].find(x=>x.textContent.toLowerCase().includes(q));
- if(hit)hit.scrollIntoView({behavior:'smooth',block:'center'});
-});
-</script>
-</body>
-</html>
+[...content.querySelectorAll('h1,h2,h3')].forEach((h,i)=>{h.id=slug(h.textContent)||('s'+i);const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;a.style.paddingLeft=h.tagName==='H1'?'6px':h.tagName==='H2'?'16px':'28px';toc.appendChild(a);});
+document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();if(!q)return;const hit=[...content.querySelectorAll('h1,h2,h3,p,li,td')].find(x=>x.textContent.toLowerCase().includes(q));if(hit)hit.scrollIntoView({behavior:'smooth',block:'center'});});
+</script></body></html>
