@@ -1,5 +1,119 @@
 # VECrop
 
+## 🌍 VECrop in many languages — Giới thiệu đa ngôn ngữ
+
+> **Simple idea:** VECrop is an open research project for understanding how crops respond to water, soil, nutrients, climate, physiology and management, and how these processes lead to biomass and yield. It combines scientific documentation, a dynamic web interface and lightweight Python tools. It is a research framework, not a universal ready-to-use crop recommendation system.
+
+### 🇻🇳 Tiếng Việt
+VECrop là dự án nghiên cứu mở giúp mô tả cây trồng từ đất, nước, dinh dưỡng và khí hậu đến sinh lý, sinh trưởng và năng suất. Dự án kết hợp giáo trình khoa học, giao diện web động và công cụ Python nhẹ; hiện đây là **khung nghiên cứu**, chưa phải hệ thống khuyến cáo hoàn chỉnh cho mọi cây và mọi nơi.
+
+### 🇬🇧 English
+VECrop is an open research project for understanding how crops respond to soil, water, nutrients, climate and management, and how these processes lead to growth and yield. It combines scientific documentation, a dynamic web interface and lightweight Python tools; it is a **research framework**, not a universal validated recommendation system.
+
+### 🇨🇳 简体中文
+VECrop 是一个开放研究项目，用于理解作物如何受到土壤、水分、养分、气候和管理措施的影响，以及这些过程如何形成生长和产量。它结合科学文档、动态网页界面和轻量级 Python 工具；目前它是一个**研究框架**，并不是适用于所有作物和地区的通用生产决策系统。
+
+### 🇹🇼 繁體中文
+VECrop 是一個開放研究專案，用來理解作物如何受到土壤、水分、養分、氣候與管理措施影響，以及這些過程如何形成生長與產量。它結合科學文件、動態網頁介面與輕量級 Python 工具；目前它是一個**研究框架**，並不是適用於所有作物與地區的通用生產決策系統。
+
+### 🇪🇸 Español
+VECrop es un proyecto abierto de investigación para comprender cómo los cultivos responden al suelo, el agua, los nutrientes, el clima y el manejo, y cómo estos procesos determinan el crecimiento y el rendimiento. Combina documentación científica, una interfaz web dinámica y herramientas ligeras en Python; actualmente es un **marco de investigación**, no un sistema universal de recomendación validado.
+
+### 🇫🇷 Français
+VECrop est un projet de recherche ouvert visant à comprendre comment les cultures réagissent au sol, à l’eau, aux nutriments, au climat et aux pratiques de gestion, et comment ces processus conduisent à la croissance et au rendement. Il combine documentation scientifique, interface web dynamique et outils Python légers ; il s’agit actuellement d’un **cadre de recherche**, et non d’un système universel de recommandation déjà validé.
+
+### 🇵🇹 Português
+VECrop é um projeto aberto de pesquisa para compreender como as culturas respondem ao solo, à água, aos nutrientes, ao clima e ao manejo, e como esses processos levam ao crescimento e à produtividade. Ele combina documentação científica, uma interface web dinâmica e ferramentas leves em Python; atualmente é uma **estrutura de pesquisa**, não um sistema universal de recomendação já validado.
+
+### 🇩🇪 Deutsch
+VECrop ist ein offenes Forschungsprojekt, das untersucht, wie Nutzpflanzen auf Boden, Wasser, Nährstoffe, Klima und Bewirtschaftung reagieren und wie daraus Wachstum und Ertrag entstehen. Es verbindet wissenschaftliche Dokumentation, eine dynamische Weboberfläche und leichte Python-Werkzeuge; derzeit ist es ein **Forschungsrahmen** und kein universell validiertes Beratungssystem.
+
+### 🇮🇹 Italiano
+VECrop è un progetto di ricerca aperto per comprendere come le colture rispondono a suolo, acqua, nutrienti, clima e gestione e come questi processi determinano crescita e resa. Combina documentazione scientifica, un’interfaccia web dinamica e strumenti Python leggeri; al momento è un **quadro di ricerca**, non un sistema universale di raccomandazione già validato.
+
+### 🇳🇱 Nederlands
+VECrop is een open onderzoeksproject om te begrijpen hoe gewassen reageren op bodem, water, voedingsstoffen, klimaat en beheer, en hoe deze processen groei en opbrengst bepalen. Het combineert wetenschappelijke documentatie, een dynamische webinterface en lichte Python-tools; het is momenteel een **onderzoeksraamwerk**, geen universeel gevalideerd adviessysteem.
+
+### 🇷🇺 Русский
+VECrop — это открытый исследовательский проект для изучения того, как сельскохозяйственные культуры реагируют на почву, воду, питание, климат и управление и как эти процессы влияют на рост и урожайность. Проект объединяет научную документацию, динамический веб-интерфейс и лёгкие инструменты Python; сейчас это **исследовательская платформа**, а не универсальная валидированная система рекомендаций.
+
+### 🇺🇦 Українська
+VECrop — це відкритий дослідницький проєкт для розуміння того, як сільськогосподарські культури реагують на ґрунт, воду, поживні речовини, клімат і управління та як ці процеси формують ріст і врожайність. Проєкт поєднує наукову документацію, динамічний вебінтерфейс і легкі інструменти Python; наразі це **дослідницька платформа**, а не універсальна перевірена система рекомендацій.
+
+### 🇵🇱 Polski
+VECrop to otwarty projekt badawczy służący do zrozumienia, jak rośliny uprawne reagują na glebę, wodę, składniki pokarmowe, klimat i zarządzanie oraz jak procesy te wpływają na wzrost i plon. Łączy dokumentację naukową, dynamiczny interfejs internetowy i lekkie narzędzia Python; obecnie jest to **platforma badawcza**, a nie uniwersalny, zwalidowany system doradczy.
+
+### 🇨🇿 Čeština
+VECrop je otevřený výzkumný projekt zaměřený na pochopení toho, jak plodiny reagují na půdu, vodu, živiny, klima a management a jak tyto procesy ovlivňují růst a výnos. Kombinuje vědeckou dokumentaci, dynamické webové rozhraní a lehké nástroje v Pythonu; v současnosti jde o **výzkumný rámec**, nikoli univerzálně ověřený poradenský systém.
+
+### 🇭🇺 Magyar
+A VECrop egy nyílt kutatási projekt, amely azt vizsgálja, hogyan reagálnak a növények a talajra, a vízre, a tápanyagokra, az éghajlatra és a termesztési beavatkozásokra, és hogyan alakul ezekből a növekedés és a termés. Tudományos dokumentációt, dinamikus webes felületet és könnyű Python-eszközöket kapcsol össze; jelenleg **kutatási keretrendszer**, nem univerzálisan validált tanácsadó rendszer.
+
+### 🇷🇴 Română
+VECrop este un proiect deschis de cercetare care urmărește să înțeleagă modul în care culturile răspund la sol, apă, nutrienți, climă și management și cum aceste procese determină creșterea și producția. Combină documentație științifică, o interfață web dinamică și instrumente Python ușoare; în prezent este un **cadru de cercetare**, nu un sistem universal de recomandare validat.
+
+### 🇬🇷 Ελληνικά
+Το VECrop είναι ένα ανοικτό ερευνητικό έργο για την κατανόηση του τρόπου με τον οποίο οι καλλιέργειες ανταποκρίνονται στο έδαφος, το νερό, τα θρεπτικά στοιχεία, το κλίμα και τη διαχείριση και πώς αυτές οι διεργασίες επηρεάζουν την ανάπτυξη και την απόδοση. Συνδυάζει επιστημονική τεκμηρίωση, δυναμική διαδικτυακή διεπαφή και ελαφριά εργαλεία Python· προς το παρόν είναι ένα **ερευνητικό πλαίσιο**, όχι ένα καθολικά επικυρωμένο σύστημα συστάσεων.
+
+### 🇹🇷 Türkçe
+VECrop, bitkilerin toprak, su, besin maddeleri, iklim ve yönetim uygulamalarına nasıl tepki verdiğini ve bu süreçlerin büyüme ile verimi nasıl oluşturduğunu anlamaya yönelik açık bir araştırma projesidir. Bilimsel dokümantasyon, dinamik bir web arayüzü ve hafif Python araçlarını birleştirir; şu anda **bir araştırma çerçevesidir**, evrensel olarak doğrulanmış bir öneri sistemi değildir.
+
+### 🇸🇦 العربية
+VECrop هو مشروع بحثي مفتوح لفهم كيفية استجابة المحاصيل للتربة والمياه والعناصر الغذائية والمناخ والإدارة الزراعية، وكيف تؤدي هذه العمليات إلى النمو والإنتاجية. يجمع المشروع بين التوثيق العلمي وواجهة ويب ديناميكية وأدوات Python خفيفة؛ وهو حالياً **إطار بحثي** وليس نظام توصيات عالميّاً معتمداً لجميع المحاصيل والبيئات.
+
+### 🇮🇱 עברית
+VECrop הוא פרויקט מחקר פתוח שנועד להבין כיצד גידולים מגיבים לקרקע, מים, חומרי הזנה, אקלים וניהול, וכיצד תהליכים אלה משפיעים על הצמיחה והיבול. הפרויקט משלב תיעוד מדעי, ממשק אינטרנט דינמי וכלי Python קלים; בשלב זה הוא **מסגרת מחקרית**, ולא מערכת המלצות אוניברסלית ומאומתת.
+
+### 🇮🇷 فارسی
+VECrop یک پروژه پژوهشی باز برای درک نحوه واکنش محصولات زراعی به خاک، آب، عناصر غذایی، اقلیم و مدیریت است و بررسی می‌کند که این فرایندها چگونه به رشد و عملکرد منجر می‌شوند. این پروژه مستندات علمی، رابط وب پویا و ابزارهای سبک Python را ترکیب می‌کند؛ در حال حاضر یک **چارچوب پژوهشی** است، نه یک سامانه توصیه‌گر عمومی و کاملاً اعتبارسنجی‌شده.
+
+### 🇮🇳 हिन्दी
+VECrop एक खुला शोध प्रोजेक्ट है जो यह समझने के लिए बनाया गया है कि फसलें मिट्टी, पानी, पोषक तत्वों, जलवायु और प्रबंधन पर कैसे प्रतिक्रिया करती हैं और ये प्रक्रियाएँ वृद्धि तथा उपज को कैसे प्रभावित करती हैं। यह वैज्ञानिक दस्तावेज़, एक गतिशील वेब इंटरफ़ेस और हल्के Python उपकरणों को जोड़ता है; अभी यह एक **शोध ढाँचा** है, सभी फसलों और क्षेत्रों के लिए सार्वभौमिक रूप से सत्यापित सलाह प्रणाली नहीं।
+
+### 🇧🇩 বাংলা
+VECrop একটি উন্মুক্ত গবেষণা প্রকল্প, যা মাটি, পানি, পুষ্টি, জলবায়ু ও ব্যবস্থাপনার প্রতি ফসলের প্রতিক্রিয়া এবং এসব প্রক্রিয়া কীভাবে বৃদ্ধি ও ফলন তৈরি করে তা বোঝার জন্য তৈরি। এতে বৈজ্ঞানিক নথি, ডায়নামিক ওয়েব ইন্টারফেস এবং হালকা Python টুল রয়েছে; বর্তমানে এটি একটি **গবেষণা কাঠামো**, সব ফসল ও এলাকার জন্য সর্বজনীনভাবে যাচাইকৃত পরামর্শ ব্যবস্থা নয়।
+
+### 🇵🇰 اردو
+VECrop ایک کھلا تحقیقی منصوبہ ہے جو یہ سمجھنے کے لیے بنایا گیا ہے کہ فصلیں مٹی، پانی، غذائی اجزاء، آب و ہوا اور انتظام کے ردِعمل میں کیسے بدلتی ہیں اور یہ عمل بڑھوتری اور پیداوار کو کیسے متاثر کرتے ہیں۔ یہ سائنسی دستاویزات، متحرک ویب انٹرفیس اور ہلکے Python اوزار کو یکجا کرتا ہے؛ فی الحال یہ ایک **تحقیقی فریم ورک** ہے، تمام فصلوں اور علاقوں کے لیے مکمل طور پر توثیق شدہ مشاورتی نظام نہیں۔
+
+### 🇮🇳 தமிழ்
+VECrop என்பது மண், நீர், ஊட்டச்சத்து, காலநிலை மற்றும் மேலாண்மை ஆகியவற்றுக்கு பயிர்கள் எவ்வாறு பதிலளிக்கின்றன மற்றும் அந்த செயல்முறைகள் வளர்ச்சி மற்றும் மகசூலை எவ்வாறு உருவாக்குகின்றன என்பதைப் புரிந்துகொள்ளும் திறந்த ஆய்வு திட்டமாகும். இது அறிவியல் ஆவணங்கள், இயக்கமான இணைய இடைமுகம் மற்றும் எளிய Python கருவிகளை இணைக்கிறது; தற்போது இது ஒரு **ஆய்வு கட்டமைப்பு**, அனைத்து பயிர்களுக்கும் இடங்களுக்கும் ஏற்கனவே சரிபார்க்கப்பட்ட பொதுவான பரிந்துரை அமைப்பு அல்ல.
+
+### 🇮🇳 తెలుగు
+VECrop అనేది నేల, నీరు, పోషకాలు, వాతావరణం మరియు నిర్వహణకు పంటలు ఎలా స్పందిస్తాయి మరియు ఆ ప్రక్రియలు పెరుగుదల, దిగుబడిని ఎలా ప్రభావితం చేస్తాయి అనే విషయాలను అర్థం చేసుకునే ఓపెన్ పరిశోధనా ప్రాజెక్ట్. ఇది శాస్త్రీయ పత్రాలు, డైనమిక్ వెబ్ ఇంటర్‌ఫేస్ మరియు తేలికైన Python సాధనాలను కలిపి ఉపయోగిస్తుంది; ప్రస్తుతం ఇది ఒక **పరిశోధనా రూపకల్పన**, అన్ని పంటలు మరియు ప్రాంతాలకు పూర్తిగా ధృవీకరించబడిన సాధారణ సిఫార్సు వ్యవస్థ కాదు.
+
+### 🇮🇳 मराठी
+VECrop हा एक खुला संशोधन प्रकल्प आहे जो पिके माती, पाणी, पोषकद्रव्ये, हवामान आणि व्यवस्थापनाला कशी प्रतिसाद देतात आणि या प्रक्रियांमुळे वाढ व उत्पादन कसे ठरते हे समजून घेण्यासाठी तयार केला आहे. यात वैज्ञानिक दस्तऐवजीकरण, गतिशील वेब इंटरफेस आणि हलकी Python साधने आहेत; सध्या हे एक **संशोधन फ्रेमवर्क** आहे, सर्व पिके आणि प्रदेशांसाठी सार्वत्रिकरीत्या प्रमाणित सल्ला प्रणाली नाही.
+
+### 🇮🇩 Bahasa Indonesia
+VECrop adalah proyek riset terbuka untuk memahami bagaimana tanaman merespons tanah, air, unsur hara, iklim dan pengelolaan, serta bagaimana proses tersebut membentuk pertumbuhan dan hasil. Proyek ini menggabungkan dokumentasi ilmiah, antarmuka web dinamis dan alat Python ringan; saat ini VECrop adalah **kerangka penelitian**, bukan sistem rekomendasi universal yang sudah divalidasi untuk semua tanaman dan lokasi.
+
+### 🇲🇾 Bahasa Melayu
+VECrop ialah projek penyelidikan terbuka untuk memahami bagaimana tanaman bertindak balas terhadap tanah, air, nutrien, iklim dan pengurusan serta bagaimana proses tersebut membentuk pertumbuhan dan hasil. Ia menggabungkan dokumentasi saintifik, antara muka web dinamik dan alat Python ringan; pada masa ini VECrop ialah **rangka kerja penyelidikan**, bukan sistem cadangan sejagat yang telah disahkan untuk semua tanaman dan lokasi.
+
+### 🇹🇭 ไทย
+VECrop เป็นโครงการวิจัยแบบเปิดเพื่อทำความเข้าใจว่าพืชตอบสนองต่อดิน น้ำ ธาตุอาหาร สภาพภูมิอากาศ และการจัดการอย่างไร และกระบวนการเหล่านี้นำไปสู่การเจริญเติบโตและผลผลิตอย่างไร โครงการรวมเอกสารวิทยาศาสตร์ เว็บอินเทอร์เฟซแบบไดนามิก และเครื่องมือ Python ที่มีน้ำหนักเบา ปัจจุบัน VECrop เป็น **กรอบงานวิจัย** ไม่ใช่ระบบคำแนะนำสากลที่ผ่านการตรวจสอบแล้วสำหรับพืชและพื้นที่ทุกชนิด
+
+### 🇯🇵 日本語
+VECrop は、作物が土壌、水、養分、気候、栽培管理にどのように反応し、それらの過程が生育や収量につながるかを理解するためのオープンな研究プロジェクトです。科学文書、動的な Web インターフェース、軽量な Python ツールを組み合わせており、現時点では**研究フレームワーク**であって、すべての作物・地域に対して検証済みの汎用推奨システムではありません。
+
+### 🇰🇷 한국어
+VECrop은 작물이 토양, 물, 양분, 기후 및 재배 관리에 어떻게 반응하고 이러한 과정이 생장과 수량으로 어떻게 이어지는지를 이해하기 위한 공개 연구 프로젝트입니다. 과학 문서, 동적 웹 인터페이스 및 가벼운 Python 도구를 결합하며, 현재는 **연구 프레임워크**이지 모든 작물과 지역에 대해 검증된 범용 추천 시스템은 아닙니다.
+
+### 🇵🇭 Filipino
+Ang VECrop ay isang bukas na proyektong pananaliksik para maunawaan kung paano tumutugon ang mga pananim sa lupa, tubig, sustansiya, klima at pamamahala, at kung paano humahantong ang mga prosesong ito sa paglaki at ani. Pinagsasama nito ang siyentipikong dokumentasyon, dynamic na web interface at magagaang Python tools; sa kasalukuyan, isa itong **research framework**, hindi pa isang unibersal at ganap na validated na recommendation system.
+
+### 🇰🇪 Kiswahili
+VECrop ni mradi wa utafiti wa wazi unaolenga kuelewa jinsi mazao yanavyoitikia udongo, maji, virutubisho, hali ya hewa na usimamizi, na jinsi michakato hiyo inavyoathiri ukuaji na mavuno. Unaunganisha nyaraka za kisayansi, kiolesura cha wavuti kinachobadilika na zana nyepesi za Python; kwa sasa ni **mfumo wa utafiti**, si mfumo wa mapendekezo uliothibitishwa kwa kila zao na kila eneo.
+
+### 🇪🇹 አማርኛ
+VECrop ሰብሎች ለአፈር፣ ለውሃ፣ ለንጥረ ምግቦች፣ ለአየር ንብረት እና ለአስተዳደር እንዴት ምላሽ እንደሚሰጡ እና እነዚህ ሂደቶች እድገትንና ምርትን እንዴት እንደሚፈጥሩ ለመረዳት የተፈጠረ ክፍት የምርምር ፕሮጀክት ነው። ሳይንሳዊ ሰነዶችን፣ ተለዋዋጭ የድር ገጽ እና ቀላል Python መሳሪያዎችን ያጣምራል፤ በአሁኑ ጊዜ **የምርምር መዋቅር** ነው፣ ለሁሉም ሰብሎችና አካባቢዎች የተረጋገጠ አጠቃላይ የምክር ስርዓት አይደለም።
+
+### 🇳🇬 Hausa
+VECrop wani buɗaɗɗen aikin bincike ne domin fahimtar yadda amfanin gona ke amsawa ga ƙasa, ruwa, sinadarai masu gina jiki, yanayi da tsarin gudanarwa, da yadda waɗannan hanyoyi ke haifar da girma da amfanin gona. Yana haɗa bayanan kimiyya, shafin yanar gizo mai canzawa da kayan Python masu sauƙi; a yanzu **tsarin bincike** ne, ba cikakken tsarin shawarwari da aka tabbatar ga dukkan amfanin gona da wurare ba.
+
+---
+
 **VECrop** là dự án mô hình hóa sinh lý cây trồng và môi trường theo hướng **cơ chế – bảo toàn vật chất – đa cây trồng – có kiểm định**, kết hợp giáo trình khoa học, giao diện web động và các công cụ Python nhẹ để tổ chức tri thức, phân tích cấu hình cây trồng và hỗ trợ phát triển mô hình.
 
 > **Trạng thái hiện tại:** giáo trình đã hoàn thành **Chương 1 → Chương 4, mục 4.20**.  
