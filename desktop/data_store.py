@@ -6,7 +6,7 @@ No observations are invented, normalized away, or silently reclassified.
 """
 from __future__ import annotations
 
-from contextlib import contextmanager
+from contextlib import contextmanager, closing
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -303,8 +303,9 @@ class DataStore:
         destination.parent.mkdir(parents=True, exist_ok=True)
         # Standard SQLite online backup API; safe with WAL and active readers/writers.
         with self.connection() as src:
-            with sqlite3.connect(str(destination)) as dst:
+            with closing(sqlite3.connect(str(destination))) as dst:
                 src.backup(dst, pages=128, sleep=0.05)
+                dst.commit()
         return destination
 
     def counts(self) -> dict:

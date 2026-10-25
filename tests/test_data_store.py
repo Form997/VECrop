@@ -1,5 +1,6 @@
 """SQLite DATA repository tests: no network, no simulated field values presented as reality."""
 import copy
+from contextlib import closing
 import json
 import sys
 import tempfile
@@ -67,7 +68,7 @@ class DataStoreTests(unittest.TestCase):
         self.store.save_experiment(example(),0)
         backup=self.store.backup()
         self.assertTrue(backup.is_file())
-        with sqlite3.connect(backup) as conn:
+        with closing(sqlite3.connect(backup)) as conn:
             self.assertEqual(conn.execute("select count(*) from experiments").fetchone()[0],1)
             self.assertEqual(conn.execute("pragma integrity_check").fetchone()[0],"ok")
 
