@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VECrop — HTML động đến 4.18</title>
+<title>VECrop — HTML động đến 4.19</title>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
 window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:true},svg:{fontCache:"global"},startup:{typeset:false}};
@@ -32,7 +32,7 @@ mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:.3em 0}.
 </style>
 </head>
 <body>
-<header><div class="top"><div class="brand"><span>VE</span>Crop — động đến 4.18</div><button id="tocBtn" class="mobile">☰</button><select id="chapter"><option value="all">Tất cả Chương 1 → 4.18</option><option value="1">Chương 1</option><option value="2">Chương 2</option><option value="3">Chương 3</option><option value="4">Chương 4 → 4.18</option></select><input id="search" placeholder="Tìm trong nội dung đang mở…"><button id="theme">🌙</button><button onclick="window.print()">🖨</button></div><div id="status" class="status">Đang tải…</div></header>
+<header><div class="top"><div class="brand"><span>VE</span>Crop — động đến 4.19</div><button id="tocBtn" class="mobile">☰</button><select id="chapter"><option value="all">Tất cả Chương 1 → 4.19</option><option value="1">Chương 1</option><option value="2">Chương 2</option><option value="3">Chương 3</option><option value="4">Chương 4 → 4.19</option></select><input id="search" placeholder="Tìm trong nội dung đang mở…"><button id="theme">🌙</button><button onclick="window.print()">🖨</button></div><div id="status" class="status">Đang tải…</div></header>
 <div class="layout"><aside id="sidebar"><strong>Mục lục</strong><nav id="toc"></nav></aside><main><article id="content"><p>Đang tải giáo trình…</p></article></main></div>
 <script>
 const FILES={"1":"docs/01-chapter-1.md","2":"docs/02-chapter-2.md","3":"docs/03-chapter-3.md","4":"docs/04-chapter-4.md"};
@@ -43,7 +43,7 @@ async function getDoc(id){if(cache[id])return cache[id];const r=await fetch(FILE
 function slug(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
 function buildToc(){toc.innerHTML="";[...content.querySelectorAll("h1,h2,h3")].forEach(function(h,i){h.id=slug(h.textContent)||("s"+i);const a=document.createElement("a");a.href="#"+h.id;a.textContent=h.textContent;a.style.paddingLeft=h.tagName==="H1"?"6px":h.tagName==="H2"?"16px":"28px";toc.appendChild(a);});}
 async function typeset(){if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetClear&&MathJax.typesetClear([content]);await MathJax.typesetPromise([content]);}}
-async function render(){status.textContent="Đang tải…";content.innerHTML="<p>Đang tải giáo trình…</p>";try{const ids=chapter.value==="all"?["1","2","3","4"]:[chapter.value];const docs=await Promise.all(ids.map(getDoc));const htmls=docs.map(function(md){const p=protectMath(md);return restoreMath(marked.parse(p.md),p.blocks);});content.innerHTML=htmls.join("<hr>");buildToc();await typeset();search.value="";status.textContent=chapter.value==="all"?"Chương 1 → 4.18 • tải trực tiếp từ Markdown":"Chương "+chapter.value+" • tải trực tiếp từ Markdown";window.scrollTo(0,0);}catch(e){content.innerHTML="<h1>Lỗi tải nội dung</h1><p>"+e.message+"</p>";status.textContent="Lỗi";}}
+async function render(){status.textContent="Đang tải…";content.innerHTML="<p>Đang tải giáo trình…</p>";try{const ids=chapter.value==="all"?["1","2","3","4"]:[chapter.value];const docs=await Promise.all(ids.map(getDoc));const htmls=docs.map(function(md){const p=protectMath(md);return restoreMath(marked.parse(p.md),p.blocks);});content.innerHTML=htmls.join("<hr>");buildToc();await typeset();search.value="";status.textContent=chapter.value==="all"?"Chương 1 → 4.19 • tải trực tiếp từ Markdown":"Chương "+chapter.value+" • tải trực tiếp từ Markdown";window.scrollTo(0,0);}catch(e){content.innerHTML="<h1>Lỗi tải nội dung</h1><p>"+e.message+"</p>";status.textContent="Lỗi";}}
 chapter.addEventListener("change",render);
 search.addEventListener("input",function(){const q=search.value.trim().toLowerCase();if(!q)return;const hit=[...content.querySelectorAll("h1,h2,h3,p,li,td,th")].find(function(x){return x.textContent.toLowerCase().includes(q);});if(hit)hit.scrollIntoView({behavior:"smooth",block:"center"});});
 document.getElementById("theme").onclick=function(){const dark=document.documentElement.dataset.theme==="dark";document.documentElement.dataset.theme=dark?"":"dark";this.textContent=dark?"🌙":"☀️";localStorage.setItem("vecrop-theme",dark?"light":"dark");};
