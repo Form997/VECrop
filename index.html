@@ -246,6 +246,15 @@
     }
     .card strong { display: block; margin-bottom: 6px; }
     .muted { color: var(--muted); }
+    .lang-box { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .lang-box select { min-width:135px; }
+    #google_translate_element { min-width:150px; }
+    #google_translate_element select { max-width:190px; padding:8px 10px; }
+    .goog-te-banner-frame.skiptranslate, iframe.goog-te-banner-frame { display:none !important; }
+    body { top:0 !important; }
+    .goog-logo-link,.goog-te-gadget span { display:none !important; }
+    .goog-te-gadget { font-size:0 !important; color:transparent !important; }
+    .translate-note { max-width:1500px; margin:0 auto; padding:0 18px 8px; color:var(--muted); font-size:.78rem; }
     @media (max-width: 1100px) {
       .layout { grid-template-columns: 240px minmax(0, 1fr); }
       .smart { grid-column: 1 / -1; }
@@ -267,16 +276,36 @@
           <input id="search" type="text" placeholder="Tìm kiếm trong giáo trình..." />
           <div id="results" class="search-results"></div>
         </div>
-        <select id="chapter">
+        <select id="chapter" data-i18n-select="chapter">
           <option value="all">Tất cả chương</option>
           <option value="1">Chương 1</option>
           <option value="2">Chương 2</option>
           <option value="3">Chương 3</option>
           <option value="4">Chương 4</option>
         </select>
+        <div class="lang-box">
+          <select id="uiLanguage" aria-label="Ngôn ngữ giao diện">
+            <option value="vi">🇻🇳 Tiếng Việt</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="id">🇮🇩 Indonesia</option>
+            <option value="th">🇹🇭 ไทย</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="ar">🇸🇦 العربية</option>
+          </select>
+          <div id="google_translate_element" title="Dịch toàn bộ nội dung trang"></div>
+        </div>
       </div>
     </div>
     <div class="status" id="status">Sẵn sàng tải dữ liệu.</div>
+    <div class="translate-note" id="translateNote">Ngôn ngữ giao diện dùng từ điển cục bộ. Dịch toàn bộ giáo trình sử dụng dịch vụ Google Translate khi khả dụng.</div>
   </header>
 
   <section class="stats">
@@ -288,7 +317,7 @@
 
   <div class="layout">
     <aside class="panel">
-      <strong>Mục lục động</strong>
+      <strong id="tocTitle">Mục lục động</strong>
       <nav id="toc"></nav>
     </aside>
 
@@ -299,12 +328,12 @@
     </main>
 
     <section class="smart panel">
-      <h3>AI hỗ trợ chuyên môn</h3>
-      <label>Loại cây</label>
+      <h3 id="aiTitle">AI hỗ trợ chuyên môn</h3>
+      <label id="cropLabel">Loại cây</label>
       <select id="cropSelect"></select>
 
-      <label>Mục tiêu</label>
-      <textarea id="objective" placeholder="Ví dụ: tăng năng suất, giảm bệnh, tối ưu dinh dưỡng..."></textarea>
+      <label id="goalLabel">Mục tiêu</label>
+      <textarea id="objective" placeholder="Ví dụ: tăng năng suất, giảm bệnh, tối ưu dinh dưỡng..." id="objective"></textarea>
 
       <button id="recommendBtn" style="width: 100%; margin-top: 12px;">Gợi ý phương án</button>
 
@@ -313,7 +342,7 @@
       </div>
 
       <div class="card">
-        <strong>Khuyến nghị nhanh</strong>
+        <strong id="quickTitle">Khuyến nghị nhanh</strong>
         <span class="chip">Dinh dưỡng</span>
         <span class="chip">Môi trường</span>
         <span class="chip">Cây trồng</span>
@@ -323,6 +352,49 @@
   </div>
 
   <script>
+    const I18N = {
+      vi:{search:"Tìm kiếm trong giáo trình...",all:"Tất cả chương",chapter:"Chương",ready:"Sẵn sàng tải dữ liệu.",toc:"Mục lục động",ai:"AI hỗ trợ chuyên môn",crop:"Loại cây",goal:"Mục tiêu",goalPh:"Ví dụ: tăng năng suất, giảm bệnh, tối ưu dinh dưỡng...",recommend:"Gợi ý phương án",quick:"Khuyến nghị nhanh",empty:"Chưa có gợi ý. Hãy chọn loại cây và mục tiêu.",note:"Ngôn ngữ giao diện dùng từ điển cục bộ. Dịch toàn bộ giáo trình sử dụng Google Translate khi khả dụng.",loading:"Đang tải nội dung...",loaded:"Đã tải",chapters:"chương"},
+      en:{search:"Search the textbook...",all:"All chapters",chapter:"Chapter",ready:"Ready.",toc:"Dynamic contents",ai:"VECrop assistant",crop:"Crop",goal:"Goal",goalPh:"Example: improve yield, nutrition, quality, drought response...",recommend:"Analyze",quick:"Quick topics",empty:"No recommendation yet. Select a crop and enter a goal.",note:"The interface uses a local translation dictionary. Full textbook translation uses Google Translate when available.",loading:"Loading content...",loaded:"Loaded",chapters:"chapters"},
+      zh:{search:"搜索教材...",all:"全部章节",chapter:"第",ready:"已就绪。",toc:"动态目录",ai:"VECrop 助手",crop:"作物",goal:"目标",goalPh:"例如：提高产量、优化营养、品质或抗旱...",recommend:"分析",quick:"快速主题",empty:"暂无建议。请选择作物并输入目标。",note:"界面使用本地翻译词典；完整教材可在可用时使用 Google Translate 翻译。",loading:"正在加载...",loaded:"已加载",chapters:"章"},
+      es:{search:"Buscar en el manual...",all:"Todos los capítulos",chapter:"Capítulo",ready:"Listo.",toc:"Índice dinámico",ai:"Asistente VECrop",crop:"Cultivo",goal:"Objetivo",goalPh:"Ej.: rendimiento, nutrición, calidad o sequía...",recommend:"Analizar",quick:"Temas rápidos",empty:"Aún no hay recomendación.",note:"La interfaz usa un diccionario local. La traducción completa usa Google Translate cuando está disponible.",loading:"Cargando...",loaded:"Cargado",chapters:"capítulos"},
+      fr:{search:"Rechercher dans le manuel...",all:"Tous les chapitres",chapter:"Chapitre",ready:"Prêt.",toc:"Sommaire dynamique",ai:"Assistant VECrop",crop:"Culture",goal:"Objectif",goalPh:"Ex. rendement, nutrition, qualité, sécheresse...",recommend:"Analyser",quick:"Thèmes rapides",empty:"Aucune recommandation pour le moment.",note:"L’interface utilise un dictionnaire local. La traduction complète utilise Google Translate lorsqu’il est disponible.",loading:"Chargement...",loaded:"Chargé",chapters:"chapitres"},
+      de:{search:"Im Lehrbuch suchen...",all:"Alle Kapitel",chapter:"Kapitel",ready:"Bereit.",toc:"Dynamisches Inhaltsverzeichnis",ai:"VECrop-Assistent",crop:"Kultur",goal:"Ziel",goalPh:"Beispiel: Ertrag, Ernährung, Qualität, Trockenheit...",recommend:"Analysieren",quick:"Schnellthemen",empty:"Noch keine Empfehlung.",note:"Die Oberfläche nutzt ein lokales Wörterbuch. Die vollständige Übersetzung verwendet Google Translate, wenn verfügbar.",loading:"Wird geladen...",loaded:"Geladen",chapters:"Kapitel"},
+      pt:{search:"Pesquisar no manual...",all:"Todos os capítulos",chapter:"Capítulo",ready:"Pronto.",toc:"Índice dinâmico",ai:"Assistente VECrop",crop:"Cultura",goal:"Objetivo",goalPh:"Ex.: produtividade, nutrição, qualidade, seca...",recommend:"Analisar",quick:"Tópicos rápidos",empty:"Ainda não há recomendação.",note:"A interface usa um dicionário local. A tradução completa usa Google Translate quando disponível.",loading:"Carregando...",loaded:"Carregado",chapters:"capítulos"},
+      ru:{search:"Поиск по учебнику...",all:"Все главы",chapter:"Глава",ready:"Готово.",toc:"Динамическое содержание",ai:"Помощник VECrop",crop:"Культура",goal:"Цель",goalPh:"Например: урожайность, питание, качество, засуха...",recommend:"Анализировать",quick:"Быстрые темы",empty:"Рекомендаций пока нет.",note:"Интерфейс использует локальный словарь. Полный перевод использует Google Translate, если сервис доступен.",loading:"Загрузка...",loaded:"Загружено",chapters:"глав"},
+      hi:{search:"पाठ्यपुस्तक में खोजें...",all:"सभी अध्याय",chapter:"अध्याय",ready:"तैयार।",toc:"गतिशील विषय-सूची",ai:"VECrop सहायक",crop:"फसल",goal:"लक्ष्य",goalPh:"उदाहरण: उपज, पोषण, गुणवत्ता, सूखा...",recommend:"विश्लेषण",quick:"त्वरित विषय",empty:"अभी कोई सुझाव नहीं।",note:"इंटरफ़ेस स्थानीय शब्दकोश का उपयोग करता है। पूरी पुस्तक का अनुवाद उपलब्ध होने पर Google Translate से किया जा सकता है।",loading:"लोड हो रहा है...",loaded:"लोड हुआ",chapters:"अध्याय"},
+      id:{search:"Cari dalam buku...",all:"Semua bab",chapter:"Bab",ready:"Siap.",toc:"Daftar isi dinamis",ai:"Asisten VECrop",crop:"Tanaman",goal:"Tujuan",goalPh:"Contoh: hasil, nutrisi, kualitas, kekeringan...",recommend:"Analisis",quick:"Topik cepat",empty:"Belum ada rekomendasi.",note:"Antarmuka memakai kamus lokal. Terjemahan penuh memakai Google Translate bila tersedia.",loading:"Memuat...",loaded:"Dimuat",chapters:"bab"},
+      th:{search:"ค้นหาในตำรา...",all:"ทุกบท",chapter:"บท",ready:"พร้อม",toc:"สารบัญแบบไดนามิก",ai:"ผู้ช่วย VECrop",crop:"พืช",goal:"เป้าหมาย",goalPh:"เช่น ผลผลิต ธาตุอาหาร คุณภาพ ภัยแล้ง...",recommend:"วิเคราะห์",quick:"หัวข้อด่วน",empty:"ยังไม่มีคำแนะนำ",note:"ส่วนติดต่อใช้พจนานุกรมภายใน ส่วนการแปลเนื้อหาทั้งหมดใช้ Google Translate เมื่อพร้อมใช้งาน",loading:"กำลังโหลด...",loaded:"โหลดแล้ว",chapters:"บท"},
+      ja:{search:"教材を検索...",all:"すべての章",chapter:"第",ready:"準備完了。",toc:"動的目次",ai:"VECrop アシスタント",crop:"作物",goal:"目標",goalPh:"例：収量、栄養、品質、干ばつ...",recommend:"分析",quick:"クイック項目",empty:"まだ提案はありません。",note:"UI はローカル辞書を使用します。教材全体の翻訳は利用可能な場合 Google Translate を使用します。",loading:"読み込み中...",loaded:"読み込み済み",chapters:"章"},
+      ko:{search:"교재 검색...",all:"모든 장",chapter:"장",ready:"준비됨.",toc:"동적 목차",ai:"VECrop 도우미",crop:"작물",goal:"목표",goalPh:"예: 수량, 영양, 품질, 가뭄...",recommend:"분석",quick:"빠른 주제",empty:"아직 추천이 없습니다.",note:"UI는 로컬 번역 사전을 사용합니다. 전체 교재 번역은 가능한 경우 Google Translate를 사용합니다.",loading:"불러오는 중...",loaded:"불러옴",chapters:"장"},
+      ar:{search:"البحث في الكتاب...",all:"جميع الفصول",chapter:"الفصل",ready:"جاهز.",toc:"فهرس ديناميكي",ai:"مساعد VECrop",crop:"المحصول",goal:"الهدف",goalPh:"مثال: الإنتاجية، التغذية، الجودة، الجفاف...",recommend:"تحليل",quick:"موضوعات سريعة",empty:"لا توجد توصية بعد.",note:"تستخدم الواجهة قاموس ترجمة محلياً. وتستخدم ترجمة الكتاب كاملة Google Translate عند توفره.",loading:"جارٍ التحميل...",loaded:"تم التحميل",chapters:"فصول"}
+    };
+    function applyUiLanguage(lang){
+      const t=I18N[lang]||I18N.vi;
+      document.documentElement.lang=lang;
+      document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+      searchInput.placeholder=t.search;
+      document.getElementById("tocTitle").textContent=t.toc;
+      document.getElementById("aiTitle").textContent=t.ai;
+      document.getElementById("cropLabel").textContent=t.crop;
+      document.getElementById("goalLabel").textContent=t.goal;
+      objective.placeholder=t.goalPh;
+      document.getElementById("recommendBtn").textContent=t.recommend;
+      document.getElementById("quickTitle").textContent=t.quick;
+      document.getElementById("translateNote").textContent=t.note;
+      const opts=chapterSelect.options;
+      if(opts.length>=5){opts[0].textContent=t.all; for(let i=1;i<=4;i++) opts[i].textContent=t.chapter+" "+i;}
+      localStorage.setItem("vecrop-ui-lang",lang);
+    }
+    function googleTranslateElementInit(){
+      if(window.google&&google.translate){
+        new google.translate.TranslateElement({
+          pageLanguage:"vi",
+          includedLanguages:"af,am,ar,az,be,bg,bn,bs,ca,ceb,co,cs,cy,da,de,el,en,eo,es,et,eu,fa,fi,fr,fy,ga,gd,gl,gu,ha,haw,he,hi,hmn,hr,ht,hu,hy,id,ig,is,it,ja,jv,ka,kk,km,kn,ko,ku,ky,la,lb,lo,lt,lv,mg,mi,mk,ml,mn,mr,ms,mt,my,ne,nl,no,ny,pa,pl,ps,pt,ro,ru,sd,si,sk,sl,sm,sn,so,sq,sr,st,su,sv,sw,ta,te,tg,th,tl,tr,uk,ur,uz,vi,xh,yi,yo,zh-CN,zh-TW,zu",
+          autoDisplay:false
+        },"google_translate_element");
+      }
+    }
+
     const FILES = {
       1: 'docs/01-chapter-1.md',
       2: 'docs/02-chapter-2.md',
@@ -473,7 +545,7 @@
 
       const base = crop?.recommendation || 'Duy trì môi trường ổn định, theo dõi tình trạng cây và tối ưu dinh dưỡng theo giai đoạn tăng trưởng.';
       recommendation.innerHTML = `
-        <strong>${crop?.name || 'Loại cây'}</strong>
+        <strong>${crop?.name_vi || crop?.name || 'Loại cây'}</strong>
         <div>${base}</div>
         <div style="margin-top:10px;">${extra.length ? '<strong>Gợi ý bổ sung:</strong><br>' + extra.map(x => '- ' + x).join('<br>') : ''}</div>
       `;
@@ -534,8 +606,13 @@
       }
     });
     document.getElementById('recommendBtn').addEventListener('click', recommend);
+    const uiLanguage=document.getElementById('uiLanguage');
+    const savedLang=localStorage.getItem('vecrop-ui-lang')||'vi';
+    if([...uiLanguage.options].some(o=>o.value===savedLang)) uiLanguage.value=savedLang;
+    applyUiLanguage(savedLang);
+    uiLanguage.addEventListener('change',()=>applyUiLanguage(uiLanguage.value));
 
     Promise.all([loadKnowledge(), render()]);
   </script>
-</body>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>\n</body>
 </html>
