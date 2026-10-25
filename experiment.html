@@ -179,8 +179,36 @@
       </div>
     </section>
 
+    <section class="card" id="evidenceSearch">
+      <div class="section-head">
+        <div>
+          <h2>10. Trợ lý tìm bằng chứng cho dữ liệu thiếu</h2>
+          <p class="hint">Tìm bài báo và nguồn tham khảo theo cây + giống + địa điểm + biến còn thiếu. Kết quả chỉ là bằng chứng tham khảo, không tự điền số vào dataset.</p>
+        </div>
+        <button id="searchMissingBtn" type="button">🔎 Tìm nguồn cho dữ liệu thiếu</button>
+      </div>
+      <div class="grid">
+        <label>Biến/chủ đề cần tìm
+          <input id="evidenceTopic" placeholder="VD: Vcmax, P50, pH đất, EC, LAI, năng suất...">
+        </label>
+        <label>Ưu tiên bối cảnh
+          <input id="evidenceContext" placeholder="VD: Huế, Việt Nam, nhà kính, giống cụ thể...">
+        </label>
+      </div>
+      <div class="actions evidence-actions">
+        <button id="searchEvidenceBtn" type="button">Tìm Crossref</button>
+        <button id="openScholarBtn" type="button">Mở Google Scholar</button>
+        <button id="openAgrisBtn" type="button">Mở AGRIS</button>
+      </div>
+      <div id="evidenceStatus" class="hint">Chưa tìm kiếm.</div>
+      <div id="evidenceResults" class="evidence-results"></div>
+      <div class="notice" style="margin-top:12px">
+        <strong>Quy tắc:</strong> không tự động sao chép một giá trị literature vào thí nghiệm thực tế. Hãy kiểm tra đúng loài/giống, cơ quan, giai đoạn, điều kiện môi trường, đơn vị và phương pháp đo; sau đó ghi nguồn vào mục Provenance.
+      </div>
+    </section>
+
     <section class="card">
-      <h2>10. Kết quả kiểm tra dữ liệu</h2>
+      <h2>11. Kết quả kiểm tra dữ liệu</h2>
       <div id="validation" class="validation"><p>Nhấn <strong>Kiểm tra dữ liệu</strong>.</p></div>
     </section>
   </form>

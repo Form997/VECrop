@@ -161,6 +161,13 @@ Nó hỗ trợ:
 
 Dữ liệu thiếu **không được tự động bịa hoặc suy ra**. Workspace chỉ đánh dấu thiếu và mức sẵn sàng của dataset.
 
+### Trợ lý tìm bằng chứng
+
+Khi thiếu dữ liệu, trang Thực nghiệm có thể tạo truy vấn từ:
+`crop + species + cultivar + site + production system + missing variable`.
+
+Hệ thống tìm metadata bài báo qua **Crossref REST API** và cung cấp liên kết mở Google Scholar/AGRIS để tra cứu sâu hơn. Kết quả không tự động điền vào dữ liệu thực nghiệm. Người dùng phải kiểm tra phạm vi áp dụng và có thể ghi DOI vào trường provenance trước khi sử dụng.
+
 ---
 
 ## 1. Mục tiêu dự án

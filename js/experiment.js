@@ -111,3 +111,103 @@ document.getElementById('exportJsonBtn').onclick=()=>{const d=formObject(),v=val
 document.getElementById('exportCsvBtn').onclick=()=>{const d=formObject();const cols=['datetime','treatment','replicate','variable','value','unit','method','qc'];const rows=[cols.join(','),...(d.observations||[]).map(r=>cols.map(k=>csvEscape(r[k])).join(','))];download((d.experiment_id||'vecrop')+'-observations.csv',rows.join('\n'),'text/csv')};
 form.addEventListener('input',saveDraft);form.addEventListener('change',saveDraft);
 loadDraft();
+
+function currentEvidenceQuery(topicOverride=''){
+  const d=formObject();
+  const topic=(topicOverride||document.getElementById('evidenceTopic').value||'').trim();
+  const context=(document.getElementById('evidenceContext').value||'').trim();
+  const parts=[
+    d.crop_name,d.species,d.cultivar,topic,context,d.site,d.production_system
+  ].filter(Boolean);
+  return parts.join(' ').replace(/\s+/g,' ').trim();
+}
+
+function missingTopicsFromValidation(data,v){
+  const topics=[];
+  const map={
+    'soil_ec_unit_missing':'soil EC unit measurement method',
+    'yield_unit_missing':'crop yield unit fresh dry mass methodology',
+    'protocol_missing':'measurement protocol crop experiment',
+    'instruments_missing':'measurement instrument crop physiology'
+  };
+  v.warnings.forEach(w=>{
+    for(const [k,q] of Object.entries(map)) if(w.includes(k)||w.toLowerCase().includes(k.replaceAll('_',' '))) topics.push(q);
+  });
+  v.errors.forEach(e=>{
+    if(e.includes('weather_source')) topics.push('weather data source crop experiment');
+    if(e.includes('soil_or_substrate')) topics.push('soil substrate characterization crop experiment');
+    if(e.includes('design')) topics.push('experimental design crop field trial RCBD replication');
+    if(e.includes('cultivar')) topics.push('cultivar agronomic characteristics');
+  });
+  if(!topics.length){
+    if(!data.soil_ph) topics.push('soil pH');
+    if(!data.soil_ec) topics.push('soil electrical conductivity EC');
+    if(!data.weather_timestep) topics.push('weather timestep crop model');
+    if(!data.yield_value) topics.push('crop yield');
+  }
+  return [...new Set(topics)].slice(0,6);
+}
+
+async function searchCrossref(query){
+  const box=document.getElementById('evidenceResults');
+  const status=document.getElementById('evidenceStatus');
+  if(!query){status.textContent='Chưa có từ khóa để tìm.';return}
+  status.textContent='Đang tìm nguồn học thuật: '+query;
+  box.innerHTML='';
+  try{
+    const url='https://api.crossref.org/works?rows=6&select=DOI,title,author,published-print,published-online,container-title,URL,type,is-referenced-by-count&query.bibliographic='+encodeURIComponent(query);
+    const r=await fetch(url,{headers:{'Accept':'application/json'}});
+    if(!r.ok) throw new Error('Crossref HTTP '+r.status);
+    const j=await r.json();
+    const items=j?.message?.items||[];
+    if(!items.length){status.textContent='Không tìm thấy kết quả phù hợp.';return}
+    status.textContent='Tìm thấy '+items.length+' kết quả. Hãy kiểm tra bối cảnh trước khi dùng.';
+    box.innerHTML=items.map((it,idx)=>{
+      const title=(it.title&&it.title[0])||'Không có tiêu đề';
+      const journal=(it['container-title']&&it['container-title'][0])||'';
+      const authors=(it.author||[]).slice(0,4).map(a=>[a.given,a.family].filter(Boolean).join(' ')).join(', ');
+      const parts=(it['published-print']?.['date-parts']||it['published-online']?.['date-parts']||[])[0]||[];
+      const year=parts[0]||'';
+      const doi=it.DOI||'';
+      const href=doi?'https://doi.org/'+encodeURIComponent(doi):it.URL||'#';
+      const cited=Number(it['is-referenced-by-count']||0);
+      return '<article class="evidence-item">'+
+        '<h3>'+(idx+1)+'. '+escapeEvidence(title)+' <span class="score">cited '+cited+'</span></h3>'+
+        '<div class="evidence-meta">'+escapeEvidence([authors,journal,year].filter(Boolean).join(' • '))+'</div>'+
+        '<div><a href="'+href+'" target="_blank" rel="noopener">Mở nguồn / DOI</a>'+
+        (doi?' &nbsp; <button type="button" class="copy-cite" data-doi="'+escapeEvidence(doi)+'" data-title="'+escapeEvidence(title)+'">Ghi provenance</button>':'')+
+        '</div></article>';
+    }).join('');
+    box.querySelectorAll('.copy-cite').forEach(btn=>btn.addEventListener('click',()=>{
+      const ref=form.elements.references;
+      const line='DOI: '+btn.dataset.doi+' — '+btn.dataset.title;
+      ref.value=(ref.value?ref.value.trim()+'\n':'')+line;
+      saveDraft();
+      btn.textContent='Đã ghi provenance';
+      btn.disabled=true;
+    }));
+  }catch(err){
+    console.error(err);
+    status.textContent='Không truy cập được Crossref. Có thể dùng Google Scholar hoặc AGRIS bên cạnh.';
+  }
+}
+
+function escapeEvidence(s=''){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+document.getElementById('searchEvidenceBtn').addEventListener('click',()=>searchCrossref(currentEvidenceQuery()));
+document.getElementById('searchMissingBtn').addEventListener('click',async()=>{
+  const d=formObject(),v=validate(d);showValidation(v);
+  const topics=missingTopicsFromValidation(d,v);
+  if(!topics.length){document.getElementById('evidenceStatus').textContent='Không phát hiện trường thiếu rõ ràng để tạo truy vấn.';return}
+  document.getElementById('evidenceTopic').value=topics[0];
+  document.getElementById('evidenceContext').value=[d.site,d.production_system].filter(Boolean).join(' ');
+  await searchCrossref(currentEvidenceQuery(topics[0]));
+});
+document.getElementById('openScholarBtn').addEventListener('click',()=>{
+  const q=currentEvidenceQuery(); if(q) window.open('https://scholar.google.com/scholar?q='+encodeURIComponent(q),'_blank','noopener');
+});
+document.getElementById('openAgrisBtn').addEventListener('click',()=>{
+  const q=currentEvidenceQuery(); if(q) window.open('https://agris.fao.org/search/en?query='+encodeURIComponent(q),'_blank','noopener');
+});
