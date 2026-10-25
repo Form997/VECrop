@@ -1,6 +1,6 @@
 # VECrop — Giáo trình tổng hợp
 
-> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.15**.
+> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.16**.
 
 ---
 
@@ -9928,13 +9928,1364 @@ $
 
 ---
 
+
+## 4.16. Sinh trưởng sinh khối – phân bổ cơ quan – allometry – cấu trúc tán và rễ
+
+### 4.16.1. Vai trò của 4.16
+
+4.16 nối các module trước thành tăng trưởng biomass thực:
+
+<div class="flow-chain">
+<strong>Quang hợp</strong> → <strong>Carbon khả dụng</strong> → <strong>Source–sink</strong> → <strong>Phân bổ cơ quan</strong> → <strong>Hình thành sinh khối</strong> → <strong>Cấu trúc tán/rễ</strong>
+</div>
+
+Mục tiêu là tách rõ:
+- carbon supply;
+- sink demand;
+- organ growth capacity;
+- allocation;
+- turnover.
+
+### 4.16.2. Tổng sinh khối
+
+$
+B_{tot}
+=
+B_{root}
++
+B_{stem}
++
+B_{leaf}
++
+B_{repro}
++
+B_{storage}
+$
+
+Tùy crop có thể bỏ hoặc gộp một số compartment.
+
+### 4.16.3. Cân bằng sinh khối toàn cây
+
+$
+\frac{dB_{tot}}{dt}
+=
+G_{tot}
+-
+L_{turnover}
+$
+
+Trong đó:
+- \(G_{tot}\): biomass growth;
+- \(L_{turnover}\): loss do senescence, mortality hoặc abscission.
+
+### 4.16.4. Carbon-limited growth
+
+Nếu biomass quy đổi từ carbon:
+
+$
+G_C
+=
+Y_G
+C_{avail}
+$
+
+Trong đó \(Y_G\) là growth yield coefficient.
+
+Không dùng một \(Y_G\) chung cho mọi tissue nếu thành phần hóa sinh khác nhau rõ.
+
+### 4.16.5. Organ-specific growth
+
+$
+\frac{dB_o}{dt}
+=
+G_o
+-
+L_o
+$
+
+với:
+
+$
+o\in
+\{root,stem,leaf,reproductive,storage\}
+$
+
+### 4.16.6. Allocation fraction
+
+$
+a_o
+=
+\frac{F_{C,o}}
+{\sum_jF_{C,j}}
+$
+
+với:
+
+$
+\sum_oa_o=1
+$
+
+nếu toàn bộ carbon growth được phân bổ cho các compartment này.
+
+### 4.16.7. Allocation theo sink strength
+
+Từ 4.5:
+
+$
+a_o
+=
+\frac{SS_o^{eff}}
+{\sum_jSS_j^{eff}}
+$
+
+Trong đó:
+
+$
+SS_o^{eff}
+=
+M_oq_oF_{dev,o}F_{resource,o}
+$
+
+Đây là VECrop reduced formulation.
+
+### 4.16.8. Source limitation
+
+Nếu carbon supply thấp:
+
+$
+\sum_oDemand_{C,o}
+>
+C_{available}
+$
+
+thì:
+
+$
+Growth
+\approx
+Source\ limited
+$
+
+### 4.16.9. Sink limitation
+
+Nếu:
+
+$
+C_{available}
+>
+\sum_oDemand_{C,o}
+$
+
+nhưng organ growth capacity thấp thì:
+
+$
+Growth
+\approx
+Sink\ limited
+$
+
+### 4.16.10. Supply–capacity coupling
+
+Một conceptual formulation:
+
+$
+G_o
+=
+\min
+(
+G_{o}^{supply},
+G_{o}^{capacity}
+)
+$
+
+### 4.16.11. Growth capacity
+
+$
+G_o^{capacity}
+=
+f(
+Meristem,
+CellCycle,
+Expansion,
+TOR,
+Hormone,
+Stage
+)
+$
+
+nối trực tiếp với 4.14.
+
+### 4.16.12. Supply term
+
+$
+G_o^{supply}
+=
+f(
+F_{C,o},
+N_o,
+P_o,
+K_o,
+Water_o,
+ATP_o
+)
+$
+
+### 4.16.13. Carbon-to-biomass conversion
+
+Một organ-specific coefficient:
+
+$
+B_o
+=
+\eta_oC_o
+$
+
+Trong đó \(\eta_o\) phụ thuộc:
+- lipid;
+- protein;
+- carbohydrate;
+- mineral fraction.
+
+### 4.16.14. Growth respiration
+
+Từ 4.8:
+
+$
+R_{G,o}
+=
+G_o
+\left(
+\frac1{Y_{G,o}}-1
+\right)
+$
+
+Phân bổ carbon phải trừ growth respiration trước khi tính dry matter gain.
+
+### 4.16.15. Maintenance respiration
+
+$
+R_{M,o}
+=
+m_o(T)M_{met,o}
+$
+
+Tissue già có thể có metabolic fraction thấp hơn tissue non.
+
+### 4.16.16. Net carbon available
+
+$
+C_{avail}
+=
+A_{can}
+-
+R_M
+-
+R_G
+-
+L_C
+$
+
+Không double count respiration nếu \(Y_G\) đã bao gồm chi phí biosynthesis tương ứng.
+
+### 4.16.17. Root allocation
+
+Một root allocation state:
+
+$
+a_r
+=
+f(
+N_{status},
+P_{status},
+Water,
+Carbon,
+Hormone,
+Stage
+)
+$
+
+Root allocation thường thay đổi khi resource limitation thay đổi.
+
+### 4.16.18. Shoot allocation
+
+$
+a_s
+=
+a_{leaf}+a_{stem}+a_{repro}
+$
+
+với:
+
+$
+a_r+a_s=1
+$
+
+trong mô hình hai compartment.
+
+### 4.16.19. Root:shoot ratio
+
+$
+R:S
+=
+\frac{B_{root}}
+{B_{shoot}}
+$
+
+Không xem một giá trị R:S là optimum phổ quát.
+
+### 4.16.20. Functional equilibrium
+
+Một conceptual hypothesis:
+
+$
+Allocation
+\rightarrow
+Resource\ acquisition\ balance
+$
+
+Cây có thể tăng allocation vào cơ quan giúp thu nhận resource đang giới hạn, nhưng response phụ thuộc crop và stage.
+
+### 4.16.21. Leaf biomass
+
+$
+\frac{dB_{leaf}}{dt}
+=
+G_{leaf}
+-
+L_{leaf}
+$
+
+### 4.16.22. Leaf area
+
+$
+A_{leaf}
+=
+SLA
+B_{leaf}
+$
+
+Nếu SLA biến đổi theo thời gian:
+
+$
+A_{leaf}(t)
+=
+SLA(t)B_{leaf}(t)
+$
+
+### 4.16.23. LAI
+
+$
+LAI
+=
+\frac{A_{leaf}}{A_{ground}}
+$
+
+### 4.16.24. Dynamic SLA
+
+Một reduced relationship:
+
+$
+SLA
+=
+SLA_{ref}
+F_{light}
+F_N
+F_T
+F_{age}
+$
+
+Cần calibration.
+
+### 4.16.25. Stem biomass
+
+$
+\frac{dB_{stem}}{dt}
+=
+G_{stem}
+-
+L_{stem}
+-
+F_{rem,stem}
+$
+
+Nếu stem là storage organ tạm thời thì phải tách structural và reserve pools.
+
+### 4.16.26. Structural và reserve biomass
+
+$
+B_o
+=
+B_{struct,o}
++
+B_{reserve,o}
+$
+
+Điều này hữu ích cho lúa và ngô khi stem tích trữ NSC.
+
+### 4.16.27. Storage pool
+
+$
+\frac{dB_{reserve,o}}{dt}
+=
+Storage_o
+-
+Mobilization_o
+$
+
+### 4.16.28. Reproductive biomass
+
+$
+\frac{dB_{repro}}{dt}
+=
+G_{repro}
+-
+Loss_{repro}
+$
+
+Ở crop lấy hạt, sink reproductive thường tăng mạnh sau flowering.
+
+### 4.16.29. Reproductive allocation
+
+$
+a_{repro}
+=
+f(
+DVS,
+Sink_{repro},
+Carbon,
+N,
+Water
+)
+$
+
+### 4.16.30. Partition coefficient
+
+Một empirical partition coefficient:
+
+$
+p_o
+=
+\frac{\Delta B_o}
+{\Delta B_{tot}}
+$
+
+Phải xác định theo stage.
+
+### 4.16.31. Không dùng partition coefficient cố định cả vụ
+
+Vì:
+
+$
+p_o
+=
+p_o(stage,environment,genotype)
+$
+
+### 4.16.32. Allometry
+
+Một allometric relation:
+
+$
+B_y
+=
+aB_x^b
+$
+
+Log transform:
+
+$
+\ln B_y
+=
+\ln a
++
+b\ln B_x
+$
+
+### 4.16.33. Allometry không phải cơ chế
+
+Allometry là mô tả quan hệ scaling.
+
+Không nên dùng nó thay cho:
+- carbon balance;
+- developmental transition;
+- sink strength
+nếu mục tiêu là cơ chế.
+
+### 4.16.34. Relative growth rate
+
+$
+RGR
+=
+\frac1B
+\frac{dB}{dt}
+$
+
+### 4.16.35. Crop growth rate
+
+$
+CGR
+=
+\frac1{A_g}
+\frac{dB}{dt}
+$
+
+### 4.16.36. Net assimilation rate
+
+$
+NAR
+=
+\frac1{A_L}
+\frac{dB}{dt}
+$
+
+NAR là chỉ số sinh trưởng, không đồng nhất trực tiếp với leaf gas-exchange \(A_n\).
+
+### 4.16.37. Leaf area ratio
+
+$
+LAR
+=
+\frac{A_L}{B}
+$
+
+và:
+
+$
+RGR
+=
+NAR\times LAR
+$
+
+theo decomposition cổ điển.
+
+### 4.16.38. Specific leaf area và leaf mass ratio
+
+$
+SLA
+=
+\frac{A_L}{B_L}
+$
+
+$
+LMR
+=
+\frac{B_L}{B}
+$
+
+Do đó:
+
+$
+LAR
+=
+SLA\times LMR
+$
+
+### 4.16.39. Canopy closure
+
+Khi LAI tăng:
+
+$
+f_{intercept}
+=
+1-e^{-k_LLAI}
+$
+
+Canopy closure làm thay đổi:
+- light interception;
+- within-canopy VPD;
+- leaf temperature;
+- weed suppression.
+
+### 4.16.40. Self-shading
+
+Khi LAI quá cao:
+
+$
+A_{lower\ canopy}\downarrow
+$
+
+và maintenance cost có thể tăng so với carbon gain.
+
+### 4.16.41. Optimal LAI không phổ quát
+
+Optimum LAI phụ thuộc:
+- solar radiation;
+- leaf angle;
+- extinction coefficient;
+- crop;
+- season;
+- water/nutrient status.
+
+### 4.16.42. Root biomass
+
+$
+\frac{dB_{root}}{dt}
+=
+G_{root}
+-
+Mortality_{root}
+$
+
+### 4.16.43. Root length
+
+$
+L_{root}
+=
+SRL
+B_{root}
+$
+
+Trong đó:
+
+$
+SRL
+=
+\frac{Root\ length}
+{Root\ dry\ mass}
+$
+
+### 4.16.44. Dynamic SRL
+
+$
+SRL
+=
+SRL_{ref}
+F_{diameter}
+F_{age}
+F_N
+F_P
+F_{water}
+$
+
+### 4.16.45. Root surface area
+
+Một cylindrical approximation:
+
+$
+A_{root}
+=
+2\pi rL_{root}
+$
+
+Nếu diameter distribution rộng, phải tích phân theo root classes.
+
+### 4.16.46. Root architecture
+
+Cần tách:
+- axial roots;
+- lateral roots;
+- fine roots;
+- root hairs.
+
+Total biomass không đủ mô tả nutrient acquisition.
+
+### 4.16.47. Root depth growth
+
+Một reduced form:
+
+$
+\frac{dZ_r}{dt}
+=
+v_{root,max}
+F_TF_{\Psi}F_{O_2}F_{soil}
+$
+
+### 4.16.48. Soil mechanical resistance
+
+Root elongation có thể giảm khi penetration resistance tăng.
+
+Một reduced modifier:
+
+$
+F_{PR}
+=
+f(PR)
+$
+
+Không dùng một threshold universal cho mọi đất và root type.
+
+### 4.16.49. Root distribution by depth
+
+$
+\beta(z)
+=
+\frac{RLD(z)}
+{\int_0^{Z_r}RLD(z)\,dz}
+$
+
+với:
+
+$
+\int_0^{Z_r}\beta(z)\,dz=1
+$
+
+### 4.16.50. Active root fraction
+
+$
+A_{root,active}
+=
+A_{root}
+f_{active}
+$
+
+Uptake và hydraulics nên dùng active fraction khi có dữ liệu.
+
+### 4.16.51. Root turnover
+
+$
+Turnover_{root}
+=
+k_{turn,root}
+B_{root}
+$
+
+### 4.16.52. Root exudation carbon cost
+
+$
+C_{root,total}
+=
+C_{growth}
++
+C_{resp}
++
+C_{exudation}
+$
+
+Exudation không được bỏ khỏi carbon budget nếu nghiên cứu rhizosphere.
+
+### 4.16.53. Mycorrhizal carbon cost
+
+$
+C_{myc}
+=
+f(
+colonization,
+P_{delivery},
+C_{supply}
+)
+$
+
+### 4.16.54. Organ nitrogen concentration
+
+$
+N_{conc,o}
+=
+\frac{M_{N,o}}
+{B_o}
+$
+
+Growth dilution có thể làm concentration giảm dù total N tăng.
+
+### 4.16.55. Nutrient dilution
+
+Một empirical dilution curve:
+
+$
+N_c
+=
+aB^{-b}
+$
+
+Đây là benchmark empirical, không phải định luật phổ quát.
+
+### 4.16.56. Critical nutrient concentration
+
+Critical concentration là concentration tối thiểu liên quan với gần-maximal growth trong một calibration context.
+
+Không chuyển trực tiếp giữa crop/cultivar nếu chưa kiểm định.
+
+### 4.16.57. Nutrient demand from biomass growth
+
+$
+Req_{i,o}
+=
+q_{i,o}^{*}
+\frac{dB_o}{dt}
+$
+
+nối trực tiếp 4.16 với 4.7.
+
+### 4.16.58. Growth–nutrient feedback
+
+Nếu nutrient supply thấp:
+
+$
+L_i
+=
+\frac{Sup_i}
+{Req_i+\varepsilon}
+$
+
+thì organ growth capacity có thể giảm.
+
+### 4.16.59. Water–growth feedback
+
+Nếu leaf expansion giảm do turgor:
+
+$
+LAI\downarrow
+\rightarrow
+Light\ interception\downarrow
+\rightarrow
+A_{can}\downarrow
+$
+
+### 4.16.60. Carbon–growth feedback
+
+Nếu sink growth thấp:
+
+$
+Sucrose_{leaf}\uparrow
+\rightarrow
+Source\ feedback
+$
+
+nối 4.16 với 4.13.
+
+### 4.16.61. Senescence–growth coupling
+
+Từ 4.15:
+
+$
+L_{leaf}\uparrow
+\rightarrow
+GLAI\downarrow
+$
+
+và:
+
+$
+F_{rem}\uparrow
+$
+
+có thể đồng thời xảy ra.
+
+### 4.16.62. Turnover balance
+
+$
+Net\ biomass\ change
+=
+Gross\ growth
+-
+Turnover
+$
+
+Không đồng nhất net biomass gain với gross production.
+
+### 4.16.63. Aboveground biomass
+
+$
+AGB
+=
+B_{leaf}
++
+B_{stem}
++
+B_{repro}
+$
+
+### 4.16.64. Belowground biomass
+
+$
+BGB
+=
+B_{root}
++
+B_{belowground\ storage}
+$
+
+tùy crop.
+
+### 4.16.65. Shoot biomass
+
+$
+B_{shoot}
+=
+AGB
+$
+
+chỉ khi định nghĩa shoot không bao gồm cấu trúc dưới đất.
+
+### 4.16.66. Dry matter vs fresh mass
+
+Không trộn:
+
+$
+Fresh\ mass
+\neq
+Dry\ mass
+$
+
+Fresh mass phụ thuộc mạnh water content.
+
+### 4.16.67. Dry matter fraction
+
+$
+DMF
+=
+\frac{Dry\ mass}
+{Fresh\ mass}
+$
+
+### 4.16.68. Marketable biomass
+
+Đối với xà lách:
+
+$
+B_{market}
+\le
+B_{shoot}
+$
+
+do loại bỏ:
+- damaged leaves;
+- senescent leaves;
+- diseased tissue;
+- nonmarketable fraction.
+
+### 4.16.69. Structural biomass
+
+Một simplified decomposition:
+
+$
+B_{struct}
+=
+B_{cellwall}
++
+B_{protein}
++
+B_{lipid}
++
+B_{other}
+$
+
+### 4.16.70. Biomass composition
+
+Composition ảnh hưởng:
+- construction cost;
+- C:N ratio;
+- energy demand;
+- tissue longevity.
+
+### 4.16.71. Construction cost
+
+Một generic cost:
+
+$
+C_{cost,o}
+=
+\sum_j
+c_jM_{j,o}
+$
+
+với \(c_j\) là carbon/energy cost theo thành phần.
+
+### 4.16.72. Không dùng cùng construction cost cho mọi organ
+
+Leaf, root, stem và grain có composition khác nhau.
+
+### 4.16.73. Growth efficiency
+
+$
+GE
+=
+\frac{\Delta B}
+{C_{substrate}}
+$
+
+Cần định nghĩa denominator rõ.
+
+### 4.16.74. Radiation-use efficiency
+
+Một empirical crop model:
+
+$
+\Delta B
+=
+RUE
+\times
+IPAR
+$
+
+RUE hữu ích như benchmark nhưng không thay thế photosynthesis-respiration model cơ chế.
+
+### 4.16.75. Không nhân RUE vào mechanistic carbon gain
+
+Nếu \(A_{can}\) đã tính carbon assimilation thì không:
+
+$
+B
+=
+A_{can}
+\times
+RUE
+$
+
+một cách máy móc.
+
+### 4.16.76. Water-use efficiency
+
+$
+WUE
+=
+\frac{Biomass\ or\ Yield}
+{Water\ use}
+$
+
+Phải ghi rõ numerator và denominator.
+
+### 4.16.77. Biomass allocation dưới drought
+
+Drought có thể thay đổi:
+- root:shoot;
+- leaf expansion;
+- reproductive allocation;
+- senescence.
+
+Response phụ thuộc timing.
+
+### 4.16.78. Biomass allocation dưới N deficiency
+
+N deficiency thường ảnh hưởng mạnh:
+- leaf area;
+- protein concentration;
+- shoot growth;
+- root allocation.
+
+Không hard-code cùng response cho mọi crop.
+
+### 4.16.79. Density effect
+
+Per-plant biomass:
+
+$
+B_{plant}
+=
+f(D)
+$
+
+Per-area biomass:
+
+$
+B_{area}
+=
+D
+B_{plant}
+$
+
+Hai đại lượng có thể phản ứng ngược chiều với density.
+
+### 4.16.80. Competition
+
+Competition gồm:
+- light;
+- water;
+- nutrients;
+- space.
+
+Một canopy model nên tránh gộp hết thành một density scalar nếu dữ liệu đủ.
+
+### 4.16.81. Size hierarchy
+
+Trong quần thể:
+
+$
+B_i
+\neq
+B_j
+$
+
+ngay cả cùng genotype do competition và spatial heterogeneity.
+
+### 4.16.82. Distributional growth
+
+Có thể mô hình:
+
+$
+B\sim Lognormal(\mu_B,\sigma_B)
+$
+
+nếu cần mô tả variability quần thể.
+
+### 4.16.83. Lúa
+
+Các compartment quan trọng:
+- root;
+- leaf;
+- culm;
+- sheath;
+- panicle/grain;
+- stem NSC reserve.
+
+### 4.16.84. Lúa: tiller biomass
+
+$
+B_{shoot}
+=
+\sum_{k=1}^{N_{tiller}}
+B_{tiller,k}
+$
+
+Tiller mortality cần nối với 4.14 và 4.15.
+
+### 4.16.85. Ngô
+
+Các compartment:
+- root;
+- leaf;
+- stalk;
+- cob;
+- grain.
+
+Post-silking allocation phải tách grain sink khỏi vegetative maintenance.
+
+### 4.16.86. Ngô: kernel demand
+
+$
+Demand_{grain}
+=
+N_{kernel}
+q_{kernel}(t)
+$
+
+### 4.16.87. Xà lách
+
+Các compartment thực dụng:
+- root;
+- marketable leaves;
+- nonmarketable/senescent leaves;
+- stem/bolting axis nếu xuất hiện.
+
+### 4.16.88. Xà lách: fresh vs dry yield
+
+Market yield thường là fresh mass nên cần:
+
+$
+Fresh\ yield
+=
+\frac{Dry\ mass}
+{DMF}
+$
+
+chỉ khi DMF được đo/ước lượng phù hợp.
+
+### 4.16.89. State-space biomass
+
+$
+\mathbf B
+=
+[
+B_{root},
+B_{stem},
+B_{leaf},
+B_{repro},
+B_{reserve}
+]^T
+$
+
+### 4.16.90. Biomass dynamics
+
+$
+\frac{d\mathbf B}{dt}
+=
+\mathbf G
+-
+\mathbf L
+$
+
+### 4.16.91. Growth vector
+
+$
+\mathbf G
+=
+\mathbf a
+G_{tot}
+$
+
+với:
+
+$
+\sum_oa_o=1
+$
+
+### 4.16.92. Turnover vector
+
+$
+\mathbf L
+=
+[
+L_{root},
+L_{stem},
+L_{leaf},
+L_{repro},
+L_{reserve}
+]^T
+$
+
+### 4.16.93. Allocation constraints
+
+$
+0\le a_o\le1
+$
+
+và:
+
+$
+\sum_oa_o=1
+$
+
+### 4.16.94. Dynamic allocation
+
+$
+\frac{da_o}{dt}
+=
+f(
+stage,
+sink,
+resource,
+hormone,
+stress
+)
+$
+
+thay vì xem \(a_o\) cố định.
+
+### 4.16.95. Calibration hierarchy
+
+Nên hiệu chỉnh:
+1. total biomass;
+2. organ biomass;
+3. LAI/SLA;
+4. root length/depth;
+5. reserve pools;
+6. allocation trajectories.
+
+### 4.16.96. Validation
+
+Validation độc lập nên có:
+- destructive biomass sampling;
+- organ dry mass;
+- LAI;
+- root traits;
+- phenology;
+- reserve/remobilization data.
+
+### 4.16.97. Không fit allocation bằng final yield duy nhất
+
+Final yield không đủ nhận dạng:
+- root allocation;
+- leaf/stem partition;
+- turnover;
+- reserve dynamics.
+
+### 4.16.98. Mass-balance test
+
+Biomass balance:
+
+$
+B_{tot}(t_2)
+-
+B_{tot}(t_1)
+\approx
+\int_{t_1}^{t_2}
+(G_{tot}-L_{turnover})dt
+$
+
+### 4.16.99. Carbon-balance test
+
+$
+C_{assim}
+-
+C_{resp}
+-
+C_{export/loss}
+-
+\Delta C_{biomass}
+\approx0
+$
+
+### 4.16.100. Coupling với 4.5
+
+Phloem flux cấp carbon cho allocation.
+
+### 4.16.101. Coupling với 4.6
+
+LAI và canopy architecture quyết định carbon supply.
+
+### 4.16.102. Coupling với 4.7
+
+Nutrient pools quyết định growth stoichiometry.
+
+### 4.16.103. Coupling với 4.8
+
+Respiration quyết định carbon cost.
+
+### 4.16.104. Coupling với 4.13
+
+Sugar/TOR/SnRK1 điều chỉnh growth capacity.
+
+### 4.16.105. Coupling với 4.14
+
+Phenology xác định organ priority và developmental capacity.
+
+### 4.16.106. Coupling với 4.15
+
+Senescence/turnover quyết định net biomass và remobilization.
+
+### 4.16.107. Không double counting
+
+Nếu allocation đã được quyết định bởi sink strength và source supply, không nhân thêm:
+- root factor;
+- shoot factor;
+- stage factor
+vào biomass một lần nữa nếu chúng mô tả cùng cơ chế.
+
+### 4.16.108. Vai trò của 4.16 trong VECrop
+
+4.16 biến flux và capacity thành trạng thái sinh khối thực:
+
+<div class="flow-chain">
+<strong>Carbon supply</strong> → <strong>Sink strength</strong> → <strong>Allocation</strong> → <strong>Organ growth</strong> → <strong>Canopy/Root architecture</strong> → <strong>Total biomass</strong>
+</div>
+
+### 4.16.109. Kết luận 4.16
+
+Sinh khối không nên được tính bằng một hệ số tăng trưởng duy nhất.
+
+VECrop nên tách:
+
+$
+Gross\ production
+\rightarrow
+Respiration
+\rightarrow
+Allocation
+\rightarrow
+Organ\ growth
+\rightarrow
+Turnover
+\rightarrow
+Net\ biomass
+$
+
+và giữ riêng:
+- source limitation;
+- sink limitation;
+- organ capacity;
+- allocation;
+- senescence.
+
+Điều này tạo nền trực tiếp cho bước tiếp theo là **hình thành năng suất kinh tế và Harvest Index**.
+
+---
+
 # Chuỗi tích hợp cuối Chương 4
 
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
 
-**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.15.**
+**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.16.**
 
 ---
 
@@ -9962,10 +11313,12 @@ $
 20. Reviews on flowering-time regulation, photoperiod and vernalization in crops.
 21. Reviews on leaf senescence regulation, nutrient remobilization and stay-green phenotypes.
 22. Reviews on autophagy and programmed cell death in plant senescence.
+23. Reviews and textbooks on crop growth analysis, biomass partitioning, allometry and organ allocation.
+24. Reviews on root–shoot allocation, functional equilibrium and dynamic dry-matter partitioning.
 
 > **Quy tắc VECrop:** mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.
 
 
 ---
 
-> **Điểm dừng hiện tại:** 4.15. Chưa có nội dung sau 4.15.
+> **Điểm dừng hiện tại:** 4.16. Chưa có nội dung sau 4.16.
