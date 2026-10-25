@@ -908,3 +908,8 @@ Người dùng có thể nhập **tỉnh/thành trồng** và **vùng sinh thái
 
 Bước 10 cho phép **phân tích DOI riêng** qua endpoint Crossref, xem tạp chí, nhà xuất bản, năm, ISSN, số tác giả, tài liệu tham khảo, số lần trích dẫn (không phải thước đo chất lượng), tính đầy đủ abstract, mức trùng chủ đề, giống, địa phương và các chỉ báo cập nhật/đính chính/thu hồi **nếu có metadata**. DOI không phải chứng nhận phản biện hay tính đúng đắn; cảnh báo vắng mặt không khẳng định bài chưa bị thu hồi. Không tự điền số đo thực địa.
 
+
+
+## Ứng dụng Windows
+
+Có phiên bản desktop xây dựng qua GitHub Actions ở [Hướng dẫn Windows EXE](desktop/README.md). Phiên bản EXE đóng gói tài nguyên web để đọc offline; tính năng DOI/GBIF cần Internet. Dữ liệu bản nháp trên GitHub Pages và trong ứng dụng EXE không tự đồng bộ, dùng Xuất/Nhập JSON để chuyển.
