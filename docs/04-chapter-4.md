@@ -3874,13 +3874,1149 @@ Như vậy phenology xác định **khi nào và cơ quan nào có khả năng t
 
 ---
 
+
+## 4.15. Lão hóa – programmed cell death – tái huy động dinh dưỡng – kết thúc vòng đời cơ quan
+
+### 4.15.1. Senescence là một chương trình phát triển
+
+Senescence không chỉ là “già đi” thụ động.
+
+Ở cấp cơ quan, nó là một quá trình được điều hòa, thường bao gồm:
+- suy giảm quang hợp;
+- tháo dỡ chloroplast;
+- proteolysis;
+- lipid turnover;
+- nucleic-acid degradation;
+- tái huy động N, P, K và carbon;
+- cuối cùng có thể dẫn tới programmed cell death.
+
+### 4.15.2. Phân biệt senescence và programmed cell death
+
+Không đồng nhất:
+
+$
+Senescence
+=
+PCD
+$
+
+Senescence có thể kéo dài nhiều ngày hoặc nhiều tuần, còn PCD là pha kết thúc của một số chương trình phát triển/stress.
+
+### 4.15.3. Developmental senescence
+
+Một developmental driver:
+
+$
+S_{dev}
+=
+f(
+age,
+DVS,
+organ,
+genotype
+)
+$
+
+Senescence có thể bắt đầu ngay cả khi môi trường không stress.
+
+### 4.15.4. Stress-induced senescence
+
+Stress có thể thúc đẩy senescence:
+
+$
+S_{stress}
+=
+f(
+drought,
+salinity,
+heat,
+nutrient\ deficiency,
+pathogen,
+shade
+)
+$
+
+Không được dùng một stress factor chung cho mọi nguyên nhân.
+
+### 4.15.5. Senescence rate
+
+Một reduced state:
+
+$
+\frac{dS_o}{dt}
+=
+r_{sen,o}
+(1-S_o)
+$
+
+với:
+
+$
+0\le S_o\le1
+$
+
+Trong đó \(S_o=0\) là chưa senescent và \(S_o=1\) là senescence hoàn tất.
+
+### 4.15.6. Rate phụ thuộc stage và stress
+
+$
+r_{sen,o}
+=
+r_{0,o}
+F_{stage}
+F_T
+F_{water}
+F_N
+F_{hormone}
+F_{ROS}
+$
+
+Đây là reduced VECrop formulation.
+
+### 4.15.7. Chlorophyll loss
+
+Một proxy:
+
+$
+\frac{dChl}{dt}
+=
+-k_{Chl}S_oChl
+$
+
+Chlorophyll decline là chỉ báo hữu ích nhưng không bằng toàn bộ senescence state.
+
+### 4.15.8. Photosynthetic decline
+
+Một reduced relation:
+
+$
+V_{cmax}^{eff}
+=
+V_{cmax}^{green}
+F_{sen}
+$
+
+$
+J_{max}^{eff}
+=
+J_{max}^{green}
+F_{sen}
+$
+
+với:
+
+$
+F_{sen}=1-S_o
+$
+
+chỉ là approximation.
+
+### 4.15.9. Chloroplast dismantling
+
+Trong leaf senescence, chloroplast thường là nguồn lớn của N được tái huy động do Rubisco và protein quang hợp chiếm tỷ lệ N đáng kể.
+
+### 4.15.10. Protein degradation
+
+Một protein pool:
+
+$
+\frac{dP_o}{dt}
+=
+Synthesis_o
+-
+Degradation_o
+$
+
+Trong senescence:
+
+$
+Degradation_o\uparrow
+$
+
+### 4.15.11. Proteolysis
+
+Proteolysis tạo:
+- amino acids;
+- peptides;
+- N remobilizable pools.
+
+Một flux:
+
+$
+F_{prot\rightarrow AA}
+=
+k_{prot}S_oP_o
+$
+
+### 4.15.12. Nitrogen remobilization
+
+Từ 4.7:
+
+$
+F_{rem,N,o}
+=
+k_{rem,N,o}(t)
+M_{N,o}^{mob}
+$
+
+4.15 mở rộng bằng senescence control:
+
+$
+F_{rem,N,o}^{eff}
+=
+k_{rem,N,o}
+S_o
+M_{N,o}^{mob}
+$
+
+### 4.15.13. Phosphorus remobilization
+
+$
+F_{rem,P,o}
+=
+k_{rem,P,o}
+S_o
+M_{P,o}^{mob}
+$
+
+Khả năng remobilize P phụ thuộc:
+- chemical form;
+- tissue;
+- sink demand;
+- genotype.
+
+### 4.15.14. Potassium remobilization
+
+K thường có mobility cao trong phloem.
+
+Một balance:
+
+$
+F_{rem,K,o}
+=
+k_{rem,K,o}
+S_o
+M_{K,o}^{mob}
+$
+
+### 4.15.15. Mineral-specific remobilization
+
+Không dùng:
+
+$
+F_{rem,N}
+=
+F_{rem,P}
+=
+F_{rem,K}
+$
+
+vì mobility và biochemical binding khác nhau.
+
+### 4.15.16. Source transition
+
+Một lá có thể chuyển:
+
+$
+Sink\ leaf
+\rightarrow
+Source\ leaf
+\rightarrow
+Senescing\ source
+$
+
+Trong giai đoạn senescing, export vẫn có thể cao dù photosynthesis đang giảm.
+
+### 4.15.17. Sink priority
+
+Trong reproductive stage:
+
+$
+Priority_{grain}
+\uparrow
+$
+
+có thể thúc đẩy remobilization từ vegetative organs.
+
+### 4.15.18. Carbon remobilization
+
+Stored carbon có thể được huy động:
+
+$
+Starch/Fructan/NSC
+\rightarrow
+Sucrose
+\rightarrow
+Phloem
+\rightarrow
+Sink
+$
+
+### 4.15.19. NSC pool
+
+$
+NSC
+=
+Sucrose
++
+Glucose
++
+Fructose
++
+Starch
+$
+
+tùy định nghĩa thực nghiệm.
+
+### 4.15.20. Carbon remobilization flux
+
+$
+F_{rem,C,o}
+=
+k_{rem,C,o}
+S_o
+M_{C,o}^{storage}
+$
+
+### 4.15.21. Hormone control
+
+Hormone liên quan senescence gồm:
+- ethylene;
+- ABA;
+- cytokinin;
+- JA;
+- SA;
+- auxin interactions.
+
+Không gán:
+- cytokinin = luôn chống lão hóa;
+- ethylene = luôn gây lão hóa
+một cách tuyệt đối cho mọi mô.
+
+### 4.15.22. Cytokinin effect
+
+Trong nhiều bối cảnh:
+
+$
+CK\uparrow
+\Rightarrow
+Senescence\ delay
+$
+
+nhưng magnitude phụ thuộc:
+- tissue;
+- stage;
+- source–sink;
+- genotype.
+
+### 4.15.23. Ethylene effect
+
+Ethylene có thể thúc đẩy senescence ở nhiều hệ:
+
+$
+ET\uparrow
+\Rightarrow
+r_{sen}\uparrow
+$
+
+nhưng response phải organ-specific.
+
+### 4.15.24. ABA effect
+
+ABA có thể tăng trong drought và phối hợp:
+- stomatal closure;
+- stress response;
+- senescence acceleration.
+
+Không nên phạt drought qua ABA thêm lần nữa nếu drought đã ảnh hưởng trực tiếp lên cùng process.
+
+### 4.15.25. ROS và senescence
+
+ROS có thể vừa là signal vừa là damage.
+
+Một coupling:
+
+$
+r_{sen}
+=
+r_0
+[
+1+\alpha_{ROS}S_{ROS}
++\beta_{D}D_{ROS}
+]
+$
+
+Đây là proposed formulation.
+
+### 4.15.26. Autophagy
+
+Autophagy đóng vai trò trong:
+- recycling cellular components;
+- nutrient remobilization;
+- stress survival;
+- senescence progression.
+
+Một reduced flux:
+
+$
+F_{auto}
+=
+k_{auto}
+A_{auto}
+M_{substrate}
+$
+
+### 4.15.27. Autophagy không đồng nhất với cell death
+
+Autophagy có thể hỗ trợ survival và recycling trước khi PCD xảy ra.
+
+Do đó:
+
+$
+Autophagy
+\neq
+PCD
+$
+
+### 4.15.28. Programmed cell death state
+
+Một PCD activation state:
+
+$
+A_{PCD}
+=
+\sigma
+(
+\beta_0
++
+\beta_{ROS}D_{ROS}
++
+\beta_{ET}ET^*
++
+\beta_{ABA}ABA^*
++
+\beta_{dev}DVS
+)
+$
+
+Đây là VECrop proposed diagnostic.
+
+### 4.15.29. Membrane integrity decline
+
+$
+H_{mem}
+=
+e^{-\lambda DD}
+$
+
+với \(D\) là damage state tổng hợp.
+
+### 4.15.30. Senescence và phloem export
+
+Một organ export:
+
+$
+F_{export,o}
+=
+F_{phloem,o}
++
+F_{rem,C,o}
++
+F_{rem,N,o}
++
+F_{rem,P,o}
++
+F_{rem,K,o}
+$
+
+### 4.15.31. Reproductive sink coupling
+
+$
+F_{rem,i\rightarrow grain}
+=
+a_{grain,i}
+F_{rem,i,total}
+$
+
+Trong đó \(a_{grain,i}\) phụ thuộc sink strength.
+
+### 4.15.32. Grain filling
+
+Một grain nutrient balance:
+
+$
+\frac{dM_{i,grain}}{dt}
+=
+U_{new,i}
++
+F_{rem,i\rightarrow grain}
+-
+Loss_i
+$
+
+### 4.15.33. New uptake và remobilization
+
+Final grain nutrient có thể đến từ hai nguồn:
+
+$
+M_{i,grain}
+=
+M_{i,new\ uptake}
++
+M_{i,remobilized}
+$
+
+Không được suy rằng toàn bộ grain N đến từ remobilization.
+
+### 4.15.34. Remobilization efficiency
+
+$
+RE_i
+=
+\frac{M_{i,remobilized}}
+{M_{i,pre-senescence}}
+$
+
+Cần định nghĩa rõ pool và thời điểm đo.
+
+### 4.15.35. Apparent remobilization efficiency
+
+Từ biomass/tissue concentration:
+
+$
+ARE_i
+=
+\frac{M_{i,pre}-M_{i,post}}
+{M_{i,pre}}
+$
+
+Đây là apparent metric, không chứng minh flux đích đến.
+
+### 4.15.36. Isotope validation
+
+Khi cần xác định flux thực:
+- \(^{15}N\);
+- \(^{13}C\);
+- stable isotope tracing
+
+có thể giúp phân biệt uptake mới và remobilization.
+
+### 4.15.37. Leaf area loss
+
+LAI dynamics:
+
+$
+\frac{dLAI}{dt}
+=
+LAI_{growth}
+-
+LAI_{sen}
+$
+
+Một senescence loss:
+
+$
+LAI_{sen}
+=
+k_{LAI,sen}S_{leaf}LAI
+$
+
+### 4.15.38. Green leaf area index
+
+$
+GLAI
+=
+LAI(1-S_{leaf})
+$
+
+Đây là reduced canopy representation.
+
+### 4.15.39. Canopy photosynthesis under senescence
+
+$
+A_{can}
+=
+\int_0^{GLAI}
+A_n(L,t)\,dL
+$
+
+hoặc phải tách green/senescent fractions.
+
+### 4.15.40. Stay-green trait
+
+Stay-green không phải một trait duy nhất.
+
+Cần phân biệt:
+- cosmetic stay-green;
+- functional stay-green.
+
+Functional stay-green duy trì photosynthetic function lâu hơn.
+
+### 4.15.41. Stay-green và yield
+
+Stay-green có thể tăng yield trong một số điều kiện nếu:
+- sink còn hoạt động;
+- water supply đủ;
+- remobilization không bị cản trở.
+
+Không mặc định stay-green luôn tốt.
+
+### 4.15.42. Senescence timing
+
+Senescence quá sớm:
+
+$
+Source\ duration\downarrow
+$
+
+Senescence quá muộn có thể:
+
+$
+Remobilization\ efficiency\downarrow
+$
+
+tùy crop và mục tiêu thu hoạch.
+
+### 4.15.43. Source duration
+
+Một source-duration metric:
+
+$
+SAD
+=
+\int_{t_1}^{t_2}
+GLAI(t)\,dt
+$
+
+Green leaf area duration có thể liên hệ với cumulative carbon capture.
+
+### 4.15.44. Source–sink balance
+
+Nếu sink nhỏ:
+
+$
+Sink\ limitation
+\rightarrow
+Sugar\ accumulation
+\rightarrow
+Feedback
+\rightarrow
+Senescence\ regulation
+$
+
+### 4.15.45. Sugar signaling
+
+Từ 4.13:
+
+$
+Sucrose/T6P/SnRK1/TOR
+\leftrightarrow
+Senescence
+$
+
+Carbon starvation và carbon excess có thể gây response khác nhau.
+
+### 4.15.46. SnRK1
+
+Trong carbon deficit:
+
+$
+SnRK1\uparrow
+$
+
+có thể thúc đẩy:
+- catabolism;
+- survival responses;
+- recycling.
+
+### 4.15.47. TOR
+
+Khi growth-supporting carbon/nutrient cao:
+
+$
+TOR\uparrow
+$
+
+có thể trì hoãn một số starvation-like responses.
+
+Không dùng TOR như “anti-senescence scalar” phổ quát.
+
+### 4.15.48. Nitrogen status
+
+N deficiency có thể tăng senescence ở lá già:
+
+$
+N_{status}\downarrow
+\rightarrow
+Remobilization\uparrow
+$
+
+nhưng response phụ thuộc sink demand.
+
+### 4.15.49. Phosphorus status
+
+P deficiency có thể thay đổi:
+- leaf longevity;
+- membrane turnover;
+- RNA turnover;
+- P remobilization.
+
+### 4.15.50. Potassium status
+
+K deficiency có thể ảnh hưởng:
+- phloem loading;
+- osmotic regulation;
+- carbohydrate export;
+- senescence timing.
+
+### 4.15.51. Water stress
+
+Drought có thể:
+- tăng ABA;
+- tăng ROS;
+- giảm photosynthesis;
+- tăng leaf senescence.
+
+Nhưng mild drought và terminal drought phải được tách.
+
+### 4.15.52. Heat
+
+Heat stress có thể tăng:
+- protein damage;
+- membrane damage;
+- ROS;
+- reproductive failure;
+- accelerated senescence.
+
+### 4.15.53. Hypoxia
+
+Hypoxia kéo dài có thể:
+- ATP deficit;
+- ROS khi reoxygenation;
+- root death;
+- premature senescence.
+
+### 4.15.54. Pathogen-triggered senescence
+
+Pathogen và defense signaling có thể kích hoạt:
+- SA;
+- JA/ET;
+- ROS;
+- localized PCD.
+
+Không gộp disease senescence vào developmental senescence.
+
+### 4.15.55. Organ-specific senescence
+
+$
+S_{leaf}
+\neq
+S_{root}
+\neq
+S_{stem}
+\neq
+S_{grain}
+$
+
+Cần state riêng theo organ.
+
+### 4.15.56. Root senescence
+
+Root senescence ảnh hưởng:
+- active root length;
+- nutrient uptake;
+- hydraulic conductance;
+- rhizodeposition.
+
+### 4.15.57. Root mortality
+
+Một balance:
+
+$
+\frac{dM_{root}}{dt}
+=
+Growth_{root}
+-
+Mortality_{root}
+$
+
+Trong đó:
+
+$
+Mortality_{root}
+=
+k_{death}S_{root}M_{root}
+$
+
+### 4.15.58. Active root fraction
+
+$
+f_{active}
+=
+\frac{M_{root,active}}
+{M_{root,total}}
+$
+
+Uptake nên phụ thuộc active fraction hơn total root biomass.
+
+### 4.15.59. Stem remobilization
+
+Stem có thể lưu:
+- soluble sugars;
+- fructans ở một số loài;
+- N compounds;
+- K.
+
+Tỷ lệ remobilization phụ thuộc crop.
+
+### 4.15.60. Lúa
+
+Ở lúa, cần theo dõi:
+- leaf senescence;
+- stem NSC;
+- grain filling;
+- N remobilization;
+- stay-green;
+- source–sink after heading.
+
+### 4.15.61. Ngô
+
+Ở ngô, cần theo dõi:
+- post-silking N uptake;
+- remobilization từ vegetative tissues;
+- stay-green;
+- leaf senescence progression;
+- kernel sink strength.
+
+### 4.15.62. Xà lách
+
+Ở xà lách, marketable stage thường trước reproductive senescence.
+
+Cần đặc biệt theo dõi:
+- outer-leaf senescence;
+- tipburn/necrosis phân biệt với senescence;
+- bolting transition;
+- marketable biomass loss.
+
+### 4.15.63. Senescence vs necrosis
+
+Không đồng nhất:
+
+$
+Senescence
+=
+Necrosis
+$
+
+Necrosis có thể là damage/pathology, còn senescence là regulated developmental program.
+
+### 4.15.64. Senescence vs abscission
+
+Abscission là quá trình tách cơ quan.
+
+Một leaf có thể senesce trước abscission nhưng hai quá trình không đồng nhất.
+
+### 4.15.65. Abscission state
+
+Một reduced state:
+
+$
+A_{abs}
+=
+\sigma(
+\beta_0+\beta_{ET}ET^*-\beta_{IAA}IAA^*+\beta_SS_o
+)
+$
+
+chỉ dùng như proposed model.
+
+### 4.15.66. Nutrient loss through abscission
+
+Nếu leaf rụng trước remobilization hoàn tất:
+
+$
+Loss_i
+=
+M_{i,leaf}
+A_{abs}
+$
+
+làm giảm nutrient-use efficiency.
+
+### 4.15.67. Nutrient-use efficiency
+
+Một crop-level metric:
+
+$
+NUE
+=
+\frac{Yield}
+{N\ input}
+$
+
+Cần phân biệt:
+- uptake efficiency;
+- utilization efficiency;
+- remobilization efficiency.
+
+### 4.15.68. Uptake efficiency
+
+$
+NUpE
+=
+\frac{N_{plant}}
+{N_{available/input}}
+$
+
+định nghĩa denominator phải ghi rõ.
+
+### 4.15.69. Utilization efficiency
+
+$
+NUtE
+=
+\frac{Yield}
+{N_{plant}}
+$
+
+### 4.15.70. Senescence và NUE
+
+Senescence timing có thể ảnh hưởng NUE qua:
+- remobilization;
+- late uptake;
+- photosynthetic duration;
+- sink filling.
+
+### 4.15.71. Protein turnover cost
+
+Remobilization không miễn phí về năng lượng.
+
+Một energetic cost:
+
+$
+ATP_{rem}
+=
+ATP_{proteolysis}
++
+ATP_{transport}
++
+ATP_{reassimilation}
+$
+
+### 4.15.72. Carbon cost của remobilization
+
+Amino acid transport và N reassimilation có thể cần carbon skeleton.
+
+Do đó:
+
+$
+Remobilization
+\neq
+Zero\ cost
+$
+
+### 4.15.73. Senescence state-space
+
+$
+\mathbf x_{sen}
+=
+[
+Chl,
+Protein,
+NSC,
+N_{mob},
+P_{mob},
+K_{mob},
+ROS,
+Hormone,
+Autophagy,
+PCD
+]^T
+$
+
+### 4.15.74. Dynamics
+
+$
+\frac{d\mathbf x_{sen}}{dt}
+=
+\mathbf f_{sen}
+(
+\mathbf x_{sen},
+stage,
+sink,
+stress,
+carbon,
+nutrient
+)
+$
+
+### 4.15.75. Output
+
+$
+\mathbf y_{sen}
+=
+[
+GLAI,
+F_{rem,C},
+F_{rem,N},
+F_{rem,P},
+F_{rem,K},
+Mortality,
+Abscission
+]^T
+$
+
+### 4.15.76. Coupling với 4.7
+
+4.7 xác định:
+- nutrient pools;
+- demand;
+- remobilization capacity.
+
+4.15 quyết định:
+- timing;
+- regulatory state;
+- organ turnover.
+
+### 4.15.77. Coupling với 4.13
+
+$
+Sugar/T6P/SnRK1/TOR
+\rightarrow
+Senescence\ regulation
+$
+
+### 4.15.78. Coupling với 4.14
+
+$
+DVS
+\rightarrow
+Senescence\ program
+$
+
+Phenology xác định khi senescence developmentally competent.
+
+### 4.15.79. Coupling với 4.6
+
+$
+Senescence
+\rightarrow
+GLAI\downarrow
+\rightarrow
+A_{can}\downarrow
+$
+
+### 4.15.80. Coupling với 4.5
+
+Remobilized carbon/nutrients phải đi qua transport network tới sink.
+
+Không được chuyển pool tức thời mà bỏ qua phloem capacity.
+
+### 4.15.81. Parameter provenance
+
+Cần provenance cho:
+- \(k_{sen}\);
+- \(k_{rem,i}\);
+- chlorophyll decay;
+- proteolysis rate;
+- autophagy proxy;
+- PCD threshold;
+- abscission parameters.
+
+### 4.15.82. Dữ liệu thực nghiệm
+
+Có thể dùng:
+- SPAD/chlorophyll;
+- leaf N/P/K;
+- protein;
+- NSC;
+- LAI/GLAI;
+- isotope tracing;
+- senescence scoring;
+- gene-expression markers;
+- root mortality;
+- grain nutrient accumulation.
+
+### 4.15.83. Calibration hierarchy
+
+Nên hiệu chỉnh:
+1. chlorophyll/GLAI decline;
+2. organ nutrient loss;
+3. remobilization flux;
+4. sink accumulation;
+5. organ mortality/abscission;
+6. yield/nutrient composition.
+
+### 4.15.84. Validation
+
+Validation nên kiểm:
+- onset of senescence;
+- rate of green-area loss;
+- N/P/K remobilization;
+- grain filling;
+- stay-green response;
+- root turnover.
+
+### 4.15.85. Không fit bằng final yield duy nhất
+
+Hai mô hình có cùng final yield nhưng senescence trajectory khác nhau có thể sai cơ chế hoàn toàn.
+
+### 4.15.86. Không double counting
+
+Nếu senescence đã giảm:
+- \(V_{cmax}\);
+- \(GLAI\);
+- active root area;
+
+thì không nhân thêm một \(F_{sen}\) chung vào yield.
+
+### 4.15.87. Vai trò của 4.15
+
+4.15 hoàn thiện vòng đời cơ quan:
+
+<div class="flow-chain">
+<strong>Phát triển</strong> → <strong>Trưởng thành</strong> → <strong>Senescence</strong> → <strong>Autophagy/Proteolysis</strong> → <strong>Remobilization</strong> → <strong>PCD/Abscission</strong> → <strong>Sink filling</strong>
+</div>
+
+### 4.15.88. Kết luận 4.15
+
+Trong VECrop, senescence phải được xem là một **quá trình điều hòa và tái phân bổ tài nguyên**, không chỉ là một hệ số giảm biomass.
+
+Mô hình nên biểu diễn:
+
+$
+Development
++
+Stress
++
+Source\text{-}Sink
+\rightarrow
+Senescence
+$
+
+sau đó:
+
+$
+Senescence
+\rightarrow
+Remobilization
++
+Photosynthetic\ decline
++
+Organ\ turnover
+$
+
+để nối trực tiếp vòng đời cơ quan với năng suất và hiệu quả sử dụng dinh dưỡng.
+
+---
+
 # Chuỗi tích hợp cuối Chương 4
 
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
 
-**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.14.**
+**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.15.**
 
 ---
 
@@ -3906,5 +5042,7 @@ Như vậy phenology xác định **khi nào và cơ quan nào có khả năng t
 18. Coen E., Prusinkiewicz P. Reviews on developmental timing in plants.
 19. Desvoyes B. et al. Reviews on cell proliferation kinetics in the root apical meristem.
 20. Reviews on flowering-time regulation, photoperiod and vernalization in crops.
+21. Reviews on leaf senescence regulation, nutrient remobilization and stay-green phenotypes.
+22. Reviews on autophagy and programmed cell death in plant senescence.
 
 > **Quy tắc VECrop:** mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.
