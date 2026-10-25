@@ -4,9 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>VECrop — Thực nghiệm thực tiễn</title>
-  <link rel="stylesheet" href="css/experiment.css">
+  <link rel="stylesheet" href="css/workspace.css">\n  <link rel="stylesheet" href="css/experiment.css">
 </head>
-<body>
+<body>\n<nav class="workspace-nav notranslate" aria-label="VECrop Workspace">
+  <a class="ws-brand" href="index.html"><span class="ws-brand-mark">VE</span><span>VECrop Workspace</span></a>
+  <div class="ws-nav-links">
+    <a class="ws-link " href="index.html?chapter=1">📚 Giáo trình</a>
+    <a class="ws-link active" href="experiment.html">🧪 Thực nghiệm</a>
+    <a class="ws-link " href="experiment.html#evidenceSearch">🔎 Bằng chứng</a>
+    <a class="ws-link" href="index.html#assistant">🧠 Trợ lý</a>
+    <a class="ws-link" href="README.md">ℹ️ Dự án</a>
+  </div>
+  <div class="ws-controls">
+    <button class="ws-icon-btn" type="button" data-ws-font title="Đổi cỡ chữ">A+</button>
+    <button class="ws-icon-btn" type="button" data-ws-theme title="Sáng / tối">🌙</button>
+  </div>
+</nav>\n<section class="ws-flow notranslate" aria-label="Luồng làm việc VECrop">
+  <a class="ws-step " href="index.html?chapter=1"><b>1 · Học cơ chế</b><span>Giáo trình và công thức</span></a>
+  <a class="ws-step active" href="experiment.html"><b>2 · Nhập thực nghiệm</b><span>Dữ liệu thật + QC</span></a>
+  <a class="ws-step " href="experiment.html#evidenceSearch"><b>3 · Tìm bằng chứng</b><span>Nguồn cho dữ liệu thiếu</span></a>
+  <a class="ws-step" href="experiment.html#validation"><b>4 · Kiểm định</b><span>Sẵn sàng calibration/validation</span></a>
+</section>
 <header class="topbar">
   <div>
     <a class="brand" href="index.html">VECrop</a>
@@ -214,5 +232,5 @@
   </form>
 </main>
 <script src="js/experiment.js"></script>
-</body>
+<script src="js/workspace.js"></script>\n</body>
 </html>

@@ -141,6 +141,16 @@ Website VECrop có hai lớp dịch:
 
 ---
 
+## 🧭 VECrop Workspace
+
+Giao diện web được điều phối thành một workflow chung:
+
+`Giáo trình → Thực nghiệm → Tìm bằng chứng → Kiểm định`
+
+Các trang dùng chung thanh điều hướng, bảng màu, chế độ sáng/tối và tùy chọn cỡ chữ. Mỗi module vẫn tải độc lập để giữ hiệu năng khi giáo trình và dữ liệu thực nghiệm ngày càng lớn.
+
+---
+
 ## 🧪 Thực nghiệm thực tiễn
 
 Trang `experiment.html` là workspace nhập dữ liệu thực nghiệm ngoài đồng, nhà kính, thủy canh hoặc thí nghiệm chậu.
