@@ -1,6 +1,6 @@
 # VECrop — Giáo trình tổng hợp
 
-> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.16**.
+> **Phạm vi hiện tại:** đã hoàn thành Chương 1, Chương 2, Chương 3 và Chương 4 đến hết mục **4.17**.
 
 ---
 
@@ -11279,13 +11279,1633 @@ và giữ riêng:
 
 ---
 
+
+## 4.17. Hình thành năng suất kinh tế – Harvest Index – thiết lập sink – filling – source/sink limitation – năng suất thương phẩm
+
+### 4.17.1. Vai trò của 4.17
+
+4.17 là bước chuyển từ:
+
+<div class="flow-chain">
+<strong>Sinh khối toàn cây</strong> → <strong>Cơ quan kinh tế</strong> → <strong>Số lượng sink</strong> → <strong>Kích thước sink</strong> → <strong>Filling</strong> → <strong>Năng suất</strong>
+</div>
+
+Không được đồng nhất:
+
+$
+Biomass
+=
+Yield
+$
+
+vì năng suất kinh tế phụ thuộc cả:
+- tổng sinh khối;
+- số cơ quan thu hoạch;
+- sức chứa sink;
+- phân bổ;
+- thời gian filling;
+- remobilization;
+- stress theo giai đoạn;
+- tỷ lệ thương phẩm.
+
+### 4.17.2. Năng suất kinh tế
+
+Một định nghĩa tổng quát:
+
+$
+Y_{econ}
+=
+\frac{M_{harvestable}}{A_{ground}}
+$
+
+Đơn vị thường:
+- kg m\(^{-2}\);
+- t ha\(^{-1}\).
+
+### 4.17.3. Năng suất sinh học
+
+$
+Y_{bio}
+=
+\frac{B_{total}}{A_{ground}}
+$
+
+Phải phân biệt với năng suất kinh tế.
+
+### 4.17.4. Harvest Index
+
+$
+HI
+=
+\frac{Y_{econ}}
+{B_{aboveground}}
+$
+
+với cây lấy hạt.
+
+Không dùng cùng định nghĩa cho mọi crop nếu cơ quan kinh tế khác nhau.
+
+### 4.17.5. Harvest Index không phải hằng số
+
+$
+HI
+=
+HI(
+genotype,
+stage,
+environment,
+source\text{-}sink,
+stress
+)
+$
+
+Không được giữ cố định cả vụ nếu muốn mô hình động.
+
+### 4.17.6. Yield decomposition tổng quát
+
+Có thể phân rã:
+
+$
+Y
+=
+N_{unit}
+\times
+W_{unit}
+$
+
+Trong đó:
+- \(N_{unit}\): số đơn vị thu hoạch trên diện tích;
+- \(W_{unit}\): khối lượng trung bình mỗi đơn vị.
+
+### 4.17.7. Yield component multiplicativity caution
+
+Công thức:
+
+$
+Y
+=
+N_{unit}
+W_{unit}
+$
+
+là identity cấu trúc nếu định nghĩa đúng.
+
+Nhưng không có nghĩa hai thành phần độc lập; thường tồn tại compensation:
+
+$
+N_{unit}\uparrow
+\Rightarrow
+W_{unit}\downarrow
+$
+
+### 4.17.8. Sink number
+
+Số sink được xác lập qua:
+- organ initiation;
+- flowering;
+- fertilization;
+- abortion;
+- mortality.
+
+Một balance:
+
+$
+\frac{dN_{sink}}{dt}
+=
+Initiation
+-
+Abortion
+-
+Loss
+$
+
+### 4.17.9. Sink size
+
+Khối lượng sink:
+
+$
+M_{sink}
+=
+N_{sink}
+m_{sink}
+$
+
+### 4.17.10. Potential sink capacity
+
+Một sink capacity:
+
+$
+Cap_{sink}
+=
+N_{sink}
+W_{max,sink}
+$
+
+Đây là upper bound cơ chế, không phải yield prediction trực tiếp.
+
+### 4.17.11. Sink strength
+
+Từ 4.5:
+
+$
+SS_o
+=
+M_oq_o
+$
+
+Mở rộng cho organ kinh tế:
+
+$
+SS_{econ}
+=
+N_{sink}
+q_{sink}
+F_{dev}
+F_{hormone}
+F_{resource}
+$
+
+### 4.17.12. Source supply
+
+$
+Supply_C
+=
+A_{can}
++
+F_{rem,C}
+-
+R
+$
+
+Nếu dùng carbon unit nhất quán.
+
+### 4.17.13. Sink demand
+
+$
+Demand_C
+=
+N_{sink}
+d_{sink}(t)
+$
+
+### 4.17.14. Source limitation
+
+Nếu:
+
+$
+Supply_C
+<
+Demand_C
+$
+
+thì:
+
+$
+Growth_{sink}
+\approx
+Source\ limited
+$
+
+### 4.17.15. Sink limitation
+
+Nếu:
+
+$
+Supply_C
+>
+Demand_C
+$
+
+nhưng sink capacity thấp:
+
+$
+Growth_{sink}
+\approx
+Sink\ limited
+$
+
+### 4.17.16. Co-limitation
+
+Trong nhiều trường hợp:
+
+$
+Source\ limitation
+\land
+Sink\ limitation
+$
+
+có thể đồng thời tồn tại theo thời gian hoặc giữa organ.
+
+Không ép mô hình chỉ chọn một nhãn cho cả vụ.
+
+### 4.17.17. Filling rate
+
+Một generic filling rate:
+
+$
+\frac{dm_{sink}}{dt}
+=
+r_{fill}(t)
+$
+
+### 4.17.18. Logistic filling
+
+Một empirical formulation:
+
+$
+m(t)
+=
+\frac{W_{max}}
+{1+\exp[-k(t-t_{50})]}
+$
+
+Không xem logistic là cơ chế sinh học.
+
+### 4.17.19. Gompertz filling
+
+$
+m(t)
+=
+W_{max}
+\exp
+[
+-\exp(-k(t-t_i))
+]
+$
+
+Có thể phù hợp dữ liệu một số organ.
+
+### 4.17.20. Mechanistic filling
+
+Ở mức cơ chế:
+
+$
+\frac{dM_{sink}}{dt}
+=
+F_{C,in}
++
+F_{N,in}
++
+F_{P,in}
++
+F_{K,in}
+-
+R_{sink}
+-
+Loss
+$
+
+### 4.17.21. Filling duration
+
+$
+Y_{sink}
+\approx
+\int_{t_{set}}^{t_{maturity}}
+r_{fill}(t)\,dt
+$
+
+Năng suất phụ thuộc cả:
+- rate;
+- duration.
+
+### 4.17.22. Shortened filling duration
+
+Heat hoặc stress cuối vụ có thể làm:
+
+$
+Duration_{fill}\downarrow
+$
+
+dù instantaneous filling rate ban đầu không giảm mạnh.
+
+### 4.17.23. Thermal control của filling
+
+Một temperature modifier:
+
+$
+r_{fill}^{eff}
+=
+r_{fill,max}
+F_T(T)
+$
+
+Cardinal temperatures phải crop/stage-specific.
+
+### 4.17.24. Carbon supply theo thời gian
+
+Không dùng:
+
+$
+Y
+=
+A_{can,mean}
+\times
+Duration
+$
+
+nếu source và sink thay đổi mạnh theo thời gian.
+
+Nên:
+
+$
+C_{sup,total}
+=
+\int
+Supply_C(t)\,dt
+$
+
+### 4.17.25. Nitrogen supply cho sink
+
+$
+Supply_N
+=
+U_N
++
+F_{rem,N}
+$
+
+### 4.17.26. Protein yield
+
+Ở crop lấy hạt:
+
+$
+Protein\ yield
+=
+Y_{grain}
+\times
+Protein\ concentration
+$
+
+Yield và quality có thể trade-off.
+
+### 4.17.27. Nutrient concentration dilution
+
+Tăng carbohydrate accumulation có thể làm giảm nutrient concentration dù total nutrient không giảm tương ứng.
+
+### 4.17.28. Grain N balance
+
+$
+\frac{dM_{N,grain}}{dt}
+=
+U_{N,new}
++
+F_{rem,N}
+-
+Loss_N
+$
+
+### 4.17.29. Remobilization contribution
+
+$
+f_{rem,N}
+=
+\frac{N_{grain,rem}}
+{N_{grain,total}}
+$
+
+Cần isotope/tracer hoặc mass-balance đủ tốt để ước lượng đáng tin.
+
+### 4.17.30. Harvestable fraction
+
+$
+f_h
+=
+\frac{B_{harvestable}}
+{B_{organ,econ}}
+$
+
+Cho crop thị trường tươi, \(f_h\) có thể < 1 do loại bỏ mô hỏng.
+
+### 4.17.31. Marketable yield
+
+$
+Y_{market}
+=
+Y_{gross}
+f_{market}
+$
+
+### 4.17.32. Marketable fraction
+
+$
+f_{market}
+=
+1
+-
+f_{defect}
+-
+f_{disease}
+-
+f_{senescent}
+-
+f_{undersize}
+-
+f_{oversize}
+$
+
+Không nhất thiết cộng tuyến tính nếu các defect chồng lấp; đây là bookkeeping form.
+
+### 4.17.33. Yield quality vector
+
+Có thể định nghĩa:
+
+$
+\mathbf Q
+=
+[
+size,
+protein,
+sugar,
+moisture,
+color,
+firmness,
+defect
+]^T
+$
+
+### 4.17.34. Multi-objective yield
+
+Một objective:
+
+$
+J
+=
+w_YY
++
+w_QQ
+-
+w_CC
+$
+
+nếu tối ưu đồng thời:
+- yield;
+- quality;
+- cost.
+
+### 4.17.35. Yield potential
+
+Khái niệm:
+
+$
+Y_p
+=
+f(
+genotype,
+radiation,
+temperature,
+CO_2,
+phenology
+)
+$
+
+trong điều kiện không bị giới hạn bởi:
+- water;
+- nutrients;
+- pests/diseases.
+
+Đây là khái niệm benchmark, không phải một hằng số cố định.
+
+### 4.17.36. Water-limited yield potential
+
+$
+Y_w
+=
+f(
+Y_p,
+water\ supply,
+ET,
+soil
+)
+$
+
+### 4.17.37. Nutrient-limited yield
+
+Một reduced formulation:
+
+$
+Y_n
+=
+Y_p
+F_N
+F_P
+F_K
+$
+
+chỉ dùng khi các stress chưa được mô hình hóa cơ chế.
+
+### 4.17.38. Attainable yield
+
+Một conceptual:
+
+$
+Y_a
+\le
+Y_w
+\le
+Y_p
+$
+
+nhưng định nghĩa operational phải ghi rõ context.
+
+### 4.17.39. Yield gap
+
+$
+Y_g
+=
+Y_{benchmark}
+-
+Y_{actual}
+$
+
+Benchmark có thể là:
+- \(Y_p\);
+- \(Y_w\);
+- best-farm;
+- experimental ceiling.
+
+Phải ghi rõ loại nào.
+
+### 4.17.40. Harvest Index động
+
+Một state:
+
+$
+HI(t)
+=
+\frac{B_{econ}(t)}
+{B_{shoot}(t)}
+$
+
+### 4.17.41. HI onset
+
+Trước reproductive transition:
+
+$
+HI\approx0
+$
+
+với crop lấy hạt.
+
+### 4.17.42. HI growth
+
+Một reduced form:
+
+$
+\frac{dHI}{dt}
+=
+r_{HI}
+F_{stage}
+F_{sink}
+F_{resource}
+$
+
+### 4.17.43. HI ceiling
+
+$
+HI
+\le
+HI_{max,G}
+$
+
+với \(HI_{max,G}\) genotype-specific.
+
+### 4.17.44. Không áp dụng grain HI cho xà lách
+
+Với xà lách:
+
+$
+Y_{econ}
+=
+B_{marketable\ leaf}
+$
+
+nên harvest index cần định nghĩa lại theo mục tiêu thương phẩm.
+
+### 4.17.45. Reproductive success
+
+Một reproductive success fraction:
+
+$
+f_{fert}
+=
+\frac{N_{fertilized}}
+{N_{potential}}
+$
+
+### 4.17.46. Abortion fraction
+
+$
+f_{abort}
+=
+\frac{N_{aborted}}
+{N_{set}}
+$
+
+### 4.17.47. Final sink number
+
+$
+N_{final}
+=
+N_{potential}
+f_{fert}
+(1-f_{abort})
+$
+
+### 4.17.48. Stress sensitivity windows
+
+Không dùng một stress factor cho cả vụ.
+
+Cần phân biệt:
+- pre-flowering;
+- flowering;
+- early filling;
+- late filling.
+
+### 4.17.49. Stage-weighted stress
+
+Một reduced cumulative stress:
+
+$
+S_{cum}
+=
+\int
+w_{stage}(t)
+S(t)\,dt
+$
+
+Trong đó \(w_{stage}\) phải calibration theo crop/process.
+
+### 4.17.50. Heat around flowering
+
+Heat có thể làm giảm:
+- pollen viability;
+- anthesis synchrony;
+- fertilization;
+- sink number.
+
+### 4.17.51. Drought around flowering
+
+Drought có thể giảm:
+- reproductive success;
+- silk emergence ở ngô;
+- panicle fertility ở lúa;
+- sink establishment.
+
+### 4.17.52. Stress after flowering
+
+Sau flowering, stress thường tác động mạnh lên:
+- filling rate;
+- filling duration;
+- remobilization;
+- senescence.
+
+### 4.17.53. Density effect on yield components
+
+$
+Y_{area}
+=
+D
+\times
+Y_{plant}
+$
+
+Khi density tăng:
+- sink number per area có thể tăng;
+- unit weight có thể giảm;
+- competition tăng.
+
+### 4.17.54. Compensation
+
+Một empirical relationship:
+
+$
+W_{unit}
+=
+f(N_{unit})
+$
+
+thường có negative compensation.
+
+### 4.17.55. Yield stability
+
+Không chỉ xét mean yield.
+
+Có thể dùng:
+
+$
+CV_Y
+=
+\frac{\sigma_Y}{\mu_Y}
+$
+
+### 4.17.56. Environment sensitivity
+
+Một genotype response:
+
+$
+Y_{g,e}
+=
+\mu
++
+G_g
++
+E_e
++
+(G\times E)_{g,e}
++
+\epsilon
+$
+
+### 4.17.57. G×E
+
+Genotype × environment interaction quan trọng khi chuyển parameter giữa:
+- location;
+- season;
+- management.
+
+### 4.17.58. Yield uncertainty
+
+$
+Y
+=
+f(
+X,
+\theta,
+weather,
+management
+)
+$
+
+Nên propagate uncertainty thay vì chỉ báo một con số.
+
+### 4.17.59. Monte Carlo yield
+
+$
+X^{(k)},
+\theta^{(k)}
+\rightarrow
+Y^{(k)}
+$
+
+Báo:
+- median;
+- P10;
+- P50;
+- P90
+khi phù hợp.
+
+### 4.17.60. Yield sensitivity
+
+$
+S_{\theta_i}
+=
+\frac{\partial Y}
+{\partial\theta_i}
+$
+
+### 4.17.61. Elasticity
+
+$
+E_{\theta_i}
+=
+\frac{\partial Y}{\partial\theta_i}
+\frac{\theta_i}{Y}
+$
+
+giúp so sánh parameter khác đơn vị.
+
+### 4.17.62. Counterfactual yield
+
+Một diagnostic:
+
+$
+\Delta Y_{stress}
+=
+Y_{without\ stress}
+-
+Y_{actual}
+$
+
+Chỉ có ý nghĩa nếu model causal đủ đáng tin.
+
+### 4.17.63. Attribution caution
+
+Không được kết luận:
+“x% mất năng suất do N”
+nếu:
+- water;
+- N;
+- heat
+tương tác mạnh mà model không nhận dạng được riêng.
+
+### 4.17.64. Harvest timing
+
+Yield marketable phụ thuộc thời điểm thu hoạch.
+
+Một objective:
+
+$
+t_h^*
+=
+\arg\max_t
+[
+Y_{market}(t)
+\times
+Price(t)
+-
+Loss(t)
+]
+$
+
+### 4.17.65. Overmaturity
+
+Thu hoạch trễ có thể:
+- tăng dry matter;
+- nhưng giảm quality;
+- tăng lodging;
+- tăng shattering;
+- tăng senescence.
+
+### 4.17.66. Early harvest
+
+Thu hoạch sớm có thể:
+- giảm unit weight;
+- tăng moisture;
+- giảm total biomass;
+- nhưng cải thiện market quality ở crop tươi.
+
+### 4.17.67. Economic yield
+
+$
+Revenue
+=
+Y_{market}
+P_y
+$
+
+### 4.17.68. Gross margin
+
+$
+GM
+=
+Revenue
+-
+Variable\ Costs
+$
+
+Không tối ưu input chỉ theo biological yield nếu mục tiêu sản xuất là lợi nhuận.
+
+### 4.17.69. Marginal response
+
+$
+MR_i
+=
+\frac{\partial Y}
+{\partial u_i}
+$
+
+với \(u_i\) là irrigation/fertilizer/density.
+
+### 4.17.70. Economic optimum
+
+$
+P_Y
+\frac{\partial Y}{\partial u_i}
+=
+\frac{\partial C}{\partial u_i}
+$
+
+trong mô hình đơn biến lý tưởng.
+
+### 4.17.71. Lúa: cấu trúc năng suất
+
+Một decomposition:
+
+$
+Y_{rice}
+=
+Panicles\ m^{-2}
+\times
+Spikelets\ panicle^{-1}
+\times
+Filled\ fraction
+\times
+Grain\ weight
+$
+
+cần scale factor đơn vị phù hợp.
+
+### 4.17.72. Lúa: panicle number
+
+$
+N_{panicle}
+\le
+N_{tiller}
+$
+
+do không phải mọi tiller đều hữu hiệu.
+
+### 4.17.73. Lúa: spikelets per panicle
+
+Phụ thuộc:
+- panicle differentiation;
+- N status;
+- radiation;
+- temperature;
+- genotype.
+
+### 4.17.74. Lúa: filled-grain fraction
+
+$
+f_{filled}
+=
+\frac{N_{filled}}
+{N_{spikelet}}
+$
+
+### 4.17.75. Lúa: grain filling
+
+Một grain balance:
+
+$
+\frac{dM_{grain}}{dt}
+=
+F_{photo}
++
+F_{stem\ rem}
+-
+R_{grain}
+$
+
+### 4.17.76. Lúa: stem NSC
+
+Stem NSC có thể đóng góp đáng kể khi source sau heading bị giới hạn.
+
+Không dùng một tỷ lệ cố định cho mọi giống/mùa vụ.
+
+### 4.17.77. Lúa: sterility
+
+Heat/cold quanh flowering có thể làm:
+
+$
+f_{fert}\downarrow
+$
+
+và giảm sink number trước khi grain filling bắt đầu.
+
+### 4.17.78. Lúa: Harvest Index
+
+$
+HI_{rice}
+=
+\frac{Grain\ dry\ mass}
+{Aboveground\ dry\ biomass}
+$
+
+### 4.17.79. Ngô: cấu trúc năng suất
+
+$
+Y_{maize}
+=
+Ears\ m^{-2}
+\times
+Kernels\ ear^{-1}
+\times
+Kernel\ weight
+$
+
+### 4.17.80. Ngô: ear number
+
+$
+N_{ear}
+\le
+N_{plant}
+\times
+Ears\ plant^{-1}
+$
+
+### 4.17.81. Ngô: kernel set
+
+Kernel number phụ thuộc mạnh:
+- ovule number;
+- pollination;
+- assimilate availability;
+- stress quanh silking.
+
+### 4.17.82. Ngô: ASI
+
+$
+ASI
+=
+t_{silking}
+-
+t_{anthesis}
+$
+
+ASI tăng thường là dấu hiệu reproductive stress trong nhiều bối cảnh.
+
+### 4.17.83. Ngô: kernel growth
+
+$
+\frac{dm_k}{dt}
+=
+r_{kernel}
+F_T
+F_C
+F_N
+$
+
+### 4.17.84. Ngô: post-silking source
+
+Nguồn carbon gồm:
+- current photosynthesis;
+- stem reserve remobilization.
+
+### 4.17.85. Ngô: post-silking N
+
+Grain N:
+
+$
+N_{grain}
+=
+N_{post\ uptake}
++
+N_{remobilized}
+$
+
+### 4.17.86. Ngô: stay-green tradeoff
+
+Stay-green có thể tăng source duration nhưng nếu remobilization bị hạn chế thì grain nutrient dynamics có thể thay đổi.
+
+### 4.17.87. Xà lách: định nghĩa năng suất
+
+Với xà lách:
+
+$
+Y_{lettuce}
+=
+Fresh\ marketable\ leaf\ biomass
+$
+
+thường phù hợp hơn grain-style HI.
+
+### 4.17.88. Xà lách: fresh mass
+
+$
+Fresh\ mass
+=
+\frac{Dry\ mass}
+{DMF}
+$
+
+nếu dry matter fraction được đo phù hợp.
+
+### 4.17.89. Xà lách: marketable fraction
+
+$
+f_{market}
+=
+f(
+tipburn,
+senescence,
+disease,
+size,
+shape,
+bolting
+)
+$
+
+### 4.17.90. Xà lách: leaf number
+
+$
+Y_{market}
+\approx
+N_{leaf,market}
+\times
+W_{leaf}
+$
+
+chỉ là decomposition.
+
+### 4.17.91. Xà lách: tipburn
+
+Tipburn làm giảm:
+
+$
+f_{market}
+$
+
+dù total biomass có thể cao.
+
+### 4.17.92. Xà lách: bolting
+
+Bolting làm:
+- thay đổi biomass allocation;
+- giảm marketability;
+- tăng stem fraction.
+
+### 4.17.93. Xà lách: water content
+
+Fresh yield rất nhạy với tissue water content.
+
+Không dùng fresh yield để suy trực tiếp carbon gain.
+
+### 4.17.94. Lúa/ngô/xà lách: cùng một framework, khác yield organ
+
+VECrop nên giữ framework chung:
+
+$
+Y
+=
+Number
+\times
+Unit\ size
+\times
+Marketable\ fraction
+$
+
+nhưng mapping sinh lý phải crop-specific.
+
+### 4.17.95. Yield-state vector
+
+$
+\mathbf Y
+=
+[
+N_{sink},
+W_{sink},
+f_{fert},
+f_{abort},
+HI,
+Y_{gross},
+f_{market},
+Y_{market}
+]^T
+$
+
+### 4.17.96. Yield dynamics
+
+$
+\frac{d\mathbf Y}{dt}
+=
+\mathbf f_Y
+(
+Source,
+Sink,
+Stage,
+Water,
+Nutrients,
+Temperature,
+Hormone,
+Senescence
+)
+$
+
+### 4.17.97. Coupling với 4.5
+
+Phloem source–sink quyết định carbon delivery tới organ kinh tế.
+
+### 4.17.98. Coupling với 4.6
+
+Canopy photosynthesis quyết định source supply.
+
+### 4.17.99. Coupling với 4.7
+
+N/P/K supply quyết định:
+- sink growth;
+- composition;
+- remobilization.
+
+### 4.17.100. Coupling với 4.8
+
+Respiration quyết định carbon cost của filling.
+
+### 4.17.101. Coupling với 4.13
+
+Sugar/T6P/SnRK1/TOR điều chỉnh sink activity và growth capacity.
+
+### 4.17.102. Coupling với 4.14
+
+Phenology xác định:
+- sink initiation;
+- flowering;
+- filling window;
+- maturity.
+
+### 4.17.103. Coupling với 4.15
+
+Senescence quyết định:
+- source duration;
+- remobilization;
+- organ loss.
+
+### 4.17.104. Coupling với 4.16
+
+Organ biomass và allocation cung cấp nền cho HI và economic yield.
+
+### 4.17.105. Parameter provenance
+
+Cần provenance cho:
+- maximum sink size;
+- flowering fertility;
+- abortion rate;
+- filling-rate parameters;
+- filling duration;
+- HI ceiling;
+- marketable fraction;
+- crop-specific yield components.
+
+### 4.17.106. Calibration hierarchy
+
+Nên hiệu chỉnh:
+1. sink number;
+2. fertilization/abortion;
+3. unit filling curve;
+4. source duration;
+5. organ biomass;
+6. HI;
+7. marketable yield.
+
+### 4.17.107. Validation độc lập
+
+Nên kiểm:
+- component yield;
+- time-course filling;
+- grain/leaf number;
+- individual unit weight;
+- final HI;
+- marketable fraction;
+- quality traits.
+
+### 4.17.108. Không fit chỉ bằng final yield
+
+Hai model có cùng final yield nhưng:
+- sink number khác;
+- unit weight khác;
+- remobilization khác
+có thể có cơ chế hoàn toàn khác nhau.
+
+### 4.17.109. Component balance test
+
+Phải kiểm:
+
+$
+Y_{calc}
+\approx
+N_{unit}
+W_{unit}
+$
+
+sau quy đổi đơn vị.
+
+### 4.17.110. Biomass-to-yield balance
+
+$
+Y_{econ}
+\le
+B_{harvestable}
+\le
+B_{total}
+$
+
+trừ khi hệ quy đổi fresh/dry mass khác nhau và đã được giải thích.
+
+### 4.17.111. Carbon consistency
+
+Economic dry-matter accumulation phải phù hợp với carbon supply/remobilization.
+
+Không được tạo thêm biomass chỉ bằng tăng HI mà không giảm biomass compartment khác.
+
+### 4.17.112. Nutrient consistency
+
+Nếu grain N tăng:
+
+$
+\Delta N_{grain}
+$
+
+phải đến từ:
+- new uptake;
+- remobilization;
+- hoặc cả hai.
+
+### 4.17.113. Stress attribution test
+
+Một stress chỉ được gán là nguyên nhân giảm yield component khi model tái hiện đúng intermediate states.
+
+Ví dụ drought → low yield phải đi qua:
+- water potential;
+- stomata/photosynthesis;
+- flowering/filling;
+- hoặc sink loss.
+
+### 4.17.114. Counterfactual component analysis
+
+Có thể tính:
+
+$
+\Delta Y_{N_{sink}}
+=
+Y(N_{sink}^{ref})-Y(actual)
+$
+
+và tương tự cho unit weight, nhưng chỉ dùng như diagnostic.
+
+### 4.17.115. Uncertainty decomposition
+
+$
+Var(Y)
+=
+Var_{weather}
++
+Var_{parameter}
++
+Var_{measurement}
++
+Var_{structure}
++
+Interactions
+$
+
+ở mức conceptual.
+
+### 4.17.116. Practical decision outputs
+
+4.17 có thể cung cấp:
+- yield forecast;
+- component forecast;
+- expected marketable fraction;
+- harvest-window forecast;
+- limiting-component diagnosis.
+
+### 4.17.117. Yield forecast phải có interval
+
+Không báo:
+
+$
+Y=8.2\ t\ ha^{-1}
+$
+
+mà không uncertainty nếu dữ liệu đầu vào bất định.
+
+Nên báo:
+
+$
+Y_{P50}
+$
+
+kèm:
+
+$
+[P10,P90]
+$
+
+khi phù hợp.
+
+### 4.17.118. Forecast horizon
+
+Sai số dự báo tăng khi horizon dài.
+
+Cần phân biệt:
+- early-season forecast;
+- flowering-stage forecast;
+- filling-stage forecast;
+- near-harvest forecast.
+
+### 4.17.119. Dynamic updating
+
+Khi có dữ liệu mới:
+
+$
+P(Y|\mathcal D_{new})
+$
+
+nên được cập nhật bằng data assimilation/Bayesian update nếu model hỗ trợ.
+
+### 4.17.120. Yield ceiling warning
+
+Mô hình không nên cho:
+
+$
+Y_{econ}
+>
+Cap_{sink}
+$
+
+hoặc:
+
+$
+Y_{econ}
+>
+C_{available}\times conversion
+$
+
+### 4.17.121. Harvest Index warning
+
+Nếu:
+
+$
+HI>1
+$
+
+trong dry-matter definition thông thường, model sai về balance.
+
+### 4.17.122. Fresh-weight warning
+
+Với xà lách:
+
+$
+HI_{fresh}
+$
+
+có thể gây hiểu nhầm vì water content chi phối mạnh.
+
+Nên dùng:
+- dry-matter partition;
+- marketable fresh yield
+song song.
+
+### 4.17.123. Yield quality tradeoff
+
+Ví dụ:
+- grain yield vs protein concentration;
+- lettuce fresh mass vs dry matter concentration;
+- rapid growth vs tissue structural quality.
+
+Không tối ưu một chỉ tiêu duy nhất nếu mục tiêu thương mại đa tiêu chí.
+
+### 4.17.124. Losses before harvest
+
+Một gross-to-net relation:
+
+$
+Y_{net}
+=
+Y_{gross}
+-
+L_{lodging}
+-
+L_{shatter}
+-
+L_{disease}
+-
+L_{quality}
+$
+
+### 4.17.125. Lodging
+
+Ở lúa/ngô, lodging có thể làm giảm:
+- harvestability;
+- photosynthesis cuối vụ;
+- grain filling;
+- mechanical harvest efficiency.
+
+### 4.17.126. Shattering
+
+Ở cereal:
+
+$
+Loss_{shatter}
+=
+f(
+genotype,
+maturity,
+weather,
+harvest\ delay
+)
+$
+
+### 4.17.127. Harvest efficiency
+
+$
+\eta_h
+=
+\frac{Yield_{collected}}
+{Yield_{standing}}
+$
+
+### 4.17.128. Final collected yield
+
+$
+Y_{collected}
+=
+Y_{standing}
+\eta_h
+$
+
+### 4.17.129. Economic yield chain
+
+<div class="flow-chain">
+<strong>Potential sinks</strong> → <strong>Sink set</strong> → <strong>Filling</strong> → <strong>Standing yield</strong> → <strong>Marketable fraction</strong> → <strong>Harvest efficiency</strong> → <strong>Collected yield</strong>
+</div>
+
+### 4.17.130. Không double counting
+
+Nếu heat đã giảm:
+- fertility;
+- filling duration;
+
+thì không nhân thêm một \(F_{heat}\) chung vào final yield.
+
+Nếu senescence đã giảm GLAI và source supply, không phạt yield thêm bằng một \(F_{sen}\) tổng quát.
+
+### 4.17.131. Vai trò của 4.17 trong VECrop
+
+4.17 biến trạng thái sinh khối thành năng suất kinh tế:
+
+$
+Biomass
+\rightarrow
+Yield\ components
+\rightarrow
+Sink\ filling
+\rightarrow
+Harvest\ index
+\rightarrow
+Marketable\ yield
+$
+
+### 4.17.132. Kết luận 4.17
+
+VECrop không nên dự báo năng suất bằng một hệ số cuối cùng duy nhất.
+
+Cấu trúc phù hợp hơn là:
+
+$
+Yield
+=
+f(
+Sink\ number,
+Sink\ size,
+Filling\ rate,
+Filling\ duration,
+Source\ supply,
+Remobilization,
+Stress\ timing,
+Harvestability
+)
+$
+
+và mọi thành phần phải liên kết ngược với:
+- phenology;
+- canopy photosynthesis;
+- hydraulics;
+- nutrient balance;
+- source–sink;
+- senescence;
+- biomass allocation.
+
+Điều này làm cho năng suất trở thành **kết quả cuối của chuỗi cơ chế**, không phải biến được “gắn thêm” vào cuối mô hình.
+
+---
+
 # Chuỗi tích hợp cuối Chương 4
 
 <div class="flow-chain">
 <strong>Đất/giá thể</strong> → <strong>Rễ</strong> → <strong>Xylem</strong> → <strong>Lá</strong> → <strong>Khí khổng & quang hợp</strong> → <strong>Phloem</strong> → <strong>Source–sink</strong> → <strong>C–N–P–K & năng lượng</strong> → <strong>ROS–Hormone–Ca²⁺–MAPK</strong> → <strong>Sinh trưởng và năng suất</strong>
 </div>
 
-**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.16.**
+**Phạm vi giáo trình hiện tại kết thúc đúng tại mục 4.17.**
 
 ---
 
@@ -11315,10 +12935,12 @@ và giữ riêng:
 22. Reviews on autophagy and programmed cell death in plant senescence.
 23. Reviews and textbooks on crop growth analysis, biomass partitioning, allometry and organ allocation.
 24. Reviews on root–shoot allocation, functional equilibrium and dynamic dry-matter partitioning.
+25. Reviews and crop-model literature on yield components, sink establishment, grain filling and harvest index.
+26. Literature on yield potential, yield gaps, reproductive stress windows and marketable yield formation in rice, maize and leafy vegetables.
 
 > **Quy tắc VECrop:** mọi tham số như \(P_{50}\), \(g_1\), \(V_{cmax}\), \(J_{max}\), \(K_m\), \(V_{\max}\), \(k_{rem}\), hormone coefficient hoặc vulnerability parameter phải có provenance theo loài/giống/cơ quan/giai đoạn/điều kiện/phương pháp; nếu chưa có nguồn thì phải ghi rõ *calibration parameter* hoặc *proposed*.
 
 
 ---
 
-> **Điểm dừng hiện tại:** 4.16. Chưa có nội dung sau 4.16.
+> **Điểm dừng hiện tại:** 4.17. Chưa có nội dung sau 4.17.
