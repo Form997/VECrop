@@ -162,9 +162,10 @@ Mở **Trợ lý tìm bằng chứng**. Nhập biến cần tìm và bối cản
 Công cụ có thể:
 1. tìm **metadata bài báo** qua Crossref;
 2. mở Google Scholar / AGRIS để tra cứu thêm;
-3. cho phép ghi DOI/tiêu đề vào mục **Provenance**.
+3. **tự điền DOI và trích dẫn** vào ô **Nguồn/tài liệu tham chiếu** khi kết quả đã sàng lọc đúng cây; lưu riêng metadata nguồn trong JSON;
+4. đối chiếu GBIF và chỉ tự điền **tên khoa học** còn trống khi cây thuộc danh mục định danh không mơ hồ và GBIF trả khớp chính xác.
 
-**Crossref cung cấp thông tin thư mục, không xác thực rằng kết quả nghiên cứu phù hợp với thí nghiệm của bạn.** Trước khi sử dụng một tham số được công bố, phải đọc phương pháp, giống, thời vụ, loại đất/giá thể, dạng đơn vị, thời điểm đo, điều kiện biên và bất định.
+**Thứ tự tự tìm:** Việt Nam trước (bài báo phải nêu Việt Nam trong tiêu đề và khớp tên cây); nếu không tìm thấy, hệ thống chuyển sang thế giới. Tự điền chỉ áp dụng **nguồn/DOI và tên khoa học đã xác minh**, tuyệt đối không điền pH, EC, năng suất, giống, thời tiết tại ô, quy trình đã dùng hoặc bất kỳ số đo chưa đo. **Crossref cung cấp thông tin thư mục, không xác thực rằng kết quả nghiên cứu phù hợp với thí nghiệm của bạn.** Trước khi sử dụng một tham số được công bố, phải đọc phương pháp, giống, thời vụ, loại đất/giá thể, dạng đơn vị, thời điểm đo, điều kiện biên và bất định.
 
 Ví dụ:
 - **Thiếu phương pháp đo:** tìm tài liệu quy trình chuẩn để *thiết kế phép đo bổ sung*.

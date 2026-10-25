@@ -24,6 +24,7 @@
     mount.replaceChildren(document.importNode(node,true));
     await script('js/experiment.js');
     await script('js/experiment-pro.js');
+    await script('js/evidence-autofill.js');
   })().catch(err=>{
     modulePromise=null;
     mount.replaceChildren();

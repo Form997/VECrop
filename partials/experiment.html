@@ -180,9 +180,9 @@
       <div class="section-head">
         <div>
           <h2>10. Trợ lý tìm bằng chứng cho dữ liệu thiếu</h2>
-          <p class="hint">Tìm bài báo và nguồn tham khảo theo cây + giống + địa điểm + biến còn thiếu. Kết quả chỉ là bằng chứng tham khảo, không tự điền số vào dataset.</p>
+          <p class="hint">Tìm bài báo và nguồn tham khảo theo cây + giống + địa điểm + biến còn thiếu. Tự ghi DOI và nguồn tham khảo đã sàng lọc vào hồ sơ; đối chiếu tên khoa học bằng GBIF. Không sao chép số đo thực địa từ công trình khác.</p>
         </div>
-        <button id="searchMissingBtn" type="button">🔎 Tìm nguồn cho dữ liệu thiếu</button>
+        <button id="searchMissingBtn" type="button">🔎 Tự tìm và điền nguồn · Việt Nam → Thế giới</button>
       </div>
       <div class="grid">
         <label>Biến/chủ đề cần tìm
@@ -197,6 +197,8 @@
         <button id="openScholarBtn" type="button">Mở Google Scholar</button>
         <button id="openAgrisBtn" type="button">Mở AGRIS</button>
       </div>
+      <input name="evidence_sources_json" type="hidden" value="[]">
+      <div id="autoFillReport" class="exp-autofill-report" aria-live="polite"></div>
       <div id="evidenceStatus" class="hint">Tra cứu DOI gửi từ khóa cây trồng/bối cảnh nghiên cứu tới Crossref. Không đưa tên người phụ trách hay dữ liệu cá nhân vào từ khóa. Tiêu đề bài báo không tự chứng minh một tham số phù hợp.</div>
       <div id="evidenceResults" class="evidence-results"></div>
       <div class="notice" style="margin-top:12px">

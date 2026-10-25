@@ -198,13 +198,9 @@ function escapeEvidence(s=''){
 }
 
 document.getElementById('searchEvidenceBtn').addEventListener('click',()=>searchCrossref(currentEvidenceQuery()));
-document.getElementById('searchMissingBtn').addEventListener('click',async()=>{
-  const d=formObject(),v=validate(d);showValidation(v);
-  const topics=missingTopicsFromValidation(d,v);
-  if(!topics.length){document.getElementById('evidenceStatus').textContent='Không phát hiện trường thiếu rõ ràng để tạo truy vấn.';return}
-  document.getElementById('evidenceTopic').value=topics[0];
-  document.getElementById('evidenceContext').value=[d.site,d.production_system].filter(Boolean).join(' ');
-  await searchCrossref(currentEvidenceQuery(topics[0]));
+document.getElementById('searchMissingBtn').addEventListener('click', async()=>{
+ if(window.VECropSmartAutoFill) await window.VECropSmartAutoFill();
+ else document.getElementById('evidenceStatus').textContent='Tính năng tự tìm chưa tải xong.';
 });
 document.getElementById('openScholarBtn').addEventListener('click',()=>{
   const q=currentEvidenceQuery(); if(q) window.open('https://scholar.google.com/scholar?q='+encodeURIComponent(q),'_blank','noopener');

@@ -195,7 +195,7 @@ Lệnh kiểm tra trả mã thoát khác 0 nếu JSON không hợp lệ. Kết q
 Khi thiếu dữ liệu, trang Thực nghiệm có thể tạo truy vấn từ:
 `crop + species + cultivar + site + production system + missing variable`.
 
-Hệ thống tìm metadata bài báo qua **Crossref REST API** và cung cấp liên kết mở Google Scholar/AGRIS để tra cứu sâu hơn. Kết quả không tự động điền vào dữ liệu thực nghiệm. Người dùng phải kiểm tra phạm vi áp dụng và có thể ghi DOI vào trường provenance trước khi sử dụng.
+Hệ thống tìm metadata bài báo qua **Crossref REST API** và cung cấp liên kết mở Google Scholar/AGRIS để tra cứu sâu hơn. Khi nhấn **Tự tìm và điền nguồn**, ưu tiên bài báo có Việt Nam trong tiêu đề và khớp tên cây; sau đó tìm quốc tế nếu không có. Tự ghi DOI cùng nhãn tài liệu tham khảo vào provenance và lưu audit metadata; đối chiếu tên khoa học bằng GBIF khi đủ rõ. Không tự điền các số đo thực nghiệm, dữ liệu hiện trường hoặc quy trình chưa ghi nhận.
 
 ---
 
