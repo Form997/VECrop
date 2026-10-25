@@ -76,3 +76,7 @@ body[data-vecrop-view="experiment"] .learning-only{display:none!important}
 body[data-vecrop-view="learn"] header.learning-only{top:58px}
 #experimentView .exp-wrap section[data-step]{scroll-margin-top:90px}
 @media(max-width:820px){body[data-vecrop-view="learn"] header.learning-only{top:0}}
+
+#experimentView .exp-help-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#176c85;color:#fff;border:1px solid #176c85;border-radius:10px;font-weight:800;padding:9px 14px;font-size:.9rem}
+#experimentView .exp-help-link:hover{background:#12566b}
+#experimentView .exp-help-link:focus-visible{outline:3px solid #7ac1d4;outline-offset:2px}

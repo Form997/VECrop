@@ -171,6 +171,8 @@ Nó hỗ trợ:
 
 Dữ liệu thiếu **không được tự động bịa hoặc suy ra**. Workspace chỉ đánh dấu thiếu và mức sẵn sàng của dataset.
 
+**Hướng dẫn từng bước cho người sử dụng:** [Mở file HƯỚNG DẪN SỬ DỤNG THỰC NGHIỆM](docs/HUONG-DAN-SU-DUNG-THUC-NGHIEM.md) — gồm quy trình 11 bước, đơn vị, nghiệm thức/lặp, nhập/xuất JSON–CSV, lỗi thường gặp, tìm DOI, sao lưu và kiểm tra Python.
+
 ### Workspace thực nghiệm nâng cao
 
 - Điều hướng theo 11 bước, không tải phần thực nghiệm cho đến khi được mở.
