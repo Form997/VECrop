@@ -21,7 +21,7 @@ async function status(){
  if(!r.ok)throw new Error('Máy chủ cập nhật không sẵn sàng');
  const d=await r.json();token=d.token;latest=d;
  const build=Number(d.current_run_number||0);
- let label='Bản cài: '+(build?'#'+build:'đóng gói thủ công')+'. ';
+ let label=(d.staging?'🧪 STAGING · DATA riêng; ':'')+'Bản cài: '+(build?'#'+build:'đóng gói thủ công')+'. ';
  if(d.release_state==='available')label+='Có EXE mới ('+d.release_tag+'). ';
  else if(d.release_state==='current')label+='EXE đang là bản mới nhất. ';
  else if(d.release_state==='offline')label+='Chưa kiểm tra được bản EXE trên Internet. ';
@@ -32,7 +32,8 @@ async function status(){
  if(d.mode==='idle')label+=d.active_content_revision?'Đã có học liệu đồng bộ.':'Đang dùng học liệu đóng gói.';
  msg(label);
  el('vecrop-update-download').style.display=d.release_state==='available'?'inline-block':'none';
- el('vecrop-update-sync').disabled=d.mode==='syncing';
+ el('vecrop-update-sync').disabled=d.mode==='syncing'||Boolean(d.staging);
+ if(d.staging)el('vecrop-update-sync').title='Staging không đồng bộ học liệu main';
  if(d.mode==='ready'&&!el('vecrop-update-reload')){
   const b=document.createElement('button');b.id='vecrop-update-reload';b.type='button';
   b.textContent='Tải lại trang';b.style.marginTop='8px';b.onclick=()=>location.reload();

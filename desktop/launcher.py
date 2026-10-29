@@ -21,7 +21,16 @@ except ImportError:
     from desktop.updates import Updater, appdata_root
     from desktop.data_store import DataStore, DataError, RevisionConflict
 
-PORT = 47852
+def port_for_mode(staging: bool) -> int:
+    return 47853 if staging else 47852
+
+
+def data_root_for_mode(base: Path, staging: bool) -> Path:
+    return base.with_name(base.name + "-Staging") if staging else base
+
+
+STAGING = "--staging" in sys.argv
+PORT = port_for_mode(STAGING)
 HEALTH = b"VECropDesktop/v2"
 ALLOWED = {".html", ".css", ".js", ".json", ".md", ".png", ".jpg",
            ".jpeg", ".webp", ".svg", ".ico", ".txt", ".woff", ".woff2"}
@@ -93,6 +102,7 @@ class Handler(SimpleHTTPRequestHandler):
         if path == "/__vecrop_status":
             state = self.server.updater.summary()
             state["token"] = self.server.action_token
+            state["staging"] = self.server.staging
             state["data"] = self.server.data_store.counts()
             return self.json_response(state)
         if path == "/__vecrop_data":
@@ -177,6 +187,10 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_error(413)
             return
         if path == "/__vecrop_sync":
+            if self.server.staging:
+                return self.json_response({
+                    "error": "Staging không đồng bộ học liệu từ main để tránh sai lệch bản thử."
+                }, 403)
             started = self.server.updater.start_sync()
             return self.json_response({"started": started})
         if path == "/__vecrop_check":
@@ -212,7 +226,7 @@ def browser_controls(url: str) -> None:
     import tkinter as tk
     from tkinter import ttk
     w = tk.Tk()
-    w.title("VECrop Desktop - Điều khiển")
+    w.title("VECrop Desktop - " + ("STAGING" if STAGING else "Điều khiển"))
     w.geometry("430x235")
     w.minsize(390, 220)
     w.configure(bg="#eaf4ee")
@@ -240,8 +254,9 @@ def main() -> int:
         webbrowser.open(url)
         return 0
 
-    updater = Updater(root, appdata_root())
-    data_store = DataStore(appdata_root())
+    home = data_root_for_mode(appdata_root(), STAGING)
+    updater = Updater(root, home)
+    data_store = DataStore(home)
     handler = functools.partial(Handler, directory=str(root))
     try:
         server = ThreadingHTTPServer(("127.0.0.1", PORT), handler)
@@ -253,6 +268,7 @@ def main() -> int:
 
     server.updater = updater
     server.data_store = data_store
+    server.staging = STAGING
     server.action_token = secrets.token_urlsafe(32)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
@@ -264,10 +280,11 @@ def main() -> int:
         else:
             try:
                 import webview
-                profile = appdata_root() / "webview-profile"
+                profile = home / "webview-profile"
                 profile.mkdir(parents=True, exist_ok=True)
                 webview.create_window(
-                    "VECrop - Thực nghiệm và Giáo trình", url,
+                    ("VECrop STAGING - Dữ liệu thử riêng" if STAGING else
+                     "VECrop - Thực nghiệm và Giáo trình"), url,
                     width=1250, height=840, min_size=(790, 550),
                     text_select=True, background_color="#ecf5ef"
                 )

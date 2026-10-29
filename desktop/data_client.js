@@ -191,7 +191,8 @@ function buildUI(){
  vault=tag('section','vecrop-data-vault');
  vault.setAttribute('aria-label','Kho dữ liệu thực nghiệm SQLite');
  const top=tag('div','vecrop-data-top');
- top.append(tag('h2','','🗄️ DATA — Kho dữ liệu thực nghiệm trên máy'));
+ top.append(tag('h2','',location.port==='47853'?
+  '🧪 DATA STAGING — CHỈ DÙNG ĐỂ THỬ':'🗄️ DATA — Kho dữ liệu thực nghiệm trên máy'));
  stats=tag('div','vecrop-data-stats','Đang kết nối SQLite…');
  top.append(stats);
  const desc=tag('p','','Lưu thí nghiệm theo mã riêng, ghi lịch sử phiên bản và quan trắc. '+
