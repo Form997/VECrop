@@ -1,0 +1,48 @@
+{
+  "release": "v3.0.0",
+  "state": "NO-GO",
+  "items": {
+    "product": {
+      "status": "pending",
+      "evidence": [],
+      "reviewer": "",
+      "checked_at": ""
+    },
+    "data": {
+      "status": "pending",
+      "evidence": [],
+      "reviewer": "",
+      "checked_at": ""
+    },
+    "tests": {
+      "status": "pending",
+      "evidence": [],
+      "reviewer": "",
+      "checked_at": ""
+    },
+    "user_guide": {
+      "status": "pending",
+      "evidence": [],
+      "reviewer": "",
+      "checked_at": ""
+    },
+    "security_legal": {
+      "status": "pending",
+      "evidence": [],
+      "reviewer": "",
+      "checked_at": ""
+    },
+    "backup_recovery": {
+      "status": "pending",
+      "evidence": [],
+      "reviewer": "",
+      "checked_at": ""
+    },
+    "operations": {
+      "status": "pending",
+      "evidence": [],
+      "reviewer": "",
+      "checked_at": ""
+    }
+  }
+}
